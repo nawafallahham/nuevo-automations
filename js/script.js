@@ -38,17 +38,20 @@
     navToggle.addEventListener('click', function () {
       var isOpen = header.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
     mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         header.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
       });
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && header.classList.contains('is-open')) {
         header.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
         navToggle.focus();
       }
     });

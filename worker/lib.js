@@ -13,6 +13,7 @@ export const MEETING_MIN = 20;
 const BASE_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
   'Cache-Control': 'no-store',
+  'X-Robots-Tag': 'noindex',
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin'
 };

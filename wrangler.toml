@@ -20,10 +20,11 @@ workers_dev = true
 directory = "."
 binding = "ASSETS"
 html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
 # The worker runs first for /api/* and for pages (so it can 301 the www host
 # to the apex — _redirects can't match on host). Static sub-resources under
 # /assets, /css and /js skip the worker and are served straight from the edge.
-run_worker_first = ["/api/*", "!/assets/*", "!/css/*", "!/js/*"]
+run_worker_first = ["/*", "!/assets/*", "!/css/*", "!/js/*"]
 
 [[d1_databases]]
 binding = "DB"

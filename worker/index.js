@@ -47,7 +47,21 @@ export default {
       }
     }
 
-    return env.ASSETS.fetch(request);
+    // The asset layer normalises trailing slashes (/m2s -> /m2s/, /index.html
+    // -> /) with temporary redirects; make them permanent so link equity
+    // consolidates on the canonical URL.
+    const res = await env.ASSETS.fetch(request);
+    if (res.status === 307 || res.status === 308) {
+      const loc = res.headers.get('Location');
+      if (loc) return Response.redirect(new URL(loc, url).toString(), 301);
+    }
+    // The *.workers.dev copy is for previews only; keep it out of search.
+    if (url.hostname.endsWith('.workers.dev')) {
+      const out = new Response(res.body, res);
+      out.headers.set('X-Robots-Tag', 'noindex, nofollow');
+      return out;
+    }
+    return res;
   },
 
   // Nightly retention clean-up (see privacy policy):

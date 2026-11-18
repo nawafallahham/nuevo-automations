@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing: Ads + WhatsApp Sales Funnel (M2S) | Nuevo Automations</title>
+  <title>Pricing: Ads + WhatsApp Sales Funnel | Nuevo Automations</title>
   <meta name="description" content="M2S is quoted around your ad budget: one fixed monthly fee after a free audit, with ad spend paid directly to Meta. What you pay for and what sets the quote.">
   <link rel="canonical" href="https://nuevoautomations.com/pricing/">
   <meta name="theme-color" content="#ffffff">
@@ -19,18 +19,76 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- head:start -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=20261118b">
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js" defer></script>
+  <script src="/js/consent.js?v=20261118b" defer></script>
   <!-- head:end -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nuevoautomations.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pricing",
+        "item": "https://nuevoautomations.com/pricing/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why isn't there a price on the website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because a store spending AED 3,000 a month on ads and a clinic spending AED 30,000 need very different setups. A fixed package would mean overcharging one and under-serving the other. The audit takes 20 minutes and you get a clear number at the end."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the audit really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. No cost and no obligation. You keep the plan we put together even if you never work with us."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ad spend included in the fee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Ad spend is paid directly to Meta, separate from our fee. That way you always see exactly what the ads cost and what they brought back."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you promise a certain number of sales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, and you should be wary of anyone who does. We promise that every lead gets a reply in seconds and every quiet lead gets followed up, and we show you what came back every month."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- header:start pricing -->
@@ -39,7 +97,7 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
         <span class="logo-text">Nuevo <strong>Automations</strong></span>
       </a>
 
@@ -159,7 +217,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
             <span class="logo-text">Nuevo <strong>Automations</strong></span>
           </a>
           <p>We run your ads, and M2S, our Message to Sale system, turns the messages they bring into sales on WhatsApp.</p>
@@ -167,8 +225,9 @@
         </div>
 
         <div class="footer-col">
-          <h3>Company</h3>
+          <h2 class="footer-h">Company</h2>
           <a href="/m2s/">How M2S works</a>
+          <a href="/about/">About us</a>
           <a href="/results/">Results</a>
           <a href="/pricing/">Pricing</a>
           <a href="/partners/">Partners</a>
@@ -176,7 +235,7 @@
         </div>
 
         <div class="footer-col">
-          <h3>Services</h3>
+          <h2 class="footer-h">Services</h2>
           <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
           <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
           <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
@@ -188,7 +247,7 @@
         </div>
 
         <div class="footer-col">
-          <h3>Industries</h3>
+          <h2 class="footer-h">Industries</h2>
           <a href="/ecommerce-automation-uae/">Online stores</a>
           <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
           <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
@@ -198,10 +257,11 @@
         </div>
 
         <div class="footer-col">
-          <h3>Contact</h3>
+          <h2 class="footer-h">Contact</h2>
           <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
           <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Serving Dubai, Abu Dhabi, Sharjah and the wider UAE</span>
+          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
+          <span>Licence no. 4431808.01</span>
         </div>
       </div>
 
@@ -221,8 +281,8 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
-  <script src="/js/track.js" defer></script>
-  <script src="/js/script.js" defer></script>
+  <script src="/js/track.js?v=20261118b" defer></script>
+  <script src="/js/script.js?v=20261118b" defer></script>
   <!-- footer:end -->
 </body>
 </html>

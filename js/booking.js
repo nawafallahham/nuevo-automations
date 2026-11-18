@@ -131,6 +131,7 @@
       btn.className = 'bk-time' + (sel.time === s.value ? ' is-on' : '');
       btn.textContent = s.label;
       btn.disabled = s.disabled;
+      btn.setAttribute('aria-label', s.label + ', ' + dayLabel(sel.date) + (s.taken ? ', already booked' : ''));
       if (s.taken) btn.title = 'Already booked';
       btn.addEventListener('click', function () {
         sel.time = s.value;
@@ -144,6 +145,13 @@
       });
       elTimes.appendChild(btn);
     });
+  }
+
+  function dayLabel(key) {
+    var q = {};
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' })
+      .formatToParts(new Date(key + 'T00:00:00Z')).forEach(function (x) { q[x.type] = x.value; });
+    return q.weekday + ' ' + q.day + ' ' + q.month;
   }
 
   function prettySel() {
@@ -260,14 +268,21 @@
   function loadAvailability() {
     return fetch(API + '/api/slots?days=14', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
-      .then(function (j) { taken = (j && j.taken) || {}; })
-      .catch(function () { taken = {}; });
+      .then(function (j) { taken = (j && j.taken) || {}; availabilityFailed = false; })
+      .catch(function () { taken = {}; availabilityFailed = true; });
   }
 
   // Render immediately from local rules, then refine once the API answers,
   // so the widget is usable even on a slow or failed request.
+  var availabilityFailed = false;
+  elTimes.setAttribute('aria-live', 'polite');
   buildDays(); renderDays(); renderTimes(); update();
   loadAvailability().then(function () {
     buildDays(); renderDays(); renderTimes(); update();
+    // Couldn't confirm live availability: still let people book (the server
+    // rejects a taken slot with 409), but say so and offer WhatsApp.
+    if (availabilityFailed && !sel.time) {
+      elSummary.innerHTML = 'We couldn\u2019t load live availability. Pick a time and we\u2019ll confirm it, or <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">book on WhatsApp</a>.';
+    }
   });
 }());
