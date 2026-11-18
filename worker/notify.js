@@ -163,13 +163,13 @@ async function sendEmails(env, b) {
   if (b.email && mailCustomers) {
     const ctext = 'Hi ' + b.name.split(/\s+/)[0] + ',\n\n' +
       'Your free M2S audit with Nuevo Automations is booked for ' + when + '.\n' +
-      'It takes about 20 minutes. We will call you on WhatsApp at ' + b.phone + '.\n\n' +
+      'It takes about 30 minutes. We will call you on WhatsApp at ' + b.phone + '.\n\n' +
       'A calendar invite is attached. Need a different time? Reply to this email or message us on WhatsApp: https://wa.me/971508549171\n\n' +
       'Nuevo Automations\nhttps://nuevoautomations.com\n';
     const chtml = '<div style="font-family:Inter,Arial,sans-serif;color:#101a2b;font-size:15px;line-height:1.6">' +
       '<p>Hi ' + escapeHtml(b.name.split(/\s+/)[0]) + ',</p>' +
       '<p>Your free M2S audit with Nuevo Automations is booked for <strong>' + escapeHtml(when) + '</strong>.</p>' +
-      '<p>It takes about 20 minutes. We will call you on WhatsApp at ' + escapeHtml(b.phone) + '.</p>' +
+      '<p>It takes about 30 minutes. We will call you on WhatsApp at ' + escapeHtml(b.phone) + '.</p>' +
       '<p>A calendar invite is attached. Need a different time? Reply to this email or ' +
       '<a href="https://wa.me/971508549171" style="color:#1a5fa0">message us on WhatsApp</a>.</p>' +
       '<p style="color:#4b5768">Nuevo Automations<br><a href="https://nuevoautomations.com" style="color:#1a5fa0">nuevoautomations.com</a></p></div>';

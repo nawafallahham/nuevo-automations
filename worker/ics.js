@@ -95,7 +95,7 @@ export function customerEvent(b) {
     minutes: meetingMinutes(b),
     created: b.created_at,
     summary: 'Free M2S audit with Nuevo Automations',
-    description: 'Your free 20-minute M2S (Message to Sale) audit with Nuevo Automations. ' +
+    description: 'Your free 30-minute M2S (Message to Sale) audit with Nuevo Automations. ' +
       'We will call you on WhatsApp at ' + b.phone + '.\n' +
       'Need to change the time? Message us: https://wa.me/971508549171',
     location: 'WhatsApp call',

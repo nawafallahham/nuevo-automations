@@ -31,7 +31,7 @@
   function embedUrl() {
     var a = attribution() || {};
     var q = new URLSearchParams(location.search);
-    var params = ['hide_gdpr_banner=1', 'primary_color=1a5fa0', 'text_color=101a2b'];
+    var params = ['primary_color=1a5fa0', 'text_color=101a2b'];
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
       var v = a[k] || q.get(k);
       if (v) params.push(k + '=' + encodeURIComponent(String(v).slice(0, 150)));
