@@ -1,0 +1,5 @@
+# Old product pages now live under /m2s/
+/orcaflo /m2s/ 301
+/automation /m2s/ 301
+/orcaflo/* /m2s/ 301
+/automation/* /m2s/ 301

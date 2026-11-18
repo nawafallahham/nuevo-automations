@@ -81,93 +81,15 @@
     }
   }
 
-  /* ---- Animated M2S conversation (home hero) ----
-     Plays one ad-to-sale story: the ad chip, the question, the AI reply,
-     the payment link and the paid confirmation, then loops. */
-  var chat = document.getElementById('m2s-chat');
-  if (!chat) return;
-
-  var story = [
-    { type: 'chip', cls: 'chip--ad', text: 'Opened from your Instagram ad · Linen collection' },
-    { type: 'in', text: 'Hi, is the linen set still available in M? How much?', time: '11:48 PM' },
-    { type: 'out', text: 'Hi! Yes, the linen set is in stock in M for AED 289, with free delivery in Dubai tomorrow. Shall I reserve one for you?', time: '11:48 PM' },
-    { type: 'in', text: 'Yes please. Can I pay by card?', time: '11:49 PM' },
-    { type: 'out', text: 'Of course. Here is your secure payment link:', time: '11:49 PM' },
-    { type: 'pay', amount: 'AED 289.00', label: 'Linen set · M' },
-    { type: 'chip', cls: 'chip--win', text: '✓ Paid · Order #1042 sent to your team' }
-  ];
-
-  function node(item) {
-    var el = document.createElement('div');
-    if (item.type === 'chip') {
-      el.className = 'chip ' + (item.cls || '');
-      el.textContent = item.text;
-    } else if (item.type === 'pay') {
-      el.className = 'pay-card';
-      el.innerHTML = '<div class="pay-card-head"><span></span><strong></strong></div><span class="pay-card-btn">Pay securely</span>';
-      el.querySelector('span').textContent = item.label;
-      el.querySelector('strong').textContent = item.amount;
-    } else {
-      el.className = 'msg msg--' + item.type;
-      var text = document.createElement('span');
-      text.textContent = item.text;
-      var time = document.createElement('time');
-      time.textContent = item.time;
-      el.appendChild(text);
-      el.appendChild(time);
-    }
-    return el;
-  }
-
-  function typing() {
-    var t = document.createElement('div');
-    t.className = 'typing';
-    t.setAttribute('aria-hidden', 'true');
-    t.innerHTML = '<span></span><span></span><span></span>';
-    return t;
-  }
-
-  var timers = [];
-  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-
-  function play() {
-    timers.forEach(clearTimeout);
-    timers = [];
-    chat.innerHTML = '';
-    var t = 300;
-    story.forEach(function (item) {
-      var aiSide = item.type === 'out' || item.type === 'pay';
-      if (aiSide) {
-        later(function () {
-          var dots = typing();
-          chat.appendChild(dots);
-          chat.scrollTop = chat.scrollHeight;
-          later(function () {
-            dots.remove();
-            chat.appendChild(node(item));
-            chat.scrollTop = chat.scrollHeight;
-          }, 1100);
-        }, t);
-        t += 1100 + 900;
-      } else {
-        later(function () {
-          chat.appendChild(node(item));
-          chat.scrollTop = chat.scrollHeight;
-        }, t);
-        t += item.type === 'chip' ? 900 : 1300;
-      }
+  /* ---- Partners wheel: duplicate the set for a seamless loop ---- */
+  var partnersTrack = document.getElementById('partners-track');
+  if (partnersTrack && !prefersReducedMotion) {
+    Array.prototype.slice.call(partnersTrack.children).forEach(function (item) {
+      var clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
+      partnersTrack.appendChild(clone);
     });
-    later(play, t + 4200);
-  }
-
-  if (prefersReducedMotion) {
-    story.forEach(function (item) { chat.appendChild(node(item)); });
-  } else if ('IntersectionObserver' in window) {
-    var chatObserver = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { play(); chatObserver.disconnect(); }
-    }, { threshold: 0.3 });
-    chatObserver.observe(chat);
-  } else {
-    play();
+    partnersTrack.classList.add('is-looping');
   }
 })();

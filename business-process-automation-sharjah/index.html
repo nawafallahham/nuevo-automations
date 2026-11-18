@@ -188,18 +188,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YS</span><span class="phone-name">Your Store<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Instagram ad</p>
-            <p class="msg msg--in">Salam, do you deliver to Al Nahda Sharjah? I want the grey sofa cover set<time>11:05 PM</time></p>
-            <p class="msg msg--out">Wa alaikum assalam! Yes, we deliver to Al Nahda in 1 to 2 days. The grey set is in stock for AED 220. Card or cash on delivery?<time>11:05 PM</time></p>
-            <p class="msg msg--in">Cash on delivery. Khalid, Al Nahda 2, building 7<time>11:06 PM</time></p>
-            <p class="msg msg--out">Done, Khalid. Your order is confirmed for cash on delivery, and our team will message you before delivery.<time>11:06 PM</time></p>
-            <p class="chip chip--win">✓ COD order sent to your team · Logged in the pipeline</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: a late-night question from an Instagram ad becomes a cash-on-delivery order">
+            <li><time>11:05 PM</time><div><strong>Question from an Instagram ad</strong><p>“Do you deliver to Al Nahda Sharjah? I want the grey sofa cover set.”</p></div></li>
+            <li><time>Seconds</time><div><strong>Answered from your product list</strong><p>Delivery to Al Nahda in 1 to 2 days, in stock for AED 220, card or cash on delivery.</p></div></li>
+            <li><time>11:06 PM</time><div><strong>Order taken in the chat</strong><p>Khalid chose cash on delivery and gave his address in Al Nahda 2.</p></div></li>
+            <li class="is-stop"><time>By morning</time><div><strong>COD order sent to your team</strong><p>Waiting on WhatsApp with his details, logged in the pipeline against the ad.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>A late-night order, handed over by morning</h2>
@@ -395,6 +392,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

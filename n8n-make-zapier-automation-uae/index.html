@@ -182,18 +182,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YS</span><span class="phone-name">Your Store<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Facebook ad</p>
-            <p class="msg msg--in">Hi, I'd like 2 of the lavender candles. Delivery to JLT?<time>8:12 PM</time></p>
-            <p class="msg msg--out">Hi! Yes, 2 lavender candles come to AED 120 with free delivery to JLT tomorrow. Shall I send a card payment link?<time>8:12 PM</time></p>
-            <p class="msg msg--in">Yes please. Reem, Cluster D, apt 1405<time>8:13 PM</time></p>
-            <div class="pay-card"><div class="pay-card-head"><span>Lavender candle × 2</span><strong>AED 120.00</strong></div><span class="pay-card-btn">Pay securely</span></div>
-            <p class="chip chip--win">✓ Paid · Order created in your store · Row added to Sheets</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: a Facebook ad enquiry becomes a paid order recorded in your store and sheet">
+            <li><time>8:12 PM</time><div><strong>Order request from a Facebook ad</strong><p>2 lavender candles, delivery to JLT?</p></div></li>
+            <li><time>Seconds</time><div><strong>Priced from your store</strong><p>AED 120 with free delivery to JLT tomorrow. Offers a card payment link.</p></div></li>
+            <li><time>8:13 PM</time><div><strong>Details and payment link</strong><p>Reem, Cluster D, apt 1405. Link sent: lavender candle × 2, AED 120.</p></div></li>
+            <li class="is-stop"><time>Paid</time><div><strong>Recorded everywhere</strong><p>Order created in your store, row added to Sheets, team notified.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>One chat, three systems updated</h2>
@@ -389,6 +386,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

@@ -128,7 +128,7 @@
         </div>
         <div class="reveal" style="display:flex;justify-content:center;">
           <div class="ad-mock" role="img" aria-label="Example of a click-to-WhatsApp ad">
-            <div class="ad-mock-head"><span class="phone-avatar">YB</span><span><strong>Your Brand</strong>Sponsored</span></div>
+            <div class="ad-mock-head"><span class="ad-avatar">YB</span><span><strong>Your Brand</strong>Sponsored</span></div>
             <div class="ad-mock-img">New linen collection.<br>Free delivery in Dubai.</div>
             <div class="ad-mock-cta"><span>Ask us anything, we reply in seconds</span><span class="btn btn-wa">Send message</span></div>
           </div>
@@ -149,17 +149,15 @@
             <li>Anything it can't answer goes straight to your team</li>
           </ul>
         </div>
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YB</span><span class="phone-name">Your Brand<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Facebook ad</p>
-            <p class="msg msg--in msg-ar">مرحبا، كم سعر الطقم؟ وهل التوصيل متوفر للشارقة؟<time>12:14 AM</time></p>
-            <p class="msg msg--out msg-ar">أهلاً! سعر الطقم 289 درهم، والتوصيل إلى الشارقة مجاني خلال يومين. هل تحب أن أحجز لك واحداً؟<time>12:14 AM</time></p>
-            <p class="msg msg--in">Is it cheaper anywhere else? 🤔<time>12:15 AM</time></p>
-            <p class="msg msg--out">This is our best price, and it includes free delivery and easy returns within 7 days. Want me to hold an M for you?<time>12:15 AM</time></p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: an Arabic price question at midnight answered in seconds">
+            <li><time>12:14 AM</time><div><strong>Question in Arabic from a Facebook ad</strong><p>"How much is the set, and do you deliver to Sharjah?"</p></div></li>
+            <li><time>Seconds</time><div><strong>Answered in Arabic</strong><p>AED 289, free delivery to Sharjah within two days, and an offer to reserve one.</p></div></li>
+            <li><time>12:15 AM</time><div><strong>Objection handled in English</strong><p>"Is it cheaper anywhere else?" Best price, free delivery and easy 7-day returns.</p></div></li>
+            <li class="is-stop"><time>Next</time><div><strong>Moves to checkout</strong><p>"Want me to hold an M for you?"</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example.</p>
+        </div>
       </div>
     </section>
 
@@ -376,6 +374,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

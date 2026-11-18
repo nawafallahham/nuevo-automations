@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin · Nuevo Automations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { background: var(--paper-alt); }
+    .adm { max-width: 1180px; margin: 0 auto; padding: 28px var(--gutter, 24px) 80px; }
+    .adm-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .adm-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+    .adm-brand img { width: 30px; height: 30px; }
+    .adm-brand span { color: var(--ink-faint); font-weight: 500; }
+    .adm-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .adm h2 { font-size: 1.05rem; color: var(--ink); margin: 0 0 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .adm-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md, 12px); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-xs); }
+    .adm-login { max-width: 400px; margin: 12vh auto 0; }
+    .adm-login h1 { font-size: 1.4rem; color: var(--ink); margin: 0 0 6px; }
+    .adm-login p { margin: 0 0 18px; font-size: .92rem; }
+    .adm-input { width: 100%; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm, 8px); font: inherit; color: var(--ink); background: #fff; margin-bottom: 12px; }
+    .adm-input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-tint-strong); }
+    .adm-err { color: var(--danger); font-size: .88rem; min-height: 1.3em; margin: 0; }
+    .adm-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
+    .adm-kpi { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md, 12px); padding: 16px 18px; }
+    .adm-kpi small { display: block; font-size: .78rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .04em; font-weight: 600; }
+    .adm-kpi strong { display: block; font-size: 1.7rem; color: var(--ink); line-height: 1.2; margin-top: 6px; font-variant-numeric: tabular-nums; }
+    .adm-kpi em { font-style: normal; font-size: .8rem; color: var(--ink-muted); }
+    .adm-kpi.is-key { background: var(--navy); border-color: var(--navy); }
+    .adm-kpi.is-key small, .adm-kpi.is-key em { color: var(--on-navy-muted); }
+    .adm-kpi.is-key strong { color: #fff; }
+    .adm-seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; overflow: hidden; background: #fff; }
+    .adm-seg button { border: 0; background: transparent; padding: 6px 14px; font: inherit; font-size: .84rem; font-weight: 600; color: var(--ink-muted); cursor: pointer; }
+    .adm-seg button.is-on { background: var(--brand); color: #fff; }
+    .adm-table-wrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
+    .adm table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .adm th { text-align: left; font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    .adm td { padding: 10px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: top; }
+    .adm td.num, .adm th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .adm td .sub { display: block; color: var(--ink-faint); font-size: .78rem; }
+    .adm tr.is-cancelled td { color: var(--ink-faint); text-decoration: line-through; }
+    .adm a.wa { color: var(--whatsapp-dark); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .adm .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--brand-tint); color: var(--brand-dark); font-size: .76rem; font-weight: 600; }
+    .adm .btn-x { border: 1px solid var(--line-strong); background: #fff; color: var(--danger); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: .8rem; cursor: pointer; }
+    .adm .btn-x:hover { border-color: var(--danger); }
+    .adm-empty { color: var(--ink-faint); font-size: .9rem; padding: 12px 0; margin: 0; }
+    .adm-grid2 { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+    .adm-chart svg { display: block; width: 100%; height: 180px; }
+    .adm-legend { display: flex; gap: 16px; font-size: .8rem; color: var(--ink-muted); margin-top: 8px; }
+    .adm-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+    .adm-cal code { display: block; padding: 10px 12px; background: var(--paper-alt); border: 1px solid var(--line); border-radius: 8px; font-size: .82rem; word-break: break-all; color: var(--ink); }
+    .adm-cal ol { margin: 10px 0 12px; padding-left: 20px; font-size: .9rem; }
+    .adm-pills { display: flex; flex-wrap: wrap; gap: 8px; font-size: .8rem; }
+    .adm-pills span { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); }
+    .adm-pills .on { background: #e8f7ee; border-color: #bfe6cd; color: #17703a; }
+    .adm-pills .off { background: var(--paper-alt); color: var(--ink-faint); }
+    .adm-note { font-size: .8rem; color: var(--ink-faint); margin: 10px 0 0; }
+    @media (max-width: 960px) { .adm-kpis { grid-template-columns: repeat(2, 1fr); } .adm-grid2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Private dashboard. Not linked from the site; noindex. Data comes from
+       /api/admin/* with the admin key kept in sessionStorage only. -->
+  <div class="adm">
+    <section class="adm-card adm-login" id="login" hidden>
+      <h1>Nuevo admin</h1>
+      <p>Enter the admin key to see bookings and traffic.</p>
+      <form id="login-form">
+        <input class="adm-input" type="password" id="key" autocomplete="current-password" placeholder="Admin key" required>
+        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        <p class="adm-err" id="login-err" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div id="app" hidden>
+      <header class="adm-top">
+        <div class="adm-brand"><img src="/assets/logo-icon.png" alt="">Nuevo Automations <span>· admin</span></div>
+        <div class="adm-actions">
+          <div class="adm-seg" id="range" role="group" aria-label="Date range">
+            <button type="button" data-days="7">7 days</button>
+            <button type="button" data-days="30" class="is-on">30 days</button>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="refresh">Refresh</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="logout">Sign out</button>
+        </div>
+      </header>
+
+      <div class="adm-kpis" id="kpis"></div>
+
+      <section class="adm-card">
+        <h2>Bookings
+          <span class="adm-seg" id="scope" role="group" aria-label="Which bookings">
+            <button type="button" data-scope="upcoming" class="is-on">Upcoming</button>
+            <button type="button" data-scope="all">All</button>
+          </span>
+        </h2>
+        <div class="adm-table-wrap"><table>
+          <thead><tr><th>When (Dubai)</th><th>Name</th><th>Business</th><th>WhatsApp</th><th>Source / campaign</th><th></th></tr></thead>
+          <tbody id="bookings"></tbody>
+        </table></div>
+        <p class="adm-empty" id="bookings-empty" hidden>No bookings to show.</p>
+      </section>
+
+      <div class="adm-grid2">
+        <section class="adm-card adm-chart">
+          <h2>Daily visitors &amp; bookings</h2>
+          <div id="chart"></div>
+          <div class="adm-legend"><span><i style="background:var(--brand-tint-strong)"></i>Visitors</span><span><i style="background:var(--brand)"></i>Bookings</span></div>
+        </section>
+        <section class="adm-card">
+          <h2>Top pages</h2>
+          <div class="adm-table-wrap"><table>
+            <thead><tr><th>Page</th><th class="num">Views</th><th class="num">Visitors</th></tr></thead>
+            <tbody id="pages"></tbody>
+          </table></div>
+        </section>
+      </div>
+
+      <section class="adm-card">
+        <h2>Traffic &amp; bookings by source</h2>
+        <div class="adm-table-wrap"><table>
+          <thead><tr><th>Source</th><th>Campaign</th><th class="num">Visitors</th><th class="num">Bookings</th><th class="num">Conversion</th></tr></thead>
+          <tbody id="sources"></tbody>
+        </table></div>
+        <p class="adm-note" id="stats-note"></p>
+      </section>
+
+      <section class="adm-card adm-cal">
+        <h2>Calendar feed &amp; integrations</h2>
+        <div id="cal"></div>
+        <div class="adm-pills" id="integrations"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var STORE = 'nuevo-admin-key';
+    var state = { days: 30, scope: 'upcoming' };
+    var $ = function (id) { return document.getElementById(id); };
+
+    function getKey() { try { return sessionStorage.getItem(STORE) || ''; } catch (e) { return ''; } }
+    function setKey(v) { try { v ? sessionStorage.setItem(STORE, v) : sessionStorage.removeItem(STORE); } catch (e) {} }
+
+    function api(path, opts) {
+      opts = opts || {};
+      opts.headers = { Authorization: 'Bearer ' + getKey() };
+      opts.cache = 'no-store';
+      return fetch(path, opts).then(function (r) {
+        if (r.status === 401) { signOut('That key was not accepted.'); throw new Error('unauthorised'); }
+        return r.json().then(function (j) {
+          if (!r.ok || !j.ok) throw new Error((j && j.error) || ('HTTP ' + r.status));
+          return j;
+        });
+      });
+    }
+
+    // Small DOM helper: el('td', {className: 'num'}, 'text' | Node | [..])
+    function el(tag, props, kids) {
+      var n = document.createElement(tag);
+      if (props) for (var k in props) if (props[k] != null) n[k] = props[k];
+      [].concat(kids == null ? [] : kids).forEach(function (c) {
+        n.appendChild(typeof c === 'object' ? c : document.createTextNode(String(c)));
+      });
+      return n;
+    }
+    function fmt(n) { return Number(n || 0).toLocaleString('en-GB'); }
+    function pct(n) { return (Number(n || 0)).toFixed(1) + '%'; }
+    function waHref(phone) {
+      var d = String(phone || '').replace(/\D/g, '');
+      if (d.indexOf('00') === 0) d = d.slice(2);
+      if (d.length === 10 && d.indexOf('05') === 0) d = '971' + d.slice(1);
+      else if (d.length === 9 && d.charAt(0) === '5') d = '971' + d;
+      return 'https://wa.me/' + d;
+    }
+    function when(b) {
+      var d = new Date(b.date + 'T00:00:00Z');
+      var day = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' }).format(d);
+      return day + ' · ' + b.time;
+    }
+
+    // --- views -----------------------------------------------------
+    function signOut(msg) {
+      setKey('');
+      $('app').hidden = true;
+      $('login').hidden = false;
+      $('login-err').textContent = msg || '';
+      $('key').focus();
+    }
+
+    function renderKpis(s) {
+      var tiles = [
+        ['Visitors', fmt(s.visitors), fmt(s.pageviews) + ' page views'],
+        ['Book-page views', fmt(s.book_page_views), fmt(s.book_starts) + ' picked a time'],
+        ['CTA clicks', fmt(s.cta_clicks), 'booking + WhatsApp buttons'],
+        ['Bookings', fmt(s.bookings), s.cancelled ? fmt(s.cancelled) + ' cancelled' : 'made in this period'],
+        ['Visitor → booking', pct(s.conversion.visitor_to_booking), pct(s.conversion.book_view_to_booking) + ' of book-page views', true]
+      ];
+      var box = $('kpis');
+      box.innerHTML = '';
+      tiles.forEach(function (t) {
+        box.appendChild(el('div', { className: 'adm-kpi' + (t[3] ? ' is-key' : '') }, [
+          el('small', null, t[0] + ' · ' + s.days + 'd'), el('strong', null, t[1]), el('em', null, t[2])
+        ]));
+      });
+    }
+
+    function renderBookings(list) {
+      var tb = $('bookings');
+      tb.innerHTML = '';
+      $('bookings-empty').hidden = list.length > 0;
+      list.forEach(function (b) {
+        var cancelled = b.status !== 'booked';
+        var src = [b.utm_source, b.utm_campaign].filter(Boolean).join(' / ');
+        var actions = el('td');
+        if (!cancelled) {
+          var x = el('button', { type: 'button', className: 'btn-x' }, 'Cancel');
+          x.addEventListener('click', function () {
+            if (!window.confirm('Cancel the audit with ' + b.name + ' (' + b.business + ') on ' + when(b) + '?\nThe slot becomes bookable again.')) return;
+            x.disabled = true;
+            api('/api/admin/bookings/' + encodeURIComponent(b.id) + '/cancel', { method: 'POST' })
+              .then(loadBookings)
+              .catch(function (e) { x.disabled = false; alert('Could not cancel: ' + e.message); });
+          });
+          actions.appendChild(x);
+        } else {
+          actions.appendChild(el('span', { className: 'tag' }, 'cancelled'));
+        }
+        tb.appendChild(el('tr', { className: cancelled ? 'is-cancelled' : '' }, [
+          el('td', null, [when(b), el('span', { className: 'sub' }, 'booked ' + new Date(b.created_at).toLocaleString('en-GB', { timeZone: 'Asia/Dubai', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }))]),
+          el('td', null, [b.name, b.email ? el('span', { className: 'sub' }, b.email) : '']),
+          el('td', null, b.business),
+          el('td', null, el('a', { className: 'wa', href: waHref(b.phone), target: '_blank', rel: 'noopener' }, b.phone)),
+          el('td', null, [src || 'direct', el('span', { className: 'sub' }, b.source || '')]),
+          actions
+        ]));
+      });
+    }
+
+    function renderSources(rows, note) {
+      var tb = $('sources');
+      tb.innerHTML = '';
+      if (!rows.length) tb.appendChild(el('tr', null, el('td', { colSpan: 5, className: 'adm-empty' }, 'No traffic recorded yet.')));
+      rows.forEach(function (r) {
+        tb.appendChild(el('tr', null, [
+          el('td', null, r.source), el('td', null, r.campaign || '—'),
+          el('td', { className: 'num' }, fmt(r.visitors)), el('td', { className: 'num' }, fmt(r.bookings)),
+          el('td', { className: 'num' }, r.visitors ? pct(r.conversion) : '—')
+        ]));
+      });
+      $('stats-note').textContent = note || '';
+    }
+
+    function renderPages(rows) {
+      var tb = $('pages');
+      tb.innerHTML = '';
+      if (!rows.length) tb.appendChild(el('tr', null, el('td', { colSpan: 3, className: 'adm-empty' }, 'No page views yet.')));
+      rows.forEach(function (r) {
+        tb.appendChild(el('tr', null, [
+          el('td', null, r.path || '/'), el('td', { className: 'num' }, fmt(r.views)), el('td', { className: 'num' }, fmt(r.visitors))
+        ]));
+      });
+    }
+
+    // Inline SVG bar chart: visitors (light) with bookings (brand) overlaid.
+    function renderChart(days) {
+      var NS = 'http://www.w3.org/2000/svg';
+      var W = 600, H = 180, pad = 22, n = days.length || 1;
+      var max = Math.max.apply(null, days.map(function (d) { return d.visitors; }).concat([1]));
+      var bmax = Math.max.apply(null, days.map(function (d) { return d.bookings; }).concat([1]));
+      var bw = (W - pad) / n;
+      var svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      svg.setAttribute('preserveAspectRatio', 'none');
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', 'Daily visitors and bookings');
+      function add(tag, attrs, title) {
+        var e = document.createElementNS(NS, tag);
+        for (var k in attrs) e.setAttribute(k, attrs[k]);
+        if (title) { var t = document.createElementNS(NS, 'title'); t.textContent = title; e.appendChild(t); }
+        svg.appendChild(e);
+        return e;
+      }
+      add('line', { x1: pad, x2: W, y1: H - pad, y2: H - pad, stroke: 'var(--line-strong)', 'stroke-width': 1 });
+      days.forEach(function (d, i) {
+        var x = pad + i * bw;
+        var vh = (d.visitors / max) * (H - pad - 10);
+        add('rect', { x: x + bw * 0.12, y: H - pad - vh, width: bw * 0.76, height: Math.max(vh, 0), rx: 2, fill: 'var(--brand-tint-strong)' },
+          d.day + ': ' + d.visitors + ' visitors, ' + d.pageviews + ' views, ' + d.bookings + ' bookings');
+        if (d.bookings) {
+          var bh = Math.max((d.bookings / bmax) * (H - pad - 10) * 0.6, 4);
+          add('rect', { x: x + bw * 0.3, y: H - pad - bh, width: bw * 0.4, height: bh, rx: 2, fill: 'var(--brand)' },
+            d.day + ': ' + d.bookings + ' bookings');
+        }
+      });
+      [0, n - 1].forEach(function (i) {
+        if (!days[i]) return;
+        var t = add('text', { x: i === 0 ? pad : W, y: H - 6, 'font-size': 11, fill: 'var(--ink-faint)', 'text-anchor': i === 0 ? 'start' : 'end' });
+        t.textContent = days[i].day.slice(5);
+      });
+      var mt = add('text', { x: 0, y: 12, 'font-size': 11, fill: 'var(--ink-faint)' });
+      mt.textContent = fmt(max);
+      var box = $('chart');
+      box.innerHTML = '';
+      box.appendChild(svg);
+    }
+
+    function renderConfig(c) {
+      var cal = $('cal');
+      cal.innerHTML = '';
+      if (c.calendar_url) {
+        var code = el('code', null, c.calendar_url);
+        var copy = el('button', { type: 'button', className: 'btn btn-ghost btn-sm' }, 'Copy URL');
+        copy.addEventListener('click', function () {
+          (navigator.clipboard ? navigator.clipboard.writeText(c.calendar_url) : Promise.reject())
+            .then(function () { copy.textContent = 'Copied'; }, function () { window.prompt('Copy this URL', c.calendar_url); });
+        });
+        cal.appendChild(el('p', null, 'Subscribe to every booking in Google Calendar (private URL, keep it secret):'));
+        cal.appendChild(el('ol', null, [
+          el('li', null, 'Google Calendar → Other calendars (+) → From URL'),
+          el('li', null, 'Paste the URL below and click Add calendar. Google refreshes it every few hours.')
+        ]));
+        cal.appendChild(code);
+        cal.appendChild(el('p', { style: 'margin:10px 0 16px' }, copy));
+      } else {
+        cal.appendChild(el('p', null, 'Calendar feed is off: set the CALENDAR_KEY secret to enable it.'));
+      }
+      var pills = $('integrations');
+      pills.innerHTML = '';
+      var i = c.integrations || {};
+      [['Meta Conversions API', i.meta_capi && !i.meta_test_mode, i.meta_test_mode ? 'test mode' : ''],
+       ['Email alerts → ' + (i.notify_email || ''), i.email],
+       ['OrcaFlo webhook', i.orcaflo],
+       ['Calendar feed', i.calendar_feed]].forEach(function (p) {
+        pills.appendChild(el('span', { className: p[1] ? 'on' : 'off' }, p[0] + (p[2] ? ' (' + p[2] + ')' : p[1] ? ' · on' : ' · off')));
+      });
+    }
+
+    // --- loading ---------------------------------------------------
+    function loadBookings() {
+      return api('/api/admin/bookings?scope=' + state.scope).then(function (j) { renderBookings(j.bookings); });
+    }
+    function loadStats() {
+      return api('/api/admin/stats?days=' + state.days).then(function (s) {
+        renderKpis(s); renderSources(s.by_source, s.note); renderPages(s.top_pages); renderChart(s.by_day);
+      });
+    }
+    function loadAll() {
+      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats()]);
+    }
+
+    function start() {
+      $('login').hidden = true;
+      $('app').hidden = false;
+      loadAll().catch(function (e) { if (e.message !== 'unauthorised') alert('Could not load: ' + e.message); });
+    }
+
+    $('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var k = $('key').value.trim();
+      if (!k) return;
+      setKey(k);
+      $('login-err').textContent = '';
+      api('/api/admin/config').then(function () { $('key').value = ''; start(); }).catch(function (err) {
+        if (err.message !== 'unauthorised') $('login-err').textContent = 'Error: ' + err.message;
+      });
+    });
+
+    function segment(id, attr, onPick) {
+      $(id).addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (!b) return;
+        [].forEach.call($(id).children, function (c) { c.classList.toggle('is-on', c === b); });
+        onPick(b.getAttribute(attr));
+      });
+    }
+    segment('range', 'data-days', function (v) { state.days = Number(v); loadStats().catch(function () {}); });
+    segment('scope', 'data-scope', function (v) { state.scope = v; loadBookings().catch(function () {}); });
+    $('refresh').addEventListener('click', function () { loadAll().catch(function () {}); });
+    $('logout').addEventListener('click', function () { signOut(''); });
+
+    if (getKey()) start(); else signOut('');
+  }());
+  </script>
+</body>
+</html>

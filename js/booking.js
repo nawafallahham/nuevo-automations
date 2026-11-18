@@ -6,10 +6,8 @@
 (function () {
   'use strict';
 
-  // Clean production alias. The team-scoped alias
-  // (nuevo-booking-api-<team>.vercel.app) fails CORS preflight, so it must
-  // not be used from the browser.
-  var API = 'https://nuevo-booking-api.vercel.app';
+  // Same-origin API, served by the site's Cloudflare Worker (/api/*).
+  var API = '';
   var WA = '971508549171';
   var OPEN = 14 * 60, CLOSE = 18 * 60 + 30, STEP = 30;
   var LEAD_MIN = 45;   // don't offer a slot less than 45 min away
@@ -27,6 +25,17 @@
   var taken = {};          // { 'YYYY-MM-DD': ['14:00', ...] }
   var days = [];
   var sel = { date: null, time: null };
+  var startSent = false;   // book_start analytics fires once per page
+
+  // One id per booking attempt, shared by the browser pixel and the
+  // server-side Conversions API so Meta counts the Schedule only once.
+  function newEventId() {
+    try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
+    return 'ev-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+  function consentGranted() {
+    try { return localStorage.getItem('nuevo-consent') === 'granted'; } catch (e) { return false; }
+  }
 
   // --- Dubai clock -------------------------------------------------
   function dubaiParts() {
@@ -127,6 +136,10 @@
         sel.time = s.value;
         [].forEach.call(elTimes.children, function (c) { c.classList && c.classList.remove('is-on'); });
         btn.classList.add('is-on');
+        if (!startSent && typeof window.nuevoTrack === 'function') {
+          startSent = true;
+          window.nuevoTrack('book_start');
+        }
         update();
       });
       elTimes.appendChild(btn);
@@ -165,6 +178,8 @@
     var name = document.getElementById('bk-name');
     var phone = document.getElementById('bk-phone');
     var business = document.getElementById('bk-business');
+    var email = document.getElementById('bk-email');          // optional
+    var honey = elForm.querySelector('input[name="website"]');  // bots only
     var bad = false;
     [name, phone, business].forEach(function (f) {
       var ok = f === phone
@@ -173,18 +188,25 @@
       f.classList.toggle('is-bad', !ok);
       if (!ok) bad = true;
     });
-    if (bad) {
+    var emailVal = email ? email.value.trim() : '';
+    var emailOk = !emailVal || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailVal);
+    if (email) email.classList.toggle('is-bad', !emailOk);
+    if (bad || !emailOk) {
       elSummary.classList.add('is-bad');
-      elSummary.textContent = 'Please add your name, business name and a valid WhatsApp number.';
+      elSummary.textContent = bad
+        ? 'Please add your name, business name and a valid WhatsApp number.'
+        : 'That email address doesn\'t look right. Fix it or leave it empty.';
       return;
     }
+    var eventId = newEventId();
 
     elConfirm.disabled = true;
     elConfirm.textContent = 'Booking…';
 
     function finish(stored) {
-      if (typeof window.fbq === 'function') {
-        window.fbq('track', 'Schedule', { content_name: sel.date + ' ' + sel.time });
+      // Same eventID as the server's Conversions API call -> deduplicated.
+      if (stored && typeof window.fbq === 'function') {
+        window.fbq('track', 'Schedule', { content_name: sel.date + ' ' + sel.time }, { eventID: eventId });
       }
       elForm.hidden = true;
       elDone.hidden = false;
@@ -209,7 +231,13 @@
         date: sel.date, time: sel.time,
         name: name.value.trim(), phone: phone.value.trim(),
         business: business.value.trim(),
-        note: 'M2S audit · booked from ' + source
+        email: emailVal,
+        website: honey ? honey.value : '',
+        note: 'M2S audit · booked from ' + source,
+        source: source,
+        attribution: typeof window.nuevoAttribution === 'function' ? window.nuevoAttribution() : null,
+        event_id: eventId,
+        consent: consentGranted()
       })
     })
       .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })

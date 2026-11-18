@@ -224,20 +224,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YC</span><span class="phone-name">Your Centre<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Instagram course ad</p>
-            <p class="msg msg--in">Hi, my son is in Grade 7. Do you have maths classes on weekends?<time>8:47 PM</time></p>
-            <p class="msg msg--out">Hi! Yes, our Grade 7 maths group meets on Saturdays at 10 AM at the Al Nahda branch, and there's an online group on Sundays at 5 PM. Which would suit him better?<time>8:47 PM</time></p>
-            <p class="msg msg--in">Al Nahda. How much is it?<time>8:49 PM</time></p>
-            <p class="msg msg--out">It's AED 650 a month for four Saturday classes. Before joining, we do a short free placement test so he's in the right group. I can book Saturday at 9:15 AM, just before class. Shall I?<time>8:49 PM</time></p>
-            <p class="msg msg--in">Yes please. His name is Adam<time>8:50 PM</time></p>
-            <p class="msg msg--out">Booked ✅ Placement test for Adam, Saturday 9:15 AM at Al Nahda. I'll send a reminder on Friday evening.<time>8:50 PM</time></p>
-            <p class="chip chip--win">✓ Placement test booked · Sat 9:15 AM</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: a parent's question from an Instagram course ad becomes a booked placement test">
+            <li><time>8:47 PM</time><div><strong>Question from an Instagram course ad</strong><p>“My son is in Grade 7. Do you have maths classes on weekends?”</p></div></li>
+            <li><time>Seconds</time><div><strong>Groups offered from your timetable</strong><p>Saturdays 10 AM at Al Nahda, or online on Sundays at 5 PM.</p></div></li>
+            <li><time>8:49 PM</time><div><strong>Fee and next step</strong><p>AED 650 a month for four Saturday classes, after a short free placement test.</p></div></li>
+            <li class="is-stop"><time>Booked</time><div><strong>Placement test booked</strong><p>Adam, Saturday 9:15 AM at Al Nahda, with a reminder on Friday evening.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>Enquiry to placement test in one evening</h2>
@@ -433,6 +428,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

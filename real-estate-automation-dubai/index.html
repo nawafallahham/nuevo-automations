@@ -224,20 +224,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YA</span><span class="phone-name">Your Agency<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Instagram project ad</p>
-            <p class="msg msg--in msg-ar" lang="ar" dir="rtl">مرحبا، عندي استفسار عن مشروع الشقق في دبي هيلز<time>9:12 PM</time></p>
-            <p class="msg msg--out msg-ar" lang="ar" dir="rtl">أهلاً وسهلاً! تبحث عن شقة للسكن أو للاستثمار؟ وكم غرفة نوم تحتاج؟<time>9:12 PM</time></p>
-            <p class="msg msg--in msg-ar" lang="ar" dir="rtl">للسكن، غرفتين. الميزانية حوالي ٢ مليون والدفع كاش<time>9:14 PM</time></p>
-            <p class="msg msg--out msg-ar" lang="ar" dir="rtl">ممتاز، في المشروع وحدات غرفتين ضمن هذه الميزانية. تحب تحجز معاينة مع أحد مستشارينا؟ متاح السبت ١١ صباحاً أو الأحد ٥ مساءً<time>9:14 PM</time></p>
-            <p class="msg msg--in msg-ar" lang="ar" dir="rtl">السبت الساعة ١١ مناسب<time>9:15 PM</time></p>
-            <p class="msg msg--out msg-ar" lang="ar" dir="rtl">تم الحجز ✅ السبت الساعة ١١ صباحاً. سيتواصل معك المستشار لتأكيد مكان اللقاء.<time>9:15 PM</time></p>
-            <p class="chip chip--win">✓ Viewing booked · Sat 11 AM · agent alerted</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: an Arabic enquiry from an Instagram project ad becomes a booked viewing">
+            <li><time>9:12 PM</time><div><strong>Question in Arabic from a project ad</strong><p>Asked about the Dubai Hills apartments; the assistant replied in Arabic.</p></div></li>
+            <li><time>9:14 PM</time><div><strong>Buyer qualified</strong><p>To live in, not invest; 2 bedrooms; around AED 2M; paying cash.</p></div></li>
+            <li><time>9:15 PM</time><div><strong>Viewing offered from the agent's calendar</strong><p>Saturday 11 AM or Sunday 5 PM; Saturday chosen.</p></div></li>
+            <li class="is-stop"><time>Booked</time><div><strong>Viewing booked, agent alerted</strong><p>Saturday 11 AM, with a summary sent to the agent on WhatsApp.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>Enquiry to viewing, in the buyer's language</h2>
@@ -433,6 +428,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

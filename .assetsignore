@@ -1,0 +1,19 @@
+# Files that must never be published as static assets.
+.git
+.gitignore
+.claude
+.wrangler
+.dev.vars*
+.DS_Store
+.assetsignore
+node_modules
+worker
+migrations
+booking-api
+package.json
+package-lock.json
+wrangler.*
+README*
+*.md
+CNAME
+nebula-preview.html

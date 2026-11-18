@@ -181,18 +181,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YS</span><span class="phone-name">Your Salon<span class="phone-status">Instagram</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Commented "price?" on your balayage reel</p>
-            <p class="msg msg--out">Hi! Thanks for asking about the balayage. For medium-length hair it's AED 650, including toner and a blow-dry. Would you like me to check the next free slot?<time>9:14 PM</time></p>
-            <p class="msg msg--in">Yes please, anything Saturday afternoon?<time>9:16 PM</time></p>
-            <p class="msg msg--out">Saturday at 3:00 PM is free with Lina, about three hours. Shall I book it under your name?<time>9:16 PM</time></p>
-            <p class="msg msg--in">Yes, Mariam. Thank you!<time>9:17 PM</time></p>
-            <p class="chip chip--win">✓ Booked · Saturday 3:00 PM added to your calendar</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: a price comment on a reel becomes a booked balayage">
+            <li><time>9:14 PM</time><div><strong>&quot;Price?&quot; under your balayage reel</strong><p>A private message with the answer: AED 650 for medium-length hair, toner and blow-dry included.</p></div></li>
+            <li><time>9:16 PM</time><div><strong>Asks for Saturday afternoon</strong><p>Saturday 3:00 PM is free with Lina, about three hours.</p></div></li>
+            <li><time>9:17 PM</time><div><strong>Name confirmed</strong><p>Booked under Mariam.</p></div></li>
+            <li class="is-stop"><time>Booked</time><div><strong>In your calendar</strong><p>Saturday 3:00 PM, without anyone on your team typing a word.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>From a one-word comment to a booked appointment</h2>
@@ -390,6 +387,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

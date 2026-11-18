@@ -1,0 +1,14 @@
+{
+  "name": "nuevo-automations-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --port 8787",
+    "db:migrate:local": "wrangler d1 migrations apply nuevo-site --local",
+    "db:migrate:remote": "wrangler d1 migrations apply nuevo-site --remote",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.164.0"
+  }
+}

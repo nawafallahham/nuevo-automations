@@ -82,16 +82,15 @@
             <li>English or Arabic</li>
           </ul>
         </div>
-        <div class="phone-wrap reveal" aria-label="Example: a customer from an Instagram ad buys inside WhatsApp">
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="phone-top">
-                <span class="phone-avatar">YB</span>
-                <span class="phone-name">Your Brand<span class="phone-status">online</span></span>
-              </div>
-              <div class="chat" id="m2s-chat" aria-hidden="true"></div>
-            </div>
-          </div>
+        <div class="flow-card reveal" role="img" aria-label="The M2S system: ads, instant reply, close in the chat, follow-ups and results">
+          <div class="flow-head"><span class="flow-dot" aria-hidden="true"></span><strong>M2S</strong><span>Message to Sale · running 24/7</span></div>
+          <ol class="flow-list">
+            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></span><span class="flow-txt"><strong>Ads → WhatsApp</strong>Instagram &amp; Facebook ads open a chat</span><em>Live</em></li>
+            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span class="flow-txt"><strong>Instant AI reply</strong>English &amp; Arabic, any hour</span><em>&lt; 5 sec</em></li>
+            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><span class="flow-txt"><strong>Close in the chat</strong>Payment link, cash on delivery or booking</span><em>Order</em></li>
+            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span class="flow-txt"><strong>Follow up</strong>Carts, unpaid links, quiet leads</span><em>Auto</em></li>
+            <li class="is-win"><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span><span class="flow-txt"><strong>Results</strong>Every sale tracked back to its ad</span><em>Monthly</em></li>
+          </ol>
         </div>
       </div>
     </section>
@@ -162,6 +161,8 @@
                 <label class="bk-input"><span>Name</span><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name"></label>
                 <label class="bk-input"><span>WhatsApp number</span><input type="tel" id="bk-phone" name="phone" autocomplete="tel" required maxlength="32" placeholder="+971 50 000 0000"></label>
                 <label class="bk-input bk-input--wide"><span>Business name</span><input type="text" id="bk-business" name="business" autocomplete="organization" required maxlength="80" placeholder="e.g. Al Noor Boutique"></label>
+                <label class="bk-input bk-input--wide"><span>Email (optional, for a calendar invite)</span><input type="email" id="bk-email" name="email" autocomplete="email" maxlength="120" placeholder="you@business.com"></label>
+                <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" value=""></label></div>
               </div>
             </div>
             <p class="bk-summary" id="bk-summary" aria-live="polite">Select a day and a time to continue.</p>
@@ -264,6 +265,7 @@
     <a href="#book" class="btn btn-primary btn-block js-lead" data-lead="lp-sticky">Pick a time →</a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <script src="/js/booking.js" defer></script>
 </body>

@@ -182,18 +182,15 @@
 
     <section class="section">
       <div class="container split">
-        <figure class="chat-static reveal" style="justify-self:center;">
-          <div class="phone-top"><span class="phone-avatar">YC</span><span class="phone-name">Your Clinic<span class="phone-status">online</span></span></div>
-          <div class="chat">
-            <p class="chip chip--ad">Opened from your Instagram ad</p>
-            <p class="msg msg--in msg-ar">مرحبا، عندكم موعد لتنظيف البشرة بكرة المسا؟<time>9:40 PM</time></p>
-            <p class="msg msg--out msg-ar">أهلاً وسهلاً! نعم، عندنا موعدين بكرة: الساعة 6:00 أو 7:30 مساءً. أي وقت يناسبك؟<time>9:40 PM</time></p>
-            <p class="msg msg--in msg-ar">7:30 لو سمحت، اسمي نورة<time>9:41 PM</time></p>
-            <p class="msg msg--out msg-ar">تم يا نورة! حجزت لك تنظيف البشرة بكرة الساعة 7:30 مساءً، وبنرسل لك تذكير قبل الموعد.<time>9:41 PM</time></p>
-            <p class="chip chip--win">✓ Booked · Added to your calendar</p>
-          </div>
-          <figcaption>Illustrative conversation, not a real customer.</figcaption>
-        </figure>
+        <div class="reveal">
+          <ol class="timeline" aria-label="Example: an Arabic question from an Instagram ad becomes a booked appointment">
+            <li><time>9:40 PM</time><div><strong>Question in Arabic from an Instagram ad</strong><p>Is there a facial cleansing appointment tomorrow evening?</p></div></li>
+            <li><time>Seconds</time><div><strong>Free times offered, in Arabic</strong><p>Two slots from your calendar: 6:00 or 7:30 PM.</p></div></li>
+            <li><time>9:41 PM</time><div><strong>Time and name given</strong><p>7:30 PM, under the name Noura.</p></div></li>
+            <li class="is-stop"><time>Booked</time><div><strong>Confirmed in Arabic</strong><p>Added to your calendar, with a reminder before the visit.</p></div></li>
+          </ol>
+          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+        </div>
         <div class="reveal">
           <p class="eyebrow">What it looks like</p>
           <h2>Booked at 9:41 PM, in Arabic</h2>
@@ -390,6 +387,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
+  <script src="/js/track.js" defer></script>
   <script src="/js/script.js" defer></script>
   <!-- footer:end -->
 </body>

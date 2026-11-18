@@ -1,0 +1,45 @@
+# Cloudflare Worker for nuevoautomations.com
+# Serves the static site (this folder) and the /api/* backend from one Worker.
+# No secrets in here — see README-backend.md for `wrangler secret put ...`.
+
+name = "nuevo-site"
+main = "worker/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# Custom domains. Left commented so the first deploy only goes to
+# *.workers.dev for review. Uncomment once the old Vercel DNS records for
+# these hostnames have been removed in the Cloudflare dashboard (custom
+# domains refuse to attach while A/CNAME records already exist).
+# routes = [
+#   { pattern = "nuevoautomations.com", custom_domain = true },
+#   { pattern = "www.nuevoautomations.com", custom_domain = true }
+# ]
+
+[assets]
+directory = "."
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+# The worker runs first for /api/* and for pages (so it can 301 the www host
+# to the apex — _redirects can't match on host). Static sub-resources under
+# /assets, /css and /js skip the worker and are served straight from the edge.
+run_worker_first = ["/api/*", "!/assets/*", "!/css/*", "!/js/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "nuevo-site"
+# >>> REPLACE with the id printed by `npx wrangler d1 create nuevo-site` <<<
+database_id = "3dc04a66-f3b7-4108-9a65-51a8e0147b4c"
+migrations_dir = "migrations"
+
+[vars]
+META_PIXEL_ID = "997785509848718"
+NOTIFY_EMAIL = "nawafallahham@nuevoautomations.com"
+SITE_URL = "https://nuevoautomations.com"
+
+# Nightly retention clean-up (bookings > 90 days after appointment, events > 400 days, stale rate rows)
+[triggers]
+crons = ["17 23 * * *"]
+
+[observability]
+enabled = true
