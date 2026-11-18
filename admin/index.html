@@ -58,6 +58,10 @@
     .adm-pills .on { background: #e8f7ee; border-color: #bfe6cd; color: #17703a; }
     .adm-pills .off { background: var(--paper-alt); color: var(--ink-faint); }
     .adm-note { font-size: .8rem; color: var(--ink-faint); margin: 10px 0 0; }
+    .adm .links a { display: block; color: var(--brand); font-size: .8rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .adm .tag.cal { background: #eef3ff; color: #2b4fb3; }
+    .adm-cly-msg { font-size: .88rem; margin: 10px 0 0; word-break: break-word; }
+    .adm-cly-msg.is-bad { color: var(--danger); }
     @media (max-width: 960px) { .adm-kpis { grid-template-columns: repeat(2, 1fr); } .adm-grid2 { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -98,7 +102,7 @@
           </span>
         </h2>
         <div class="adm-table-wrap"><table>
-          <thead><tr><th>When (Dubai)</th><th>Name</th><th>Business</th><th>WhatsApp</th><th>Source / campaign</th><th></th></tr></thead>
+          <thead><tr><th>When (Dubai)</th><th>Name</th><th>Business</th><th>WhatsApp</th><th>Source / campaign</th><th>Provider</th><th></th></tr></thead>
           <tbody id="bookings"></tbody>
         </table></div>
         <p class="adm-empty" id="bookings-empty" hidden>No bookings to show.</p>
@@ -128,6 +132,16 @@
         <p class="adm-note" id="stats-note"></p>
       </section>
 
+      <section class="adm-card" id="calendly">
+        <h2>Calendly
+          <button type="button" class="btn btn-primary btn-sm" id="cly-setup">Connect Calendly webhook</button>
+        </h2>
+        <div class="adm-pills" id="cly-status"></div>
+        <div id="cly-subs"></div>
+        <p class="adm-cly-msg" id="cly-msg" aria-live="polite"></p>
+        <p class="adm-note">Connecting (re)creates the webhook subscription for invitee.created and invitee.canceled with the CALENDLY_TOKEN and CALENDLY_SIGNING_KEY secrets. Webhooks need a paid Calendly plan.</p>
+      </section>
+
       <section class="adm-card adm-cal">
         <h2>Calendar feed &amp; integrations</h2>
         <div id="cal"></div>
@@ -154,7 +168,7 @@
       return fetch(path, opts).then(function (r) {
         if (r.status === 401) { signOut('That key was not accepted.'); throw new Error('unauthorised'); }
         return r.json().then(function (j) {
-          if (!r.ok || !j.ok) throw new Error((j && j.error) || ('HTTP ' + r.status));
+          if (!r.ok || !j.ok) throw new Error((j && (j.message || j.error)) || ('HTTP ' + r.status));
           return j;
         });
       });
@@ -217,8 +231,18 @@
       list.forEach(function (b) {
         var cancelled = b.status !== 'booked';
         var src = [b.utm_source, b.utm_campaign].filter(Boolean).join(' / ');
+        var calendly = b.provider === 'calendly';
         var actions = el('td');
-        if (!cancelled) {
+        if (calendly) {
+          // Calendly owns these: cancelling there sends invitee.canceled back to us.
+          if (cancelled) actions.appendChild(el('span', { className: 'tag' }, 'cancelled'));
+          else {
+            var links = el('span', { className: 'links' });
+            if (b.reschedule_url) links.appendChild(el('a', { href: b.reschedule_url, target: '_blank', rel: 'noopener' }, 'Reschedule ↗'));
+            if (b.cancel_url) links.appendChild(el('a', { href: b.cancel_url, target: '_blank', rel: 'noopener' }, 'Cancel ↗'));
+            actions.appendChild(links);
+          }
+        } else if (!cancelled) {
           var x = el('button', { type: 'button', className: 'btn-x' }, 'Cancel');
           x.addEventListener('click', function () {
             if (!window.confirm('Cancel the audit with ' + b.name + ' (' + b.business + ') on ' + when(b) + '?\nThe slot becomes bookable again.')) return;
@@ -234,9 +258,10 @@
         tb.appendChild(el('tr', { className: cancelled ? 'is-cancelled' : '' }, [
           el('td', null, [when(b), el('span', { className: 'sub' }, 'booked ' + new Date(b.created_at).toLocaleString('en-GB', { timeZone: 'Asia/Dubai', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }))]),
           el('td', null, [b.name, b.email ? el('span', { className: 'sub' }, b.email) : '']),
-          el('td', null, b.business),
-          el('td', null, el('a', { className: 'wa', href: waHref(b.phone), target: '_blank', rel: 'noopener' }, b.phone)),
+          el('td', null, [b.business || '—', b.note ? el('span', { className: 'sub' }, b.note) : '']),
+          el('td', null, b.phone ? el('a', { className: 'wa', href: waHref(b.phone), target: '_blank', rel: 'noopener' }, b.phone) : '—'),
           el('td', null, [src || 'direct', el('span', { className: 'sub' }, b.source || '')]),
+          el('td', null, el('span', { className: 'tag' + (calendly ? ' cal' : '') }, b.provider || 'native')),
           actions
         ]));
       });
@@ -336,10 +361,45 @@
       [['Meta Conversions API', i.meta_capi && !i.meta_test_mode, i.meta_test_mode ? 'test mode' : ''],
        ['Email alerts → ' + (i.notify_email || ''), i.email],
        ['OrcaFlo webhook', i.orcaflo],
-       ['Calendar feed', i.calendar_feed]].forEach(function (p) {
+       ['Calendar feed', i.calendar_feed],
+       ['Calendly secrets', i.calendly]].forEach(function (p) {
         pills.appendChild(el('span', { className: p[1] ? 'on' : 'off' }, p[0] + (p[2] ? ' (' + p[2] + ')' : p[1] ? ' · on' : ' · off')));
       });
     }
+
+    function renderCalendly(c) {
+      var pills = $('cly-status');
+      pills.innerHTML = '';
+      var live = (c.subscriptions || []).filter(function (s) { return s.state === 'active'; }).length > 0;
+      [['CALENDLY_TOKEN', c.token_set], ['CALENDLY_SIGNING_KEY', c.signing_key_set], ['Webhook', live, live ? 'active' : 'not connected']]
+        .forEach(function (p) {
+          pills.appendChild(el('span', { className: p[1] ? 'on' : 'off' }, p[0] + ' · ' + (p[2] || (p[1] ? 'set' : 'not set'))));
+        });
+      var subs = $('cly-subs');
+      subs.innerHTML = '';
+      (c.subscriptions || []).forEach(function (s) {
+        subs.appendChild(el('p', { className: 'adm-note' }, s.state + ' · ' + (s.events || []).join(', ') + ' → ' + s.callback_url + ' (' + s.uri + ')'));
+      });
+      var msg = $('cly-msg');
+      msg.className = 'adm-cly-msg' + (c.error ? ' is-bad' : '');
+      msg.textContent = c.error || '';
+    }
+    function loadCalendly() {
+      return api('/api/admin/calendly/status').then(renderCalendly);
+    }
+    $('cly-setup').addEventListener('click', function () {
+      var btn = $('cly-setup'), msg = $('cly-msg');
+      btn.disabled = true;
+      msg.className = 'adm-cly-msg';
+      msg.textContent = 'Connecting…';
+      api('/api/admin/calendly/setup', { method: 'POST' })
+        .then(function (j) {
+          var done = 'Connected: ' + j.subscription.state + (j.removed ? ' (replaced ' + j.removed + ' old subscription)' : '') + '.';
+          return loadCalendly().then(function () { msg.textContent = done; });
+        })
+        .catch(function (e) { msg.className = 'adm-cly-msg is-bad'; msg.textContent = e.message; })
+        .then(function () { btn.disabled = false; });
+    });
 
     // --- loading ---------------------------------------------------
     function loadBookings() {
@@ -351,7 +411,7 @@
       });
     }
     function loadAll() {
-      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats()]);
+      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats(), loadCalendly()]);
     }
 
     function start() {
