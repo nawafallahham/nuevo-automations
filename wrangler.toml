@@ -11,10 +11,10 @@ workers_dev = true
 # *.workers.dev for review. Uncomment once the old Vercel DNS records for
 # these hostnames have been removed in the Cloudflare dashboard (custom
 # domains refuse to attach while A/CNAME records already exist).
-# routes = [
-#   { pattern = "nuevoautomations.com", custom_domain = true },
-#   { pattern = "www.nuevoautomations.com", custom_domain = true }
-# ]
+routes = [
+  { pattern = "nuevoautomations.com", custom_domain = true },
+  { pattern = "www.nuevoautomations.com", custom_domain = true }
+]
 
 [assets]
 directory = "."
