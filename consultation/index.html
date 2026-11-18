@@ -26,7 +26,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=20261118b">
+  <link rel="stylesheet" href="/css/style.css?v=20261118c">
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
@@ -145,36 +145,13 @@
         </div>
 
         <div class="reveal">
-          <form class="bk" id="bk-form" data-source="meta-landing" novalidate>
-            <div class="bk-field">
-              <span class="bk-label">1 · Choose a day</span>
-              <div class="bk-days" id="bk-days" role="group" aria-label="Choose a day"></div>
+          <div class="cal-embed" data-source="meta-landing">
+            <div class="calendly-inline-widget" data-auto-load="false" data-url="https://calendly.com/nawaf-allahham02/30min?hide_gdpr_banner=1&amp;primary_color=1a5fa0&amp;text_color=101a2b">
+              <p class="cal-embed__msg">Loading the calendar&hellip;</p>
             </div>
-            <div class="bk-field">
-              <span class="bk-label">2 · Choose a time <em>Dubai time (GST)</em></span>
-              <div class="bk-times" id="bk-times" role="group" aria-label="Choose a time"></div>
-            </div>
-            <div class="bk-field">
-              <span class="bk-label">3 · Your details</span>
-              <div class="bk-inputs">
-                <label class="bk-input"><span>Name</span><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name"></label>
-                <label class="bk-input"><span>WhatsApp number</span><input type="tel" id="bk-phone" name="phone" autocomplete="tel" required maxlength="32" placeholder="+971 50 000 0000"></label>
-                <label class="bk-input bk-input--wide"><span>Business name</span><input type="text" id="bk-business" name="business" autocomplete="organization" required maxlength="80" placeholder="e.g. Al Noor Boutique"></label>
-                <label class="bk-input bk-input--wide"><span>Email (optional, for a calendar invite)</span><input type="email" id="bk-email" name="email" autocomplete="email" maxlength="120" placeholder="you@business.com"></label>
-                <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" value=""></label></div>
-              </div>
-            </div>
-            <p class="bk-summary" id="bk-summary" aria-live="polite">Select a day and a time to continue.</p>
-            <button type="submit" class="btn btn-primary btn-lg btn-block js-lead" id="bk-confirm" data-lead="booking" disabled>Confirm my audit</button>
-            <p class="bk-note">Free, 20 minutes, no obligation. We'll confirm on WhatsApp. <a href="/privacy/">How we use your details</a>.</p>
-          </form>
-
-          <div class="bk-done" id="bk-done" hidden>
-            <span class="bk-tick" aria-hidden="true"></span>
-            <h2 id="bk-done-title" class="bk-done-title">You're booked in</h2>
-            <p id="bk-done-msg"></p>
-            <a href="#" class="btn btn-wa btn-lg" id="bk-done-wa" target="_blank" rel="noopener">Message us on WhatsApp</a>
+            <noscript><p class="cal-embed__msg"><a href="https://calendly.com/nawaf-allahham02/30min" target="_blank" rel="noopener">Open the booking calendar on Calendly</a></p></noscript>
           </div>
+          <p class="cal-embed__alt">Prefer WhatsApp? <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20a%20free%20M2S%20audit." target="_blank" rel="noopener" data-lead="booking-wa">Message us</a> · <a href="/privacy/">How we use your details</a></p>
         </div>
       </div>
     </section>
@@ -264,8 +241,8 @@
     <a href="#book" class="btn btn-primary btn-block js-lead" data-lead="lp-sticky">Pick a time →</a>
   </div>
 
-  <script src="/js/track.js?v=20261118b" defer></script>
+  <script src="/js/track.js?v=20261118c" defer></script>
   <script src="/js/script.js?v=20261118b" defer></script>
-  <script src="/js/booking.js?v=20261118b" defer></script>
+  <script src="/js/calendly.js?v=20261118c" defer></script>
 </body>
 </html>

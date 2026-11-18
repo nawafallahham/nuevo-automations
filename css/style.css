@@ -833,3 +833,22 @@ p a:not(.btn), li a:not(.btn):not(.tile), .fine a, .bk-note a {
 /* Grid children default to min-width:auto, which lets wide content (the
    scrolling day picker) stretch the column past the viewport on phones. */
 .book-grid > *, .split > *, .hero-grid > * { min-width: 0; }
+
+/* ============================================
+   Calendly embed (js/calendly.js)
+   ============================================ */
+.cal-embed {
+  position: relative; min-height: 700px; overflow: hidden;
+  border-radius: var(--radius-xl); background: var(--paper);
+  border: 1px solid var(--line); box-shadow: var(--shadow-md);
+}
+.cal-embed .calendly-inline-widget { min-width: 320px; height: 700px; }
+.cal-embed__msg { margin: 0; padding: 48px 24px; text-align: center; font-size: 0.94rem; color: var(--ink-faint); }
+.cal-embed.is-failed .calendly-inline-widget { height: auto; }
+.cal-embed.is-failed { min-height: 0; }
+.cal-embed__alt { margin: 14px 0 0; font-size: 0.88rem; color: var(--ink-faint); text-align: center; }
+.cal-embed__alt a { color: var(--brand); font-weight: 600; }
+@media (max-width: 680px) {
+  .cal-embed { min-height: 760px; border-radius: var(--radius-lg); }
+  .cal-embed .calendly-inline-widget { height: 760px; }
+}

@@ -83,17 +83,19 @@
         .catch(function () {});
     } catch (e) {}
   }
-  window.nuevoTrack = send;
-
   send('pageview');
 
   // book_view: once per page, on /book/ or when a #book section is seen.
+  // The booking embed may report it too; both go through bookView().
   var bookSent = false;
   function bookView() {
     if (bookSent) return;
     bookSent = true;
     send('book_view');
   }
+  window.nuevoTrack = function (type, path) {
+    if (type === 'book_view') bookView(); else send(type, path);
+  };
   if (/^\/book\/?$/.test(location.pathname)) {
     bookView();
   } else {
