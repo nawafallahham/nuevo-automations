@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Free M2S Audit | Nuevo Automations</title>
+  <meta name="description" content="Book a free 20-minute M2S audit. We look at your ads, your WhatsApp and your follow-ups, show you where sales leak out, and give you a fixed monthly quote.">
+  <link rel="canonical" href="https://nuevoautomations.com/book/">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nuevo Automations">
+  <meta property="og:url" content="https://nuevoautomations.com/book/">
+  <meta property="og:title" content="Book a free M2S audit | Nuevo Automations">
+  <meta property="og:description" content="20 minutes, free. Find out how many sales your chats are losing.">
+  <meta property="og:image" content="https://nuevoautomations.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- head:start -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
+       declining genuinely prevents tracking. Lead events in js/script.js
+       guard on fbq and no-op until then. -->
+  <script src="/js/consent.js" defer></script>
+  <!-- head:end -->
+</head>
+<body class="page-book">
+  <!-- header:start book -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Nuevo Automations home">
+        <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+        <span class="logo-text">Nuevo <strong>Automations</strong></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="/m2s/">How M2S works</a>
+        <a href="/#industries">Industries</a>
+        <a href="/results/">Results</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/partners/">Partners</a>
+        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <section class="section" style="padding-top:64px;">
+      <div class="container book-grid">
+        <div class="reveal">
+          <p class="crumb"><a href="/">Home</a> / Book an audit</p>
+          <p class="eyebrow">Free M2S audit</p>
+          <h1 style="font-size:clamp(2.2rem,4.6vw,3.4rem);">Find out how many sales your chats are losing</h1>
+          <p class="lede" style="margin-bottom:32px;">Twenty minutes, free, on a call or on WhatsApp. No sales deck, just your numbers.</p>
+          <ol class="audit-steps">
+            <li><div><strong>Your ads and your leads</strong><p>Where your messages come from today, and what each one costs you.</p></div></li>
+            <li><div><strong>Where the sale leaks out</strong><p>Reply times, unanswered nights, unpaid links, carts and quiet leads.</p></div></li>
+            <li><div><strong>What M2S would fix first</strong><p>A written plan and a fixed monthly quote. Yours to keep either way.</p></div></li>
+          </ol>
+          <p class="fine">Slots every day, 2–7 PM Dubai time · English or Arabic · Prefer to chat? <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20a%20free%20M2S%20audit." target="_blank" rel="noopener">Message us on WhatsApp</a></p>
+        </div>
+
+        <div class="reveal" id="book">
+          <form class="bk" id="bk-form" data-source="site" novalidate>
+            <div class="bk-field">
+              <span class="bk-label">1 · Choose a day</span>
+              <div class="bk-days" id="bk-days" role="group" aria-label="Choose a day"></div>
+            </div>
+            <div class="bk-field">
+              <span class="bk-label">2 · Choose a time <em>Dubai time (GST)</em></span>
+              <div class="bk-times" id="bk-times" role="group" aria-label="Choose a time"></div>
+            </div>
+            <div class="bk-field">
+              <span class="bk-label">3 · Your details</span>
+              <div class="bk-inputs">
+                <label class="bk-input"><span>Name</span><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name"></label>
+                <label class="bk-input"><span>WhatsApp number</span><input type="tel" id="bk-phone" name="phone" autocomplete="tel" required maxlength="32" placeholder="+971 50 000 0000"></label>
+                <label class="bk-input bk-input--wide"><span>Business name</span><input type="text" id="bk-business" name="business" autocomplete="organization" required maxlength="80" placeholder="e.g. Al Noor Boutique"></label>
+              </div>
+            </div>
+            <p class="bk-summary" id="bk-summary" aria-live="polite">Select a day and a time to continue.</p>
+            <button type="submit" class="btn btn-primary btn-lg btn-block js-lead" id="bk-confirm" data-lead="booking-submit" disabled>Confirm my audit</button>
+            <p class="bk-note">Free, 20 minutes, no obligation. We'll confirm on WhatsApp.</p>
+          </form>
+
+          <div class="bk-done" id="bk-done" hidden>
+            <span class="bk-tick" aria-hidden="true"></span>
+            <h3 id="bk-done-title">You're booked in</h3>
+            <p id="bk-done-msg"></p>
+            <a href="#" class="btn btn-wa btn-lg" id="bk-done-wa" target="_blank" rel="noopener">Message us on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+            <span class="logo-text">Nuevo <strong>Automations</strong></span>
+          </a>
+          <p>We run your ads, and M2S, our Message to Sale system, turns the messages they bring into sales on WhatsApp.</p>
+          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="/m2s/">How M2S works</a>
+          <a href="/results/">Results</a>
+          <a href="/pricing/">Pricing</a>
+          <a href="/partners/">Partners</a>
+          <a href="/book/">Book an audit</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Services</h3>
+          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
+          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
+          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
+          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
+          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
+          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
+          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
+          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Industries</h3>
+          <a href="/ecommerce-automation-uae/">Online stores</a>
+          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
+          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
+          <a href="/real-estate-automation-dubai/">Real estate</a>
+          <a href="/education-training-automation-uae/">Education &amp; training</a>
+          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
+          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
+          <span>Serving Dubai, Abu Dhabi, Sharjah and the wider UAE</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
+        <span><a href="/privacy/">Privacy policy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+  </a>
+
+  <div class="mobile-cta">
+    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
+    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+  </div>
+
+  <script src="/js/script.js" defer></script>
+  <!-- footer:end -->
+  <script src="/js/booking.js" defer></script>
+</body>
+</html>

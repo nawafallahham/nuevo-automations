@@ -6,17 +6,24 @@
   <title>Privacy Policy — Nuevo Automations</title>
   <meta name="description" content="How Nuevo Automations collects, uses and protects your personal data, including cookies and advertising tools.">
   <link rel="canonical" href="https://nuevoautomations.com/privacy/">
-  <link rel="icon" href="/assets/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- head:start -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/style.css">
 
+  <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
+       declining genuinely prevents tracking. Lead events in js/script.js
+       guard on fbq and no-op until then. -->
+  <script src="/js/consent.js" defer></script>
+  <!-- head:end -->
+
   <style>
-    .legal { max-width: 800px; margin: 0 auto; padding: 56px 0 80px; }
+    .legal { max-width: 800px; margin: 0 auto; padding-top: 56px; padding-bottom: 80px; }
     .legal h1 { font-size: clamp(2rem, 4.5vw, 2.6rem); margin-bottom: 10px; }
     .legal .updated { color: var(--ink-faint); font-size: 0.88rem; margin-bottom: 40px; }
     .legal h2 {
@@ -31,11 +38,6 @@
     .legal li { margin-bottom: 8px; }
     .legal a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
     .legal strong { color: var(--ink); }
-    .legal-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 34px;
-    }
-    .legal-back:hover { color: var(--brand); }
     .legal-contact {
       margin-top: 40px; padding: 24px 24px;
       border-radius: var(--radius-lg);
@@ -46,18 +48,47 @@
   </style>
 </head>
 <body>
-  <main class="container legal">
-    <a href="/" class="legal-back">← Back to Nuevo Automations</a>
+  <!-- header:start privacy -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Nuevo Automations home">
+        <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+        <span class="logo-text">Nuevo <strong>Automations</strong></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="/m2s/">How M2S works</a>
+        <a href="/#industries">Industries</a>
+        <a href="/results/">Results</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/partners/">Partners</a>
+        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main class="container legal" id="main">
+    <p class="crumb"><a href="/">Home</a> / Privacy policy</p>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: 8 August 2026</p>
+    <p class="updated">Last updated: 18 November 2026</p>
 
-    <p>This policy explains what personal data Nuevo Automations collects when you use this website, why we collect it, and what control you have over it. We are based in Dubai, United Arab Emirates, and can be reached at <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>.</p>
+    <p>This policy explains what personal data Nuevo Automations collects when you use this website, why we collect it, and what control you have over it. Nuevo Automations FZE LLC is a free zone establishment registered in Sharjah Publishing City Free Zone, United Arab Emirates, and can be reached at <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>.</p>
 
     <h2>What we collect</h2>
     <p>We only collect what we actually need:</p>
     <ul>
-      <li><strong>Booking details.</strong> If you book a consultation, we store your name, WhatsApp number, business name, and your chosen date and time. We also record the time of booking and the IP address the request came from, to help prevent abuse.</li>
+      <li><strong>Booking details.</strong> If you book an audit or consultation, we store your name, WhatsApp number, business name, and your chosen date and time. We also record the time of booking and the IP address the request came from, to help prevent abuse.</li>
       <li><strong>Messages you send us.</strong> If you contact us on WhatsApp or by email, we keep that conversation so we can answer you and follow up.</li>
       <li><strong>Usage data.</strong> Standard technical information such as pages viewed, approximate location, device and browser type, collected through the advertising and analytics tools described below.</li>
     </ul>
@@ -65,7 +96,7 @@
 
     <h2>Why we use it</h2>
     <ul>
-      <li>To arrange and attend your consultation, and to contact you about it.</li>
+      <li>To arrange and attend your audit or consultation, and to contact you about it.</li>
       <li>To respond to enquiries and provide the services you ask us for.</li>
       <li>To measure whether our advertising works, and to show relevant ads to people likely to be interested.</li>
       <li>To keep the site secure and prevent abuse of the booking system.</li>
@@ -75,7 +106,7 @@
     <h2>Cookies and advertising tools</h2>
     <p>This website uses the <strong>Meta Pixel</strong>, a tool provided by Meta Platforms, Inc. (Facebook and Instagram). It sets cookies and reports back to Meta when you visit a page or click one of our contact buttons.</p>
     <p>We use it to measure how our advertising performs and to reach people who have visited the site. Meta may combine this with information it already holds about you. You can read how Meta handles this in the <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>, and adjust what you see through <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">Meta's ad preferences</a>.</p>
-    <p>You can decline these cookies using the banner shown when you first visit, change your mind at any time using the link at the bottom of this page, or block cookies in your browser settings. Declining does not affect your ability to browse the site or book a consultation.</p>
+    <p>You can decline these cookies using the banner shown when you first visit, change your mind at any time using the link at the bottom of this page, or block cookies in your browser settings. Declining does not affect your ability to browse the site or book an audit.</p>
     <p>We also load fonts from Google Fonts. That provider receives your IP address as a normal part of serving those files.</p>
 
     <h2>Who we share it with</h2>
@@ -98,13 +129,83 @@
     <p>If we change this policy we will update the date at the top of this page.</p>
 
     <div class="legal-contact">
-      <p><strong>Nuevo Automations</strong><br>Dubai &amp; Abu Dhabi, United Arab Emirates</p>
+      <p><strong>Nuevo Automations FZE LLC</strong><br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, United Arab Emirates</p>
       <p>Email: <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a><br>
       WhatsApp: <a href="https://wa.me/971508549171">+971 50 854 9171</a></p>
       <p><a href="#" id="cookie-reset">Change your cookie choice</a></p>
     </div>
   </main>
 
+  <!-- footer:start -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
+            <span class="logo-text">Nuevo <strong>Automations</strong></span>
+          </a>
+          <p>We run your ads, and M2S, our Message to Sale system, turns the messages they bring into sales on WhatsApp.</p>
+          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Company</h3>
+          <a href="/m2s/">How M2S works</a>
+          <a href="/results/">Results</a>
+          <a href="/pricing/">Pricing</a>
+          <a href="/partners/">Partners</a>
+          <a href="/book/">Book an audit</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Services</h3>
+          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
+          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
+          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
+          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
+          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
+          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
+          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
+          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Industries</h3>
+          <a href="/ecommerce-automation-uae/">Online stores</a>
+          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
+          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
+          <a href="/real-estate-automation-dubai/">Real estate</a>
+          <a href="/education-training-automation-uae/">Education &amp; training</a>
+          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
+          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
+          <span>Serving Dubai, Abu Dhabi, Sharjah and the wider UAE</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
+        <span><a href="/privacy/">Privacy policy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+  </a>
+
+  <div class="mobile-cta">
+    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
+    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+  </div>
+
+  <script src="/js/script.js" defer></script>
+  <!-- footer:end -->
   <script>
     document.getElementById('cookie-reset').addEventListener('click', function (e) {
       e.preventDefault();

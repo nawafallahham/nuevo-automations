@@ -3,404 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Automation Consultation — Nuevo Automations</title>
-  <meta name="description" content="Book a free 20-minute call. We'll map where your business is losing leads and show you exactly what to automate first — you keep the plan either way.">
+  <title>Free M2S Audit: How Many Sales Are Your Chats Losing? | Nuevo Automations</title>
+  <meta name="description" content="Book a free 20-minute M2S audit. We'll show you where your ad messages turn into lost sales, and how M2S closes them on WhatsApp. You keep the plan either way.">
 
   <!-- Campaign landing page: kept out of search so it doesn't compete with the
        main site or get found out of context. Delete this line to index it. -->
   <meta name="robots" content="noindex, follow">
 
-  <link rel="icon" href="/assets/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta name="theme-color" content="#ffffff">
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nuevo Automations">
-  <meta property="og:title" content="Free Automation Consultation — Nuevo Automations">
-  <meta property="og:description" content="20 minutes, free, no pitch deck. We'll map where your leads are getting lost and what to automate first.">
+  <meta property="og:title" content="Free M2S audit | Nuevo Automations">
+  <meta property="og:description" content="20 minutes, free. Find out how many sales your chats are losing, and how to win them back.">
   <meta property="og:image" content="https://nuevoautomations.com/assets/og-image.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://nuevoautomations.com/consultation/">
 
+  <!-- head:start -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/style.css">
 
-  <!-- Cookie consent. Loads the Meta Pixel only after consent is granted;
-       the Lead/Schedule events below guard on fbq and no-op until then. -->
+  <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
+       declining genuinely prevents tracking. Lead events in js/script.js
+       guard on fbq and no-op until then. -->
   <script src="/js/consent.js" defer></script>
+  <!-- head:end -->
 
   <style>
-    /* ---- Landing-page-specific layer on top of the shared design system ---- */
-    .lp-header {
-      position: relative;
-      z-index: 2;
-      padding: 22px 0;
-    }
-    .lp-header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .lp-phone {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-      white-space: nowrap;
-    }
+    /* ---- Landing-page layer: no site nav, one goal (book the audit) ---- */
+    .lp-header { padding: 18px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .lp-header .container { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .lp-phone { font-size: 0.92rem; font-weight: 600; color: var(--ink-muted); white-space: nowrap; }
     .lp-phone:hover { color: var(--brand); }
     @media (max-width: 560px) { .lp-phone { display: none; } }
-
-    .lp-hero { padding: 40px 0 72px; position: relative; z-index: 2; }
-    .lp-hero h1 {
-      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
-      margin-bottom: 20px;
-      max-width: 20ch;
-    }
-    .lp-sub {
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      max-width: 54ch;
-      margin-bottom: 30px;
-    }
-    .lp-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-    .lp-reassure {
-      font-size: 0.86rem;
-      color: var(--ink-faint);
-      margin: 0 0 34px;
-    }
-    .lp-trust {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 20px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--ink-faint);
-    }
-    .lp-trust li { display: inline-flex; align-items: center; gap: 8px; }
-    .lp-trust li::before {
-      content: "";
-      width: 16px; height: 16px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background-color: var(--brand-tint-strong);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23123f6b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 10px 10px;
-    }
-
-    .lp-section { padding: 66px 0; position: relative; z-index: 2; }
-    .lp-section h2 {
-      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
-      margin-bottom: 12px;
-    }
-    .lp-lead { font-size: 1rem; max-width: 60ch; margin-bottom: 36px; }
-
-    .lp-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .lp-step {
-      position: relative;
-      padding: 28px 24px;
-      border-radius: var(--radius-lg);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-xs);
-    }
-    .lp-step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--brand);
-      background: var(--brand-tint);
-      margin-bottom: 16px;
-    }
-    .lp-step h3 { font-size: 1.04rem; margin-bottom: 8px; }
-    .lp-step p { font-size: 0.93rem; margin-bottom: 0; }
-
-    .lp-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-    .lp-fit {
-      padding: 22px 22px;
-      border-radius: var(--radius-md);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-xs);
-    }
-    .lp-fit h3 { font-size: 0.98rem; margin-bottom: 6px; }
-    .lp-fit p { font-size: 0.9rem; margin-bottom: 0; color: var(--ink-faint); }
-
-    .lp-faq { max-width: 760px; }
-    .lp-faq details {
-      border-bottom: 1px solid var(--line);
-      padding: 18px 0;
-    }
-    .lp-faq summary {
-      cursor: pointer;
-      list-style: none;
-      font-weight: 600;
-      color: var(--ink);
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .lp-faq summary::-webkit-details-marker { display: none; }
-    .lp-faq summary::after {
-      content: "+";
-      color: var(--brand);
-      font-size: 1.3rem;
-      line-height: 1;
-      flex-shrink: 0;
-      transition: transform 240ms var(--ease);
-    }
-    .lp-faq details[open] summary::after { transform: rotate(45deg); }
-    .lp-faq details p {
-      margin: 12px 0 0;
-      font-size: 0.94rem;
-      max-width: 62ch;
-    }
-
-    .lp-final {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 50px 40px;
-      border-radius: var(--radius-lg);
-      background: var(--paper-alt);
-      border: 1px solid var(--line);
-    }
-    .lp-final h2 { margin-bottom: 14px; }
-    .lp-final p { margin-bottom: 28px; }
-
-    .lp-footer {
-      position: relative;
-      z-index: 2;
-      padding: 40px 0 56px;
-      text-align: center;
-      font-size: 0.84rem;
-      color: var(--ink-faint);
-      border-top: 1px solid var(--line);
-    }
+    .lp-footer { padding: 40px 0 56px; text-align: center; font-size: 0.84rem; color: var(--ink-faint); border-top: 1px solid var(--line); }
+    .lp-footer p { margin: 0 0 6px; }
     .lp-footer a { color: var(--ink-muted); }
-    .lp-footer a:hover { color: var(--brand); }
-
-    /* ---- Booking widget ---- */
-    .bk {
-      max-width: 760px;
-      padding: 28px 26px;
-      border-radius: var(--radius-lg);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
-    }
-    .bk-field { margin-bottom: 24px; }
-    .bk-label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brand);
-      margin-bottom: 12px;
-    }
-    .bk-label em {
-      font-style: normal;
-      letter-spacing: 0.04em;
-      text-transform: none;
-      font-weight: 500;
-      color: var(--ink-faint);
-      margin-left: 6px;
-    }
-
-    .bk-days {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: none;
-    }
-    .bk-days::-webkit-scrollbar { display: none; }
-    .bk-day {
-      flex: 0 0 auto;
-      min-width: 84px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--ink-muted);
-      font-family: var(--font-body);
-      font-size: 0.86rem;
-      line-height: 1.3;
-      text-align: center;
-      cursor: pointer;
-      transition: background 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease);
-    }
-    .bk-day strong { display: block; color: var(--ink); font-size: 1.02rem; font-weight: 700; }
-    .bk-day:hover { border-color: var(--line-strong); }
-    .bk-day.is-on {
-      background: var(--brand-tint);
-      border-color: var(--brand);
-      color: var(--brand-dark);
-    }
-    .bk-day.is-on strong { color: var(--brand-dark); }
-
-    .bk-times {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-      gap: 10px;
-    }
-    .bk-time {
-      padding: 12px 8px;
-      border-radius: 10px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--ink-muted);
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease);
-    }
-    .bk-time:hover:not(:disabled) { border-color: var(--line-strong); color: var(--ink); }
-    .bk-time.is-on {
-      background: var(--brand-tint);
-      border-color: var(--brand);
-      color: var(--brand-dark);
-    }
-    .bk-time:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      text-decoration: line-through;
-    }
-    .bk-empty { color: var(--ink-faint); font-size: 0.92rem; margin: 0; }
-
-    .bk-inputs {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .bk-input--wide { grid-column: 1 / -1; }
-    .bk-input span {
-      display: block;
-      font-size: 0.84rem;
-      color: var(--ink-muted);
-      margin-bottom: 6px;
-    }
-    .bk-input span em { font-style: normal; color: var(--ink-faint); font-size: 0.78rem; }
-    .bk-input input {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 10px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--ink);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      transition: border-color 160ms var(--ease);
-    }
-    .bk-input input::placeholder { color: var(--ink-faint); }
-    .bk-input input:focus {
-      outline: none;
-      border-color: var(--brand);
-    }
-    .bk-input input.is-bad { border-color: var(--danger); }
-
-    .bk-summary {
-      font-size: 0.94rem;
-      color: var(--ink-muted);
-      margin: 0 0 16px;
-      min-height: 1.4em;
-    }
-    .bk-summary strong { color: var(--brand-dark); }
-    .bk-summary.is-bad { color: var(--danger); }
-    .bk-note { font-size: 0.82rem; color: var(--ink-faint); margin: 14px 0 0; }
-    #bk-confirm:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-
-    .bk-done {
-      max-width: 760px;
-      padding: 40px 28px;
-      text-align: center;
-      border-radius: var(--radius-lg);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
-    }
-    .bk-tick {
-      display: inline-flex;
-      width: 54px; height: 54px;
-      margin-bottom: 16px;
-      border-radius: 50%;
-      background-color: rgba(31, 174, 86, 0.12);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317903f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 26px 26px;
-    }
-    .bk-done h3 { font-size: 1.35rem; margin-bottom: 8px; }
-    .bk-done p { margin-bottom: 22px; }
-
-    @media (max-width: 560px) {
-      .bk { padding: 24px 18px; }
-      .bk-inputs { grid-template-columns: 1fr; }
-      .bk-times { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); }
-    }
-
-    /* Sticky mobile CTA — most Meta traffic is mobile, and the button should
-       never be more than a thumb away. */
     .lp-sticky {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 120;
-      display: none;
-      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-      background: var(--paper);
-      border-top: 1px solid var(--line);
-      box-shadow: 0 -6px 20px -12px rgba(16, 24, 40, 0.2);
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; display: none;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px -16px rgba(16, 24, 40, 0.3);
     }
-    @media (max-width: 760px) {
-      .lp-sticky { display: block; }
-      body { padding-bottom: 84px; }
-      .lp-steps, .lp-grid-2 { grid-template-columns: 1fr; }
-      .lp-section { padding: 52px 0; }
-      .lp-final { padding: 40px 22px; }
-    }
-    @media (max-width: 980px) {
-      .lp-steps { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 760px) { .lp-sticky { display: block; } body { padding-bottom: 76px; } }
   </style>
 </head>
 <body>
   <header class="lp-header">
-    <div class="container lp-header-inner">
+    <div class="container">
       <a href="https://nuevoautomations.com/" class="logo">
-        <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="38" height="38">
+        <img class="logo-mark" src="/assets/logo-icon.png" alt="" width="36" height="36">
         <span class="logo-text">Nuevo <strong>Automations</strong></span>
       </a>
       <a class="lp-phone" href="https://wa.me/971508549171">+971 50 854 9171</a>
@@ -409,216 +67,187 @@
 
   <main>
     <!-- Hero -->
-    <section class="lp-hero">
-      <div class="container">
-        <p class="eyebrow">Free 20-Minute Consultation · <span class="text-teal">Dubai &amp; Abu Dhabi</span></p>
-        <h1>Find out what your <span class="text-teal">missed messages</span> are costing you</h1>
-        <p class="lp-sub">In 20 minutes we'll map how leads reach your business, show you exactly where they're getting lost, and tell you what's worth automating first. You keep the plan whether you work with us or not.</p>
-
-        <div class="lp-cta-row">
-          <a href="#book" class="btn btn-primary btn-lg">Pick a time →</a>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="hero-badge"><b>FREE</b> 20-minute M2S audit</p>
+          <h1 style="font-size:clamp(2.3rem,5.4vw,3.8rem);">Find out how many sales your <span class="text-brand" style="display:inline;">chats are losing</span></h1>
+          <p class="hero-sub">You're paying for ads that bring messages. In 20 minutes we'll show you where those messages turn into lost sales, and how M2S closes them on WhatsApp. You keep the plan whether you work with us or not.</p>
+          <div class="hero-actions">
+            <a href="#book" class="btn btn-primary btn-lg js-lead" data-lead="lp-hero">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <ul class="hero-points">
+            <li>Free, no obligation</li>
+            <li>No sales deck, just your numbers</li>
+            <li>English or Arabic</li>
+          </ul>
         </div>
-        <p class="lp-reassure">Slots every day, 2–7 PM Dubai time · Free · No obligation · Arabic &amp; English</p>
-
-        <ul class="lp-trust">
-          <li>No sales deck — just your numbers</li>
-          <li>Run by the team that built the systems</li>
-          <li>Works with the tools you already use</li>
-        </ul>
+        <div class="phone-wrap reveal" aria-label="Example: a customer from an Instagram ad buys inside WhatsApp">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <span class="phone-avatar">YB</span>
+                <span class="phone-name">Your Brand<span class="phone-status">online</span></span>
+              </div>
+              <div class="chat" id="m2s-chat" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- What OrcaFlo actually is -->
-    <section class="lp-section">
+    <!-- What M2S is -->
+    <section class="section section--alt">
       <div class="container">
-        <h2>What OrcaFlo actually does</h2>
-        <p class="lp-lead">In plain terms: it's an AI that answers your WhatsApp for you, around the clock, and only involves you when someone's ready to buy.</p>
-        <ol class="lp-steps">
-          <li class="lp-step">
-            <span class="lp-step-num">1</span>
-            <h3>Someone messages you</h3>
-            <p>A customer messages your WhatsApp at any hour — 2 AM, a Friday, a public holiday. OrcaFlo replies in under five seconds, in Arabic or English.</p>
-          </li>
-          <li class="lp-step">
-            <span class="lp-step-num">2</span>
-            <h3>It answers like your best employee</h3>
-            <p>It's trained on your services, prices and the way you talk. It handles questions, sends photos, listens to voice notes, and books appointments or takes orders.</p>
-          </li>
-          <li class="lp-step">
-            <span class="lp-step-num">3</span>
-            <h3>You step in only when it matters</h3>
-            <p>When a lead is hot, it pauses and pings you. Anyone who goes quiet gets chased automatically for a week. Nothing gets forgotten.</p>
-          </li>
+        <div class="section-head reveal">
+          <p class="eyebrow">What M2S does</p>
+          <h2>We run your ads. M2S turns the messages into sales.</h2>
+          <p class="lede">In plain terms: an AI sales assistant answers your WhatsApp in seconds, closes the sale in the chat, and follows up with everyone who went quiet or left their cart. You only step in when it matters.</p>
+        </div>
+        <ol class="funnel reveal-stagger">
+          <li class="funnel-step"><span class="funnel-num">1</span><h3>Ads → WhatsApp</h3><p>Instagram and Facebook ads that open a chat.</p></li>
+          <li class="funnel-step"><span class="funnel-num">2</span><h3>Instant AI reply</h3><p>Seconds, 24/7, English or Arabic.</p></li>
+          <li class="funnel-step"><span class="funnel-num">3</span><h3>Qualify &amp; close</h3><p>Order, payment link, COD or booking.</p></li>
+          <li class="funnel-step"><span class="funnel-num">4</span><h3>Follow up</h3><p>Carts, unpaid links and quiet leads.</p></li>
+          <li class="funnel-step"><span class="funnel-num">5</span><h3>Results</h3><p>A monthly report of what came back.</p></li>
         </ol>
       </div>
     </section>
 
     <!-- Partner results -->
-    <section class="lp-section">
+    <section class="section section--dark section--tight">
       <div class="container">
-        <h2>What that's done for our partners</h2>
-        <p class="lp-lead">Our partners are doing <strong class="text-teal">50–60% more revenue</strong> from the same traffic — no extra ad spend, no bigger team. The leads were already there; they were going unanswered, un-chased and unsold.</p>
-        <div class="lp-grid-2">
-          <div class="lp-fit">
-            <h3>The after-hours leak</h3>
-            <p>Roughly a third of enquiries land when nobody's working. Those now get a real answer in seconds instead of dying overnight.</p>
-          </div>
-          <div class="lp-fit">
-            <h3>The follow-up leak</h3>
-            <p>Most leads don't say no — they go quiet. Automatic follow-ups at 24 hours, 3 days and 7 days bring a chunk of them back.</p>
-          </div>
-          <div class="lp-fit">
-            <h3>The forgotten-customer leak</h3>
-            <p>Past buyers are the likeliest to buy again. One broadcast puts your new stock or offer in front of your whole database.</p>
-          </div>
-          <div class="lp-fit">
-            <h3>The time leak</h3>
-            <p>Your team stops retyping the same answers all day and spends that time closing the people who are actually ready.</p>
-          </div>
+        <div class="section-head reveal" style="margin-bottom:36px;">
+          <p class="eyebrow">What it's done for our partners</p>
+          <h2>50–60% more revenue from the same traffic</h2>
         </div>
-        <p class="lp-disclaimer">Figures reflect partner results after full rollout. What you'd see depends on your margins, your volume, and how many enquiries you're currently missing — we'll give you an honest estimate on the call.</p>
+        <div class="stats reveal-stagger">
+          <div class="stat"><strong>50–60%</strong><span>revenue increase after rollout</span></div>
+          <div class="stat"><strong>0</strong><span>extra headcount</span></div>
+          <div class="stat"><strong>&lt;5 sec</strong><span>reply time, day or night</span></div>
+          <div class="stat"><strong>24/7</strong><span>English and Arabic</span></div>
+        </div>
+        <p class="report-note" style="text-align:left;margin-top:28px;">Figures reflect partner results after full rollout. What you'd see depends on your margins, your volume and how many enquiries you're currently missing. We'll give you an honest estimate on the call.</p>
       </div>
     </section>
 
-    <!-- What happens on the call -->
-    <section class="lp-section">
-      <div class="container">
-        <h2>What actually happens on the call</h2>
-        <p class="lp-lead">No presentation, no pressure. Three things, and it's over in twenty minutes.</p>
-        <ol class="lp-steps">
-          <li class="lp-step">
-            <span class="lp-step-num">1</span>
-            <h3>You tell us how leads reach you</h3>
-            <p>WhatsApp, Instagram, walk-ins, ads, referrals — whatever it is. Five minutes, plain language, no prep needed.</p>
-          </li>
-          <li class="lp-step">
-            <span class="lp-step-num">2</span>
-            <h3>We show you where they leak</h3>
-            <p>After-hours enquiries, follow-ups nobody sends, repeat customers never contacted again. Usually it's obvious once it's on paper.</p>
-          </li>
-          <li class="lp-step">
-            <span class="lp-step-num">3</span>
-            <h3>You get a written plan</h3>
-            <p>What to automate first, roughly what it costs, and what it should recover. Yours to keep — hire us or hand it to someone else.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
+    <!-- The audit + booking -->
+    <section class="section" id="book">
+      <div class="container book-grid">
+        <div class="reveal">
+          <p class="eyebrow">What happens on the call</p>
+          <h2>Twenty minutes, three things</h2>
+          <p class="lede" style="margin-bottom:32px;">No presentation, no pressure.</p>
+          <ol class="audit-steps">
+            <li><div><strong>You tell us how leads reach you</strong><p>Ads, WhatsApp, Instagram, your website. Five minutes, plain language, no prep.</p></div></li>
+            <li><div><strong>We show you where sales leak out</strong><p>Slow replies, unanswered nights, unpaid links, abandoned carts and quiet leads.</p></div></li>
+            <li><div><strong>You get a written plan and a quote</strong><p>What M2S would fix first and a fixed monthly price. Yours to keep either way.</p></div></li>
+          </ol>
+          <p class="fine">Slots every day, 2–7 PM Dubai time.</p>
+        </div>
 
-    <!-- Booking -->
-    <section class="lp-section" id="book">
-      <div class="container">
-        <h2>Pick a time that suits you</h2>
-        <p class="lp-lead">Consultations run <strong>2:00–7:00 PM, Dubai time, every day</strong>. Choose a slot below and we'll lock it in over WhatsApp.</p>
-
-        <form class="bk" id="bk-form" novalidate>
-          <div class="bk-field">
-            <span class="bk-label">1 · Choose a day</span>
-            <div class="bk-days" id="bk-days" role="group" aria-label="Choose a day"></div>
-          </div>
-
-          <div class="bk-field">
-            <span class="bk-label">2 · Choose a time <em>Dubai time (GST)</em></span>
-            <div class="bk-times" id="bk-times" role="group" aria-label="Choose a time"></div>
-          </div>
-
-          <div class="bk-field" id="bk-details">
-            <span class="bk-label">3 · Your details</span>
-            <div class="bk-inputs">
-              <label class="bk-input">
-                <span>Name</span>
-                <input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name">
-              </label>
-              <label class="bk-input">
-                <span>WhatsApp number</span>
-                <input type="tel" id="bk-phone" name="phone" autocomplete="tel" required maxlength="32" placeholder="+971 50 000 0000">
-              </label>
-              <label class="bk-input bk-input--wide">
-                <span>Business name</span>
-                <input type="text" id="bk-business" name="business" autocomplete="organization" required maxlength="80" placeholder="e.g. Al Noor Dental Clinic">
-              </label>
+        <div class="reveal">
+          <form class="bk" id="bk-form" data-source="meta-landing" novalidate>
+            <div class="bk-field">
+              <span class="bk-label">1 · Choose a day</span>
+              <div class="bk-days" id="bk-days" role="group" aria-label="Choose a day"></div>
             </div>
+            <div class="bk-field">
+              <span class="bk-label">2 · Choose a time <em>Dubai time (GST)</em></span>
+              <div class="bk-times" id="bk-times" role="group" aria-label="Choose a time"></div>
+            </div>
+            <div class="bk-field">
+              <span class="bk-label">3 · Your details</span>
+              <div class="bk-inputs">
+                <label class="bk-input"><span>Name</span><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name"></label>
+                <label class="bk-input"><span>WhatsApp number</span><input type="tel" id="bk-phone" name="phone" autocomplete="tel" required maxlength="32" placeholder="+971 50 000 0000"></label>
+                <label class="bk-input bk-input--wide"><span>Business name</span><input type="text" id="bk-business" name="business" autocomplete="organization" required maxlength="80" placeholder="e.g. Al Noor Boutique"></label>
+              </div>
+            </div>
+            <p class="bk-summary" id="bk-summary" aria-live="polite">Select a day and a time to continue.</p>
+            <button type="submit" class="btn btn-primary btn-lg btn-block js-lead" id="bk-confirm" data-lead="booking" disabled>Confirm my audit</button>
+            <p class="bk-note">Free, 20 minutes, no obligation. We'll confirm on WhatsApp.</p>
+          </form>
+
+          <div class="bk-done" id="bk-done" hidden>
+            <span class="bk-tick" aria-hidden="true"></span>
+            <h3 id="bk-done-title">You're booked in</h3>
+            <p id="bk-done-msg"></p>
+            <a href="#" class="btn btn-wa btn-lg" id="bk-done-wa" target="_blank" rel="noopener">Message us on WhatsApp</a>
           </div>
-
-          <p class="bk-summary" id="bk-summary">Select a day and a time to continue.</p>
-
-          <button type="submit" class="btn btn-whatsapp btn-lg btn-block js-lead" id="bk-confirm" data-lead="booking" disabled>
-            Confirm my booking
-          </button>
-          <p class="bk-note" id="bk-note">Free, 20 minutes, no obligation. We'll confirm on WhatsApp.</p>
-        </form>
-
-        <!-- Shown once a booking is stored -->
-        <div class="bk-done" id="bk-done" hidden>
-          <span class="bk-tick" aria-hidden="true"></span>
-          <h3 id="bk-done-title">You're booked in</h3>
-          <p id="bk-done-msg"></p>
-          <a href="#" class="btn btn-whatsapp btn-lg js-lead" id="bk-done-wa" data-lead="booking-confirmed" target="_blank" rel="noopener">Message us on WhatsApp</a>
         </div>
       </div>
     </section>
 
     <!-- Who it's for -->
-    <section class="lp-section">
+    <section class="section section--alt">
       <div class="container">
-        <h2>Worth a call if any of this sounds familiar</h2>
-        <p class="lp-lead">We work with UAE businesses that sell over WhatsApp — clinics, e-commerce, real estate, salons, services.</p>
-        <div class="lp-grid-2">
-          <div class="lp-fit">
-            <h3>Messages arrive after hours</h3>
-            <p>People enquire at 9 PM and book with whoever answers first — usually not you.</p>
+        <div class="section-head reveal">
+          <p class="eyebrow">Worth a call if this sounds familiar</p>
+          <h2>Where your ad money is leaking</h2>
+        </div>
+        <div class="leaks reveal-stagger">
+          <div class="leak">
+            <div class="leak-problem"><i aria-hidden="true">✕</i>Messages arrive at 11 PM and get answered the next morning.</div>
+            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Answered in seconds,</strong> any hour, in English or Arabic.</span></div>
           </div>
-          <div class="lp-fit">
-            <h3>Follow-ups depend on someone remembering</h3>
-            <p>Leads go quiet, nobody chases them, and they quietly become someone else's customer.</p>
+          <div class="leak">
+            <div class="leak-problem"><i aria-hidden="true">✕</i>People ask the price and disappear.</div>
+            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Timed follow-ups</strong> restart the conversation, and stop when they reply.</span></div>
           </div>
-          <div class="lp-fit">
-            <h3>Your team retypes the same replies</h3>
-            <p>Hours a day answering the same handful of questions instead of closing.</p>
+          <div class="leak">
+            <div class="leak-problem"><i aria-hidden="true">✕</i>Carts get abandoned and payment links never get paid.</div>
+            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Friendly WhatsApp reminders</strong> bring them back to checkout, or finish the order in the chat.</span></div>
           </div>
-          <div class="lp-fit">
-            <h3>Past customers never hear from you</h3>
-            <p>The people most likely to buy again are sitting in a phone nobody messages.</p>
+          <div class="leak">
+            <div class="leak-problem"><i aria-hidden="true">✕</i>You can't tell which ad actually made money.</div>
+            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Every chat is tagged to its ad,</strong> and you get a monthly results report.</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="lp-section">
-      <div class="container lp-faq">
-        <h2>Before you book</h2>
-        <details>
-          <summary>Is the call really free?</summary>
-          <p>Yes. Twenty minutes, no cost, no obligation, and you keep the plan we put together even if you never work with us.</p>
-        </details>
-        <details>
-          <summary>What does it cost if I go ahead?</summary>
-          <p>OrcaFlo, our WhatsApp AI system, is $14.99 a month (Starter) or $100 a month (Done-for-you: we build and tune it for you), plus 2¢ per message, with a 14-day free trial and no setup fee. Current pricing: <a href="https://orcaflo-panel.com/pricing">orcaflo-panel.com/pricing</a>. Custom automation projects are quoted by scope, typically $400–10,000.</p>
-        </details>
-        <details>
-          <summary>Do I need to change my WhatsApp number?</summary>
-          <p>No. We work with the number you already use.</p>
-        </details>
-        <details>
-          <summary>How long does setup take?</summary>
-          <p>Most WhatsApp systems are live within a few days of us getting your details and content. Larger custom builds depend on scope, and we'll give you a realistic timeline in the plan.</p>
-        </details>
-        <details>
-          <summary>Does it handle Arabic?</summary>
-          <p>Yes — Khaleeji dialect, mixed Arabic-English, and Arabizi. Your customers message the way they actually talk.</p>
-        </details>
+    <section class="section">
+      <div class="container split" style="align-items:start;">
+        <div class="reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Before you book</h2>
+        </div>
+        <div class="faq reveal">
+          <details>
+            <summary>Is the audit really free?</summary>
+            <p>Yes. Twenty minutes, no cost, no obligation, and you keep the plan we put together even if you never work with us.</p>
+          </details>
+          <details>
+            <summary>What does it cost if I go ahead?</summary>
+            <p>M2S is one fixed monthly fee, based on your ad budget, your channels and how many products or services we load. You get the number in writing after the audit. Ad spend is paid directly to Meta.</p>
+          </details>
+          <details>
+            <summary>Do I need to change my WhatsApp number?</summary>
+            <p>No. We work with the number you already use, and your team can still use the WhatsApp app.</p>
+          </details>
+          <details>
+            <summary>Does it handle Arabic?</summary>
+            <p>Yes. The assistant replies in English or Arabic, matching the language your customer writes in.</p>
+          </details>
+          <details>
+            <summary>How long does setup take?</summary>
+            <p>We'll give you a realistic timeline in the plan. It depends on how many products we load and which store and channels we connect.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="lp-section">
+    <section class="section" style="padding-top:0;">
       <div class="container">
-        <div class="lp-final">
+        <div class="cta-band reveal">
           <h2>Twenty minutes could pay for itself</h2>
-          <p>Tell us how your leads come in. We'll tell you what you're losing and what to fix first.</p>
-          <a href="#book" class="btn btn-primary btn-lg">Pick a time →</a>
-          <p class="lp-reassure" style="margin:20px 0 0">Or message us directly on +971 50 854 9171</p>
+          <p>Tell us how your leads come in. We'll show you what you're losing and what to fix first.</p>
+          <div class="cta-actions">
+            <a href="#book" class="btn btn-light btn-lg js-lead" data-lead="lp-final">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="fine">Or message us directly on +971 50 854 9171</p>
         </div>
       </div>
     </section>
@@ -626,271 +255,16 @@
 
   <footer class="lp-footer">
     <div class="container">
-      <p style="margin:0 0 6px">Nuevo Automations · Dubai &amp; Abu Dhabi, UAE</p>
-      <p style="margin:0"><a href="https://nuevoautomations.com/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> · <a href="/privacy/">Privacy Policy</a></p>
+      <p>Nuevo Automations FZE LLC · Sharjah Publishing City Free Zone, UAE</p>
+      <p><a href="https://nuevoautomations.com/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> · <a href="/privacy/">Privacy policy</a></p>
     </div>
   </footer>
 
-  <!-- Sticky mobile CTA -->
   <div class="lp-sticky">
-    <a href="#book" class="btn btn-primary btn-block">Pick a time →</a>
+    <a href="#book" class="btn btn-primary btn-block js-lead" data-lead="lp-sticky">Pick a time →</a>
   </div>
 
-  <script>
-  (function () {
-    'use strict';
-
-    /* ---- Conversion tracking ----
-       Fires a Meta `Lead` event on any CTA click, but only once the pixel is
-       actually installed — no pixel, no error. */
-    document.querySelectorAll('.js-lead').forEach(function (el) {
-      el.addEventListener('click', function () {
-        if (typeof window.fbq === 'function') {
-          window.fbq('track', 'Lead', { content_name: el.getAttribute('data-lead') || 'cta' });
-        }
-      });
-    });
-
-    /* ================= Booking widget =================
-       Slots run 14:00-18:30 Dubai time (GST, UTC+4, no DST). Availability
-       comes from the booking API; if that's unreachable the widget still
-       works and hands off to WhatsApp, so the page never dead-ends. */
-    (function () {
-      // Clean production alias. The team-scoped alias
-      // (nuevo-booking-api-<team>.vercel.app) fails CORS preflight, so it must
-      // not be used from the browser.
-      var API = 'https://nuevo-booking-api.vercel.app';
-      var WA = '971508549171';
-      var OPEN = 14 * 60, CLOSE = 18 * 60 + 30, STEP = 30;
-      var LEAD_MIN = 45;   // don't offer a slot less than 45 min away
-      var DAYS = 7;
-
-      var elDays = document.getElementById('bk-days');
-      var elTimes = document.getElementById('bk-times');
-      var elSummary = document.getElementById('bk-summary');
-      var elConfirm = document.getElementById('bk-confirm');
-      var elForm = document.getElementById('bk-form');
-      var elDone = document.getElementById('bk-done');
-      if (!elDays || !elForm) return;
-
-      var taken = {};          // { 'YYYY-MM-DD': ['14:00', ...] }
-      var days = [];
-      var sel = { date: null, time: null };
-
-      // --- Dubai clock -------------------------------------------------
-      function dubaiParts() {
-        var p = {};
-        new Intl.DateTimeFormat('en-CA', {
-          timeZone: 'Asia/Dubai', year: 'numeric', month: '2-digit',
-          day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false
-        }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
-        return p;
-      }
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
-      function iso(d) {
-        return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
-      }
-      function label12(mins) {
-        var h = Math.floor(mins / 60), m = mins % 60;
-        var ap = h >= 12 ? 'PM' : 'AM';
-        var h12 = h % 12 === 0 ? 12 : h % 12;
-        return h12 + ':' + pad(m) + ' ' + ap;
-      }
-
-      var p = dubaiParts();
-      var todayISO = p.year + '-' + p.month + '-' + p.day;
-      var nowMins = Number(p.hour) * 60 + Number(p.minute);
-
-      // --- build the day list, skipping days with nothing left ---------
-      function buildDays() {
-        days = [];
-        var base = new Date(Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day)));
-        for (var i = 0; days.length < DAYS && i < DAYS + 5; i++) {
-          var d = new Date(base);
-          d.setUTCDate(d.getUTCDate() + i);
-          var key = iso(d);
-          if (slotsFor(key).some(function (s) { return !s.disabled; })) {
-            days.push({ key: key, date: d });
-          }
-        }
-      }
-
-      function slotsFor(dateKey) {
-        var out = [];
-        for (var m = OPEN; m <= CLOSE; m += STEP) {
-          var hhmm = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
-          var isTaken = (taken[dateKey] || []).indexOf(hhmm) !== -1;
-          var tooSoon = dateKey === todayISO && m < nowMins + LEAD_MIN;
-          out.push({ value: hhmm, mins: m, label: label12(m), disabled: isTaken || tooSoon, taken: isTaken });
-        }
-        return out;
-      }
-
-      // --- rendering ---------------------------------------------------
-      function renderDays() {
-        elDays.innerHTML = '';
-        if (!days.length) {
-          elDays.innerHTML = '<p class="bk-empty">No slots left this week — message us on WhatsApp and we\'ll find a time.</p>';
-          return;
-        }
-        days.forEach(function (d, i) {
-          var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' })
-            .formatToParts(d.date);
-          var q = {};
-          fmt.forEach(function (x) { q[x.type] = x.value; });
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'bk-day' + (i === 0 ? ' is-on' : '');
-          btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-          btn.innerHTML = (d.key === todayISO ? 'Today' : q.weekday) + '<strong>' + q.day + ' ' + q.month + '</strong>';
-          btn.addEventListener('click', function () {
-            sel.date = d.key; sel.time = null;
-            [].forEach.call(elDays.children, function (c) {
-              c.classList.remove('is-on'); c.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('is-on'); btn.setAttribute('aria-pressed', 'true');
-            renderTimes(); update();
-          });
-          elDays.appendChild(btn);
-        });
-        sel.date = days[0].key;
-      }
-
-      function renderTimes() {
-        elTimes.innerHTML = '';
-        if (!sel.date) return;
-        var list = slotsFor(sel.date);
-        if (!list.some(function (s) { return !s.disabled; })) {
-          elTimes.innerHTML = '<p class="bk-empty">Nothing left on this day — try another.</p>';
-          return;
-        }
-        list.forEach(function (s) {
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'bk-time' + (sel.time === s.value ? ' is-on' : '');
-          btn.textContent = s.label;
-          btn.disabled = s.disabled;
-          if (s.taken) btn.title = 'Already booked';
-          btn.addEventListener('click', function () {
-            sel.time = s.value;
-            [].forEach.call(elTimes.children, function (c) { c.classList && c.classList.remove('is-on'); });
-            btn.classList.add('is-on');
-            update();
-          });
-          elTimes.appendChild(btn);
-        });
-      }
-
-      function prettySel() {
-        if (!sel.date || !sel.time) return '';
-        var d = new Date(sel.date + 'T00:00:00Z');
-        var q = {};
-        new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' })
-          .formatToParts(d).forEach(function (x) { q[x.type] = x.value; });
-        var mins = Number(sel.time.slice(0, 2)) * 60 + Number(sel.time.slice(3));
-        return q.weekday + ' ' + q.day + ' ' + q.month + ' at ' + label12(mins) + ' (Dubai time)';
-      }
-
-      function update() {
-        var ready = Boolean(sel.date && sel.time);
-        elConfirm.disabled = !ready;
-        elSummary.classList.remove('is-bad');
-        elSummary.innerHTML = ready
-          ? 'Booking: <strong>' + prettySel() + '</strong>'
-          : 'Select a day and a time to continue.';
-      }
-
-      function waLink(extra) {
-        var msg = 'Hi, I would like to book my free 20-minute consultation on ' + prettySel() + '.' + (extra || '');
-        return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
-      }
-
-      // --- submit ------------------------------------------------------
-      elForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!sel.date || !sel.time) return;
-
-        var name = document.getElementById('bk-name');
-        var phone = document.getElementById('bk-phone');
-        var business = document.getElementById('bk-business');
-        var bad = false;
-        [name, phone, business].forEach(function (f) {
-          var ok = f === phone
-            ? f.value.replace(/\D/g, '').length >= 7
-            : f.value.trim().length >= 2;
-          f.classList.toggle('is-bad', !ok);
-          if (!ok) bad = true;
-        });
-        if (bad) {
-          elSummary.classList.add('is-bad');
-          elSummary.textContent = 'Please add your name, business name and a valid WhatsApp number.';
-          return;
-        }
-
-        elConfirm.disabled = true;
-        elConfirm.textContent = 'Booking…';
-
-        function finish(stored) {
-          if (typeof window.fbq === 'function') {
-            window.fbq('track', 'Schedule', { content_name: sel.date + ' ' + sel.time });
-          }
-          elForm.hidden = true;
-          elDone.hidden = false;
-          document.getElementById('bk-done-title').textContent = stored ? "You're booked in" : 'Almost there';
-          document.getElementById('bk-done-msg').textContent = stored
-            ? prettySel() + '. We\'ll message you on WhatsApp shortly to confirm.'
-            : 'Tap below to send us your slot on WhatsApp and we\'ll confirm it: ' + prettySel() + '.';
-          document.getElementById('bk-done-wa').href = waLink(
-            ' Name: ' + name.value.trim() + '. Business: ' + business.value.trim() + '.'
-          );
-          elDone.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // Always attempt the real booking. Availability lookup and booking are
-        // separate endpoints, so a failure to pre-load taken slots must not
-        // stop someone actually booking - the server's atomic write is what
-        // guarantees correctness, and a 409 covers any collision.
-        fetch(API + '/api/book', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            date: sel.date, time: sel.time,
-            name: name.value.trim(), phone: phone.value.trim(),
-            business: business.value.trim()
-          })
-        })
-          .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
-          .then(function (r) {
-            if (r.body && r.body.ok) { finish(true); return; }
-            if (r.status === 409) {
-              // Someone took it first — refresh availability and let them repick.
-              elConfirm.disabled = false;
-              elConfirm.textContent = 'Confirm my booking';
-              elSummary.classList.add('is-bad');
-              elSummary.textContent = 'Sorry — that slot was just taken. Please pick another.';
-              return loadAvailability().then(function () { renderDays(); renderTimes(); });
-            }
-            finish(false);
-          })
-          .catch(function () { finish(false); });
-      });
-
-      // --- availability ------------------------------------------------
-      function loadAvailability() {
-        return fetch(API + '/api/slots?days=14', { cache: 'no-store' })
-          .then(function (r) { return r.json(); })
-          .then(function (j) { taken = (j && j.taken) || {}; })
-          .catch(function () { taken = {}; });
-      }
-
-      // Render immediately from local rules, then refine once the API answers,
-      // so the widget is usable even on a slow or failed request.
-      buildDays(); renderDays(); renderTimes(); update();
-      loadAvailability().then(function () {
-        buildDays(); renderDays(); renderTimes(); update();
-      });
-    }());
-  }());
-  </script>
+  <script src="/js/script.js" defer></script>
+  <script src="/js/booking.js" defer></script>
 </body>
 </html>

@@ -3,18 +3,19 @@
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- Meta Pixel: count WhatsApp CTA clicks as leads ----
-     Placed before the chat block below, which returns early when #wa-chat is
-     absent. Guarded on fbq so it no-ops if the pixel is blocked or removed. */
+  /* ---- Meta Pixel: count WhatsApp and booking CTA clicks as leads ----
+     Guarded on fbq so it no-ops until consent loads the pixel. */
   document.addEventListener('click', function (e) {
-    var link = e.target.closest && e.target.closest('a[href*="wa.me/"]');
-    if (!link || typeof window.fbq !== 'function') return;
-    var where = link.classList.contains('wa-sticky') ? 'sticky'
-              : link.closest('#pricing') ? 'pricing'
-              : link.closest('#contact') ? 'contact'
+    if (typeof window.fbq !== 'function' || !e.target.closest) return;
+    var link = e.target.closest('a[href*="wa.me/"], .js-lead');
+    if (!link) return;
+    var where = link.getAttribute('data-lead')
+              || (link.classList.contains('wa-float') ? 'wa-float'
+              : link.closest('.mobile-cta') ? 'mobile-bar'
               : link.closest('.site-header') ? 'header'
-              : link.closest('.hero') ? 'hero'
-              : 'other';
+              : link.closest('.hero, .page-hero') ? 'hero'
+              : link.closest('.cta-band') ? 'cta-band'
+              : 'other');
     window.fbq('track', 'Lead', { content_name: where });
   });
 
@@ -22,35 +23,35 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---- Mobile nav toggle ---- */
+  /* ---- Header: shadow once scrolled, mobile nav toggle ---- */
   var header = document.querySelector('.site-header');
   var navToggle = document.getElementById('nav-toggle');
   var mainNav = document.getElementById('main-nav');
+
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.pageYOffset > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
   if (navToggle && header && mainNav) {
     navToggle.addEventListener('click', function () {
       var isOpen = header.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-
     mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         header.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
-  }
-
-  /* ---- Partners wheel: duplicate the set for a seamless loop ---- */
-  var partnersTrack = document.getElementById('partners-track');
-  if (partnersTrack && !prefersReducedMotion) {
-    Array.prototype.slice.call(partnersTrack.children).forEach(function (item) {
-      var clone = item.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
-      partnersTrack.appendChild(clone);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('is-open')) {
+        header.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+      }
     });
-    partnersTrack.classList.add('is-looping');
   }
 
   /* ---- Scroll reveal (blocks + staggered grids) ---- */
@@ -59,7 +60,7 @@
   if (!prefersReducedMotion) {
     document.querySelectorAll('.reveal-stagger').forEach(function (group) {
       Array.prototype.forEach.call(group.children, function (child, i) {
-        child.style.transitionDelay = (i * 60) + 'ms';
+        child.style.transitionDelay = (i * 70) + 'ms';
       });
     });
   }
@@ -71,127 +72,102 @@
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            var el = entry.target;
-            el.classList.add('is-visible');
-            observer.unobserve(el);
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(function (el) { observer.observe(el); });
     }
   }
 
-  /* ---- Scroll progress bar ---- */
-  (function () {
-    var bar = document.getElementById('scroll-progress');
-    if (!bar) return;
-    var ticking = false;
-    function update() {
-      var scroller = document.scrollingElement || document.documentElement;
-      var scrolled = window.pageYOffset || scroller.scrollTop || 0;
-      var max = scroller.scrollHeight - scroller.clientHeight;
-      var frac = max > 0 ? Math.min(scrolled / max, 1) : 0;
-      bar.style.transform = 'scaleX(' + frac + ')';
-      ticking = false;
-    }
-    function onScroll() {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  }());
-
-  /* ---- Animated WhatsApp conversation ---- */
-  var chat = document.getElementById('wa-chat');
+  /* ---- Animated M2S conversation (home hero) ----
+     Plays one ad-to-sale story: the ad chip, the question, the AI reply,
+     the payment link and the paid confirmation, then loops. */
+  var chat = document.getElementById('m2s-chat');
   if (!chat) return;
 
-  var script = [
-    { side: 'in', lang: 'ar', text: 'مرحباً، هل يوجد موعد متاح يوم الخميس لتنظيف الأسنان؟', time: '8:42 PM' },
-    { side: 'out', lang: 'en', text: 'Hi! Yes — we have an opening Thursday at 5:00 PM or 6:30 PM. Which works better for you?', time: '8:42 PM' },
-    { side: 'in', lang: 'en', text: '6:30 sounds perfect.', time: '8:43 PM' },
-    { side: 'out', lang: 'ar', text: 'تم الحجز ✓ يوم الخميس الساعة 6:30 مساءً. سنرسل لك تذكيراً قبل الموعد بساعة. نراك قريباً!', time: '8:43 PM' }
+  var story = [
+    { type: 'chip', cls: 'chip--ad', text: 'Opened from your Instagram ad · Linen collection' },
+    { type: 'in', text: 'Hi, is the linen set still available in M? How much?', time: '11:48 PM' },
+    { type: 'out', text: 'Hi! Yes, the linen set is in stock in M for AED 289, with free delivery in Dubai tomorrow. Shall I reserve one for you?', time: '11:48 PM' },
+    { type: 'in', text: 'Yes please. Can I pay by card?', time: '11:49 PM' },
+    { type: 'out', text: 'Of course. Here is your secure payment link:', time: '11:49 PM' },
+    { type: 'pay', amount: 'AED 289.00', label: 'Linen set · M' },
+    { type: 'chip', cls: 'chip--win', text: '✓ Paid · Order #1042 sent to your team' }
   ];
 
-  function buildBubble(msg) {
-    var bubble = document.createElement('div');
-    bubble.className = 'bubble bubble--' + msg.side + (msg.lang === 'ar' ? ' bubble--ar' : '');
-    var text = document.createElement('span');
-    text.textContent = msg.text;
-    var time = document.createElement('time');
-    time.textContent = msg.time;
-    bubble.appendChild(text);
-    bubble.appendChild(time);
-    return bubble;
+  function node(item) {
+    var el = document.createElement('div');
+    if (item.type === 'chip') {
+      el.className = 'chip ' + (item.cls || '');
+      el.textContent = item.text;
+    } else if (item.type === 'pay') {
+      el.className = 'pay-card';
+      el.innerHTML = '<div class="pay-card-head"><span></span><strong></strong></div><span class="pay-card-btn">Pay securely</span>';
+      el.querySelector('span').textContent = item.label;
+      el.querySelector('strong').textContent = item.amount;
+    } else {
+      el.className = 'msg msg--' + item.type;
+      var text = document.createElement('span');
+      text.textContent = item.text;
+      var time = document.createElement('time');
+      time.textContent = item.time;
+      el.appendChild(text);
+      el.appendChild(time);
+    }
+    return el;
   }
 
-  function buildTyping() {
-    var typing = document.createElement('div');
-    typing.className = 'wa-typing';
-    typing.setAttribute('aria-hidden', 'true');
-    typing.innerHTML = '<span></span><span></span><span></span>';
-    return typing;
+  function typing() {
+    var t = document.createElement('div');
+    t.className = 'typing';
+    t.setAttribute('aria-hidden', 'true');
+    t.innerHTML = '<span></span><span></span><span></span>';
+    return t;
   }
 
-  var TYPING_MS = 1200;
-  var GAP_MS = 700;
-  var RESTART_DELAY_MS = 4200;
   var timers = [];
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
-  function clearTimers() {
+  function play() {
     timers.forEach(clearTimeout);
     timers = [];
-  }
-
-  function runConversation() {
-    clearTimers();
     chat.innerHTML = '';
-
-    var delay = 250;
-
-    script.forEach(function (msg) {
-      if (msg.side === 'out') {
-        timers.push(setTimeout(function () {
-          var typing = buildTyping();
-          chat.appendChild(typing);
+    var t = 300;
+    story.forEach(function (item) {
+      var aiSide = item.type === 'out' || item.type === 'pay';
+      if (aiSide) {
+        later(function () {
+          var dots = typing();
+          chat.appendChild(dots);
           chat.scrollTop = chat.scrollHeight;
-
-          timers.push(setTimeout(function () {
-            typing.remove();
-            chat.appendChild(buildBubble(msg));
+          later(function () {
+            dots.remove();
+            chat.appendChild(node(item));
             chat.scrollTop = chat.scrollHeight;
-          }, TYPING_MS));
-        }, delay));
-
-        delay += TYPING_MS + GAP_MS;
+          }, 1100);
+        }, t);
+        t += 1100 + 900;
       } else {
-        timers.push(setTimeout(function () {
-          chat.appendChild(buildBubble(msg));
+        later(function () {
+          chat.appendChild(node(item));
           chat.scrollTop = chat.scrollHeight;
-        }, delay));
-
-        delay += GAP_MS;
+        }, t);
+        t += item.type === 'chip' ? 900 : 1300;
       }
     });
-
-    timers.push(setTimeout(runConversation, delay + RESTART_DELAY_MS));
+    later(play, t + 4200);
   }
 
   if (prefersReducedMotion) {
-    script.forEach(function (msg) { chat.appendChild(buildBubble(msg)); });
+    story.forEach(function (item) { chat.appendChild(node(item)); });
   } else if ('IntersectionObserver' in window) {
     var chatObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          runConversation();
-          chatObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
+      if (entries[0].isIntersecting) { play(); chatObserver.disconnect(); }
+    }, { threshold: 0.3 });
     chatObserver.observe(chat);
   } else {
-    runConversation();
+    play();
   }
-
 })();
