@@ -12,7 +12,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=20261118b">
+  <link rel="stylesheet" href="/css/style.css?v=20261118c">
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
@@ -106,7 +106,7 @@
     <h2>What we collect</h2>
     <p>We only collect what we actually need:</p>
     <ul>
-      <li><strong>Booking details.</strong> If you book an audit or consultation, we store your name, WhatsApp number, business name, your chosen date and time and, if you choose to give it, your email address (used only to send you a confirmation and calendar invite). We also record the time of booking, how you found us (for example the ad campaign or website that sent you), and a one-way scrambled code (hash) derived from your IP address to help prevent abuse. We do not store the IP address itself.</li>
+      <li><strong>Booking details.</strong> Audits and consultations are scheduled through Calendly (see below). When you book, Calendly passes us your name, email address, your chosen date and time and your answers to the booking questions (such as your WhatsApp number and business name), and we store them. We also record the time of booking and how you found us (for example the ad campaign or website that sent you). We do not store your IP address with your booking. If you accepted cookies, your IP address and browser type are held for a short time so the booking can be reported to Meta as described below, and are deleted within two days.</li>
       <li><strong>Messages you send us.</strong> If you contact us on WhatsApp or by email, we keep that conversation so we can answer you and follow up.</li>
       <li><strong>Anonymous usage statistics.</strong> Our own analytics count page views, clicks on our booking and WhatsApp buttons, the website or campaign that referred you, and the page you visited. It uses no cookies. Each visitor is counted with a random-looking code that changes every day, so we cannot recognise you from one day to the next, and your IP address and browser details are never stored.</li>
       <li><strong>How you found us.</strong> When you arrive from an ad or another website, your browser remembers that source (the campaign tags in the link and the referring site) in its local storage for up to 30 days. It stays on your device and is only sent to us if you book, so the booking can be credited to the right ad.</li>
@@ -128,12 +128,14 @@
     <p>We use it to measure how our advertising performs and to reach people who have visited the site. Meta may combine this with information it already holds about you. You can read how Meta handles this in the <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>, and adjust what you see through <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">Meta's ad preferences</a>.</p>
     <p>If you accepted cookies and then book an audit, our server also tells Meta about that booking directly, using the <strong>Meta Conversions API</strong>. This lets us measure which ads lead to bookings even when browsers block the pixel. We send your phone number, email address (if given), first name and country only in hashed form (scrambled with SHA-256 so the original cannot be read), together with your IP address, browser type and Meta's ad-click identifier, which Meta uses to match the booking to an ad. If you declined cookies, nothing about your booking is sent to Meta.</p>
     <p>You can decline these cookies using the banner shown when you first visit, change your mind at any time using the link at the bottom of this page, or block cookies in your browser settings. Declining does not affect your ability to browse the site or book an audit.</p>
+    <p>The booking calendar on this site is provided by <strong>Calendly</strong> and loads from calendly.com. Calendly may set the cookies it needs to run the calendar and handles the details you type into it under its own <a href="https://calendly.com/privacy" target="_blank" rel="noopener">privacy notice</a>.</p>
     <p>We also load fonts from Google Fonts. That provider receives your IP address as a normal part of serving those files.</p>
 
     <h2>Who we share it with</h2>
     <p>We do not sell your personal data. We share it only with the service providers that make this website work:</p>
     <ul>
       <li><strong>Cloudflare</strong> — hosting for the website, the database that stores your booking, and our anonymous usage statistics.</li>
+      <li><strong>Calendly, Inc.</strong> — our booking calendar. Bookings are scheduled through Calendly, which stores your booking, sends you its confirmation and reminder emails, and passes the booking on to us.</li>
       <li><strong>Resend</strong> — sends the booking emails: our internal booking alert and, if you gave an email address, your confirmation and calendar invite.</li>
       <li><strong>OrcaFlo</strong> — our own WhatsApp messaging platform, which receives your booking details so we can send your confirmation and reminders on WhatsApp.</li>
       <li><strong>Meta Platforms</strong> — advertising measurement through the Meta Pixel and Conversions API, only if you accepted cookies, as described above.</li>
@@ -228,7 +230,7 @@
     <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
   </div>
 
-  <script src="/js/track.js?v=20261118b" defer></script>
+  <script src="/js/track.js?v=20261118c" defer></script>
   <script src="/js/script.js?v=20261118b" defer></script>
   <!-- footer:end -->
   <script>
