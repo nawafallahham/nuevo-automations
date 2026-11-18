@@ -1,6 +1,6 @@
 // Minimal iCalendar (RFC 5545) builder. All times are written in UTC, so no
 // VTIMEZONE block is needed; calendar apps convert to local time.
-import { slotInstant, MEETING_MIN, waLink } from './lib.js';
+import { slotInstant, meetingMinutes, waLink } from './lib.js';
 
 function stamp(d) {
   return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
@@ -30,9 +30,9 @@ function fold(line) {
   return out.join('\r\n');
 }
 
-export function vevent({ uid, date, time, summary, description, location, url, created }) {
+export function vevent({ uid, date, time, minutes, summary, description, location, url, created }) {
   const start = slotInstant(date, time);
-  const end = new Date(start.getTime() + MEETING_MIN * 60 * 1000);
+  const end = new Date(start.getTime() + minutes * 60 * 1000);
   const lines = [
     'BEGIN:VEVENT',
     'UID:' + uid + '@nuevoautomations.com',
@@ -68,18 +68,21 @@ export function internalEvent(b) {
     uid: b.id,
     date: b.date,
     time: b.time,
+    minutes: meetingMinutes(b),
     created: b.created_at,
-    summary: 'M2S audit — ' + b.business,
+    summary: 'M2S audit — ' + (b.business || b.name),
     description: [
       'Name: ' + b.name,
-      'Business: ' + b.business,
-      'WhatsApp: ' + b.phone,
-      'Chat: ' + waLink(b.phone),
+      b.business ? 'Business: ' + b.business : null,
+      b.phone ? 'WhatsApp: ' + b.phone : null,
+      b.phone ? 'Chat: ' + waLink(b.phone) : null,
       b.email ? 'Email: ' + b.email : null,
       'Source: ' + [b.source, b.utm_source, b.utm_campaign].filter(Boolean).join(' / '),
-      b.note ? 'Note: ' + b.note : null
+      b.note ? 'Note: ' + b.note : null,
+      b.reschedule_url ? 'Reschedule: ' + b.reschedule_url : null,
+      b.cancel_url ? 'Cancel: ' + b.cancel_url : null
     ].filter(Boolean).join('\n'),
-    location: 'WhatsApp call ' + b.phone
+    location: b.phone ? 'WhatsApp call ' + b.phone : 'Calendly booking'
   });
 }
 
@@ -89,6 +92,7 @@ export function customerEvent(b) {
     uid: b.id + '-c',
     date: b.date,
     time: b.time,
+    minutes: meetingMinutes(b),
     created: b.created_at,
     summary: 'Free M2S audit with Nuevo Automations',
     description: 'Your free 20-minute M2S (Message to Sale) audit with Nuevo Automations. ' +

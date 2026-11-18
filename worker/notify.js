@@ -20,17 +20,19 @@ export function runSideEffects(env, ctx, b, meta) {
 }
 
 // ---- 1. Meta Conversions API ------------------------------------------------
-async function sendMetaCapi(env, b, meta) {
+// Also called directly by worker/calendly.js once both the webhook and the
+// browser beacon have arrived (that's when consent is known).
+export async function sendMetaCapi(env, b, meta) {
   if (!env.META_CAPI_TOKEN || !env.META_PIXEL_ID || meta.consent !== true) return;
 
   const firstName = (b.name || '').trim().split(/\s+/)[0].toLowerCase();
   const user = {
     client_ip_address: meta.ip,
     client_user_agent: meta.ua,
-    ph: [await sha256Hex(normalisePhone(b.phone))],
-    fn: [await sha256Hex(firstName)],
     country: [await sha256Hex('ae')]
   };
+  if (b.phone) user.ph = [await sha256Hex(normalisePhone(b.phone))];
+  if (firstName) user.fn = [await sha256Hex(firstName)];
   if (b.email) user.em = [await sha256Hex(b.email.trim().toLowerCase())];
   if (meta.fbc) user.fbc = meta.fbc;
   if (meta.fbp) user.fbp = meta.fbp;
@@ -43,7 +45,7 @@ async function sendMetaCapi(env, b, meta) {
       action_source: 'website',
       event_source_url: meta.page_url,
       user_data: user,
-      custom_data: { content_name: b.date + ' ' + b.time }
+      custom_data: { content_name: b.provider === 'calendly' ? 'calendly' : b.date + ' ' + b.time }
     }]
   };
   if (env.META_TEST_EVENT_CODE) body.test_event_code = env.META_TEST_EVENT_CODE;
@@ -109,19 +111,21 @@ async function sendMail(env, msg) {
 
 async function sendEmails(env, b) {
   if (!env.EMAIL && !env.RESEND_API_KEY) return;
-  const mailCustomers = !env.EMAIL || env.EMAIL_CUSTOMERS === 'true';
+  // Calendly already emails the invitee a confirmation + invite.
+  const viaCalendly = b.provider === 'calendly';
+  const mailCustomers = !viaCalendly && (!env.EMAIL || env.EMAIL_CUSTOMERS === 'true');
   const from = env.MAIL_FROM || 'Nuevo Automations <bookings@nuevoautomations.com>';
   const to = env.NOTIFY_EMAIL || 'nawafallahham@nuevoautomations.com';
   const when = prettyWhen(b);
-  const wa = waLink(b.phone, 'Hi ' + b.name.split(/\s+/)[0] + ', this is Nawaf from Nuevo Automations about your M2S audit on ' + when + '.');
+  const wa = b.phone && waLink(b.phone, 'Hi ' + b.name.split(/\s+/)[0] + ', this is Nawaf from Nuevo Automations about your M2S audit on ' + when + '.');
 
   const rows = [
     ['When', when],
     ['Name', b.name],
-    ['Business', b.business],
-    ['WhatsApp', b.phone],
+    ['Business', b.business || '—'],
+    ['WhatsApp', b.phone || '—'],
     ['Email', b.email || '—'],
-    ['Booked from', b.source || '—'],
+    ['Booked from', (b.source || '—') + (viaCalendly && b.source !== 'calendly' ? ' (via Calendly)' : '')],
     ['UTM source / medium', [b.utm_source, b.utm_medium].filter(Boolean).join(' / ') || '—'],
     ['UTM campaign', b.utm_campaign || '—'],
     ['UTM content / term', [b.utm_content, b.utm_term].filter(Boolean).join(' / ') || '—'],
@@ -130,23 +134,26 @@ async function sendEmails(env, b) {
     ['fbclid', b.fbclid ? 'yes' : 'no'],
     ['Booking id', b.id]
   ];
+  if (b.note) rows.splice(6, 0, ['Answers', b.note]);
+  if (b.cancel_url) rows.push(['Cancel (Calendly)', b.cancel_url]);
+  if (b.reschedule_url) rows.push(['Reschedule (Calendly)', b.reschedule_url]);
 
   const text = 'New M2S audit booked.\n\n' +
     rows.map((r) => r[0] + ': ' + r[1]).join('\n') +
-    '\n\nMessage on WhatsApp: ' + wa + '\n';
+    (wa ? '\n\nMessage on WhatsApp: ' + wa + '\n' : '\n');
   const html = '<div style="font-family:Inter,Arial,sans-serif;color:#101a2b;font-size:15px;line-height:1.5">' +
     '<h2 style="margin:0 0 12px;font-size:18px">New M2S audit booked</h2>' +
     '<table cellpadding="6" style="border-collapse:collapse">' +
     rows.map((r) => '<tr><td style="color:#4b5768;border-bottom:1px solid #e3e7ec">' + escapeHtml(r[0]) +
       '</td><td style="border-bottom:1px solid #e3e7ec"><strong>' + escapeHtml(r[1]) + '</strong></td></tr>').join('') +
-    '</table><p style="margin:18px 0"><a href="' + escapeHtml(wa) + '" style="background:#1fae56;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600">Message ' +
-    escapeHtml(b.name) + ' on WhatsApp</a></p></div>';
+    '</table>' + (wa ? '<p style="margin:18px 0"><a href="' + escapeHtml(wa) + '" style="background:#1fae56;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600">Message ' +
+    escapeHtml(b.name) + ' on WhatsApp</a></p>' : '') + '</div>';
 
   const internalIcs = calendar(null, [internalEvent(b)], 'PUBLISH');
   const jobs = [sendMail(env, {
     from,
     to: [to],
-    subject: 'New M2S audit: ' + b.business + ' — ' + b.date + ' ' + b.time,
+    subject: 'New M2S audit: ' + (b.business || b.name) + ' — ' + b.date + ' ' + b.time,
     text,
     html,
     reply_to: b.email || undefined,
@@ -182,6 +189,28 @@ async function sendEmails(env, b) {
   if (failed.length) throw new Error(failed.join(' | '));
 }
 
+// Short owner notice when a Calendly booking is cancelled or rescheduled
+// (a reschedule arrives as a cancel plus a fresh invitee.created).
+export async function sendCancelNotice(env, b, rescheduled, reason) {
+  if (!env.EMAIL && !env.RESEND_API_KEY) return;
+  const what = rescheduled ? 'Rescheduled' : 'Cancelled';
+  const lines = [
+    what + ': M2S audit with ' + b.name + (b.business ? ' (' + b.business + ')' : '') + ', was ' + prettyWhen(b) + '.',
+    rescheduled ? 'The new time arrives as a separate booking.' : null,
+    reason ? 'Reason: ' + reason : null,
+    'Booking id: ' + b.id
+  ].filter(Boolean);
+  await sendMail(env, {
+    from: env.MAIL_FROM || 'Nuevo Automations <bookings@nuevoautomations.com>',
+    to: [env.NOTIFY_EMAIL || 'nawafallahham@nuevoautomations.com'],
+    subject: what + ' M2S audit: ' + (b.business || b.name) + ' — ' + b.date + ' ' + b.time,
+    text: lines.join('\n') + '\n',
+    html: '<div style="font-family:Inter,Arial,sans-serif;color:#101a2b;font-size:15px;line-height:1.5">' +
+      lines.map((l) => '<p style="margin:0 0 8px">' + escapeHtml(l) + '</p>').join('') + '</div>',
+    reply_to: b.email || undefined
+  });
+}
+
 // ---- 3. OrcaFlo webhook (WhatsApp confirmation flow) --------------------------
 async function sendOrcaflo(env, b) {
   if (!env.ORCAFLO_HOOK_URL || !env.ORCAFLO_HOOK_SECRET) return;
@@ -192,13 +221,13 @@ async function sendOrcaflo(env, b) {
       id: b.id, date: b.date, time: b.time, tz: 'Asia/Dubai',
       starts_at: slotInstant(b.date, b.time).toISOString(),
       name: b.name, phone: b.phone, business: b.business, email: b.email,
-      source: b.source, utm_source: b.utm_source, utm_campaign: b.utm_campaign, utm_content: b.utm_content
+      source: b.source, provider: b.provider || 'native', utm_source: b.utm_source, utm_campaign: b.utm_campaign, utm_content: b.utm_content
     })
   }, 5000);
   if (!r.ok) throw new Error('OrcaFlo ' + r.status + ': ' + (await r.text()).slice(0, 300));
 }
 
-async function fetchWithTimeout(url, init, ms) {
+export async function fetchWithTimeout(url, init, ms) {
   const ac = new AbortController();
   const t = setTimeout(() => ac.abort(), ms);
   try {

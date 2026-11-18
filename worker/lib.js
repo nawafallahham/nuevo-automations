@@ -8,6 +8,11 @@ export const LEAD_MIN = 45;             // no slot less than 45 min away
 export const MAX_DAYS_AHEAD = 14;
 export const DUBAI_OFFSET_MS = 4 * 60 * 60 * 1000; // GST, UTC+4, no DST
 export const MEETING_MIN = 20;
+export const CALENDLY_MIN = 30;         // https://calendly.com/nawaf-allahham02/30min
+
+export function meetingMinutes(b) {
+  return b && b.provider === 'calendly' ? CALENDLY_MIN : MEETING_MIN;
+}
 
 // ---- Responses ----------------------------------------------------------
 const BASE_HEADERS = {

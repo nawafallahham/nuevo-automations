@@ -1,5 +1,6 @@
 // /api/admin/* — private dashboard API. Bearer ADMIN_KEY on every request.
 import { json, safeEqual, dubaiToday, addDays, slotInstant, hostOf } from './lib.js';
+import { calendlySetup, calendlyStatus } from './calendly.js';
 
 export async function admin(request, env, path) {
   if (!env.ADMIN_KEY) return json({ ok: false, error: 'admin_key_not_set' }, 503);
@@ -13,6 +14,8 @@ export async function admin(request, env, path) {
   if (m === 'GET' && path === '/api/admin/bookings') return bookings(request, env);
   if (m === 'GET' && path === '/api/admin/stats') return stats(request, env);
   if (m === 'GET' && path === '/api/admin/config') return config(env);
+  if (m === 'GET' && path === '/api/admin/calendly/status') return calendlyStatus(env);
+  if (m === 'POST' && path === '/api/admin/calendly/setup') return calendlySetup(env);
   const cancel = path.match(/^\/api\/admin\/bookings\/(bk_[a-f0-9]{6,40})\/cancel$/);
   if (m === 'POST' && cancel) return cancelBooking(env, cancel[1]);
   return json({ ok: false, error: 'not_found' }, 404);
@@ -49,7 +52,8 @@ function config(env) {
       email: Boolean(env.EMAIL || env.RESEND_API_KEY),
       notify_email: env.NOTIFY_EMAIL || 'nawafallahham@nuevoautomations.com',
       orcaflo: Boolean(env.ORCAFLO_HOOK_URL && env.ORCAFLO_HOOK_SECRET),
-      calendar_feed: Boolean(env.CALENDAR_KEY)
+      calendar_feed: Boolean(env.CALENDAR_KEY),
+      calendly: Boolean(env.CALENDLY_TOKEN && env.CALENDLY_SIGNING_KEY)
     }
   });
 }

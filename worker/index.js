@@ -4,11 +4,14 @@
 //   /api/book             POST  create a booking (public)
 //   /api/track            POST  anonymous analytics beacon (public)
 //   /api/calendar.ics     GET   private iCal feed (?key=CALENDAR_KEY)
+//   /api/calendly/webhook POST  Calendly invitee.created / invitee.canceled (signed)
+//   /api/calendly/scheduled POST browser beacon after a Calendly booking (public)
 //   /api/admin/*          *     dashboard API (Bearer ADMIN_KEY)
 //   everything else             static files from env.ASSETS
 import { json, HttpError, hourWindow, addDays, dubaiToday } from './lib.js';
 import { slots, book, track, calendarFeed } from './api.js';
 import { admin } from './admin.js';
+import { webhook as calendlyWebhook, scheduledBeacon as calendlyScheduled } from './calendly.js';
 
 const APEX = 'nuevoautomations.com';
 
@@ -23,6 +26,8 @@ async function route(request, env, ctx) {
   if (path === '/api/book' && m === 'POST') return book(request, env, ctx);
   if (path === '/api/track' && m === 'POST') return track(request, env);
   if (path === '/api/calendar.ics' && m === 'GET') return calendarFeed(request, env);
+  if (path === '/api/calendly/webhook' && m === 'POST') return calendlyWebhook(request, env, ctx);
+  if (path === '/api/calendly/scheduled' && m === 'POST') return calendlyScheduled(request, env, ctx);
   if (path.startsWith('/api/admin/')) return admin(request, env, path);
 
   return json({ ok: false, error: 'not_found' }, 404);
@@ -68,6 +73,7 @@ export default {
   //  - bookings deleted ~90 days after the appointment date
   //  - analytics events older than ~13 months
   //  - stale rate-limit rows
+  //  - Calendly beacon rows (consent / attribution) after 2 days
   async scheduled(event, env, ctx) {
     const today = dubaiToday();
     const eventsCutoff = new Date(Date.now() - 400 * 24 * 3600 * 1000).toISOString();
@@ -75,7 +81,9 @@ export default {
     ctx.waitUntil(env.DB.batch([
       env.DB.prepare('DELETE FROM bookings WHERE date < ?1').bind(addDays(today, -90)),
       env.DB.prepare('DELETE FROM events WHERE ts < ?1').bind(eventsCutoff),
-      env.DB.prepare('DELETE FROM rate WHERE "window" < ?1').bind(rateCutoff)
+      env.DB.prepare('DELETE FROM rate WHERE "window" < ?1').bind(rateCutoff),
+      env.DB.prepare('DELETE FROM calendly_pending WHERE created_at < ?1')
+        .bind(new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString())
     ]).catch((err) => console.error('[cron] ' + err.message)));
   }
 };
