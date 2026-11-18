@@ -33,9 +33,17 @@ database_name = "nuevo-site"
 database_id = "3dc04a66-f3b7-4108-9a65-51a8e0147b4c"
 migrations_dir = "migrations"
 
+# Booking alert emails via Cloudflare Email Service (domain onboarded under
+# Compute > Email Service > Email Sending). Restricted to our own sender.
+[[send_email]]
+name = "EMAIL"
+allowed_sender_addresses = ["bookings@nuevoautomations.com"]
+
 [vars]
 META_PIXEL_ID = "997785509848718"
 NOTIFY_EMAIL = "nawafallahham@nuevoautomations.com"
+MAIL_FROM = "Nuevo Automations <bookings@nuevoautomations.com>"
+EMAIL_CUSTOMERS = "true"
 SITE_URL = "https://nuevoautomations.com"
 
 # Nightly retention clean-up (bookings > 90 days after appointment, events > 400 days, stale rate rows)

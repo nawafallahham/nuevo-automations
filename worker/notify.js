@@ -58,7 +58,7 @@ async function sendMetaCapi(env, b, meta) {
   if (!r.ok) throw new Error('CAPI ' + r.status + ': ' + (await r.text()).slice(0, 300));
 }
 
-// ---- 2. Email via Resend ------------------------------------------------------
+// ---- 2. Email: Cloudflare Email Service (EMAIL binding) or Resend ------------
 function b64(str) {
   const bytes = new TextEncoder().encode(str);
   let bin = '';
@@ -85,8 +85,31 @@ async function resend(env, payload) {
   if (!r.ok) throw new Error('Resend ' + r.status + ': ' + (await r.text()).slice(0, 300));
 }
 
+// One sender for both providers. Cloudflare's binding is preferred: no API key,
+// and mail to the owner's verified address is free on every plan. Mailing
+// customers (any address) through it needs Workers Paid, so that is opt-in via
+// EMAIL_CUSTOMERS=true; with Resend it is always on.
+async function sendMail(env, msg) {
+  if (env.EMAIL) {
+    await env.EMAIL.send({
+      to: msg.to[0],
+      from: msg.from,
+      subject: msg.subject,
+      text: msg.text,
+      html: msg.html,
+      replyTo: msg.reply_to,
+      attachments: (msg.attachments || []).map((a) => ({
+        content: a.content, filename: a.filename, type: 'text/calendar', disposition: 'attachment'
+      }))
+    });
+    return;
+  }
+  await resend(env, msg);
+}
+
 async function sendEmails(env, b) {
-  if (!env.RESEND_API_KEY) return;
+  if (!env.EMAIL && !env.RESEND_API_KEY) return;
+  const mailCustomers = !env.EMAIL || env.EMAIL_CUSTOMERS === 'true';
   const from = env.MAIL_FROM || 'Nuevo Automations <bookings@nuevoautomations.com>';
   const to = env.NOTIFY_EMAIL || 'nawafallahham@nuevoautomations.com';
   const when = prettyWhen(b);
@@ -120,7 +143,7 @@ async function sendEmails(env, b) {
     escapeHtml(b.name) + ' on WhatsApp</a></p></div>';
 
   const internalIcs = calendar(null, [internalEvent(b)], 'PUBLISH');
-  const jobs = [resend(env, {
+  const jobs = [sendMail(env, {
     from,
     to: [to],
     subject: 'New M2S audit: ' + b.business + ' — ' + b.date + ' ' + b.time,
@@ -130,7 +153,7 @@ async function sendEmails(env, b) {
     attachments: [{ filename: 'm2s-audit.ics', content: b64(internalIcs) }]
   })];
 
-  if (b.email) {
+  if (b.email && mailCustomers) {
     const ctext = 'Hi ' + b.name.split(/\s+/)[0] + ',\n\n' +
       'Your free M2S audit with Nuevo Automations is booked for ' + when + '.\n' +
       'It takes about 20 minutes. We will call you on WhatsApp at ' + b.phone + '.\n\n' +
@@ -143,7 +166,7 @@ async function sendEmails(env, b) {
       '<p>A calendar invite is attached. Need a different time? Reply to this email or ' +
       '<a href="https://wa.me/971508549171" style="color:#1a5fa0">message us on WhatsApp</a>.</p>' +
       '<p style="color:#4b5768">Nuevo Automations<br><a href="https://nuevoautomations.com" style="color:#1a5fa0">nuevoautomations.com</a></p></div>';
-    jobs.push(resend(env, {
+    jobs.push(sendMail(env, {
       from,
       to: [b.email],
       subject: 'Your M2S audit is booked — ' + when,

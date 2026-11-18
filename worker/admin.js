@@ -46,7 +46,7 @@ function config(env) {
     integrations: {
       meta_capi: Boolean(env.META_CAPI_TOKEN && env.META_PIXEL_ID),
       meta_test_mode: Boolean(env.META_TEST_EVENT_CODE),
-      email: Boolean(env.RESEND_API_KEY),
+      email: Boolean(env.EMAIL || env.RESEND_API_KEY),
       notify_email: env.NOTIFY_EMAIL || 'nawafallahham@nuevoautomations.com',
       orcaflo: Boolean(env.ORCAFLO_HOOK_URL && env.ORCAFLO_HOOK_SECRET),
       calendar_feed: Boolean(env.CALENDAR_KEY)
