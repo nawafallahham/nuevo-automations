@@ -2,6 +2,7 @@
 .git
 .gitignore
 .claude
+.serena
 .wrangler
 .dev.vars*
 .DS_Store

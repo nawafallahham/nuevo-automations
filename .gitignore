@@ -10,3 +10,6 @@ node_modules/
 .wrangler/
 .dev.vars
 .dev.vars.*
+
+# Serena code-assistant state (local tooling)
+.serena/
