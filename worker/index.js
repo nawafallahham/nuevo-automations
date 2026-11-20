@@ -40,8 +40,8 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // www -> apex, keeping path and query.
-    if (url.hostname === 'www.' + APEX) {
+    // www -> apex and http -> https, keeping path and query.
+    if (url.hostname === 'www.' + APEX || (url.hostname === APEX && url.protocol === 'http:')) {
       return Response.redirect('https://' + APEX + url.pathname + url.search, 301);
     }
 
