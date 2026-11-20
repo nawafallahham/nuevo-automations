@@ -3694,3 +3694,4 @@ html { -webkit-tap-highlight-color: transparent; }
 .logo-item img { height: var(--h, 28px); width: auto; }
 .logo-item > span { font: 500 var(--t-body)/1 var(--font-display); letter-spacing: -0.01em; white-space: nowrap; color: var(--ink); }
 .logo-item--ink img { filter: brightness(0); opacity: 0.85; }
+.logo-item__name { font-size: var(--t-card) !important; font-weight: 600 !important; letter-spacing: -0.02em; }

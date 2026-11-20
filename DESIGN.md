@@ -39,7 +39,7 @@ Not published: `.assetsignore` excludes `*.md`.
   `/wellness-brands/`), `js/consent.js` (Meta Pixel only after consent), `js/track.js`,
   `.js-lead` + `data-lead` on booking buttons, the worker.
 - **Main action:** "Book a free audit" → `/book/`, worded the same everywhere, as
-  `.btn.btn--primary`. The second action is WhatsApp (`https://wa.me/971508549171…`) as
+  `.btn.btn--primary`. The second action is WhatsApp (`https://wa.me/15557738409…`) as
   `.btn.btn--secondary` or a `.link`.
 - **Copy:** the kit's copy rules (`references/copy.md`): headings name a thing, buttons are a verb and
   an object, no "Learn more", no virtue words (honest, quiet, simply…), no slogans.
@@ -93,7 +93,7 @@ long reading pages, so their sections take their content's height:
 
 The home page passes the Taste gate (`node ~/.claude/skills/design-taste-frontend/scripts/gate.mjs index.html`) with these waived findings (`.taste-skill/waivers.json`, not committed):
 
-- `phone-number` on `footer__col`: The client's real WhatsApp sales number, +971 50 854 9171, given in the brief as the site's second contact. Not invented; it reaches the client.
+- `phone-number` on `footer__col`: The client's real WhatsApp sales number, +1 555-773-8409, given in the brief as the site's second contact. Not invented; it reaches the client.
 - `nav-covers` on `div.consent`: The cookie notice the client requires (js/consent.js: the Meta Pixel loads only after consent). It shows once, until the visitor answers, and pads the page so the last lines stay clear.
 - `container-edges` on `div.consent`: The same required cookie notice: a fixed card outside the page's sections by design, removed for good once the visitor answers.
 - `scroll-reveal` on `footer#contact`: No reveal is written for the close: the button's colour change is its hover, which fires when the cookie card steps aside over the footer and leaves the checker's pointer on the button.
