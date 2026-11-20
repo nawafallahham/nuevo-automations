@@ -15,7 +15,7 @@ Not published: `.assetsignore` excludes `*.md`.
 | Part | Dealt | Why it fits |
 |---|---|---|
 | Kind | software (`data-type="software"`, `site-kind` software) | M2S is an AI sales assistant the company built and runs; the client allows no photographs, so the product's own UI carries the pages |
-| Palette | `clay-pine`: ground `#efe9e0`, surface `#e2d9cb`, ink `#22261f`, muted `#5a5c53`, accent/action `#2e5b44` | warm stone and pine green, made for wellness, the client's buyers |
+| Palette | `clay-pine`, accent and ink retuned to the logo's blue: ground `#efe9e0`, surface `#e2d9cb`, ink `#18213a`, muted `#575d6b`, accent/action `#0d518d` | warm stone, made for wellness buyers; the dealt pine green was swapped for the Nuevo logo's blue at the owner's request |
 | Type | `funnel`: Funnel Display (headlines, 400) + Funnel Sans (text), self-hosted | the first pairing, `onest`, took four lines in the dealt hero's headline column |
 | Radius | soft (8/12/20) | default |
 | Hero (home) | `centred`: headline, lead, two buttons, then the M2S inbox in a lit frame | `triptych` was dealt first and failed `hero-lines` |

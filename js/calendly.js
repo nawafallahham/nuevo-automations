@@ -31,7 +31,7 @@
   function embedUrl() {
     var a = attribution() || {};
     var q = new URLSearchParams(location.search);
-    var params = ['primary_color=2e5b44', 'text_color=22261f'];
+    var params = ['primary_color=0d518d', 'text_color=18213a'];
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
       var v = a[k] || q.get(k);
       if (v) params.push(k + '=' + encodeURIComponent(String(v).slice(0, 150)));
