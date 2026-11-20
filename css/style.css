@@ -882,7 +882,8 @@ p a:not(.btn), li a:not(.btn):not(.tile):not(.ind-list a), .fine a, .bk-note a {
   background: var(--brand-tint); color: var(--brand); font-weight: 800; font-size: 0.92rem;
 }
 .audit-steps strong { display: block; margin-bottom: 2px; }
-.audit-steps p { margin: 0; font-size: 0.94rem; }
+.audit-steps p { margin: 0; font-size: 0.9375rem; }
+@media (max-width: 980px) { .audit-steps { gap: 10px; margin-bottom: var(--s-5); } .audit-steps p { display: none; } .audit-steps li { align-items: center; } }
 
 /* ============================================
    Footer
@@ -1028,7 +1029,7 @@ p a:not(.btn), li a:not(.btn):not(.tile):not(.ind-list a), .fine a, .bk-note a {
 }
 .cal-embed .calendly-inline-widget { min-width: 320px; height: 700px; }
 .cal-embed::before {
-  content: "Loading the calendar…"; position: absolute; inset: 0; z-index: 0;
+  content: ""; position: absolute; inset: 0; z-index: 0;
   display: grid; place-items: center; padding-bottom: 30%;
   font-size: var(--fs-sm); color: var(--ink-faint);
   background:

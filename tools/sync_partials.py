@@ -12,8 +12,14 @@ index.html is the source of truth. KEY names the nav item to mark as the
 current page (see ACTIVE below); the home page's active state is stripped
 before copying. Pages without a marker pair are left alone.
 
+It then stamps every /css/ and /js/ reference in every page (admin and the
+marker-less landing pages included) with ?v=<hash of the file's content>,
+so the long-lived immutable caching in _headers can never serve a stale
+file. Run it after any CSS/JS change.
+
 Usage: python3 tools/sync_partials.py [--check]
 """
+import hashlib
 import pathlib
 import re
 import sys
@@ -29,6 +35,19 @@ ACTIVE = {
     "partners": "/partners/",
     "industries": "/#industries",
 }
+
+ASSET_REF = re.compile(r'(["\'])(/(?:css|js)/[\w.-]+\.(?:css|js))(?:\?v=[\w-]*)?\1')
+
+
+def stamp_assets(text):
+    def repl(m):
+        path = ROOT / m.group(2).lstrip("/")
+        if not path.exists():
+            return m.group(0)
+        digest = hashlib.sha1(path.read_bytes()).hexdigest()[:10]
+        return f"{m.group(1)}{m.group(2)}?v={digest}{m.group(1)}"
+    return ASSET_REF.sub(repl, text)
+
 
 BLOCKS = {
     "head": re.compile(r"<!-- head:start -->.*?<!-- head:end -->", re.S),
@@ -55,7 +74,7 @@ def header_for(template, key):
 
 def main():
     check = "--check" in sys.argv
-    src = SOURCE.read_text()
+    src = stamp_assets(SOURCE.read_text())
     head = BLOCKS["head"].search(src).group(0)
     header = plain_header(BLOCKS["header"].search(src).group(0))
     footer = BLOCKS["footer"].search(src).group(0)
@@ -63,12 +82,15 @@ def main():
     pages = [ROOT / "404.html"] + sorted(ROOT.glob("*/index.html"))
     changed = []
     for page in pages:
-        if page.parent.name in SKIP or page == SOURCE:
+        if page == SOURCE:
             continue
         text = page.read_text()
-        new = BLOCKS["head"].sub(lambda m: head, text, count=1)
-        new = BLOCKS["header"].sub(lambda m: header_for(header, m.group(1)), new, count=1)
-        new = BLOCKS["footer"].sub(lambda m: footer, new, count=1)
+        new = text
+        if page.parent.name not in SKIP:
+            new = BLOCKS["head"].sub(lambda m: head, new, count=1)
+            new = BLOCKS["header"].sub(lambda m: header_for(header, m.group(1)), new, count=1)
+            new = BLOCKS["footer"].sub(lambda m: footer, new, count=1)
+        new = stamp_assets(new)
         if new != text:
             changed.append(page.relative_to(ROOT))
             if not check:
@@ -76,7 +98,7 @@ def main():
 
     # Home keeps its own key but gets the same normalised markup.
     home = BLOCKS["header"].sub(lambda m: header_for(header, m.group(1)), src, count=1)
-    if home != src:
+    if home != SOURCE.read_text():
         changed.append(SOURCE.relative_to(ROOT))
         if not check:
             SOURCE.write_text(home)
