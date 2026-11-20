@@ -13,6 +13,7 @@ export async function admin(request, env, path) {
   const m = request.method;
   if (m === 'GET' && path === '/api/admin/bookings') return bookings(request, env);
   if (m === 'GET' && path === '/api/admin/stats') return stats(request, env);
+  if (m === 'GET' && path === '/api/admin/leads') return leads(request, env);
   if (m === 'GET' && path === '/api/admin/config') return config(env);
   if (m === 'GET' && path === '/api/admin/calendly/status') return calendlyStatus(env);
   if (m === 'POST' && path === '/api/admin/calendly/setup') return calendlySetup(env);
@@ -151,5 +152,82 @@ async function stats(request, env) {
     by_day: byDay,
     top_pages: topPages.results || [],
     note: 'Visitors are counted per day (the anonymous id rotates daily), so multi-day totals count a returning visitor once per day.'
+  });
+}
+
+// GET /api/admin/leads?days=30 — the qualifying-question funnel and every lead.
+async function leads(request, env) {
+  const days = Math.min(Math.max(parseInt(new URL(request.url).searchParams.get('days'), 10) || 30, 1), 365);
+  const since = slotInstant(addDays(dubaiToday(), -(days - 1)), '00:00').toISOString();
+
+  const [ev, rows] = await env.DB.batch([
+    env.DB.prepare(
+      "SELECT COUNT(DISTINCT CASE WHEN type = 'pageview' THEN visitor END) AS visitors, " +
+      "COUNT(DISTINCT CASE WHEN type = 'book_view' THEN visitor END) AS book_viewers FROM events WHERE ts >= ?1"
+    ).bind(since),
+    env.DB.prepare(
+      'SELECT l.id, l.created_at, l.updated_at, l.page, l.status, l.step, l.q1, l.q2, l.q3, l.q4, l.declined_at_q, ' +
+      'l.name, l.company, l.booked_at, l.utm_source, l.utm_medium, l.utm_campaign, l.utm_content, l.landing, l.referrer, ' +
+      'b.date AS booking_date, b.time AS booking_time, b.status AS booking_status, b.email AS email, b.phone AS phone ' +
+      'FROM leads l LEFT JOIN bookings b ON b.calendly_invitee_uri = l.invitee_uri ' +
+      'WHERE l.created_at >= ?1 ORDER BY l.created_at DESC LIMIT 2000'
+    ).bind(since)
+  ]);
+  const e = (ev.results && ev.results[0]) || {};
+  const list = rows.results || [];
+  const count = (f) => list.filter(f).length;
+  const passed = (l) => l.status === 'qualified' || l.status === 'details' || l.status === 'booked';
+
+  const funnel = [
+    ['Visitors', e.visitors || 0],
+    ['Saw the booking section', e.book_viewers || 0],
+    ['Started the questions', list.length],
+    ['Answered question 1', count((l) => l.step >= 1)],
+    ['Answered question 2', count((l) => l.step >= 2)],
+    ['Answered question 3', count((l) => l.step >= 3)],
+    ['Answered question 4', count((l) => l.step >= 4)],
+    ['Qualified', count(passed)],
+    ['Gave name and company', count((l) => l.status === 'details' || l.status === 'booked')],
+    ['Booked a call', count((l) => l.status === 'booked')],
+    ['Booking still on (not cancelled)', count((l) => l.status === 'booked' && l.booking_status !== 'cancelled')]
+  ].map(([label, n]) => ({ label, n }));
+
+  // Answer counts per question, with how many of each went on to book.
+  const questions = ['q1', 'q2', 'q3', 'q4'].map((q, i) => {
+    const m = new Map();
+    for (const l of list) {
+      if (!l[q]) continue;
+      const r = m.get(l[q]) || { answer: l[q], n: 0, declined: 0, booked: 0 };
+      r.n++;
+      if (l.declined_at_q === i + 1) r.declined++;
+      if (l.status === 'booked') r.booked++;
+      m.set(l[q], r);
+    }
+    return [...m.values()].sort((a, b) => b.n - a.n);
+  });
+
+  const group = (keyOf) => {
+    const m = new Map();
+    for (const l of list) {
+      const k = keyOf(l);
+      const r = m.get(k) || { key: k, started: 0, declined: 0, qualified: 0, details: 0, booked: 0 };
+      r.started++;
+      if (l.status === 'declined') r.declined++;
+      if (passed(l)) r.qualified++;
+      if (l.status === 'details' || l.status === 'booked') r.details++;
+      if (l.status === 'booked') r.booked++;
+      m.set(k, r);
+    }
+    return [...m.values()].sort((a, b) => b.started - a.started);
+  };
+
+  return json({
+    ok: true,
+    days,
+    funnel,
+    questions,
+    by_page: group((l) => l.page || 'unknown'),
+    by_source: group((l) => [l.utm_source || hostOf(l.referrer) || 'direct', l.utm_campaign].filter(Boolean).join(' / ')),
+    leads: list
   });
 }

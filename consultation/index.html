@@ -14,6 +14,7 @@
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nuevo Automations">
+  <meta property="og:locale" content="en_AE">
   <meta property="og:title" content="Free M2S audit | Nuevo Automations">
   <meta property="og:description" content="30 minutes, free. Find out how many sales your chats are losing, and how to win them back.">
   <meta property="og:image" content="https://nuevoautomations.com/assets/og-image.jpg">
@@ -23,226 +24,172 @@
   <meta property="og:url" content="https://nuevoautomations.com/consultation/">
 
   <!-- head:start -->
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=20261118c">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=b26627806a">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #18213a; --p-muted: #575d6b;
+    --p-accent: #0d518d; --p-accent-ink: #ffffff; --p-action: #0d518d; --p-action-ink: #ffffff;
+    --p-inv-bg: #18213a; --p-inv-surface: #222c46; --p-inv-ink: #efe9e0; --p-inv-muted: #a3a8b5;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #18213a; --p-inv-action: #efe9e0; --p-inv-action-ink: #18213a;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=20261118b" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
 
-  <style>
-    /* ---- Landing-page layer: no site nav, one goal (book the audit) ---- */
-    .lp-header { padding: 18px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
-    .lp-header .container { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .lp-phone { font-size: 0.92rem; font-weight: 600; color: var(--ink-muted); white-space: nowrap; }
-    .lp-phone:hover { color: var(--brand); }
-    @media (max-width: 560px) { .lp-phone { display: none; } }
-    .lp-footer { padding: 40px 0 56px; text-align: center; font-size: 0.84rem; color: var(--ink-faint); border-top: 1px solid var(--line); }
-    .lp-footer p { margin: 0 0 6px; }
-    .lp-footer a { color: var(--ink-muted); }
-    .lp-sticky {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; display: none;
-      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-      background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--line);
-      box-shadow: 0 -8px 24px -16px rgba(16, 24, 40, 0.3);
-    }
-    @media (max-width: 760px) { .lp-sticky { display: block; } body { padding-bottom: 76px; } }
-  </style>
 </head>
 <body>
-  <header class="lp-header">
-    <div class="container">
-      <a href="https://nuevoautomations.com/" class="logo">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-      <a class="lp-phone" href="https://wa.me/971508549171">+971 50 854 9171</a>
+  <header class="nav">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28">Nuevo Automations</a>
+      <div class="nav__actions"><a class="btn btn--primary js-lead" data-lead="lp-header" href="#book">Pick a time</a></div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="hero-badge"><b>FREE</b> 30-minute M2S audit</p>
-          <h1 style="font-size:clamp(2.3rem,5.4vw,3.8rem);">Find out how many sales your <span class="text-brand" style="display:inline;">chats are losing</span></h1>
-          <p class="hero-sub">You're paying for ads that bring messages. In 30 minutes we'll show you where those messages turn into lost sales, and how M2S closes them on WhatsApp. You keep the plan whether you work with us or not.</p>
-          <div class="hero-actions">
-            <a href="#book" class="btn btn-primary btn-lg js-lead" data-lead="lp-hero">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-          <ul class="hero-points">
-            <li>Free, no obligation</li>
-            <li>No sales deck, just your numbers</li>
-            <li>English or Arabic</li>
-          </ul>
-        </div>
-        <div class="flow-card" role="img" aria-label="The M2S system: ads, instant reply, close in the chat, follow-ups and results">
-          <div class="flow-head"><span class="flow-dot" aria-hidden="true"></span><strong>M2S</strong><span>Message to Sale · running 24/7</span></div>
-          <ol class="flow-list">
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></span><span class="flow-txt"><strong>Ads → WhatsApp</strong>Instagram &amp; Facebook ads open a chat</span><em>Live</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span class="flow-txt"><strong>Instant AI reply</strong>English &amp; Arabic, any hour</span><em>&lt; 5 sec</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><span class="flow-txt"><strong>Close in the chat</strong>Payment link, cash on delivery or booking</span><em>Order</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span class="flow-txt"><strong>Follow up</strong>Carts, unpaid links, quiet leads</span><em>Auto</em></li>
-            <li class="is-win"><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span><span class="flow-txt"><strong>Results</strong>Every sale tracked back to its ad</span><em>Monthly</em></li>
-          </ol>
-        </div>
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <h1 id="page-h">Free M2S audit: how many sales are your chats losing?</h1>
+        <p class="t-lead">You're paying for ads that bring messages. In 30 minutes we show you where those messages turn into lost sales, and how M2S closes them on WhatsApp. You keep the plan either way.</p>
+        <div class="btn-row"><a class="btn btn--primary js-lead" data-lead="lp-hero" href="#book">Pick a time</a></div>
+        <p class="t-small lp-facts">Free, no obligation · No sales deck, just your numbers · English or Arabic</p>
       </div>
     </section>
 
-    <!-- What M2S is -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">What M2S does</p>
-          <h2>We run your ads. M2S turns the messages into sales.</h2>
-          <p class="lede">In plain terms: an AI sales assistant answers your WhatsApp in seconds, closes the sale in the chat, and follows up with everyone who went quiet or left their cart. You only step in when it matters.</p>
+    <section class="band" aria-labelledby="what-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="what-h">We run your ads. M2S turns the messages into sales.</h2>
+          <p>An AI sales assistant answers your WhatsApp in seconds, closes the sale in the chat and follows up with everyone who went silent or left their cart. You step in only when it matters.</p>
         </div>
-        <ol class="funnel reveal-stagger">
-          <li class="funnel-step"><span class="funnel-num">1</span><h3>Ads → WhatsApp</h3><p>Instagram and Facebook ads that open a chat.</p></li>
-          <li class="funnel-step"><span class="funnel-num">2</span><h3>Instant AI reply</h3><p>Seconds, 24/7, English or Arabic.</p></li>
-          <li class="funnel-step"><span class="funnel-num">3</span><h3>Qualify &amp; close</h3><p>Order, payment link, COD or booking.</p></li>
-          <li class="funnel-step"><span class="funnel-num">4</span><h3>Follow up</h3><p>Carts, unpaid links and quiet leads.</p></li>
-          <li class="funnel-step"><span class="funnel-num">5</span><h3>Results</h3><p>A monthly report of what came back.</p></li>
+        <ol class="steps-list span-6 start-7">
+          <li><strong>Ads that open WhatsApp</strong><span>Instagram and Facebook ads that start a chat.</span></li>
+          <li><strong>Instant AI reply</strong><span>In seconds, day and night, in English or Arabic.</span></li>
+          <li><strong>Qualify and close</strong><span>Order, payment link, cash on delivery or booking.</span></li>
+          <li><strong>Follow up</strong><span>Carts, unpaid links and chats that went silent.</span></li>
+          <li><strong>Results</strong><span>A monthly report of what came back.</span></li>
         </ol>
       </div>
     </section>
 
-    <!-- Partner results -->
-    <section class="section section--dark section--tight">
-      <div class="container">
-        <div class="section-head reveal" style="margin-bottom:36px;">
-          <p class="eyebrow">What it's done for our partners</p>
-          <h2>50–60% more revenue from the same traffic</h2>
-        </div>
-        <div class="stats reveal-stagger">
-          <div class="stat"><strong>50–60%</strong><span>revenue increase after rollout</span></div>
-          <div class="stat"><strong>0</strong><span>extra headcount</span></div>
-          <div class="stat"><strong>&lt;5 sec</strong><span>reply time, day or night</span></div>
-          <div class="stat"><strong>24/7</strong><span>English and Arabic</span></div>
-        </div>
-        <p class="report-note" style="text-align:left;margin-top:28px;">Figures reflect partner results after full rollout. What you'd see depends on your margins, your volume and how many enquiries you're currently missing. We'll give you an honest estimate on the call.</p>
+    <section class="band ground-surface" aria-labelledby="partners-h">
+      <div class="wrap">
+        <h2 id="partners-h">Partners report 50–60% more revenue from the same traffic</h2>
+        <dl class="stats lp-stats">
+          <div><dt class="t-small muted">more revenue after full rollout</dt><dd class="t-stat">50–60%</dd></div>
+          <div><dt class="t-small muted">best return on ad spend, on Khaleej Peptides</dt><dd class="t-stat">Up to 30x</dd></div>
+          <div><dt class="t-small muted">extra staff needed</dt><dd class="t-stat">0</dd></div>
+        </dl>
+        <p class="measure">The revenue and headcount figures are what partners have reported after full rollout. The 30x is the best return on ad spend we've seen, on Khaleej Peptides, not a typical result. None of it is a guarantee. What it's worth to you depends on your margins, your volume and how many enquiries you're missing; we'll estimate it on the call.</p>
       </div>
     </section>
 
-    <!-- The audit + booking -->
-    <section class="section" id="book">
-      <div class="container book-grid">
-        <div class="reveal">
-          <p class="eyebrow">What happens on the call</p>
-          <h2>Thirty minutes, three things</h2>
-          <p class="lede" style="margin-bottom:32px;">No presentation, no pressure.</p>
-          <ol class="audit-steps">
-            <li><div><strong>You tell us how leads reach you</strong><p>Ads, WhatsApp, Instagram, your website. Five minutes, plain language, no prep.</p></div></li>
-            <li><div><strong>We show you where sales leak out</strong><p>Slow replies, unanswered nights, unpaid links, abandoned carts and quiet leads.</p></div></li>
-            <li><div><strong>You get a written plan and a quote</strong><p>What M2S would fix first and a fixed monthly price. Yours to keep either way.</p></div></li>
+    <section class="band" id="peak-labs" aria-labelledby="peak-h">
+      <div class="wrap stack-6">
+        <div class="section-head">
+          <img class="case__logo" src="/assets/partners/peaklabs-h.webp" alt="Peak Labs" width="123" height="40" loading="lazy" decoding="async">
+          <h2 id="peak-h">Peak Labs: 53% more orders a month</h2>
+        </div>
+        <div class="grid">
+          <figure class="quote span-6">
+            <blockquote><p>&ldquo;We looked at every tool we could find and most of them were chatbots that answer questions. &hellip; It replies faster than we ever managed.&rdquo;</p></blockquote>
+            <figcaption>Founder, Peak Labs &middot; Supplements, UAE</figcaption>
+          </figure>
+          <dl class="stats stats--col span-5 start-8">
+            <div><dt class="t-small muted">faster first reply</dt><dd class="t-stat">90x</dd></div>
+            <div><dt class="t-small muted">more orders a month</dt><dd class="t-stat">+53%</dd></div>
+            <div><dt class="t-small muted">of chats handled without a person</dt><dd class="t-stat">74%</dd></div>
+          </dl>
+        </div>
+        <p class="t-small muted">Peak Labs figures as of October 2026.</p>
+      </div>
+    </section>
+
+    <section class="band" id="book" aria-labelledby="book-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="book-h">The audit call: thirty minutes, three things</h2>
+          <p>No presentation, no pressure.</p>
+          <ol class="steps-list">
+            <li><strong>You tell us how leads reach you</strong><span>Ads, WhatsApp, Instagram, your website. Five minutes, no prep.</span></li>
+            <li><strong>We show you where sales leak out</strong><span>Slow replies, unanswered nights, unpaid links, abandoned carts and silent chats.</span></li>
+            <li><strong>You get a written plan and a quote</strong><span>What M2S would fix first and a fixed monthly price. Yours to keep either way.</span></li>
           </ol>
-          <p class="fine">Pick any open time. Times show in your own time zone.</p>
+          <p class="t-small muted">Answer 4 quick questions, then pick any open time. Times show in your own time zone.</p>
         </div>
-
-        <div class="reveal">
+        <div class="span-6 start-7">
           <div class="cal-embed" data-source="meta-landing">
-            <div class="calendly-inline-widget" data-auto-load="false" data-url="https://calendly.com/nawaf-allahham02/30min?primary_color=1a5fa0&amp;text_color=101a2b">
-              <p class="cal-embed__msg">Loading the calendar&hellip;</p>
+            <div class="calendly-inline-widget" data-auto-load="false">
+              <p class="cal-embed__msg">Loading&hellip;</p>
             </div>
-            <noscript><p class="cal-embed__msg"><a href="https://calendly.com/nawaf-allahham02/30min" target="_blank" rel="noopener">Open the booking calendar on Calendly</a></p></noscript>
+            <noscript><p class="cal-embed__msg">Booking needs JavaScript. <a href="https://wa.me/15557738409" target="_blank" rel="noopener">Message us on WhatsApp</a> instead.</p></noscript>
           </div>
-          <p class="cal-embed__alt">Prefer WhatsApp? <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20a%20free%20M2S%20audit." target="_blank" rel="noopener" data-lead="booking-wa">Message us</a> · <a href="/privacy/">How we use your details</a></p>
+          <p class="cal-embed__alt">Prefer WhatsApp? <a href="https://wa.me/15557738409?text=Hi%2C%20I%27d%20like%20a%20free%20M2S%20audit." target="_blank" rel="noopener" data-lead="booking-wa">Message us</a> · <a href="/privacy/">How we use your details</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Who it's for -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Worth a call if this sounds familiar</p>
-          <h2>Where your ad money is leaking</h2>
-        </div>
-        <div class="leaks reveal-stagger">
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>Messages arrive at 11 PM and get answered the next morning.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Answered in seconds,</strong> any hour, in English or Arabic.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>People ask the price and disappear.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Timed follow-ups</strong> restart the conversation, and stop when they reply.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>Carts get abandoned and payment links never get paid.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Friendly WhatsApp reminders</strong> bring them back to checkout, or finish the order in the chat.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>You can't tell which ad actually made money.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Every chat is tagged to its ad,</strong> and you get a monthly results report.</span></div>
-          </div>
-        </div>
+    <section class="band" aria-labelledby="leaks-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="leaks-h">Four places your ad budget leaks</h2></div>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Messages arrive at 11 PM and get answered the next morning.</span><p>M2S answers in seconds, any hour, in English or Arabic.</p></li>
+          <li><span class="rows__name">People ask the price and disappear.</span><p>Timed follow-ups restart the conversation, and stop when they reply.</p></li>
+          <li><span class="rows__name">Carts are abandoned and payment links never paid.</span><p>WhatsApp reminders bring them back, or the order is finished in the chat.</p></li>
+          <li><span class="rows__name">Nobody can say which ad made money.</span><p>Every chat is tagged to its ad, and you get a monthly results report.</p></li>
+        </ul>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Before you book</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>Is the audit really free?</summary>
-            <p>Yes. Thirty minutes, no cost, no obligation, and you keep the plan we put together even if you never work with us.</p>
-          </details>
-          <details>
-            <summary>What does it cost if I go ahead?</summary>
-            <p>M2S is one fixed monthly fee, based on your ad budget, your channels and how many products or services we load. You get the number in writing after the audit. Ad spend is paid directly to Meta.</p>
-          </details>
-          <details>
-            <summary>Do I need to change my WhatsApp number?</summary>
-            <p>No. We work with the number you already use, and your team can still use the WhatsApp app.</p>
-          </details>
-          <details>
-            <summary>Does it handle Arabic?</summary>
-            <p>Yes. The assistant replies in English or Arabic, matching the language your customer writes in.</p>
-          </details>
-          <details>
-            <summary>How long does setup take?</summary>
-            <p>We'll give you a realistic timeline in the plan. It depends on how many products we load and which store and channels we connect.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0;">
-      <div class="container">
-        <div class="cta-band reveal">
-          <h2>Thirty minutes could pay for itself</h2>
-          <p>Tell us how your leads come in. We'll show you what you're losing and what to fix first.</p>
-          <div class="cta-actions">
-            <a href="#book" class="btn btn-light btn-lg js-lead" data-lead="lp-final">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-          <p class="fine">Or message us directly on +971 50 854 9171</p>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions before you book</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>Is the audit really free?</h3><p>Yes. Thirty minutes, no cost, no obligation, and you keep the plan we put together even if you never work with us.</p></div>
+          <div class="faq__item"><h3>What does M2S cost if I go ahead?</h3><p>One fixed monthly fee, based on your ad budget, your channels and how many products we load. You get the number in writing after the audit. Ad spend is paid directly to Meta.</p></div>
+          <div class="faq__item"><h3>Do I need a new WhatsApp number?</h3><p>No. We work with the number you already use, and your team can still use the WhatsApp app.</p></div>
+          <div class="faq__item"><h3>Does M2S reply in Arabic?</h3><p>Yes. The assistant replies in English or Arabic, in the language your customer writes in.</p></div>
+          <div class="faq__item"><h3>How long does the setup take?</h3><p>We give you a realistic timeline in the plan. It depends on how many products we load and which store and channels we connect.</p></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="lp-footer">
-    <div class="container">
-      <p>Nuevo Automations FZE LLC · Sharjah Publishing City Free Zone, UAE</p>
-      <p><a href="https://nuevoautomations.com/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> · <a href="/privacy/">Privacy policy</a></p>
+  <footer class="lp-foot">
+    <div class="wrap">
+      <p>Nuevo Automations FZE LLC · Sharjah Publishing City Free Zone, UAE · Licence no. 4431808.01</p>
+      <p><a href="/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">Email us</a> · <a href="https://wa.me/15557738409" target="_blank" rel="noopener">WhatsApp +1 555-773-8409</a> · <a href="/privacy/">Privacy policy</a></p>
     </div>
   </footer>
 
-  <div class="lp-sticky">
-    <a href="#book" class="btn btn-primary btn-block js-lead" data-lead="lp-sticky">Pick a time →</a>
-  </div>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="lp-sticky" href="#book">Pick a time</a>
+  </nav>
 
-  <script src="/js/track.js?v=20261118c" defer></script>
-  <script src="/js/script.js?v=20261118b" defer></script>
-  <script src="/js/calendly.js?v=20261118c" defer></script>
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script src="/js/track.js?v=f9bc8506a0" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
+  <script src="/js/calendly.js?v=6e454b4f93" defer></script>
 </body>
 </html>

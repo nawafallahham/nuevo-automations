@@ -11,11 +11,17 @@
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Every reference carries ?v=; bump it whenever the file changes.
 /css/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /js/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cache-Control: public, max-age=31536000, immutable
+
+# The Taste design kit: its modules import each other by relative URL, so they
+# cannot carry ?v=. A short cache that revalidates keeps them fresh.
+/kit/*
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /admin/*
   X-Robots-Tag: noindex, nofollow

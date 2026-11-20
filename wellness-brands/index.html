@@ -12,6 +12,7 @@
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nuevo Automations">
+  <meta property="og:locale" content="en_AE">
   <meta property="og:title" content="A 7-day M2S sprint for wellness brands | Nuevo Automations">
   <meta property="og:description" content="We run your ads and M2S on WhatsApp for 7 days. You only pay the ad spend.">
   <meta property="og:image" content="https://nuevoautomations.com/assets/og-image.jpg">
@@ -20,235 +21,204 @@
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://nuevoautomations.com/wellness-brands/">
 
+  <link rel="preconnect" href="https://assets.calendly.com" crossorigin>
+  <link rel="preconnect" href="https://calendly.com" crossorigin>
+
   <!-- head:start -->
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=20261118c">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=b26627806a">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #18213a; --p-muted: #575d6b;
+    --p-accent: #0d518d; --p-accent-ink: #ffffff; --p-action: #0d518d; --p-action-ink: #ffffff;
+    --p-inv-bg: #18213a; --p-inv-surface: #222c46; --p-inv-ink: #efe9e0; --p-inv-muted: #a3a8b5;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #18213a; --p-inv-action: #efe9e0; --p-inv-action-ink: #18213a;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=20261118b" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
 
-  <style>
-    /* ---- Landing-page layer: no site nav, one goal (book the audit) ---- */
-    .lp-header { padding: 18px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
-    .lp-header .container { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .lp-phone { font-size: 0.92rem; font-weight: 600; color: var(--ink-muted); white-space: nowrap; }
-    .lp-phone:hover { color: var(--brand); }
-    @media (max-width: 560px) { .lp-phone { display: none; } }
-    .lp-footer { padding: 40px 0 56px; text-align: center; font-size: 0.84rem; color: var(--ink-faint); border-top: 1px solid var(--line); }
-    .lp-footer p { margin: 0 0 6px; }
-    .lp-footer a { color: var(--ink-muted); }
-    .lp-sticky {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; display: none;
-      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-      background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--line);
-      box-shadow: 0 -8px 24px -16px rgba(16, 24, 40, 0.3);
-    }
-    @media (max-width: 760px) { .lp-sticky { display: block; } body { padding-bottom: 76px; } }
-  </style>
 </head>
 <body>
-  <header class="lp-header">
-    <div class="container">
-      <a href="https://nuevoautomations.com/" class="logo">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-      <a class="lp-phone" href="https://wa.me/971508549171">+971 50 854 9171</a>
+  <header class="nav">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28">Nuevo Automations</a>
+      <div class="nav__actions"><a class="btn btn--primary js-lead" data-lead="wl-header" href="#book">Book your free audit</a></div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="hero-badge"><b>7 DAYS</b> For wellness &amp; supplement brands</p>
-          <h1 style="font-size:clamp(2.3rem,5.4vw,3.8rem);">Give us one week. <span class="text-brand" style="display:inline;">You only pay the ad spend.</span></h1>
-          <p class="hero-sub">We run Meta ads for your brand that open a WhatsApp chat, and M2S answers every message in seconds, closes the sale in the chat and follows up the ones who go quiet. After 7 days you get a report with every sale it brought in. If you like it, we keep going.</p>
-          <div class="hero-actions">
-            <a href="#book" class="btn btn-primary btn-lg js-lead" data-lead="wl-hero">Book the free 30-min audit <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-          <ul class="hero-points">
-            <li>No fee for the first week</li>
-            <li>Ads run from your own ad account</li>
-            <li>English or Arabic</li>
-          </ul>
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <h1 id="page-h">Increase your ROAS in 7 days. You pay only the ad spend.</h1>
+        <p class="t-lead">For wellness and supplement brands. We run Meta ads into WhatsApp, and our AI assistant answers in seconds, closes the sale and follows up. Your team steps in only when it matters.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary js-lead" data-lead="wl-hero" href="#book">Book your free 30-min audit</a>
+          <a class="btn btn--secondary" data-lead="wl-hero-wa" href="https://wa.me/15557738409?text=Hi%2C%20I%27m%20interested%20in%20the%207-day%20M2S%20sprint%20for%20my%20brand." target="_blank" rel="noopener">Ask us on WhatsApp</a>
         </div>
-        <div class="flow-card" role="img" aria-label="The 7-day sprint: setup, launch, optimise, results report">
-          <div class="flow-head"><span class="flow-dot" aria-hidden="true"></span><strong>7-day sprint</strong><span>Your ads + M2S</span></div>
-          <ol class="flow-list">
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="flow-txt"><strong>Setup</strong>M2S learns your products and policies</span><em>Day 0</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></span><span class="flow-txt"><strong>Ads go live</strong>Click-to-WhatsApp on Instagram &amp; Facebook</span><em>Day 1</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span class="flow-txt"><strong>Every chat answered</strong>In seconds, closed in the chat</span><em>24/7</em></li>
-            <li><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span class="flow-txt"><strong>Optimise</strong>Budget moves to the ads that sell</span><em>Day 2–6</em></li>
-            <li class="is-win"><span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span><span class="flow-txt"><strong>Results report</strong>Sales, spend and every chat</span><em>Day 7</em></li>
-          </ol>
+        <p class="t-small lp-facts">No fee for the first week · Ads from your own ad account · English or Arabic · You talk to Nawaf Allahham, our founder</p>
+        <dl class="stats lp-stats lp-proof">
+          <div><dt class="t-small muted">more revenue from the same traffic, as partners report, with 0 extra staff</dt><dd class="t-stat">50–60%</dd></div>
+          <div><dt class="t-small muted">best return on ad spend, for our client Khaleej Peptides</dt><dd class="t-stat">Up to 30x</dd></div>
+          <div><dt class="t-small muted">more orders a month at Peak Labs (Oct 2026)</dt><dd class="t-stat">+53%</dd></div>
+        </dl>
+        <div class="logos logos--img lp-logos" aria-label="Brands we work with">
+          <span class="logo-item"><span class="logo-item__name">BARQ Peptides</span></span>
+          <span class="logo-item" style="--h:32px"><img src="/assets/partners/peaklabs-h.webp" alt="Peak Labs" width="98" height="32" decoding="async"></span>
+          <span class="logo-item" style="--h:26px"><img src="/assets/partners/khaleej-eagle.webp" alt="" width="55" height="26" decoding="async"><span>Khaleej Peptides</span></span>
+          <span class="logo-item logo-item--ink" style="--h:20px"><img src="/assets/partners/afiyalabs.webp" alt="Afiya Labs" width="92" height="20" decoding="async"></span>
+          <span class="logo-item" style="--h:26px"><img src="/assets/partners/peptiva.svg" alt="" width="60" height="26" decoding="async"><span>PeptiVA</span></span>
+          <span class="logo-item" style="--h:20px"><img src="/assets/partners/serumlabs.webp" alt="Serum Labs" width="103" height="20" decoding="async"></span>
         </div>
       </div>
     </section>
 
-    <!-- The problem in this niche -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Why wellness brands lose sales</p>
-          <h2>Your customers have questions. The sale goes to whoever answers first.</h2>
-          <p class="lede">Ingredients, halal, how to take it, delivery tomorrow. People buying supplements ask before they buy, and if the reply takes hours, they buy somewhere else.</p>
+    <section class="band" aria-labelledby="why-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="why-h">Supplement buyers ask first. The sale goes to whoever answers.</h2>
+          <p>Ingredients, halal, how to take it, delivery tomorrow. If the reply takes hours, they buy somewhere else.</p>
         </div>
-        <div class="leaks reveal-stagger">
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>A customer asks about ingredients at 11 PM and gets an answer the next day.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Answered in seconds</strong> from your own product information, in English or Arabic.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>They ask the price of the bundle and go quiet.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>Timed follow-ups</strong> restart the conversation, and stop the moment they reply or buy.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>Payment links get sent and never paid.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>A friendly reminder,</strong> or the order finished in the chat with card or cash on delivery.</span></div>
-          </div>
-          <div class="leak">
-            <div class="leak-problem"><i aria-hidden="true">✕</i>A question needs a real answer about health.</div>
-            <div class="leak-fix"><i aria-hidden="true">✓</i><span><strong>It goes straight to your team.</strong> M2S never invents claims, prices or advice.</span></div>
-          </div>
-        </div>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">A customer asks about ingredients at 11 PM and hears back the next day.</span><p>M2S answers in seconds from your own product information, in English or Arabic.</p></li>
+          <li><span class="rows__name">They ask the bundle price and go silent.</span><p>Timed follow-ups restart the conversation, and stop the moment they reply or buy.</p></li>
+          <li><span class="rows__name">Payment links are sent and never paid.</span><p>A reminder, or the order finished in the chat by card or cash on delivery.</p></li>
+          <li><span class="rows__name">A question needs a real answer about health.</span><p>It goes straight to your team. M2S never invents claims, prices or advice.</p></li>
+        </ul>
       </div>
     </section>
 
-    <!-- The week -->
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">How the 7 days work</p>
-          <h2>A real test, on your real ads</h2>
-          <p class="lede">You pay the ad budget straight to Meta, from your own ad account. Our work that week costs you nothing.</p>
-          <p class="fine">After the week, you decide with the numbers in front of you. If it isn't working, you walk away with the setup, the report and what we learned.</p>
+    <section class="band" id="peak-labs" aria-labelledby="peak-h">
+      <div class="wrap stack-6">
+        <div class="section-head">
+          <img class="case__logo" src="/assets/partners/peaklabs-h.webp" alt="Peak Labs" width="123" height="40" loading="lazy" decoding="async">
+          <h2 id="peak-h">Peak Labs: 53% more orders a month</h2>
         </div>
-        <ol class="timeline reveal" aria-label="The 7-day sprint, day by day">
-          <li><time>Day 0</time><div><strong>Setup</strong><p>We connect your WhatsApp, load your products, prices, delivery and policies, and test M2S on your real customer questions.</p></div></li>
-          <li><time>Day 1</time><div><strong>Ads go live</strong><p>Click-to-WhatsApp ads on Instagram and Facebook for your best-sellers and bundles.</p></div></li>
-          <li><time>Day 2–6</time><div><strong>We optimise every day</strong><p>We read the chats, sharpen the answers, cut ads that don't bring messages and put the budget behind the ones that sell.</p></div></li>
-          <li class="is-stop"><time>Day 7</time><div><strong>Your results report</strong><p>Sales from WhatsApp, ad spend, conversations, recovered sales and reply speed, compared with your usual week.</p></div></li>
+        <div class="grid">
+          <figure class="quote span-6">
+            <blockquote><p>&ldquo;We looked at every tool we could find and most of them were chatbots that answer questions. &hellip; It replies faster than we ever managed.&rdquo;</p></blockquote>
+            <figcaption>Founder, Peak Labs &middot; Supplements, UAE</figcaption>
+          </figure>
+          <dl class="stats stats--col span-5 start-8">
+            <div><dt class="t-small muted">faster first reply</dt><dd class="t-stat">90x</dd></div>
+            <div><dt class="t-small muted">more orders a month</dt><dd class="t-stat">+53%</dd></div>
+            <div><dt class="t-small muted">of chats handled without a person</dt><dd class="t-stat">74%</dd></div>
+          </dl>
+        </div>
+        <p class="t-small muted">Peak Labs figures as of October 2026.</p>
+      </div>
+    </section>
+
+    <section class="band ground-surface" aria-labelledby="week-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="week-h">The 7-day sprint on your real ads</h2>
+          <p>You pay the ad budget straight to Meta, from your own ad account. Our work that week costs you nothing.</p>
+          <p>After the week you decide with the numbers in front of you. If it isn't working, you walk away with the setup, the report and what we learned.</p>
+        </div>
+        <ol class="steps-list span-6 start-7" aria-label="The 7-day sprint, day by day">
+          <li><strong>Day 0: setup</strong><span>We connect your WhatsApp, load your products, prices, delivery and policies, and test M2S on real customer questions.</span></li>
+          <li><strong>Day 1: ads go live</strong><span>Click-to-WhatsApp ads on Instagram and Facebook for your best-sellers and bundles.</span></li>
+          <li><strong>Days 2 to 6: daily tuning</strong><span>We read the chats, sharpen the answers, cut ads that bring no messages and move budget to the ones that sell.</span></li>
+          <li><strong>Day 7: your results report</strong><span>Sales from WhatsApp, ad spend, conversations, recovered sales and reply speed, against your usual week.</span></li>
         </ol>
       </div>
     </section>
 
-    <!-- Example chat -->
-    <section class="section section--alt">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">What your customers see</p>
-          <h2>A question at 1 AM becomes an order</h2>
-          <p class="lede">M2S answers from the information you give it, offers the right bundle and takes the order. Anything it can't answer, or anything medical, goes to your team with a summary.</p>
+    <section class="band" aria-labelledby="chat-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="chat-h">A question at 1 AM becomes an order</h2>
+          <p>M2S answers from the information you give it, offers the right bundle and takes the order. Anything it can't answer, or anything medical, goes to your team with a summary.</p>
         </div>
-        <div class="reveal">
-          <ol class="timeline" aria-label="Example: a question from an Instagram ad becomes a paid order">
-            <li><time>1:04 AM</time><div><strong>Question from an Instagram ad</strong><p>“Is the magnesium halal? And can you deliver to Dubai Marina tomorrow?”</p></div></li>
-            <li><time>Seconds</time><div><strong>Answered from your product info</strong><p>Halal-certified, next-day delivery to Dubai Marina, and an offer of the 3-month bundle.</p></div></li>
-            <li><time>1:06 AM</time><div><strong>Order taken in the chat</strong><p>Chose the bundle, gave the address and asked to pay by card.</p></div></li>
-            <li class="is-stop"><time>Paid</time><div><strong>Order sent to your team</strong><p>Payment link paid, order marked paid, and the chat tagged to the ad it came from.</p></div></li>
+        <div class="span-6 start-7 stack-4">
+          <ol class="steps-list" aria-label="Example: a question from an Instagram ad becomes a paid order">
+            <li><strong>1:04 AM, a question from an Instagram ad</strong><span>“Is the magnesium halal? And can you deliver to Dubai Marina tomorrow?”</span></li>
+            <li><strong>Seconds later, answered from your product info</strong><span>Halal certified, next-day delivery to Dubai Marina, and an offer of the 3-month bundle.</span></li>
+            <li><strong>1:06 AM, order taken in the chat</strong><span>Chose the bundle, gave the address and asked to pay by card.</span></li>
+            <li><strong>Paid, order sent to your team</strong><span>Payment link paid, order marked paid, and the chat tagged to its ad.</span></li>
           </ol>
-          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
+          <p class="t-small muted">Example chat with a made-up customer.</p>
         </div>
       </div>
     </section>
 
-    <!-- The audit + booking -->
-    <section class="section" id="book">
-      <div class="container book-grid">
-        <div class="reveal">
-          <p class="eyebrow">Step one: a free 30-minute audit</p>
-          <h2>Let's see if your brand is a fit</h2>
-          <p class="lede" style="margin-bottom:32px;">We take a small number of sprints at a time so each one gets proper attention.</p>
-          <ol class="audit-steps">
-            <li><div><strong>You tell us about your brand</strong><p>What you sell, where your sales come from now and how you handle WhatsApp today.</p></div></li>
-            <li><div><strong>We check it's a fit</strong><p>Best for brands already selling every week, with their own Meta ad account and order values around AED 150 or more.</p></div></li>
-            <li><div><strong>We plan your sprint</strong><p>Which products to push, the ad budget for the week and the start date. Yours to keep either way.</p></div></li>
+    <section class="band" id="book" aria-labelledby="book-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="book-h">Step one: a free 30-minute audit</h2>
+          <p>We take a small number of sprints at a time so each gets proper attention.</p>
+          <ol class="steps-list">
+            <li><strong>You tell us about your brand</strong><span>What you sell, where your sales come from and how you handle WhatsApp today.</span></li>
+            <li><strong>We check it's a fit</strong><span>Best for brands already selling every week, with their own Meta ad account and order values around AED 150 or more.</span></li>
+            <li><strong>We plan your sprint</strong><span>Which products to push, the week's ad budget and the start date. Yours to keep either way.</span></li>
           </ol>
-          <p class="fine">Pick any open time. Times show in your own time zone.</p>
+          <p>You talk to <strong>Nawaf Allahham</strong>, our founder, who sets up every sprint personally.</p>
+          <p class="t-small muted">Answer 4 quick questions, then pick any open time. Times show in your own time zone.</p>
         </div>
-
-        <div class="reveal">
+        <div class="span-6 start-7">
           <div class="cal-embed" data-source="wellness-landing">
-            <div class="calendly-inline-widget" data-auto-load="false" data-url="https://calendly.com/nawaf-allahham02/30min?primary_color=1a5fa0&amp;text_color=101a2b">
-              <p class="cal-embed__msg">Loading the calendar&hellip;</p>
+            <div class="calendly-inline-widget" data-auto-load="false">
+              <p class="cal-embed__msg">Loading&hellip;</p>
             </div>
-            <noscript><p class="cal-embed__msg"><a href="https://calendly.com/nawaf-allahham02/30min" target="_blank" rel="noopener">Open the booking calendar on Calendly</a></p></noscript>
+            <noscript><p class="cal-embed__msg">Booking needs JavaScript. <a href="https://wa.me/15557738409" target="_blank" rel="noopener">Message us on WhatsApp</a> instead.</p></noscript>
           </div>
-          <p class="cal-embed__alt">Prefer WhatsApp? <a href="https://wa.me/971508549171?text=Hi%2C%20I%27m%20interested%20in%20the%207-day%20M2S%20sprint%20for%20my%20brand." target="_blank" rel="noopener" data-lead="booking-wa">Message us</a> · <a href="/privacy/">How we use your details</a></p>
+          <div class="btn-row cal-embed__wa"><a class="btn btn--secondary" href="https://wa.me/15557738409?text=Hi%2C%20I%27m%20interested%20in%20the%207-day%20M2S%20sprint%20for%20my%20brand." target="_blank" rel="noopener" data-lead="booking-wa">Prefer WhatsApp? Message us</a></div>
+          <p class="cal-embed__alt"><a href="/privacy/">How we use your details</a></p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section section--alt">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Before you book</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>What do I pay for the 7 days?</summary>
-            <p>Only the ad spend, paid straight to Meta from your own ad account. We agree the budget with you on the audit call. There's no fee from us for the sprint.</p>
-          </details>
-          <details>
-            <summary>What happens after the week?</summary>
-            <p>We go through the results report with you. If you want to keep going, we move to a monthly M2S retainer and keep the ads running with no gap. If not, you keep the report and the plan.</p>
-          </details>
-          <details>
-            <summary>Is my brand a fit?</summary>
-            <p>The sprint works best for wellness and supplement brands that already sell every week, have their own Meta ad account, and have order values around AED 150 or more. We'll tell you honestly on the call if it isn't a fit.</p>
-          </details>
-          <details>
-            <summary>Will the AI make health claims about my products?</summary>
-            <p>No. It only uses the product information you approve, and it never gives medical advice. Health questions go straight to your team. You stay responsible for your product claims and any ad permits your products need in the UAE.</p>
-          </details>
-          <details>
-            <summary>Do I need to change my WhatsApp number?</summary>
-            <p>No. We work with the number you already use, and your team can still use the WhatsApp app.</p>
-          </details>
-          <details>
-            <summary>Does it handle Arabic?</summary>
-            <p>Yes. The assistant replies in English or Arabic, matching the language your customer writes in.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0;">
-      <div class="container">
-        <div class="cta-band reveal">
-          <h2>One week. Your ads. Every sale reported.</h2>
-          <p>Book a free 30-minute audit and we'll plan your sprint together.</p>
-          <div class="cta-actions">
-            <a href="#book" class="btn btn-light btn-lg js-lead" data-lead="wl-final">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-          <p class="fine">Or message us directly on +971 50 854 9171</p>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions before you book</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>What do I pay for the 7 days?</h3><p>Only the ad spend, paid straight to Meta from your own ad account. We agree the budget with you on the audit call. There's no fee from us for the sprint.</p></div>
+          <div class="faq__item"><h3>What happens after the week?</h3><p>We go through the results report with you. If you want to keep going, we move to a monthly M2S retainer and keep the ads running with no gap. If not, you keep the report and the plan.</p></div>
+          <div class="faq__item"><h3>Is my brand a fit for the sprint?</h3><p>It works best for wellness and supplement brands that already sell every week, have their own Meta ad account, and have order values around AED 150 or more. We'll tell you on the call if it isn't a fit.</p></div>
+          <div class="faq__item"><h3>Will the AI make health claims about my products?</h3><p>No. It only uses the product information you approve, and it never gives medical advice. Health questions go straight to your team. You stay responsible for your product claims and any ad permits your products need in the UAE.</p></div>
+          <div class="faq__item"><h3>Do I need a new WhatsApp number?</h3><p>No. We work with the number you already use, and your team can still use the WhatsApp app.</p></div>
+          <div class="faq__item"><h3>Does M2S reply in Arabic?</h3><p>Yes. The assistant replies in English or Arabic, in the language your customer writes in.</p></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="lp-footer">
-    <div class="container">
-      <p>Nuevo Automations FZE LLC · Sharjah Publishing City Free Zone, UAE</p>
-      <p><a href="https://nuevoautomations.com/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> · <a href="/privacy/">Privacy policy</a></p>
+  <footer class="lp-foot">
+    <div class="wrap">
+      <p>Nuevo Automations FZE LLC · Sharjah Publishing City Free Zone, UAE · Licence no. 4431808.01</p>
+      <p><a href="/">nuevoautomations.com</a> · <a href="mailto:nawafallahham@nuevoautomations.com">Email us</a> · <a href="https://wa.me/15557738409" target="_blank" rel="noopener">WhatsApp +1 555-773-8409</a> · <a href="/privacy/">Privacy policy</a></p>
     </div>
   </footer>
 
-  <div class="lp-sticky">
-    <a href="#book" class="btn btn-primary btn-block js-lead" data-lead="wl-sticky">Book the free audit →</a>
-  </div>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="wl-sticky" href="#book">Book your free audit</a>
+  </nav>
 
-  <script src="/js/track.js?v=20261118c" defer></script>
-  <script src="/js/script.js?v=20261118b" defer></script>
-  <script src="/js/calendly.js?v=20261118c" defer></script>
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script src="/js/track.js?v=f9bc8506a0" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
+  <script src="/js/calendly.js?v=6e454b4f93" defer></script>
 </body>
 </html>

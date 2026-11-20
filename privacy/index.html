@@ -3,22 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Nuevo Automations</title>
+  <title>Privacy Policy | Nuevo Automations</title>
   <meta name="description" content="How Nuevo Automations collects, uses and protects your personal data, including cookies and advertising tools.">
   <link rel="canonical" href="https://nuevoautomations.com/privacy/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nuevo Automations">
+  <meta property="og:locale" content="en_AE">
+  <meta property="og:url" content="https://nuevoautomations.com/privacy/">
+  <meta property="og:title" content="Privacy Policy | Nuevo Automations">
+  <meta property="og:description" content="How Nuevo Automations collects, uses and protects your personal data, including cookies and advertising tools.">
+  <meta property="og:image" content="https://nuevoautomations.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#ffffff">
 
   <!-- head:start -->
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=20261118c">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=b26627806a">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #18213a; --p-muted: #575d6b;
+    --p-accent: #0d518d; --p-accent-ink: #ffffff; --p-action: #0d518d; --p-action-ink: #ffffff;
+    --p-inv-bg: #18213a; --p-inv-surface: #222c46; --p-inv-ink: #efe9e0; --p-inv-muted: #a3a8b5;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #18213a; --p-inv-action: #efe9e0; --p-inv-action-ink: #18213a;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=20261118b" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style data-page>
+  /* privacy: one reading column; lists, links and section headings inside the policy text */
+  .prose h2 { font-size: var(--t-h3); margin-top: var(--s-8); }
+  .prose ul { list-style: none; padding-left: 0; }
+  .prose li { padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
+  .prose li:first-child { padding-top: 0; }
+  .prose a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .prose strong { font-weight: 600; }
+  .legal-contact { margin-top: var(--s-8) !important; padding-top: var(--s-6); border-top: 1px solid var(--line); }
+  .legal-contact > * + * { margin-top: var(--s-4); }
+  .cookie-btn { background: none; border: 0; padding: 0; font: inherit; font-weight: 500; cursor: pointer; min-height: 44px; }
+  </style>
 
   <style>
     .legal { max-width: 800px; margin: 0 auto; padding-top: 56px; padding-bottom: 80px; }
@@ -67,171 +108,162 @@
 </head>
 <body>
   <!-- header:start privacy -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/">How M2S works</a>
-        <a href="/#industries">Industries</a>
-        <a href="/results/">Results</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/partners/">Partners</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main class="container legal" id="main">
-    <p class="crumb"><a href="/">Home</a> / Privacy policy</p>
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <p class="crumb"><a href="/">Home</a> / Privacy policy</p>
+        <h1 id="page-h">Privacy Policy</h1>
+        <p class="t-lead">Last updated: 18 November 2026</p>
+      </div>
+    </section>
 
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: 18 November 2026</p>
+    <section class="band" aria-label="Privacy policy text">
+      <div class="wrap">
+        <div class="prose">
+          <p>This policy explains what personal data Nuevo Automations collects when you use this website, why we collect it, and what control you have over it. Nuevo Automations FZE LLC is a free zone establishment registered in Sharjah Publishing City Free Zone, United Arab Emirates, and can be reached at <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>.</p>
 
-    <p>This policy explains what personal data Nuevo Automations collects when you use this website, why we collect it, and what control you have over it. Nuevo Automations FZE LLC is a free zone establishment registered in Sharjah Publishing City Free Zone, United Arab Emirates, and can be reached at <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>.</p>
+          <h2>What we collect</h2>
+          <p>We only collect what we actually need:</p>
+          <ul>
+          <li><strong>Booking details.</strong> Audits and consultations are scheduled through Calendly (see below). When you book, Calendly passes us your name, email address, your chosen date and time and your answers to the booking questions (such as your WhatsApp number and business name), and we store them. We also record the time of booking and how you found us (for example the ad campaign or website that sent you). We do not store your IP address with your booking. If you accepted cookies, your IP address and browser type are held for a short time so the booking can be reported to Meta as described below, and are deleted within two days.</li>
+          <li><strong>Audit questions.</strong> Before the booking calendar opens, we ask four short questions about your brand (your role, weekly orders, average order value and how you run Meta ads). We store your answers with how you found us, and, if your brand is a fit, the name and company you enter, so we can prepare your call. Your browser remembers your answers in its local storage for 30 days so you don’t have to answer again. A one-way code made from your IP address is stored to limit abuse; your IP address itself is not.</li>
+          <li><strong>Messages you send us.</strong> If you contact us on WhatsApp or by email, we keep that conversation so we can answer you and follow up.</li>
+          <li><strong>Anonymous usage statistics.</strong> Our own analytics count page views, clicks on our booking and WhatsApp buttons, the website or campaign that referred you, and the page you visited. It uses no cookies. Each visitor is counted with a random-looking code that changes every day, so we cannot recognise you from one day to the next, and your IP address and browser details are never stored.</li>
+          <li><strong>How you found us.</strong> When you arrive from an ad or another website, your browser remembers that source (the campaign tags in the link and the referring site) in its local storage for up to 30 days. It stays on your device and is only sent to us if you book, so the booking can be credited to the right ad.</li>
+          <li><strong>Advertising data.</strong> If you accept cookies, the Meta advertising tools described below collect standard technical information such as pages viewed, device and browser type.</li>
+          </ul>
+          <p>We do not ask for payment card details on this website, and we do not knowingly collect data from anyone under 18.</p>
 
-    <h2>What we collect</h2>
-    <p>We only collect what we actually need:</p>
-    <ul>
-      <li><strong>Booking details.</strong> Audits and consultations are scheduled through Calendly (see below). When you book, Calendly passes us your name, email address, your chosen date and time and your answers to the booking questions (such as your WhatsApp number and business name), and we store them. We also record the time of booking and how you found us (for example the ad campaign or website that sent you). We do not store your IP address with your booking. If you accepted cookies, your IP address and browser type are held for a short time so the booking can be reported to Meta as described below, and are deleted within two days.</li>
-      <li><strong>Messages you send us.</strong> If you contact us on WhatsApp or by email, we keep that conversation so we can answer you and follow up.</li>
-      <li><strong>Anonymous usage statistics.</strong> Our own analytics count page views, clicks on our booking and WhatsApp buttons, the website or campaign that referred you, and the page you visited. It uses no cookies. Each visitor is counted with a random-looking code that changes every day, so we cannot recognise you from one day to the next, and your IP address and browser details are never stored.</li>
-      <li><strong>How you found us.</strong> When you arrive from an ad or another website, your browser remembers that source (the campaign tags in the link and the referring site) in its local storage for up to 30 days. It stays on your device and is only sent to us if you book, so the booking can be credited to the right ad.</li>
-      <li><strong>Advertising data.</strong> If you accept cookies, the Meta advertising tools described below collect standard technical information such as pages viewed, device and browser type.</li>
-    </ul>
-    <p>We do not ask for payment card details on this website, and we do not knowingly collect data from anyone under 18.</p>
+          <h2>Why we use it</h2>
+          <ul>
+          <li>To arrange and attend your audit or consultation, and to contact you about it.</li>
+          <li>To respond to enquiries and provide the services you ask us for.</li>
+          <li>To measure whether our advertising works, and to show relevant ads to people likely to be interested.</li>
+          <li>To keep the site secure and prevent abuse of the booking system.</li>
+          </ul>
+          <p>Where the law requires a lawful basis, we rely on your consent for advertising cookies, and on the necessity of performing a contract or our legitimate business interests for everything else.</p>
 
-    <h2>Why we use it</h2>
-    <ul>
-      <li>To arrange and attend your audit or consultation, and to contact you about it.</li>
-      <li>To respond to enquiries and provide the services you ask us for.</li>
-      <li>To measure whether our advertising works, and to show relevant ads to people likely to be interested.</li>
-      <li>To keep the site secure and prevent abuse of the booking system.</li>
-    </ul>
-    <p>Where the law requires a lawful basis, we rely on your consent for advertising cookies, and on the necessity of performing a contract or our legitimate business interests for everything else.</p>
+          <h2>Cookies and advertising tools</h2>
+          <p>This website uses the <strong>Meta Pixel</strong>, a tool provided by Meta Platforms, Inc. (Facebook and Instagram). It sets cookies and reports back to Meta when you visit a page or click one of our contact buttons.</p>
+          <p>We use it to measure how our advertising performs and to reach people who have visited the site. Meta may combine this with information it already holds about you. You can read how Meta handles this in the <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>, and adjust what you see through <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">Meta's ad preferences</a>.</p>
+          <p>If you accepted cookies and then book an audit, our server also tells Meta about that booking directly, using the <strong>Meta Conversions API</strong>. This lets us measure which ads lead to bookings even when browsers block the pixel. We send your phone number, email address (if given), first name and country only in hashed form (scrambled with SHA-256 so the original cannot be read), together with your IP address, browser type and Meta's ad-click identifier, which Meta uses to match the booking to an ad. If you declined cookies, nothing about your booking is sent to Meta.</p>
+          <p>You can decline these cookies using the banner shown when you first visit, change your mind at any time using the link at the bottom of this page, or block cookies in your browser settings. Declining does not affect your ability to browse the site or book an audit.</p>
+          <p>The booking calendar on this site is provided by <strong>Calendly</strong> and loads from calendly.com. Calendly may set the cookies it needs to run the calendar and handles the details you type into it under its own <a href="https://calendly.com/privacy" target="_blank" rel="noopener">privacy notice</a>.</p>
+          <p>We also load fonts from Google Fonts. That provider receives your IP address as a normal part of serving those files.</p>
 
-    <h2>Cookies and advertising tools</h2>
-    <p>This website uses the <strong>Meta Pixel</strong>, a tool provided by Meta Platforms, Inc. (Facebook and Instagram). It sets cookies and reports back to Meta when you visit a page or click one of our contact buttons.</p>
-    <p>We use it to measure how our advertising performs and to reach people who have visited the site. Meta may combine this with information it already holds about you. You can read how Meta handles this in the <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta Privacy Policy</a>, and adjust what you see through <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank" rel="noopener">Meta's ad preferences</a>.</p>
-    <p>If you accepted cookies and then book an audit, our server also tells Meta about that booking directly, using the <strong>Meta Conversions API</strong>. This lets us measure which ads lead to bookings even when browsers block the pixel. We send your phone number, email address (if given), first name and country only in hashed form (scrambled with SHA-256 so the original cannot be read), together with your IP address, browser type and Meta's ad-click identifier, which Meta uses to match the booking to an ad. If you declined cookies, nothing about your booking is sent to Meta.</p>
-    <p>You can decline these cookies using the banner shown when you first visit, change your mind at any time using the link at the bottom of this page, or block cookies in your browser settings. Declining does not affect your ability to browse the site or book an audit.</p>
-    <p>The booking calendar on this site is provided by <strong>Calendly</strong> and loads from calendly.com. Calendly may set the cookies it needs to run the calendar and handles the details you type into it under its own <a href="https://calendly.com/privacy" target="_blank" rel="noopener">privacy notice</a>.</p>
-    <p>We also load fonts from Google Fonts. That provider receives your IP address as a normal part of serving those files.</p>
+          <h2>Who we share it with</h2>
+          <p>We do not sell your personal data. We share it only with the service providers that make this website work:</p>
+          <ul>
+          <li><strong>Cloudflare</strong> — hosting for the website, the database that stores your booking, and our anonymous usage statistics.</li>
+          <li><strong>Calendly, Inc.</strong> — our booking calendar. Bookings are scheduled through Calendly, which stores your booking, sends you its confirmation and reminder emails, and passes the booking on to us.</li>
+          <li><strong>Cloudflare Email Service</strong> — sends our internal booking alert email.</li>
+          <li><strong>OrcaFlo</strong> — our own WhatsApp messaging platform, which receives your booking details so we can send your confirmation and reminders on WhatsApp.</li>
+          <li><strong>Meta Platforms</strong> — advertising measurement through the Meta Pixel and Conversions API, only if you accepted cookies, as described above.</li>
+          <li><strong>WhatsApp</strong> (Meta) — when we message you about your booking, or if you choose to message us there.</li>
+          </ul>
+          <p>Some of these providers store data outside the UAE, including in the United States and Europe. We only use established providers that offer appropriate safeguards for international transfers.</p>
 
-    <h2>Who we share it with</h2>
-    <p>We do not sell your personal data. We share it only with the service providers that make this website work:</p>
-    <ul>
-      <li><strong>Cloudflare</strong> — hosting for the website, the database that stores your booking, and our anonymous usage statistics.</li>
-      <li><strong>Calendly, Inc.</strong> — our booking calendar. Bookings are scheduled through Calendly, which stores your booking, sends you its confirmation and reminder emails, and passes the booking on to us.</li>
-      <li><strong>Cloudflare Email Service</strong> — sends our internal booking alert email.</li>
-      <li><strong>OrcaFlo</strong> — our own WhatsApp messaging platform, which receives your booking details so we can send your confirmation and reminders on WhatsApp.</li>
-      <li><strong>Meta Platforms</strong> — advertising measurement through the Meta Pixel and Conversions API, only if you accepted cookies, as described above.</li>
-      <li><strong>WhatsApp</strong> (Meta) — when we message you about your booking, or if you choose to message us there.</li>
-    </ul>
-    <p>Some of these providers store data outside the UAE, including in the United States and Europe. We only use established providers that offer appropriate safeguards for international transfers.</p>
+          <h2>How long we keep it</h2>
+          <p>Booking records are automatically deleted about 90 days after the appointment date. Audit question answers, names and companies are deleted after about 180 days. Anonymous usage statistics are deleted after about 13 months. Enquiries and correspondence are kept for as long as we have an active relationship, and then removed when no longer needed. Advertising cookie data is retained by Meta according to their own policy.</p>
 
-    <h2>How long we keep it</h2>
-    <p>Booking records are automatically deleted about 90 days after the appointment date. Anonymous usage statistics are deleted after about 13 months. Enquiries and correspondence are kept for as long as we have an active relationship, and then removed when no longer needed. Advertising cookie data is retained by Meta according to their own policy.</p>
+          <h2>Your rights</h2>
+          <p>You can ask us to show you the data we hold about you, correct it, delete it, or stop using it for marketing. Email <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> and we will respond within 30 days. If you are in the UAE, you may also raise a concern with the UAE Data Office; if you are in the UK or EU, with your local data protection authority.</p>
 
-    <h2>Your rights</h2>
-    <p>You can ask us to show you the data we hold about you, correct it, delete it, or stop using it for marketing. Email <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a> and we will respond within 30 days. If you are in the UAE, you may also raise a concern with the UAE Data Office; if you are in the UK or EU, with your local data protection authority.</p>
-
-    <h2>Changes</h2>
-    <p>If we change this policy we will update the date at the top of this page.</p>
-
-    <div class="legal-contact">
-      <p><strong>Nuevo Automations FZE LLC</strong><br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, United Arab Emirates</p>
-      <p>Email: <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a><br>
-      WhatsApp: <a href="https://wa.me/971508549171">+971 50 854 9171</a></p>
-      <p><a href="#" id="cookie-reset">Change your cookie choice</a></p>
-    </div>
+          <h2>Changes</h2>
+          <p>If we change this policy we will update the date at the top of this page.</p>
+          <div class="legal-contact">
+            <p><strong>Nuevo Automations FZE LLC</strong><br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, United Arab Emirates</p>
+            <p>Email: <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a><br>
+            WhatsApp: <a href="https://wa.me/15557738409">+1 555-773-8409</a></p>
+            <p><button type="button" class="link cookie-btn" id="cookie-reset">Change your cookie choice</button></p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the messages they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <h2 class="footer-h">Company</h2>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book an audit</a>
-        </div>
-
-        <div class="footer-col">
-          <h2 class="footer-h">Services</h2>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <h2 class="footer-h">Industries</h2>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col">
-          <h2 class="footer-h">Contact</h2>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/15557738409" target="_blank" rel="noopener">WhatsApp +1 555-773-8409</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
-  <script src="/js/track.js?v=20261118c" defer></script>
-  <script src="/js/script.js?v=20261118b" defer></script>
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
+  <script src="/js/track.js?v=f9bc8506a0" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
   <script>
     document.getElementById('cookie-reset').addEventListener('click', function (e) {

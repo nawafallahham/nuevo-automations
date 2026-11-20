@@ -1,7 +1,10 @@
 /* ================= Calendly booking embed =================
-   Shared by /book/ and /consultation/. Expects a .cal-embed container
-   (data-source) holding a .calendly-inline-widget div. Calendly's script
-   loads only when the container nears the viewport. The scheduled booking
+   Shared by /book/, /consultation/ and /wellness-brands/. Expects a
+   .cal-embed container (data-source) holding a .calendly-inline-widget div.
+   Before the calendar shows, the visitor answers the qualifying questions
+   below (QUESTIONS); only a qualified visitor gets the calendar, with the
+   answers passed into Calendly. Calendly's script loads only when the
+   container nears the viewport or a "#book" button is tapped. The scheduled booking
    reaches us twice: Calendly's signed webhook (the booking itself) and the
    beacon below (consent + first-touch attribution for Meta CAPI). */
 (function () {
@@ -11,6 +14,97 @@
   var WIDGET_JS = 'https://assets.calendly.com/assets/external/widget.js';
   var WIDGET_CSS = 'https://assets.calendly.com/assets/external/widget.css';
   var ORIGIN = 'https://calendly.com';
+
+  /* ---- Qualifying questions ---------------------------------------
+     One tap each. An option with pass: false ends the check; the visitor
+     sees the decline message and no calendar. Answers go to Calendly as
+     a1..a4 (custom invitee questions 1-4 on the event type, in this order). */
+  var QUESTIONS = [
+    {
+      "q": "What’s your role at the brand?",
+      "options": [
+        {
+          "label": "Founder or owner"
+        },
+        {
+          "label": "Co-founder or partner"
+        },
+        {
+          "label": "Head of marketing or e‑commerce"
+        },
+        {
+          "label": "Other (agency, freelancer or staff)",
+          "pass": false,
+          "why": "The audit is a planning call with the person who decides on the brand’s marketing. Please ask the founder or marketing lead to book it."
+        }
+      ]
+    },
+    {
+      "q": "How many orders do you get in a typical week?",
+      "options": [
+        {
+          "label": "Not selling yet",
+          "pass": false,
+          "why": "We work with brands that already sell online every week, so the ads have a live store and real products behind them. Once you’re selling, we’d love to talk."
+        },
+        {
+          "label": "1 to 10"
+        },
+        {
+          "label": "11 to 50"
+        },
+        {
+          "label": "51 to 200"
+        },
+        {
+          "label": "More than 200"
+        }
+      ]
+    },
+    {
+      "q": "What’s your average order value?",
+      "options": [
+        {
+          "label": "Under AED 100",
+          "pass": false,
+          "why": "With orders under AED 100, the ad spend rarely pays back through WhatsApp sales, so we’d be taking your budget without a fair chance of profit."
+        },
+        {
+          "label": "AED 100 to 149"
+        },
+        {
+          "label": "AED 150 to 300"
+        },
+        {
+          "label": "AED 300 to 600"
+        },
+        {
+          "label": "More than AED 600"
+        }
+      ]
+    },
+    {
+      "q": "How do you run Meta ads today?",
+      "options": [
+        {
+          "label": "From our own ad account"
+        },
+        {
+          "label": "Our own account, paused for now"
+        },
+        {
+          "label": "An agency runs them in their account"
+        },
+        {
+          "label": "We don’t have a Meta ad account yet",
+          "pass": false,
+          "why": "We run the ads from your own Meta ad account, so you keep the ads, data and results. Set one up in Meta Business Suite, then come back and book."
+        }
+      ]
+    }
+  ];
+  var STORE_KEY = 'nuevo-qualify';
+  var STORE_DAYS = 30;
 
   var box = document.querySelector('.cal-embed');
   var widget = box && box.querySelector('.calendly-inline-widget');
@@ -31,7 +125,9 @@
   function embedUrl() {
     var a = attribution() || {};
     var q = new URLSearchParams(location.search);
-    var params = ['primary_color=1a5fa0', 'text_color=101a2b'];
+    var params = ['primary_color=0d518d', 'text_color=18213a'];
+    if (person.name) params.push('name=' + encodeURIComponent(person.name));
+    answers.forEach(function (a, i) { params.push('a' + (i + 1) + '=' + encodeURIComponent(a)); });
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
       var v = a[k] || q.get(k);
       if (v) params.push(k + '=' + encodeURIComponent(String(v).slice(0, 150)));
@@ -40,7 +136,9 @@
   }
 
   // --- lazy load ---------------------------------------------------
-  var loading = false;
+  // The script may load early (near the viewport, or on a "#book" tap);
+  // the widget itself is only drawn once the visitor has qualified.
+  var loading = false, scriptReady = false, qualified = false;
   function fail() {
     box.classList.add('is-failed');
     widget.innerHTML = '<p class="cal-embed__msg">The calendar didn’t load. ' +
@@ -54,6 +152,7 @@
     window.Calendly.initInlineWidget({ url: url, parentElement: widget });
     box.classList.add('is-loaded');
   }
+  function maybeInit() { if (scriptReady && qualified) init(); }
   function load() {
     if (loading) return;
     loading = true;
@@ -64,10 +163,17 @@
     var s = document.createElement('script');
     s.src = WIDGET_JS;
     s.async = true;
-    s.onload = init;
-    s.onerror = fail;
+    s.onload = function () { scriptReady = true; maybeInit(); };
+    s.onerror = function () { if (qualified) fail(); else loading = false; };
     document.head.appendChild(s);
   }
+
+  // A tap on any "#book" button starts the load at once, so the calendar is
+  // ready (or nearly) by the time the visitor has answered.
+  document.addEventListener('pointerdown', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#book"]');
+    if (a) load();
+  }, { passive: true });
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -77,6 +183,131 @@
   } else {
     load();
   }
+
+  // --- qualifying questions ------------------------------------------
+  // Each step is reported to /api/lead (the dashboard funnel). A visitor who
+  // qualifies gives their name and company, then gets the calendar.
+  var answers = [];
+  var person = { name: '', company: '' };
+  var leadId = '';
+  function readStore() {
+    try {
+      var v = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (v && Date.now() - v.t < STORE_DAYS * 864e5) return v;
+    } catch (e) {}
+    return null;
+  }
+  function writeStore(v) {
+    v.id = leadId;
+    try { v.t = Date.now(); localStorage.setItem(STORE_KEY, JSON.stringify(v)); } catch (e) {}
+  }
+  function newLeadId() {
+    var a = new Uint8Array(12);
+    (window.crypto || window.msCrypto).getRandomValues(a);
+    return 'ld_' + Array.prototype.map.call(a, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+  }
+  function report(status, extra) {
+    if (!leadId) return;
+    var body = { id: leadId, page: source, status: status, answers: answers, attribution: attribution() };
+    for (var k in extra) body[k] = extra[k];
+    try {
+      fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .catch(function () {});
+    } catch (e) {}
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var panel = document.createElement('div');
+  panel.className = 'qualify';
+  panel.setAttribute('aria-live', 'polite');
+  box.insertBefore(panel, widget);
+  box.classList.add('is-gated');
+
+  function pass() {
+    qualified = true;
+    panel.remove();
+    box.classList.remove('is-gated');
+    widget.innerHTML = '<p class="cal-embed__msg">Loading the calendar&hellip;</p>';
+    load();
+    maybeInit();
+  }
+  function decline(why) {
+    box.classList.add('is-declined');
+    panel.innerHTML =
+      '<p class="qualify__step">Thanks for your answers</p>' +
+      '<h3 class="qualify__q" tabindex="-1">We’re not the right fit just yet</h3>' +
+      '<p class="qualify__note">' + esc(why || 'The free audit is for brands that already sell online every week and run Meta ads from their own account.') + '</p>' +
+      '<p class="qualify__note">Have a question in the meantime? Message us on WhatsApp.</p>' +
+      '<div class="btn-row"><a class="btn btn--secondary" href="https://wa.me/15557738409" target="_blank" rel="noopener" data-lead="qualify-wa">Message us on WhatsApp</a></div>';
+    panel.querySelector('h3').focus({ preventScroll: true });
+  }
+  function details() {
+    panel.innerHTML =
+      '<p class="qualify__step">You’re a fit · last step</p>' +
+      '<div class="qualify__bar" aria-hidden="true"><span style="width:100%"></span></div>' +
+      '<h3 class="qualify__q" tabindex="-1">Who should we expect on the call?</h3>' +
+      '<form class="qualify__form" novalidate>' +
+      '<label class="field">Your name<input name="name" autocomplete="name" required maxlength="100" value="' + esc(person.name) + '"></label>' +
+      '<label class="field">Company or brand name<input name="company" autocomplete="organization" required maxlength="120" value="' + esc(person.company) + '"></label>' +
+      '<p class="field__error qualify__err" hidden>Please fill in both, so we can prepare your audit.</p>' +
+      '<button class="btn btn--primary" type="submit">Show available times</button>' +
+      '<p class="t-small muted">We only use this to prepare your call. <a href="/privacy/">Privacy policy</a></p>' +
+      '</form>';
+    var form = panel.querySelector('form');
+    panel.querySelector('h3').focus({ preventScroll: true });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = form.elements.name.value.trim(), c = form.elements.company.value.trim();
+      form.elements.name.setAttribute('aria-invalid', String(!n));
+      form.elements.company.setAttribute('aria-invalid', String(!c));
+      panel.querySelector('.qualify__err').hidden = !!(n && c);
+      if (!n || !c) { (n ? form.elements.company : form.elements.name).focus(); return; }
+      person = { name: n.slice(0, 100), company: c.slice(0, 120) };
+      writeStore({ ok: true, answers: answers.slice(), name: person.name, company: person.company });
+      report('details', { name: person.name, company: person.company });
+      pass();
+    });
+  }
+  function ask(i) {
+    var q = QUESTIONS[i];
+    panel.innerHTML =
+      '<p class="qualify__step">' + (i ? '' : '4 quick taps so we can prepare your audit · ') + (i + 1) + ' of ' + QUESTIONS.length + '</p>' +
+      '<div class="qualify__bar" aria-hidden="true"><span style="width:' + Math.round(i / QUESTIONS.length * 100) + '%"></span></div>' +
+      '<h3 class="qualify__q" id="qualify-q" tabindex="-1">' + esc(q.q) + '</h3>' +
+      '<div class="qualify__opts" role="group" aria-labelledby="qualify-q">' +
+      q.options.map(function (o, j) { return '<button type="button" class="qualify__opt" data-j="' + j + '">' + esc(o.label) + '</button>'; }).join('') +
+      '</div>' +
+      (i ? '<button type="button" class="qualify__back">Back</button>' : '');
+    panel.querySelectorAll('.qualify__opt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var o = q.options[+b.getAttribute('data-j')];
+        if (!leadId) leadId = newLeadId();
+        answers[i] = o.label;
+        answers.length = i + 1;
+        if (o.pass === false) {
+          writeStore({ ok: false, why: o.why });
+          report('declined', { declined_at_q: i + 1 });
+          decline(o.why);
+          return;
+        }
+        if (i + 1 < QUESTIONS.length) { report('started'); ask(i + 1); }
+        else { writeStore({ ok: true, answers: answers.slice() }); report('qualified'); details(); }
+      });
+    });
+    var back = panel.querySelector('.qualify__back');
+    if (back) back.addEventListener('click', function () { ask(i - 1); });
+    if (i) panel.querySelector('h3').focus({ preventScroll: true });
+  }
+
+  var prior = readStore();
+  if (prior && prior.id) leadId = prior.id;
+  if (prior && prior.ok && Array.isArray(prior.answers) && prior.answers.length === QUESTIONS.length) {
+    answers = prior.answers;
+    person = { name: prior.name || '', company: prior.company || '' };
+    if (person.name && person.company) pass(); else details();
+  }
+  else if (prior && prior.ok === false) decline(prior.why);
+  else { widget.innerHTML = ''; ask(0); }
 
   // --- Calendly events -----------------------------------------------
   function track(type) {
@@ -106,6 +337,7 @@
           consent: consentGranted(),
           attribution: attribution(),
           page_url: location.href,
+          lead_id: leadId || null,
           source: source
         })
       }).catch(function () {});

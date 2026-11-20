@@ -8,7 +8,7 @@
 
   // Same-origin API, served by the site's Cloudflare Worker (/api/*).
   var API = '';
-  var WA = '971508549171';
+  var WA = '15557738409';
   var OPEN = 14 * 60, CLOSE = 18 * 60 + 30, STEP = 30;
   var LEAD_MIN = 45;   // don't offer a slot less than 45 min away
   var DAYS = 7;

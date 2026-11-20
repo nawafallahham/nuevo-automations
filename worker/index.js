@@ -6,11 +6,13 @@
 //   /api/calendar.ics     GET   private iCal feed (?key=CALENDAR_KEY)
 //   /api/calendly/webhook POST  Calendly invitee.created / invitee.canceled (signed)
 //   /api/calendly/scheduled POST browser beacon after a Calendly booking (public)
+//   /api/lead             POST  qualifying-question progress (public)
 //   /api/admin/*          *     dashboard API (Bearer ADMIN_KEY)
 //   everything else             static files from env.ASSETS
 import { json, HttpError, hourWindow, addDays, dubaiToday } from './lib.js';
 import { slots, book, track, calendarFeed } from './api.js';
 import { admin } from './admin.js';
+import { lead } from './leads.js';
 import { webhook as calendlyWebhook, scheduledBeacon as calendlyScheduled } from './calendly.js';
 
 const APEX = 'nuevoautomations.com';
@@ -28,6 +30,7 @@ async function route(request, env, ctx) {
   if (path === '/api/calendar.ics' && m === 'GET') return calendarFeed(request, env);
   if (path === '/api/calendly/webhook' && m === 'POST') return calendlyWebhook(request, env, ctx);
   if (path === '/api/calendly/scheduled' && m === 'POST') return calendlyScheduled(request, env, ctx);
+  if (path === '/api/lead' && m === 'POST') return lead(request, env);
   if (path.startsWith('/api/admin/')) return admin(request, env, path);
 
   return json({ ok: false, error: 'not_found' }, 404);
@@ -74,6 +77,7 @@ export default {
   //  - analytics events older than ~13 months
   //  - stale rate-limit rows
   //  - Calendly beacon rows (consent / attribution) after 2 days
+  //  - qualifying-question leads after 180 days
   async scheduled(event, env, ctx) {
     const today = dubaiToday();
     const eventsCutoff = new Date(Date.now() - 400 * 24 * 3600 * 1000).toISOString();
@@ -83,7 +87,9 @@ export default {
       env.DB.prepare('DELETE FROM events WHERE ts < ?1').bind(eventsCutoff),
       env.DB.prepare('DELETE FROM rate WHERE "window" < ?1').bind(rateCutoff),
       env.DB.prepare('DELETE FROM calendly_pending WHERE created_at < ?1')
-        .bind(new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString())
+        .bind(new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString()),
+      env.DB.prepare('DELETE FROM leads WHERE created_at < ?1')
+        .bind(new Date(Date.now() - 180 * 24 * 3600 * 1000).toISOString())
     ]).catch((err) => console.error('[cron] ' + err.message)));
   }
 };

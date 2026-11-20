@@ -97,7 +97,7 @@ export function customerEvent(b) {
     summary: 'Free M2S audit with Nuevo Automations',
     description: 'Your free 30-minute M2S (Message to Sale) audit with Nuevo Automations. ' +
       'We will call you on WhatsApp at ' + b.phone + '.\n' +
-      'Need to change the time? Message us: https://wa.me/971508549171',
+      'Need to change the time? Message us: https://wa.me/15557738409',
     location: 'WhatsApp call',
     url: 'https://nuevoautomations.com/'
   });
