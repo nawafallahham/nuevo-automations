@@ -3733,3 +3733,8 @@ html { -webkit-tap-highlight-color: transparent; }
 .qualify__form { display: grid; gap: var(--s-4); }
 .qualify__form .btn { justify-self: stretch; }
 .qualify__form .muted a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Trustpilot text link (the star widgets need a paid Trustpilot plan). */
+.tp-link { margin: var(--space-3, 12px) 0 0; font-size: var(--t-small, 14px); }
+.tp-link a { color: inherit; text-decoration: none; }
+.tp-link__star { color: #00b67a; }
