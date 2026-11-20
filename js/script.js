@@ -84,15 +84,13 @@
     }
   }
 
-  /* ---- Partners wheel: duplicate the set for a seamless loop ---- */
-  var partnersTrack = document.getElementById('partners-track');
-  if (partnersTrack && !prefersReducedMotion) {
-    Array.prototype.slice.call(partnersTrack.children).forEach(function (item) {
-      var clone = item.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
-      partnersTrack.appendChild(clone);
-    });
-    partnersTrack.classList.add('is-looping');
+  /* ---- Mobile CTA bar: stay out of the way while the hero's own buttons
+     are on screen, then slide in. ---- */
+  var mobileBar = document.querySelector('.mobile-cta');
+  var heroActions = document.querySelector('.hero .hero-actions, .page-hero .hero-actions');
+  if (mobileBar && heroActions && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      mobileBar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }).observe(heroActions);
   }
 })();
