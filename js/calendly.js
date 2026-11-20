@@ -69,6 +69,13 @@
     document.head.appendChild(s);
   }
 
+  // A tap on any "#book" button starts the load at once, so the calendar is
+  // ready (or nearly) by the time the page has scrolled to it.
+  document.addEventListener('pointerdown', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#book"]');
+    if (a) load();
+  }, { passive: true });
+
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }

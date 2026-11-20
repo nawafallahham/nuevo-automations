@@ -133,3 +133,9 @@ html { -webkit-tap-highlight-color: transparent; }
 .case__logo { height: 40px; width: auto; margin-bottom: var(--s-4); }
 .stats--col { display: grid; grid-template-columns: 1fr; gap: var(--s-5); }
 @media (max-width: 1023px) { .stats--col { margin-top: var(--s-6); } }
+
+/* /wellness-brands/ hero: proof on the first screen */
+.lp-proof { margin-block: var(--s-6) var(--s-5); }
+.lp-proof .t-stat { font-size: var(--t-h3); }
+.lp-logos { margin-top: var(--s-4); }
+.cal-embed__wa { margin-top: var(--s-4); }
