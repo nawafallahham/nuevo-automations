@@ -163,3 +163,6 @@ html { -webkit-tap-highlight-color: transparent; }
 .qualify__bar { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .qualify__bar span { display: block; height: 100%; background: var(--action); transition: width 240ms cubic-bezier(0.23, 1, 0.32, 1); }
 @media (prefers-reduced-motion: reduce) { .qualify__bar span { transition: none; } }
+.qualify__form { display: grid; gap: var(--s-4); }
+.qualify__form .btn { justify-self: stretch; }
+.qualify__form .muted a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

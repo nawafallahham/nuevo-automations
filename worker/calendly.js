@@ -16,6 +16,7 @@ import {
   json, noContent, readJson, clean, cleanOrNull, hostOf, randomId, clientIp, ipHash,
   rateLimit, originAllowed, safeEqual, dubaiNow, HttpError
 } from './lib.js';
+import { markBooked } from './leads.js';
 import { runSideEffects, sendMetaCapi, sendCancelNotice, fetchWithTimeout } from './notify.js';
 
 const CAL_API = 'https://api.calendly.com';
@@ -216,7 +217,9 @@ export async function scheduledBeacon(request, env, ctx) {
     data.ua = clean(request.headers.get('user-agent'), 400);
   }
 
+  const linkLead = markBooked(env, clean(body.lead_id, 48), inviteeUri);
   await env.DB.batch([
+    ...(linkLead ? [linkLead] : []),
     env.DB.prepare(
       'INSERT INTO calendly_pending (invitee_uri, data, created_at) VALUES (?1, ?2, ?3) ' +
       'ON CONFLICT (invitee_uri) DO UPDATE SET data = excluded.data'

@@ -126,6 +126,7 @@
     var a = attribution() || {};
     var q = new URLSearchParams(location.search);
     var params = ['primary_color=0d518d', 'text_color=18213a'];
+    if (person.name) params.push('name=' + encodeURIComponent(person.name));
     answers.forEach(function (a, i) { params.push('a' + (i + 1) + '=' + encodeURIComponent(a)); });
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
       var v = a[k] || q.get(k);
@@ -184,7 +185,11 @@
   }
 
   // --- qualifying questions ------------------------------------------
+  // Each step is reported to /api/lead (the dashboard funnel). A visitor who
+  // qualifies gives their name and company, then gets the calendar.
   var answers = [];
+  var person = { name: '', company: '' };
+  var leadId = '';
   function readStore() {
     try {
       var v = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
@@ -193,7 +198,22 @@
     return null;
   }
   function writeStore(v) {
+    v.id = leadId;
     try { v.t = Date.now(); localStorage.setItem(STORE_KEY, JSON.stringify(v)); } catch (e) {}
+  }
+  function newLeadId() {
+    var a = new Uint8Array(12);
+    (window.crypto || window.msCrypto).getRandomValues(a);
+    return 'ld_' + Array.prototype.map.call(a, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+  }
+  function report(status, extra) {
+    if (!leadId) return;
+    var body = { id: leadId, page: source, status: status, answers: answers, attribution: attribution() };
+    for (var k in extra) body[k] = extra[k];
+    try {
+      fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .catch(function () {});
+    } catch (e) {}
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -221,6 +241,33 @@
       '<div class="btn-row"><a class="btn btn--secondary" href="https://wa.me/15557738409" target="_blank" rel="noopener" data-lead="qualify-wa">Message us on WhatsApp</a></div>';
     panel.querySelector('h3').focus({ preventScroll: true });
   }
+  function details() {
+    panel.innerHTML =
+      '<p class="qualify__step">You’re a fit · last step</p>' +
+      '<div class="qualify__bar" aria-hidden="true"><span style="width:100%"></span></div>' +
+      '<h3 class="qualify__q" tabindex="-1">Who should we expect on the call?</h3>' +
+      '<form class="qualify__form" novalidate>' +
+      '<label class="field">Your name<input name="name" autocomplete="name" required maxlength="100" value="' + esc(person.name) + '"></label>' +
+      '<label class="field">Company or brand name<input name="company" autocomplete="organization" required maxlength="120" value="' + esc(person.company) + '"></label>' +
+      '<p class="field__error qualify__err" hidden>Please fill in both, so we can prepare your audit.</p>' +
+      '<button class="btn btn--primary" type="submit">Show available times</button>' +
+      '<p class="t-small muted">We only use this to prepare your call. <a href="/privacy/">Privacy policy</a></p>' +
+      '</form>';
+    var form = panel.querySelector('form');
+    panel.querySelector('h3').focus({ preventScroll: true });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = form.elements.name.value.trim(), c = form.elements.company.value.trim();
+      form.elements.name.setAttribute('aria-invalid', String(!n));
+      form.elements.company.setAttribute('aria-invalid', String(!c));
+      panel.querySelector('.qualify__err').hidden = !!(n && c);
+      if (!n || !c) { (n ? form.elements.company : form.elements.name).focus(); return; }
+      person = { name: n.slice(0, 100), company: c.slice(0, 120) };
+      writeStore({ ok: true, answers: answers.slice(), name: person.name, company: person.company });
+      report('details', { name: person.name, company: person.company });
+      pass();
+    });
+  }
   function ask(i) {
     var q = QUESTIONS[i];
     panel.innerHTML =
@@ -234,11 +281,17 @@
     panel.querySelectorAll('.qualify__opt').forEach(function (b) {
       b.addEventListener('click', function () {
         var o = q.options[+b.getAttribute('data-j')];
+        if (!leadId) leadId = newLeadId();
         answers[i] = o.label;
         answers.length = i + 1;
-        if (o.pass === false) { writeStore({ ok: false, why: o.why }); decline(o.why); return; }
-        if (i + 1 < QUESTIONS.length) ask(i + 1);
-        else { writeStore({ ok: true, answers: answers.slice() }); pass(); }
+        if (o.pass === false) {
+          writeStore({ ok: false, why: o.why });
+          report('declined', { declined_at_q: i + 1 });
+          decline(o.why);
+          return;
+        }
+        if (i + 1 < QUESTIONS.length) { report('started'); ask(i + 1); }
+        else { writeStore({ ok: true, answers: answers.slice() }); report('qualified'); details(); }
       });
     });
     var back = panel.querySelector('.qualify__back');
@@ -247,7 +300,12 @@
   }
 
   var prior = readStore();
-  if (prior && prior.ok && Array.isArray(prior.answers) && prior.answers.length === QUESTIONS.length) { answers = prior.answers; pass(); }
+  if (prior && prior.id) leadId = prior.id;
+  if (prior && prior.ok && Array.isArray(prior.answers) && prior.answers.length === QUESTIONS.length) {
+    answers = prior.answers;
+    person = { name: prior.name || '', company: prior.company || '' };
+    if (person.name && person.company) pass(); else details();
+  }
   else if (prior && prior.ok === false) decline(prior.why);
   else { widget.innerHTML = ''; ask(0); }
 
@@ -279,6 +337,7 @@
           consent: consentGranted(),
           attribution: attribution(),
           page_url: location.href,
+          lead_id: leadId || null,
           source: source
         })
       }).catch(function () {});

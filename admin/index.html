@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <title>Admin · Nuevo Automations</title>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
   <style>
@@ -62,6 +61,23 @@
     .adm .tag.cal { background: #eef3ff; color: #2b4fb3; }
     .adm-cly-msg { font-size: .88rem; margin: 10px 0 0; word-break: break-word; }
     .adm-cly-msg.is-bad { color: var(--danger); }
+    .adm-funnel { display: grid; gap: 8px; }
+    .adm-fun-row { display: grid; grid-template-columns: minmax(150px, 230px) 1fr 70px 90px; gap: 12px; align-items: center; font-size: .88rem; }
+    .adm-fun-row .bar { height: 22px; background: var(--paper-alt); border-radius: 6px; overflow: hidden; }
+    .adm-fun-row .bar i { display: block; height: 100%; background: var(--brand); border-radius: 6px; min-width: 2px; }
+    .adm-fun-row.is-pre .bar i { background: var(--brand-tint-strong); }
+    .adm-fun-row b { text-align: right; font-variant-numeric: tabular-nums; }
+    .adm-fun-row small { text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+    .adm-grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .adm-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .adm-search { padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font: inherit; font-size: .84rem; min-width: 200px; }
+    .adm .tag.st-booked { background: #e8f7ee; color: #17703a; }
+    .adm .tag.st-details, .adm .tag.st-qualified { background: #eef3ff; color: #2b4fb3; }
+    .adm .tag.st-declined { background: #fdecec; color: #a12a2a; }
+    .adm .tag.st-started { background: var(--paper-alt); color: var(--ink-muted); }
+    .adm td .ans { display: block; font-size: .8rem; color: var(--ink-muted); white-space: nowrap; }
+    .adm td .ans.is-no { color: #a12a2a; font-weight: 600; }
+    @media (max-width: 960px) { .adm-grid4 { grid-template-columns: 1fr; } .adm-fun-row { grid-template-columns: 1fr 60px 70px; } .adm-fun-row .bar { grid-column: 1 / -1; grid-row: 2; } }
     @media (max-width: 960px) { .adm-kpis { grid-template-columns: repeat(2, 1fr); } .adm-grid2 { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -86,6 +102,7 @@
           <div class="adm-seg" id="range" role="group" aria-label="Date range">
             <button type="button" data-days="7">7 days</button>
             <button type="button" data-days="30" class="is-on">30 days</button>
+            <button type="button" data-days="90">90 days</button>
           </div>
           <button type="button" class="btn btn-ghost btn-sm" id="refresh">Refresh</button>
           <button type="button" class="btn btn-ghost btn-sm" id="logout">Sign out</button>
@@ -93,6 +110,55 @@
       </header>
 
       <div class="adm-kpis" id="kpis"></div>
+
+      <section class="adm-card">
+        <h2>Lead funnel <span class="adm-note" id="funnel-note" style="margin:0"></span></h2>
+        <div class="adm-funnel" id="funnel"></div>
+        <p class="adm-note">% of started = share of everyone who answered at least one question. Step = share of the row above it. Visitors and "saw the booking section" are counted per day (anonymous id), so they're approximate.</p>
+      </section>
+
+      <section class="adm-card">
+        <h2>Leads
+          <span class="adm-tools">
+            <span class="adm-seg" id="lead-filter" role="group" aria-label="Which leads">
+              <button type="button" data-f="all" class="is-on">All</button>
+              <button type="button" data-f="qualified">Qualified</button>
+              <button type="button" data-f="booked">Booked</button>
+              <button type="button" data-f="declined">Declined</button>
+              <button type="button" data-f="started">Dropped off</button>
+            </span>
+            <input class="adm-search" id="lead-search" type="search" placeholder="Search name, company, answer…" aria-label="Search leads">
+            <button type="button" class="btn btn-ghost btn-sm" id="lead-csv">Download CSV</button>
+          </span>
+        </h2>
+        <div class="adm-table-wrap"><table>
+          <thead><tr><th>When (Dubai)</th><th>Name / company</th><th>Answers</th><th>Status</th><th>Call</th><th>Source / campaign</th><th>Page</th></tr></thead>
+          <tbody id="leads"></tbody>
+        </table></div>
+        <p class="adm-empty" id="leads-empty" hidden>No leads in this period.</p>
+      </section>
+
+      <section class="adm-card">
+        <h2>Answers to each question</h2>
+        <div class="adm-grid4" id="answers"></div>
+      </section>
+
+      <div class="adm-grid2">
+        <section class="adm-card">
+          <h2>Leads by source / campaign</h2>
+          <div class="adm-table-wrap"><table>
+            <thead><tr><th>Source</th><th class="num">Started</th><th class="num">Declined</th><th class="num">Qualified</th><th class="num">Booked</th><th class="num">Booked %</th></tr></thead>
+            <tbody id="lead-sources"></tbody>
+          </table></div>
+        </section>
+        <section class="adm-card">
+          <h2>Leads by booking page</h2>
+          <div class="adm-table-wrap"><table>
+            <thead><tr><th>Page</th><th class="num">Started</th><th class="num">Qualified</th><th class="num">Booked</th></tr></thead>
+            <tbody id="lead-pages"></tbody>
+          </table></div>
+        </section>
+      </div>
 
       <section class="adm-card">
         <h2>Bookings
@@ -401,6 +467,128 @@
         .then(function () { btn.disabled = false; });
     });
 
+    // --- leads & funnel --------------------------------------------
+    var QNAMES = ['Role', 'Orders a week', 'Average order value', 'Meta ads today'];
+    var PAGES = { 'wellness-landing': '/wellness-brands/', 'meta-landing': '/consultation/', site: '/book/' };
+    var STATUS = { started: 'dropped off', declined: 'declined', qualified: 'qualified, no name', details: 'qualified', booked: 'booked' };
+    var leadsData = { leads: [] };
+    var leadFilter = 'all';
+
+    function dubai(iso) {
+      return iso ? new Date(iso).toLocaleString('en-GB', { timeZone: 'Asia/Dubai', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+    }
+    function renderFunnel(rows) {
+      var box = $('funnel');
+      box.innerHTML = '';
+      var started = (rows[2] && rows[2].n) || 0;
+      var max = Math.max.apply(null, rows.map(function (r) { return r.n; }).concat([1]));
+      rows.forEach(function (r, i) {
+        var prev = i ? rows[i - 1].n : 0;
+        var bar = el('div', { className: 'bar' }, el('i'));
+        bar.firstChild.style.width = (r.n / max * 100) + '%';
+        box.appendChild(el('div', { className: 'adm-fun-row' + (i < 2 ? ' is-pre' : '') }, [
+          el('span', null, r.label),
+          bar,
+          el('b', null, fmt(r.n)),
+          el('small', null, i < 2 ? '' : (i === 2 ? (rows[0].n ? pct(r.n / rows[0].n * 100) + ' of visitors' : '') :
+            (started ? pct(r.n / started * 100) : '—') + (prev ? ' · step ' + pct(r.n / prev * 100) : '')))
+        ]));
+      });
+    }
+    function leadMatches(l) {
+      if (leadFilter === 'qualified' && !(l.status === 'qualified' || l.status === 'details' || l.status === 'booked')) return false;
+      if (leadFilter !== 'all' && leadFilter !== 'qualified' && l.status !== leadFilter) return false;
+      var q = ($('lead-search').value || '').trim().toLowerCase();
+      if (!q) return true;
+      return [l.name, l.company, l.q1, l.q2, l.q3, l.q4, l.email, l.phone, l.utm_source, l.utm_campaign]
+        .some(function (v) { return v && String(v).toLowerCase().indexOf(q) !== -1; });
+    }
+    function renderLeads() {
+      var tb = $('leads');
+      tb.innerHTML = '';
+      var list = leadsData.leads.filter(leadMatches);
+      $('leads-empty').hidden = list.length > 0;
+      list.forEach(function (l) {
+        var answers = el('td');
+        [l.q1, l.q2, l.q3, l.q4].forEach(function (a, i) {
+          if (a) answers.appendChild(el('span', { className: 'ans' + (l.declined_at_q === i + 1 ? ' is-no' : ''), title: QNAMES[i] }, QNAMES[i] + ': ' + a));
+        });
+        if (!l.q1) answers.appendChild(el('span', { className: 'ans' }, '—'));
+        var call = el('td');
+        if (l.booking_date) {
+          call.appendChild(document.createTextNode(when({ date: l.booking_date, time: l.booking_time })));
+          if (l.booking_status === 'cancelled') call.appendChild(el('span', { className: 'sub' }, 'cancelled'));
+          if (l.email) call.appendChild(el('span', { className: 'sub' }, l.email));
+          if (l.phone) call.appendChild(el('a', { className: 'wa', href: waHref(l.phone), target: '_blank', rel: 'noopener' }, l.phone));
+        } else call.appendChild(document.createTextNode(l.status === 'booked' ? 'booked (details pending)' : '—'));
+        tb.appendChild(el('tr', null, [
+          el('td', null, [dubai(l.created_at), l.updated_at !== l.created_at ? el('span', { className: 'sub' }, 'last step ' + dubai(l.updated_at)) : '']),
+          el('td', null, [l.name || el('span', { className: 'sub' }, 'not given'), l.company ? el('span', { className: 'sub' }, l.company) : '']),
+          answers,
+          el('td', null, el('span', { className: 'tag st-' + l.status }, (STATUS[l.status] || l.status) + (l.status === 'started' ? ' at Q' + (l.step + 1) : ''))),
+          call,
+          el('td', null, [[l.utm_source, l.utm_campaign].filter(Boolean).join(' / ') || 'direct', l.utm_content ? el('span', { className: 'sub' }, l.utm_content) : '']),
+          el('td', null, PAGES[l.page] || l.page || '—')
+        ]));
+      });
+    }
+    function renderAnswers(qs) {
+      var box = $('answers');
+      box.innerHTML = '';
+      qs.forEach(function (rows, i) {
+        var total = rows.reduce(function (s, r) { return s + r.n; }, 0);
+        var tb = el('tbody');
+        if (!rows.length) tb.appendChild(el('tr', null, el('td', { colSpan: 4, className: 'adm-empty' }, 'No answers yet.')));
+        rows.forEach(function (r) {
+          tb.appendChild(el('tr', null, [
+            el('td', null, [r.answer, r.declined ? el('span', { className: 'sub' }, 'declines the lead') : '']),
+            el('td', { className: 'num' }, fmt(r.n)),
+            el('td', { className: 'num' }, total ? pct(r.n / total * 100) : '—'),
+            el('td', { className: 'num' }, fmt(r.booked))
+          ]));
+        });
+        box.appendChild(el('div', null, [
+          el('h2', { style: 'font-size:.95rem' }, 'Q' + (i + 1) + ' · ' + QNAMES[i]),
+          el('div', { className: 'adm-table-wrap' }, el('table', null, [
+            el('thead', null, el('tr', null, [el('th', null, 'Answer'), el('th', { className: 'num' }, 'Leads'), el('th', { className: 'num' }, 'Share'), el('th', { className: 'num' }, 'Booked')])),
+            tb
+          ]))
+        ]));
+      });
+    }
+    function renderGroup(id, rows, cols) {
+      var tb = $(id);
+      tb.innerHTML = '';
+      if (!rows.length) tb.appendChild(el('tr', null, el('td', { colSpan: cols.length + 1, className: 'adm-empty' }, 'No leads yet.')));
+      rows.forEach(function (r) {
+        tb.appendChild(el('tr', null, [el('td', null, PAGES[r.key] || r.key)].concat(cols.map(function (c) {
+          return el('td', { className: 'num' }, c === 'rate' ? (r.started ? pct(r.booked / r.started * 100) : '—') : fmt(r[c]));
+        }))));
+      });
+    }
+    function csvCell(v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+    $('lead-csv').addEventListener('click', function () {
+      var head = ['created_dubai', 'status', 'name', 'company', 'role', 'orders_a_week', 'avg_order_value', 'meta_ads', 'declined_at_question',
+        'call_date', 'call_time', 'call_status', 'email', 'phone', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'page', 'landing', 'referrer'];
+      var lines = [head.join(',')].concat(leadsData.leads.filter(leadMatches).map(function (l) {
+        return [dubai(l.created_at), STATUS[l.status] || l.status, l.name, l.company, l.q1, l.q2, l.q3, l.q4, l.declined_at_q,
+          l.booking_date, l.booking_time, l.booking_status, l.email, l.phone, l.utm_source, l.utm_medium, l.utm_campaign, l.utm_content,
+          PAGES[l.page] || l.page, l.landing, l.referrer].map(csvCell).join(',');
+      }));
+      var a = el('a', { href: URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv' })), download: 'nuevo-leads-' + state.days + 'd.csv' });
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+    $('lead-search').addEventListener('input', renderLeads);
+    function loadLeads() {
+      return api('/api/admin/leads?days=' + state.days).then(function (j) {
+        leadsData = j;
+        $('funnel-note').textContent = '· last ' + j.days + ' days';
+        renderFunnel(j.funnel); renderLeads(); renderAnswers(j.questions);
+        renderGroup('lead-sources', j.by_source, ['started', 'declined', 'qualified', 'booked', 'rate']);
+        renderGroup('lead-pages', j.by_page, ['started', 'qualified', 'booked']);
+      });
+    }
+
     // --- loading ---------------------------------------------------
     function loadBookings() {
       return api('/api/admin/bookings?scope=' + state.scope).then(function (j) { renderBookings(j.bookings); });
@@ -411,7 +599,7 @@
       });
     }
     function loadAll() {
-      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats(), loadCalendly()]);
+      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats(), loadLeads(), loadCalendly()]);
     }
 
     function start() {
@@ -439,7 +627,8 @@
         onPick(b.getAttribute(attr));
       });
     }
-    segment('range', 'data-days', function (v) { state.days = Number(v); loadStats().catch(function () {}); });
+    segment('range', 'data-days', function (v) { state.days = Number(v); loadStats().catch(function () {}); loadLeads().catch(function () {}); });
+    segment('lead-filter', 'data-f', function (v) { leadFilter = v; renderLeads(); });
     segment('scope', 'data-scope', function (v) { state.scope = v; loadBookings().catch(function () {}); });
     $('refresh').addEventListener('click', function () { loadAll().catch(function () {}); });
     $('logout').addEventListener('click', function () { signOut(''); });

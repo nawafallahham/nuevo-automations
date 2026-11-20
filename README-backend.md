@@ -9,6 +9,7 @@ One Worker (`worker/index.js`) serves the static site from this folder (Workers 
 | `GET /api/slots?days=14` | Native slot picker: taken slots per date. Unused by the site since Calendly |
 | `POST /api/book` | Native booking (validation, honeypot, 5/hour/IP limit, 409 on a taken slot). Unused since Calendly |
 | `POST /api/track` | Anonymous, cookieless analytics beacon (from `js/track.js`) |
+| `POST /api/lead` | Qualifying-question progress from `js/calendly.js` (answers, decline, name + company); the Calendly beacon marks the lead booked |
 | `GET /api/calendar.ics?key=…` | Private iCal feed for Google Calendar |
 | `/api/admin/*` | Dashboard API (`Authorization: Bearer ADMIN_KEY`), UI at `/admin/` |
 
@@ -21,6 +22,7 @@ A nightly cron (23:17 UTC) deletes bookings 90 days after their date, analytics 
 - `worker/`: `index.js` (router + cron), `api.js`, `calendly.js`, `admin.js`, `notify.js` (CAPI/email/OrcaFlo), `ics.js`, `lib.js`
 - `migrations/0001_init.sql`: tables `bookings`, `events`, `rate`
 - `migrations/0002_calendly.sql`: Calendly columns on `bookings`, table `calendly_pending`
+- `migrations/0003_leads.sql`: table `leads` (qualifying questions; deleted after 180 days by the cron). Apply it **before** deploying the code that posts to `/api/lead`.
 - `_headers`, `_redirects`, `.assetsignore`: static asset config (the ignore list keeps worker/, migrations/, booking-api/ and similar folders from being published)
 - `admin/index.html`: private dashboard (noindex, not linked)
 - `js/track.js`, `js/calendly.js`: front end (`js/booking.js` is the old native picker, no longer loaded)
