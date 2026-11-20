@@ -25,17 +25,46 @@
   <meta name="twitter:image" content="https://nuevoautomations.com/assets/og-image.jpg">
 
   <!-- head:start -->
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=1028e2ce63">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #22261f; --p-muted: #5a5c53;
+    --p-accent: #2e5b44; --p-accent-ink: #ffffff; --p-action: #2e5b44; --p-action-ink: #ffffff;
+    --p-inv-bg: #22261f; --p-inv-surface: #2e322a; --p-inv-ink: #efe9e0; --p-inv-muted: #a19e96;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #22261f; --p-inv-action: #efe9e0; --p-inv-action-ink: #22261f;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=31dc6d1c99" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style id="page-style">
+  /* related links in a split column: one link per line */
+  .link-list--col { grid-template-columns: minmax(0, 1fr); }
+  /* a small heading over a list in a split column, sized like the card and FAQ h3s */
+  .band .stack-4 > h3 { font: 500 var(--t-card)/1.3 var(--font-text); letter-spacing: -0.01em; }
+  /* inline links inside reading text */
+  :is(.band, .page-head) p > a:not(.btn):not(.link) { text-decoration: underline; text-underline-offset: 3px; }
+  .page-head .page-head__aside { margin-top: var(--s-5); }
+  </style>
 
   <script type="application/ld+json">
 {
@@ -122,268 +151,202 @@
 </head>
 <body>
   <!-- header:start industries -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/">How M2S works</a>
-        <a href="/#industries" class="is-active" aria-current="page">Who it's for</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/results/">Results</a>
-        <a href="/about/">About</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main id="main">
-
-    <section class="page-hero">
-      <div class="container">
-        <p class="crumb"><a href="/">Home</a> / <a href="/#industries">Industries</a> / Real estate</p>
-        <p class="eyebrow">Real estate · Dubai</p>
-        <h1>Real estate lead automation in Dubai that hands agents <span class="text-brand">qualified viewings</span></h1>
-        <p class="lede">Leads come from portals, project ads and listing ads, at all hours. M2S replies on WhatsApp, asks the questions your agents would, books the viewing and routes it to the right agent.</p>
-        <div class="hero-actions">
-          <a href="/book/" class="btn btn-primary btn-lg js-lead" data-lead="seo-realestate">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/m2s/" class="btn btn-ghost btn-lg">How M2S works</a>
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
+        <p class="crumb"><a href="/">Home</a> / Industries / Real estate</p>
+        <h1 id="page-h">Real estate lead automation in Dubai that hands agents qualified viewings</h1>
+        <p class="t-lead">Leads come from portals, project ads and listing ads, at all hours. M2S replies on WhatsApp, asks the questions your agents would, books the viewing and routes it to the right agent.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary js-lead" data-lead="seo-realestate" href="/book/">Book a free audit</a>
+          <a class="btn btn--secondary" href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S%20for%20my%20real%20estate%20agency." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="answer reveal">
-          <p class="eyebrow">Short answer</p>
-          <p>Real estate lead automation is software that responds to property enquiries, qualifies them and passes the good ones to agents. In Dubai it typically means replying on WhatsApp to portal and ad leads, asking about budget, area, off-plan or ready, and timing, booking a viewing or call, and routing the lead to the agent who covers it.</p>
+    <section class="band" aria-label="Short answer">
+      <div class="wrap">
+        <div class="answer"><p>Real estate lead automation is software that responds to property enquiries, qualifies them and passes the good ones to agents. In Dubai it typically means replying on WhatsApp to portal and ad leads, asking about budget, area, off-plan or ready, and timing, booking a viewing or call, and routing the lead to the agent who covers it.</p></div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="sources-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="sources-h">Portal leads and ad leads, answered on WhatsApp the same way</h2></div>
+        <div class="grid">
+          <article class="card span-4"><h3>Property portals</h3><p>Enquiries from your portal listings, sent to WhatsApp and answered in seconds.</p></article>
+          <article class="card span-4"><h3>Project ads</h3><p>Off-plan launch campaigns on Meta that open a WhatsApp chat, tagged by project.</p></article>
+          <article class="card span-4"><h3>Listing ads</h3><p>Ready-unit ads for specific properties, with the listing details loaded.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Where leads come from</p>
-          <h2>Portal leads and ad leads, answered the same way</h2>
-        </div>
-        <div class="grid-3 reveal-stagger">
-          <article class="card"><h3>Property portals</h3><p>Enquiries from your portal listings, sent to WhatsApp and answered in seconds.</p></article>
-          <article class="card"><h3>Project ads</h3><p>Off-plan launch campaigns on Meta that open a WhatsApp chat, tagged by project.</p></article>
-          <article class="card"><h3>Listing ads</h3><p>Ready-unit ads for specific properties, with the listing details loaded.</p></article>
-        </div>
+    <section class="band" aria-labelledby="qualify-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="qualify-h">The questions your agents would ask</h2></div>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Budget</span><p>Without it, agents spend calls on leads far outside the price range. The assistant asks the budget range and matches it against your listings or project prices.</p></li>
+          <li><span class="rows__name">Area</span><p>Without it, a JVC buyer gets a Downtown agent. The assistant asks preferred communities and records them for routing.</p></li>
+          <li><span class="rows__name">Off-plan or ready</span><p>Without it, payment-plan buyers and move-in buyers get the same pitch. The assistant asks which they want, and explains your payment plans or ready options from your information.</p></li>
+          <li><span class="rows__name">Timing and purpose</span><p>Without it, investors and end users are treated alike. The assistant asks when they want to buy or rent and whether it's to live in or invest.</p></li>
+        </ul>
       </div>
     </section>
 
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Qualification</p>
-          <h2>The questions your agents would ask</h2>
+    <section class="band" aria-labelledby="routing-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="routing-h">Routing: each lead goes to the agent who covers it</h2>
+          <p>We set routing rules with you: by community, by project, by language or by listing agent. The chosen agent gets a WhatsApp alert with the buyer's answers, so the first call starts from what the buyer already said.</p>
+          <p>Leads that aren't ready yet stay in the pipeline and get polite follow-ups, which stop as soon as they reply.</p>
         </div>
-        <div class="steps-head" aria-hidden="true"><span>Question</span><span>Without it</span><span>What the assistant does</span></div>
-        <ol class="steps reveal-stagger">
-          <li><h3>Budget</h3><p class="was">agents spend calls on leads far outside the price range.</p><p class="now">Asks the budget range and matches it against your listings or project prices.</p></li>
-          <li><h3>Area</h3><p class="was">a JVC buyer gets a Downtown agent.</p><p class="now">Asks preferred communities and records them for routing.</p></li>
-          <li><h3>Off-plan or ready</h3><p class="was">payment-plan buyers and move-in buyers get the same pitch.</p><p class="now">Asks which they want, and explains your payment plans or ready options from your information.</p></li>
-          <li><h3>Timing and purpose</h3><p class="was">investors and end users are treated alike.</p><p class="now">Asks when they want to buy or rent and whether it's to live in or invest.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <ol class="timeline" aria-label="Example: a portal lead routed to the right agent">
-            <li><time>10:30 PM</time><div><strong>Portal enquiry on a 2-bed in Dubai Marina</strong><p>Arrives on WhatsApp; answered in English in seconds.</p></div></li>
-            <li><time>10:32 PM</time><div><strong>Qualified</strong><p>Budget fits, ready unit wanted, buying to live in, wants to view this week.</p></div></li>
-            <li><time>10:33 PM</time><div><strong>Viewing booked</strong><p>Saturday 11 AM, from the Marina agent's free times.</p></div></li>
-            <li class="is-stop"><time>10:33 PM</time><div><strong>Agent alerted</strong><p>WhatsApp alert with the lead's answers and the chat summary.</p></div></li>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-small muted">Example lead with a made-up buyer.</p>
+          <ol class="rows" aria-label="Example: a portal lead routed to the right agent">
+            <li><span class="rows__name">Portal enquiry on a 2-bed in Dubai Marina</span><span class="rows__value mono t-small">10:30 PM</span><p>Arrives on WhatsApp; answered in English in seconds.</p></li>
+            <li><span class="rows__name">Qualified</span><span class="rows__value mono t-small">10:32 PM</span><p>Budget fits, ready unit wanted, buying to live in, wants to view this week.</p></li>
+            <li><span class="rows__name">Viewing booked</span><span class="rows__value mono t-small">10:33 PM</span><p>Saturday 11 AM, from the Marina agent's free times.</p></li>
+            <li><span class="rows__name">Agent alerted</span><span class="rows__value mono t-small">10:33 PM</span><p>WhatsApp alert with the lead's answers and the chat summary.</p></li>
           </ol>
-          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">Routing and hand-off</p>
-          <h2>Each lead goes to the agent who covers it</h2>
-          <div class="prose">
-            <p>We set routing rules with you: by community, by project, by language or by listing agent. The chosen agent gets a WhatsApp alert with the buyer's answers, so the first call starts from what the buyer already said.</p>
-            <p>Leads that aren't ready yet stay in the pipeline and get polite follow-ups, which stop as soon as they reply.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Longer decisions</p>
-          <h2>Keeping not-yet-ready buyers warm</h2>
-        </div>
-        <div class="prose reveal">
+    <section class="band" aria-labelledby="warm-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="warm-h">The follow-up process for not-yet-ready buyers</h2></div>
+        <div class="span-6 start-7 stack-4">
           <p>Property decisions take time. A buyer waiting for a launch, a bonus or a visa may not be ready for months. They stay in the pipeline with their answers saved, and get follow-ups about the areas and budget they gave, using Meta-approved templates once the 24-hour window has passed.</p>
           <p>Follow-ups stop when the buyer replies, never go out at night, end for anyone who says stop, and run at most once a week. When a buyer comes back, the agent gets an alert with their history.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">Pricing</p>
-          <h2>What changes the price for an agency</h2>
-          <div class="prose">
-            <p>Agencies pay a fixed monthly M2S fee, set after a free 30-minute audit of how leads reach you today. Project and listing ad spend is paid to Meta by you. See <a href="/pricing/">how pricing works</a>.</p>
-          </div>
+    <section class="band" aria-labelledby="price-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="price-h">What changes the price for an agency</h2>
+          <p>Agencies pay a fixed monthly M2S fee, set after a free 30-minute audit of how leads reach you today. Project and listing ad spend is paid to Meta by you. See <a href="/pricing/">how pricing works</a>.</p>
         </div>
-        <ul class="cost-list reveal">
-          <li><span>Lead volume</span><em>how many listings and portal leads arrive each month</em></li>
-          <li><span>Projects</span><em>how many off-plan projects need their own information</em></li>
-          <li><span>Agents</span><em>how many agents or teams leads are routed to</em></li>
-          <li><span>Ads</span><em>how many project and listing campaigns run</em></li>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Lead volume</span><p>How many listings and portal leads arrive each month.</p></li>
+          <li><span class="rows__name">Projects</span><p>How many off-plan projects need their own information.</p></li>
+          <li><span class="rows__name">Agents</span><p>How many agents or teams leads are routed to.</p></li>
+          <li><span class="rows__name">Ads</span><p>How many project and listing campaigns run.</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions from property agencies</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>Can it handle leads from property portals?</summary>
-            <p>Yes. Portal enquiries are sent to WhatsApp and answered in seconds, the same way as leads from our project and listing ads.</p>
-          </details>
-          <details>
-            <summary>How does it qualify buyers?</summary>
-            <p>It asks the questions your agents would: budget, preferred area, off-plan or ready, timing, and whether they're buying to live in or invest.</p>
-          </details>
-          <details>
-            <summary>How are leads routed to agents?</summary>
-            <p>By rules we agree with you, such as community, project, language or listing agent. The agent gets a WhatsApp alert with the buyer's answers and a chat summary.</p>
-          </details>
-          <details>
-            <summary>Can it book viewings?</summary>
-            <p>Yes. It offers free times from the right agent's calendar, books the viewing or a call, and sends a reminder.</p>
-          </details>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions from property agencies</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>Can it handle leads from property portals?</h3><p>Yes. Portal enquiries are sent to WhatsApp and answered in seconds, the same way as leads from our project and listing ads.</p></div>
+          <div class="faq__item"><h3>How does it qualify buyers?</h3><p>It asks the questions your agents would: budget, preferred area, off-plan or ready, timing, and whether they're buying to live in or invest.</p></div>
+          <div class="faq__item"><h3>How are leads routed to agents?</h3><p>By rules we agree with you, such as community, project, language or listing agent. The agent gets a WhatsApp alert with the buyer's answers and a chat summary.</p></div>
+          <div class="faq__item"><h3>Can it book viewings?</h3><p>Yes. It offers free times from the right agent's calendar, books the viewing or a call, and sends a reminder.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <h2 class="reveal" style="font-size:1.4rem;margin-bottom:20px;">Related</h2>
-        <ul class="related reveal">
-          <li><a href="/m2s/">How M2S works</a></li>
-          <li><a href="/crm-automation-uae/">Lead pipeline and routing rules</a></li>
-          <li><a href="/ai-automation-agency-dubai/">Our agency in Dubai</a></li>
-          <li><a href="/education-training-automation-uae/">Education and training</a></li>
-          <li><a href="/n8n-make-zapier-automation-uae/">Connecting your CRM</a></li>
+    <section class="band" aria-labelledby="related-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4"><h2 id="related-h">Related M2S pages</h2></div>
+        <ul class="link-list link-list--col span-6 start-7">
+          <li><a class="link" href="/m2s/">How M2S works</a></li>
+          <li><a class="link" href="/crm-automation-uae/">Lead pipeline and routing rules</a></li>
+          <li><a class="link" href="/ai-automation-agency-dubai/">Our agency in Dubai</a></li>
+          <li><a class="link" href="/education-training-automation-uae/">Education and training</a></li>
+          <li><a class="link" href="/n8n-make-zapier-automation-uae/">Connecting your CRM</a></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band reveal">
-          <p class="eyebrow">Free audit</p>
-          <h2>Find out how long your property leads wait for an agent</h2>
-          <p>Thirty minutes on your portals, ads and how leads get to agents today.</p>
-          <div class="cta-actions">
-            <a href="/book/" class="btn btn-light btn-lg js-lead" data-lead="seo-realestate-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S%20for%20my%20real%20estate%20agency." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36" loading="lazy">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the chats they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Company</p>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book a free audit</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Services</p>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Industries</p>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col footer-col--contact">
-          <p class="footer-h">Contact</p>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
   <script src="/js/track.js?v=f9bc8506a0" defer></script>
-  <script src="/js/script.js?v=cda50ceb54" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
 </body>
 </html>

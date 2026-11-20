@@ -20,17 +20,65 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- head:start -->
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=1028e2ce63">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #22261f; --p-muted: #5a5c53;
+    --p-accent: #2e5b44; --p-accent-ink: #ffffff; --p-action: #2e5b44; --p-action-ink: #ffffff;
+    --p-inv-bg: #22261f; --p-inv-surface: #2e322a; --p-inv-ink: #efe9e0; --p-inv-muted: #a19e96;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #22261f; --p-inv-action: #efe9e0; --p-inv-action-ink: #22261f;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=31dc6d1c99" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style data-page>
+  /* m2s: example product mocks (cards), inline links, spacing for the link lists and notes */
+  .band p a:not(.link):not(.btn) { text-decoration: underline; text-underline-offset: 3px; }
+  .mock { display: grid; gap: var(--s-5); margin: 0; }
+  .mock > p { max-width: none; }
+  .mock .rows { margin-top: 0; }
+  .mock__meta { font-size: var(--t-small); color: var(--muted); }
+  .mock__meta strong { color: var(--ink); font-weight: 500; }
+  .mock__ad { background: var(--p-bg); border-radius: var(--r-md, 12px); padding: var(--s-7) var(--s-5); font: var(--display-weight) var(--t-h3)/1.2 var(--font-display); }
+  .mock__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3); font-size: var(--t-small); }
+  .mock__chip { background: var(--action); color: var(--action-ink, #fff); border-radius: 999px; padding: var(--s-2) var(--s-4); font-weight: 500; }
+  .mock__alert { background: var(--p-bg); border-radius: var(--r-md, 12px); padding: var(--s-4) var(--s-5); font-size: var(--t-small); line-height: 1.5; }
+  .mock__alert strong { font-weight: 500; }
+  .mock__hero { display: grid; gap: var(--s-2); padding-bottom: var(--s-5); border-bottom: 1px solid var(--line); }
+  .mock--report .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mock--report .stats .t-stat { font-size: var(--t-h3); }
+  .ground-surface .mock { background: var(--p-bg); }
+  .ground-surface .mock .mock__ad, .ground-surface .mock .mock__alert { background: var(--p-surface); }
+  .included-notes { margin-top: var(--s-8); }
+  .link-list > li { display: grid; gap: var(--s-1); align-content: start; }
+  .link-list .link { min-height: 44px; }
+  @media (min-width: 900px) { .link-list--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .link-list--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  main .band h3:not(.t-h3) { font: 500 var(--t-lead)/1.4 var(--font-text); letter-spacing: 0; }
+  ol.rows > li > a.rows__name { display: flex; align-items: center; min-height: 44px; }
+  ol.rows > li { padding-block: var(--s-2); }
+  .link-list-head { margin: var(--s-8) 0 var(--s-5); }
+  @media (max-width: 639px) { .included-notes { margin-top: var(--s-7); } .link-list-head { margin-top: var(--s-7); } }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -67,441 +115,373 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Who is M2S for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "UAE businesses that sell through conversations: online stores, clinics, salons and spas, real estate, education and training, and restaurants. It suits businesses that already run Meta ads, or are ready to, and want more of those messages to turn into sales."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I keep my own WhatsApp number?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The AI sales assistant runs on your own WhatsApp number, and your team can keep using the WhatsApp app to step in at any time."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What does the AI do when it doesn't know an answer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It never invents prices or products. Anything it can't answer goes straight to your team with an instant WhatsApp alert and a summary of the chat."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How is M2S priced?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "One fixed monthly fee, based on your ad budget, your channels and how many products or services we load, quoted in writing after a free 30-minute audit. Ad spend is paid directly to Meta."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I know it's working?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Every chat is tagged with the ad it came from, and you get a monthly M2S Results report: conversations, orders, revenue, reply speed and the revenue recovered by follow-ups."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is M2S for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UAE businesses that sell through conversations: online stores, clinics, salons and spas, real estate, education and training, and restaurants. It suits businesses that already run Meta ads, or are ready to, and want more of those messages to turn into sales."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I keep my own WhatsApp number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The AI sales assistant runs on your own WhatsApp number, and your team can keep using the WhatsApp app to step in at any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the M2S assistant do when it doesn't know an answer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It never invents prices or products. Anything it can't answer goes straight to your team with an instant WhatsApp alert and a summary of the chat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is M2S priced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One fixed monthly fee, based on your ad budget, your channels and how many products or services we load, quoted in writing after a free 30-minute audit. Ad spend is paid directly to Meta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know M2S is working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every chat is tagged with the ad it came from, and you get a monthly M2S Results report: conversations, orders, revenue, reply speed and the revenue recovered by follow-ups."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
   <!-- header:start m2s -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/" class="is-active" aria-current="page">How M2S works</a>
-        <a href="/#industries">Who it's for</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/results/">Results</a>
-        <a href="/about/">About</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/" aria-current="page">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main id="main">
-    <section class="page-hero">
-      <div class="container">
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
         <p class="crumb"><a href="/">Home</a> / How M2S works</p>
-        <p class="eyebrow">M2S · Message to Sale</p>
-        <h1>How we turn ad messages into sales</h1>
-        <p class="lede">Nuevo Automations runs your ads straight into WhatsApp instead of a landing page, and M2S answers every message they bring and works it toward a sale. An AI sales assistant replies on WhatsApp in seconds, and automatic follow-ups win back the customers who went quiet or left their cart.</p>
-        <div class="hero-actions">
-          <a href="/book/" class="btn btn-primary btn-lg js-lead" data-lead="m2s-hero">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
+        <h1 id="page-h">How we turn ad messages into sales</h1>
+        <p class="t-lead">Nuevo Automations runs your ads straight into WhatsApp instead of a landing page, and M2S answers every message they bring and works it toward a sale. An AI sales assistant replies on WhatsApp in seconds, and automatic follow-ups win back the customers who went silent or left their cart.</p>
+        <div class="btn-row"><a class="btn btn--primary js-lead" data-lead="m2s-hero" href="/book/">Book a free audit</a></div>
       </div>
     </section>
 
-    <!-- Strip -->
-    <section class="section section--tight">
-      <div class="container">
-        <div class="answer reveal" style="margin-bottom:56px;">
-          <p class="eyebrow">What is M2S?</p>
-          <p>M2S (Message to Sale) is a done-for-you service from Nuevo Automations, a Sharjah-registered marketing agency. We run Meta click-to-WhatsApp ads, and an AI sales assistant replies to every message in seconds in English or Arabic, takes the order or booking in the chat, follows up with abandoned carts, unpaid links and quiet leads, and reports the results every month.</p>
-        </div>
-        <h2 class="sr-only">The five steps of M2S</h2>
-        <ol class="funnel reveal-stagger">
-          <li class="funnel-step"><span class="funnel-num">1</span><h3>Ads → WhatsApp</h3><p>Every lead lands in one place.</p></li>
-          <li class="funnel-step"><span class="funnel-num">2</span><h3>Instant AI reply</h3><p>Seconds, 24/7, English or Arabic.</p></li>
-          <li class="funnel-step"><span class="funnel-num">3</span><h3>Qualify &amp; close</h3><p>Order, payment or booking in the chat.</p></li>
-          <li class="funnel-step"><span class="funnel-num">4</span><h3>Follow up</h3><p>Carts, unpaid links, quiet leads.</p></li>
-          <li class="funnel-step"><span class="funnel-num">5</span><h3>Results</h3><p>What you paid, what came back.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Step 1 -->
-    <section class="section section--alt" id="ads">
-      <div class="container split">
-        <div class="reveal">
-          <p class="step-label"><b>1</b> Ads → WhatsApp</p>
-          <h2>Ads that start a conversation, not just a click</h2>
-          <p class="lede" style="margin-bottom:24px;">We run Meta ads on Instagram and Facebook that open a WhatsApp chat with your business ("click to WhatsApp"). We also connect your website chat and forms, so every lead lands in one place.</p>
-          <ul class="ticks">
-            <li>Every chat is tagged with the ad it came from</li>
-            <li>Purchases are sent back to Meta through the pixel and Conversions API, so Meta finds more people who actually buy, not just people who click</li>
-            <li>Creative, targeting and budget managed by us, and reported to you every month</li>
-          </ul>
-        </div>
-        <div class="reveal" style="display:flex;justify-content:center;">
-          <div class="ad-mock" role="img" aria-label="Example of a click-to-WhatsApp ad">
-            <div class="ad-mock-head"><span class="ad-avatar">YB</span><span><strong>Your Brand</strong>Sponsored</span></div>
-            <div class="ad-mock-img">New linen collection.<br>Free delivery in Dubai.</div>
-            <div class="ad-mock-cta"><span>Ask us anything, we reply in seconds</span><span class="btn btn-wa">Send message</span></div>
+    <section class="band" aria-labelledby="what-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="what-h">What is M2S?</h2>
+          <div class="answer">
+            <p>M2S (Message to Sale) is a done-for-you service from Nuevo Automations, a Sharjah-registered marketing agency. We run Meta click-to-WhatsApp ads, and an AI sales assistant replies to every message in seconds in English or Arabic, takes the order or booking in the chat, follows up with abandoned carts, unpaid links and leads that went silent, and reports the results every month.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Step 2 -->
-    <section class="section" id="reply">
-      <div class="container split split--reverse">
-        <div class="reveal">
-          <p class="step-label"><b>2</b> Instant AI reply, 24/7</p>
-          <h2>Answered in seconds, at any hour</h2>
-          <p class="lede" style="margin-bottom:24px;">Your AI sales assistant answers in seconds, any time of day, in English or Arabic. It knows your products, prices, delivery areas and policies, and it talks like a real member of your team.</p>
-          <ul class="ticks">
-            <li>Answers questions, recommends the right product and handles objections</li>
-            <li>Never invents prices or products</li>
-            <li>Anything it can't answer goes straight to your team</li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <ol class="timeline" aria-label="Example: an Arabic price question at midnight answered in seconds">
-            <li><time>12:14 AM</time><div><strong>Question in Arabic from a Facebook ad</strong><p>"How much is the set, and do you deliver to Sharjah?"</p></div></li>
-            <li><time>Seconds</time><div><strong>Answered in Arabic</strong><p>AED 289, free delivery to Sharjah within two days, and an offer to reserve one.</p></div></li>
-            <li><time>12:15 AM</time><div><strong>Objection handled in English</strong><p>"Is it cheaper anywhere else?" Answered with free delivery and easy 7-day returns, not a made-up discount.</p></div></li>
-            <li class="is-stop"><time>Next</time><div><strong>Moves to checkout</strong><p>"Want me to hold an M for you?"</p></div></li>
+        <div class="span-5 start-8 stack-5">
+          <h3>The five steps of M2S</h3>
+          <ol class="rows">
+            <li><a class="rows__name" href="#ads">1. Ads to WhatsApp</a><p>Every lead lands in one place.</p></li>
+            <li><a class="rows__name" href="#reply">2. Instant AI reply</a><p>Seconds, 24/7, English or Arabic.</p></li>
+            <li><a class="rows__name" href="#close">3. Qualify and close</a><p>Order, payment or booking in the chat.</p></li>
+            <li><a class="rows__name" href="#follow-up">4. Follow up</a><p>Carts, unpaid links, silent leads.</p></li>
+            <li><a class="rows__name" href="#results">5. Results</a><p>What you paid, what came back.</p></li>
           </ol>
-          <p class="fine" style="margin-top:12px;">Illustrative example.</p>
         </div>
       </div>
     </section>
 
-    <!-- Step 3 -->
-    <section class="section section--alt" id="close">
-      <div class="container split">
-        <div class="reveal">
-          <p class="step-label"><b>3</b> Qualify and close in the chat</p>
-          <h2>The sale happens where the conversation is</h2>
-          <p class="lede" style="margin-bottom:24px;">The assistant qualifies the lead, moves it through your sales pipeline, and closes the sale right in the chat.</p>
-          <ul class="ticks">
-            <li>Takes the order, the delivery address and the payment choice</li>
-            <li>Sends a secure card payment link, or confirms cash on delivery</li>
-            <li>For service businesses, books the appointment or consultation in your calendar</li>
-            <li>When a hot lead needs a human, your team gets a WhatsApp alert straight away, with a summary of the chat</li>
+    <section class="band" id="ads" aria-labelledby="ads-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="ads-h">Step 1: ads that open a WhatsApp conversation</h2>
+          <p class="t-lead">We run Meta ads on Instagram and Facebook that open a WhatsApp chat with your business ("click to WhatsApp"). We also connect your website chat and forms, so every lead lands in one place.</p>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Every chat is tagged with the ad it came from</span></li>
+            <li><span class="rows__name">Purchases are sent back to Meta through the pixel and Conversions API, so Meta finds more people who buy</span></li>
+            <li><span class="rows__name">Creative, targeting and budget managed by us, and reported to you every month</span></li>
           </ul>
         </div>
-        <div class="reveal">
-          <div class="pipeline" role="img" aria-label="Example sales pipeline with four stages">
-            <div class="pipeline-col"><p class="pipeline-h">New lead <span>14</span></p><div class="pipeline-card"><strong>Mariam</strong>IG ad · asked price</div><div class="pipeline-card"><strong>Omar</strong>FB ad · sizes</div></div>
-            <div class="pipeline-col"><p class="pipeline-h">Qualified <span>9</span></p><div class="pipeline-card"><strong>Huda</strong>Wants 2 sets</div><div class="pipeline-card"><strong>Ali</strong>Delivery to Ajman</div></div>
-            <div class="pipeline-col"><p class="pipeline-h">Checkout <span>5</span></p><div class="pipeline-card"><strong>Sara</strong>Link sent · AED 289</div></div>
-            <div class="pipeline-col"><p class="pipeline-h">Ordered <span>22</span></p><div class="pipeline-card"><strong>Rashid</strong>Paid · card</div><div class="pipeline-card"><strong>Lina</strong>COD · Dubai</div></div>
+        <figure class="card mock span-5 start-8" aria-label="Example of a click-to-WhatsApp ad">
+          <p class="mock__meta"><strong>Your Brand</strong> · Sponsored</p>
+          <p class="mock__ad">New linen collection.<br>Free delivery in Dubai.</p>
+          <p class="mock__bar"><span>Ask us anything, we reply in seconds</span><span class="mock__chip">Send message</span></p>
+          <figcaption class="t-small muted">Example ad with a made-up brand.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band" id="reply" aria-labelledby="reply-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="reply-h">Step 2: answered in seconds, at any hour</h2>
+          <p class="t-lead">Your AI sales assistant answers in seconds, any time of day, in English or Arabic. It knows your products, prices, delivery areas and policies, and it talks like a real member of your team.</p>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Answers questions, recommends the right product and handles objections</span></li>
+            <li><span class="rows__name">Never invents prices or products</span></li>
+            <li><span class="rows__name">Anything it can't answer goes straight to your team</span></li>
+          </ul>
+        </div>
+        <figure class="card mock span-5 start-8" aria-label="Example: an Arabic price question at midnight answered in seconds">
+          <ul class="rows">
+            <li><span class="rows__name">Question in Arabic from a Facebook ad</span><span class="rows__value">12:14 AM</span><p>"How much is the set, and do you deliver to Sharjah?"</p></li>
+            <li><span class="rows__name">Answered in Arabic</span><span class="rows__value">Seconds</span><p>AED 289, free delivery to Sharjah within two days, and an offer to reserve one.</p></li>
+            <li><span class="rows__name">Objection handled in English</span><span class="rows__value">12:15 AM</span><p>"Is it cheaper anywhere else?" Answered with free delivery and easy 7-day returns, not a made-up discount.</p></li>
+            <li><span class="rows__name">Moves to checkout</span><span class="rows__value">Next</span><p>"Want me to hold an M for you?"</p></li>
+          </ul>
+          <figcaption class="t-small muted">Example chat with a made-up brand.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band" id="close" aria-labelledby="close-step-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="close-step-h">Step 3: the sale happens where the conversation is</h2>
+          <p class="t-lead">The assistant qualifies the lead, moves it through your sales pipeline, and closes the sale right in the chat.</p>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Takes the order, the delivery address and the payment choice</span></li>
+            <li><span class="rows__name">Sends a secure card payment link, or confirms cash on delivery</span></li>
+            <li><span class="rows__name">For service businesses, books the appointment or consultation in your calendar</span></li>
+            <li><span class="rows__name">When a hot lead needs a human, your team gets a WhatsApp alert straight away, with a summary of the chat</span></li>
+          </ul>
+        </div>
+        <figure class="card mock span-5 start-8" aria-label="Example sales pipeline with four stages">
+          <ul class="rows">
+            <li><span class="rows__name">New lead</span><span class="rows__value">14</span><p>Mariam, IG ad, asked price · Omar, FB ad, sizes</p></li>
+            <li><span class="rows__name">Qualified</span><span class="rows__value">9</span><p>Huda wants 2 sets · Ali, delivery to Ajman</p></li>
+            <li><span class="rows__name">Checkout</span><span class="rows__value">5</span><p>Sara, link sent, AED 289</p></li>
+            <li><span class="rows__name">Ordered</span><span class="rows__value">22</span><p>Rashid paid by card · Lina, COD, Dubai</p></li>
+          </ul>
+          <p class="mock__alert"><strong>Hot lead: Huda wants 2 sets for a gift</strong><br>Asked about gift wrapping and delivery on Friday. Tap to take over the chat.</p>
+          <figcaption class="t-small muted">Example pipeline with made-up customers.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band" id="follow-up" aria-labelledby="follow-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="follow-h">Step 4: most people who go quiet haven't said no</h2>
+          <p class="t-lead">M2S follows up automatically with three kinds of customers who were about to buy:</p>
+          <ul class="rows">
+            <li><span class="rows__name">Abandoned carts</span><p>Within 30 minutes, a friendly WhatsApp reminder with their items and a link back to checkout. If they still don't buy, a second message offers to finish the order in the chat. A third message with a discount code is optional.</p></li>
+            <li><span class="rows__name">Unpaid payment links</span><p>The customer asked for a link and didn't pay. They get a gentle reminder.</p></li>
+            <li><span class="rows__name">Quiet leads</span><p>The customer asked the price and went silent. Timed follow-ups, for example after 4 hours, 1 day and 3 days, restart the conversation.</p></li>
+          </ul>
+          <p><strong>Follow-up rules.</strong> Follow-ups stop the moment the customer buys or replies, never go out at night, stop for anyone who says "stop", and run once per customer per week.</p>
+        </div>
+        <figure class="card mock span-5 start-8" aria-label="Example abandoned cart sequence">
+          <ul class="rows">
+            <li><span class="rows__name">Cart left on your website</span><span class="rows__value">0 min</span><p>Linen set, size M, AED 289.</p></li>
+            <li><span class="rows__name">Friendly reminder</span><span class="rows__value">30 min</span><p>Their items and a link back to checkout.</p></li>
+            <li><span class="rows__name">Offer to finish in the chat</span><span class="rows__value">Next day</span><p>"I can place the order for you here, card or cash on delivery."</p></li>
+            <li><span class="rows__name">Discount code</span><span class="rows__value">Optional</span><p>Only if you want to offer one.</p></li>
+            <li><span class="rows__name">Sequence stops</span><span class="rows__value">Reply</span><p>The AI takes over, knowing exactly what was in the cart.</p></li>
+          </ul>
+          <figcaption class="t-small muted">Example sequence with a made-up brand.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band ground-surface" id="results" aria-labelledby="results-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="results-h">Step 5: a monthly M2S Results report</h2>
+          <p class="t-lead">You see exactly what you paid for and what came back.</p>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Conversations started, and how many came from ads</span></li>
+            <li><span class="rows__name">Qualified leads, orders and revenue</span></li>
+            <li><span class="rows__name">How fast the assistant replied</span></li>
+            <li><span class="rows__name">Recovered revenue: money won back from abandoned carts, unpaid links and follow-ups</span></li>
+          </ul>
+        </div>
+        <figure class="card mock mock--report span-5 start-8" aria-label="Example M2S Results report with made-up numbers">
+          <p class="mock__meta"><strong>M2S Results</strong> · this month</p>
+          <div class="mock__hero">
+            <p class="t-small muted">Recovered this month</p>
+            <p class="t-stat">AED 18,400</p>
+            <p class="t-small">from abandoned carts, unpaid links and follow-ups</p>
           </div>
-          <div class="alert-card">
-            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
-            <span><strong>Hot lead: Huda wants 2 sets for a gift</strong>Asked about gift wrapping and delivery on Friday. Tap to take over the chat.</span>
-          </div>
-          <p class="fine" style="margin-top:12px;">Illustrative example.</p>
-        </div>
+          <dl class="stats">
+            <div><dt class="t-small muted">Conversations</dt><dd class="t-stat">1,284</dd></div>
+            <div><dt class="t-small muted">From ads</dt><dd class="t-stat">71%</dd></div>
+            <div><dt class="t-small muted">Qualified leads</dt><dd class="t-stat">486</dd></div>
+            <div><dt class="t-small muted">Orders</dt><dd class="t-stat">312</dd></div>
+          </dl>
+          <figcaption class="t-small muted">Example layout with made-up numbers. Not a real client's numbers.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- Step 4 -->
-    <section class="section" id="follow-up">
-      <div class="container split split--reverse">
-        <div class="reveal">
-          <p class="step-label"><b>4</b> Follow-ups that win the sale back</p>
-          <h2>Most people who go quiet haven't said no</h2>
-          <p class="lede" style="margin-bottom:24px;">M2S follows up automatically with three kinds of customers who were about to buy:</p>
-          <ul class="ticks">
-            <li><span><strong>Abandoned carts.</strong> Within 30 minutes, a friendly WhatsApp reminder with their items and a link back to checkout. If they still don't buy, a second message offers to finish the order in the chat. A third message with a discount code is optional.</span></li>
-            <li><span><strong>Unpaid payment links.</strong> The customer asked for a link and didn't pay. They get a gentle reminder.</span></li>
-            <li><span><strong>Quiet leads.</strong> The customer asked the price and went silent. Timed follow-ups, for example after 4 hours, 1 day and 3 days, restart the conversation.</span></li>
+    <section class="band" id="included" aria-labelledby="included-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="included-h">Everything in M2S</h2></div>
+        <div class="grid">
+          <ul class="rows rows--plain span-6">
+            <li><span class="rows__name">Ad setup and management on Meta, with click-to-WhatsApp campaigns</span></li>
+            <li><span class="rows__name">AI sales assistant on your own WhatsApp number (the WhatsApp app stays usable) and on your website chat</span></li>
+            <li><span class="rows__name">Your products, prices and policies loaded and kept up to date</span></li>
+            <li><span class="rows__name">Sales pipeline (CRM) with your stages</span></li>
+            <li><span class="rows__name">Abandoned cart recovery for Shopify, and for other websites through our API</span></li>
           </ul>
-          <p class="note"><strong>Smart and polite by design.</strong> Follow-ups stop the moment the customer buys or replies, never go out at night, stop for anyone who says "stop", and run once per customer per week.</p>
-        </div>
-        <ol class="timeline reveal-stagger" aria-label="Example abandoned cart sequence">
-          <li><time>0 min</time><div><strong>Cart left on your website</strong><p>Linen set, size M, AED 289.</p></div></li>
-          <li><time>30 min</time><div><strong>Friendly reminder</strong><p>Their items and a link back to checkout.</p></div></li>
-          <li><time>Next day</time><div><strong>Offer to finish in the chat</strong><p>"I can place the order for you here, card or cash on delivery."</p></div></li>
-          <li><time>Optional</time><div><strong>Discount code</strong><p>Only if you want to offer one.</p></div></li>
-          <li class="is-stop"><time>Reply</time><div><strong>Sequence stops</strong><p>The AI takes over, knowing exactly what was in the cart.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Step 5 -->
-    <section class="section section--dark" id="results">
-      <div class="container split">
-        <div class="reveal">
-          <p class="step-label" style="color:#8cc1f2;"><b>5</b> Results you can see</p>
-          <h2>A monthly M2S Results report</h2>
-          <p class="lede" style="margin-bottom:24px;">You see exactly what you paid for and what came back.</p>
-          <ul class="ticks">
-            <li>Conversations started, and how many came from ads</li>
-            <li>Qualified leads, orders and revenue</li>
-            <li>How fast the assistant replied</li>
-            <li>Recovered revenue: money won back from abandoned carts, unpaid links and follow-ups</li>
+          <ul class="rows rows--plain span-6">
+            <li><span class="rows__name">Follow-up sequences, quiet hours and opt-out handling</span></li>
+            <li><span class="rows__name">Instant WhatsApp alerts to the owner or team for hot leads and new orders</span></li>
+            <li><span class="rows__name">Card payment links or cash on delivery inside the chat</span></li>
+            <li><span class="rows__name">Ad tracking (pixel and Conversions API) and a "where your sales came from" report</span></li>
+            <li><span class="rows__name">A monthly M2S Results report</span></li>
           </ul>
         </div>
-        <div class="reveal">
-          <div class="report" role="img" aria-label="Example M2S Results report with illustrative numbers">
-            <div class="report-head"><strong>M2S Results</strong><span>Sample · illustrative numbers</span></div>
-            <div class="report-hero"><span>Recovered this month</span><strong>AED 18,400</strong><p>from abandoned carts, unpaid links and follow-ups</p></div>
-            <div class="report-grid">
-              <div><span>Conversations</span><strong>1,284</strong></div>
-              <div><span>From ads</span><strong>71%</strong></div>
-              <div><span>Qualified leads</span><strong>486</strong></div>
-              <div><span>Orders</span><strong>312</strong></div>
-            </div>
-          </div>
-          <p class="report-note">Illustrative example of the report layout. Not a real client's numbers.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Deliverables -->
-    <section class="section" id="included">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">What you get</p>
-          <h2>Everything in M2S</h2>
-        </div>
-        <div class="grid-2 reveal">
-          <ul class="ticks" style="margin:0;">
-            <li>Ad setup and management on Meta, with click-to-WhatsApp campaigns</li>
-            <li>AI sales assistant on your own WhatsApp number (the WhatsApp app stays usable) and on your website chat</li>
-            <li>Your products, prices and policies loaded and kept up to date</li>
-            <li>Sales pipeline (CRM) with your stages</li>
-            <li>Abandoned cart recovery for Shopify, and for other websites through our API</li>
-          </ul>
-          <ul class="ticks" style="margin:0;">
-            <li>Follow-up sequences, quiet hours and opt-out handling</li>
-            <li>Instant WhatsApp alerts to the owner or team for hot leads and new orders</li>
-            <li>Card payment links or cash on delivery inside the chat</li>
-            <li>Ad tracking (pixel and Conversions API) and a "where your sales came from" report</li>
-            <li>A monthly M2S Results report</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Notes -->
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <div class="grid-3 reveal-stagger">
-          <div class="card">
+        <div class="grid included-notes">
+          <article class="card span-4">
             <h3>Built on our own platform</h3>
             <p>M2S runs on OrcaFlo, the WhatsApp AI platform we built and run ourselves. No patchwork of third-party tools.</p>
-          </div>
-          <div class="card">
+          </article>
+          <article class="card span-4">
             <h3>Official WhatsApp numbers</h3>
             <p>On the official WhatsApp API, messages sent more than 24 hours after a customer's last message need a Meta-approved template. We set those up for you.</p>
-          </div>
-          <div class="card">
+          </article>
+          <article class="card span-4">
             <h3>Switched on store by store</h3>
             <p>Cart recovery connects to your store during onboarding. We confirm it's live for your store before it counts in your report.</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Hub: industries and channels -->
-    <section class="section" id="who-its-for">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Who it's for</p>
-          <h2>Built for wellness and supplement brands, and beyond</h2>
-          <p class="lede">M2S was built for premium wellness and supplement brands selling online, where buyers ask before they pay. The same system works in other industries; what changes is what customers ask and how the sale closes. See how it works for your business, or read <a href="/pricing/">how pricing works</a>.</p>
+    <section class="band" id="who-its-for" aria-labelledby="who-h">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="who-h">M2S for wellness and supplement brands, and other industries</h2>
+          <p>M2S was built for premium wellness and supplement brands selling online, where buyers ask before they pay. The same system works in other industries; what changes is what customers ask and how the sale closes. See how it works for your business, or read <a href="/pricing/">how pricing works</a>.</p>
         </div>
-        <ul class="ind-list reveal">
-          <li><a href="/ecommerce-automation-uae/"><strong>Wellness &amp; supplement stores</strong><span>Product questions, COD or payment link, cart recovery</span></a></li>
-          <li><a href="/automation-for-clinics-uae/"><strong>Clinics</strong><span>Treatment enquiries to booked consultations</span></a></li>
-          <li><a href="/salon-spa-automation-dubai/"><strong>Salons &amp; spas</strong><span>Service menu, stylist choice, rebooking</span></a></li>
-          <li><a href="/real-estate-automation-dubai/"><strong>Real estate</strong><span>Portal and ad leads qualified, viewings booked</span></a></li>
-          <li><a href="/education-training-automation-uae/"><strong>Education</strong><span>Course questions, intakes and trial classes</span></a></li>
-          <li><a href="/restaurant-whatsapp-automation-uae/"><strong>Restaurants</strong><span>Direct orders, catering and reservations</span></a></li>
+        <ul class="link-list link-list--3">
+          <li><a class="link" href="/ecommerce-automation-uae/">Wellness and supplement stores</a><p class="t-small muted">Product questions, COD or payment link, cart recovery</p></li>
+          <li><a class="link" href="/automation-for-clinics-uae/">Clinics</a><p class="t-small muted">Treatment enquiries to booked consultations</p></li>
+          <li><a class="link" href="/salon-spa-automation-dubai/">Salons and spas</a><p class="t-small muted">Service menu, stylist choice, rebooking</p></li>
+          <li><a class="link" href="/real-estate-automation-dubai/">Real estate</a><p class="t-small muted">Portal and ad leads qualified, viewings booked</p></li>
+          <li><a class="link" href="/education-training-automation-uae/">Education</a><p class="t-small muted">Course questions, intakes and trial classes</p></li>
+          <li><a class="link" href="/restaurant-whatsapp-automation-uae/">Restaurants</a><p class="t-small muted">Direct orders, catering and reservations</p></li>
         </ul>
-        <h3 style="margin:var(--s-10) 0 var(--s-4);">By channel and part of the system</h3>
-        <ul class="related reveal">
-          <li><a href="/whatsapp-automation-uae/">WhatsApp sales automation</a></li>
-          <li><a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a></li>
-          <li><a href="/ai-chatbot-development-uae/">The AI sales assistant</a></li>
-          <li><a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a></li>
-          <li><a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a></li>
-          <li><a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a></li>
-          <li><a href="/business-process-automation-sharjah/">Sales automation in Sharjah</a></li>
-          <li><a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a></li>
+        <h3 class="link-list-head">M2S services by channel</h3>
+        <ul class="link-list link-list--4">
+          <li><a class="link" href="/whatsapp-automation-uae/">WhatsApp sales automation</a></li>
+          <li><a class="link" href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li>
+          <li><a class="link" href="/ai-chatbot-development-uae/">The AI sales assistant</a></li>
+          <li><a class="link" href="/ai-receptionist-uae/">AI receptionist and bookings</a></li>
+          <li><a class="link" href="/crm-automation-uae/">Sales pipeline and follow-up</a></li>
+          <li><a class="link" href="/n8n-make-zapier-automation-uae/">Store and CRM integrations</a></li>
+          <li><a class="link" href="/business-process-automation-sharjah/">Sales automation in Sharjah</a></li>
+          <li><a class="link" href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a></li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions about M2S</h2>
+    <section class="band" id="faq" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-6 stack-5">
+          <h2 id="faq-h">Questions about M2S</h2>
+          <p><a class="link" href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." target="_blank" rel="noopener">Message us on WhatsApp</a></p>
         </div>
-        <div class="faq reveal">
-          <details>
-            <summary>Who is M2S for?</summary>
-            <p>UAE businesses that sell through conversations: online stores, clinics, salons and spas, real estate, education and training, and restaurants. It suits businesses that already run Meta ads, or are ready to, and want more of those messages to turn into sales.</p>
-          </details>
-          <details>
-            <summary>Do I keep my own WhatsApp number?</summary>
-            <p>Yes. The AI sales assistant runs on your own WhatsApp number, and your team can keep using the WhatsApp app to step in at any time.</p>
-          </details>
-          <details>
-            <summary>What does the AI do when it doesn't know an answer?</summary>
-            <p>It never invents prices or products. Anything it can't answer goes straight to your team with an instant WhatsApp alert and a summary of the chat.</p>
-          </details>
-          <details>
-            <summary>How is M2S priced?</summary>
-            <p>One fixed monthly fee, based on your ad budget, your channels and how many products or services we load, quoted in writing after a free 30-minute audit. Ad spend is paid directly to Meta.</p>
-          </details>
-          <details>
-            <summary>How do I know it's working?</summary>
-            <p>Every chat is tagged with the ad it came from, and you get a monthly M2S Results report: conversations, orders, revenue, reply speed and the revenue recovered by follow-ups.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0;">
-      <div class="container">
-        <div class="cta-band reveal">
-          <p class="eyebrow">Free M2S audit</p>
-          <h2>See what M2S would fix first</h2>
-          <p>Thirty minutes. We look at your ads, your WhatsApp and your follow-ups, and show you where the sales are leaking out.</p>
-          <div class="cta-actions">
-            <a href="/book/" class="btn btn-light btn-lg js-lead" data-lead="m2s-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
-          </div>
+        <div class="faq span-5 start-8">
+          <div class="faq__item"><h3>Who is M2S for?</h3><p>UAE businesses that sell through conversations: online stores, clinics, salons and spas, real estate, education and training, and restaurants. It suits businesses that already run Meta ads, or are ready to, and want more of those messages to turn into sales.</p></div>
+          <div class="faq__item"><h3>Do I keep my own WhatsApp number?</h3><p>Yes. The AI sales assistant runs on your own WhatsApp number, and your team can keep using the WhatsApp app to step in at any time.</p></div>
+          <div class="faq__item"><h3>What does the M2S assistant do when it doesn't know an answer?</h3><p>It never invents prices or products. Anything it can't answer goes straight to your team with an instant WhatsApp alert and a summary of the chat.</p></div>
+          <div class="faq__item"><h3>How is M2S priced?</h3><p>One fixed monthly fee, based on your ad budget, your channels and how many products or services we load, quoted in writing after a free 30-minute audit. Ad spend is paid directly to Meta.</p></div>
+          <div class="faq__item"><h3>How do I know M2S is working?</h3><p>Every chat is tagged with the ad it came from, and you get a monthly M2S Results report: conversations, orders, revenue, reply speed and the revenue recovered by follow-ups.</p></div>
         </div>
       </div>
     </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36" loading="lazy">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the chats they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Company</p>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book a free audit</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Services</p>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Industries</p>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col footer-col--contact">
-          <p class="footer-h">Contact</p>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
   <script src="/js/track.js?v=f9bc8506a0" defer></script>
-  <script src="/js/script.js?v=cda50ceb54" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
 </body>
 </html>

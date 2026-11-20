@@ -25,17 +25,46 @@
   <meta name="twitter:image" content="https://nuevoautomations.com/assets/og-image.jpg">
 
   <!-- head:start -->
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=1028e2ce63">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #22261f; --p-muted: #5a5c53;
+    --p-accent: #2e5b44; --p-accent-ink: #ffffff; --p-action: #2e5b44; --p-action-ink: #ffffff;
+    --p-inv-bg: #22261f; --p-inv-surface: #2e322a; --p-inv-ink: #efe9e0; --p-inv-muted: #a19e96;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #22261f; --p-inv-action: #efe9e0; --p-inv-action-ink: #22261f;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=31dc6d1c99" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style id="page-style">
+  /* related links in a split column: one link per line */
+  .link-list--col { grid-template-columns: minmax(0, 1fr); }
+  /* a small heading over a list in a split column, sized like the card and FAQ h3s */
+  .band .stack-4 > h3 { font: 500 var(--t-card)/1.3 var(--font-text); letter-spacing: -0.01em; }
+  /* inline links inside reading text */
+  :is(.band, .page-head) p > a:not(.btn):not(.link) { text-decoration: underline; text-underline-offset: 3px; }
+  .page-head .page-head__aside { margin-top: var(--s-5); }
+  </style>
 
   <script type="application/ld+json">
 {
@@ -128,266 +157,203 @@
 </head>
 <body>
   <!-- header:start service -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/">How M2S works</a>
-        <a href="/#industries">Who it's for</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/results/">Results</a>
-        <a href="/about/">About</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main id="main">
-
-    <section class="page-hero">
-      <div class="container">
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
         <p class="crumb"><a href="/">Home</a> / <a href="/m2s/">Services</a> / Sales automation, Sharjah</p>
-        <p class="eyebrow">Sales automation · Sharjah</p>
-        <h1>Business process automation from <span class="text-brand">a Sharjah-licensed team</span></h1>
-        <p class="lede">We're licensed in Sharjah Publishing City Free Zone and work with businesses in Sharjah, Ajman and the rest of the UAE. Our focus is the work that follows a sale on WhatsApp: hand-offs, records and alerts.</p>
-        <div class="hero-actions">
-          <a href="/book/" class="btn btn-primary btn-lg js-lead" data-lead="seo-sharjah">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/m2s/" class="btn btn-ghost btn-lg">How M2S works</a>
+        <h1 id="page-h">Business process automation from a Sharjah-licensed team</h1>
+        <p class="t-lead">We're licensed in Sharjah Publishing City Free Zone and work with businesses in Sharjah, Ajman and the rest of the UAE. Our focus is the work that follows a sale on WhatsApp: hand-offs, records and alerts.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary js-lead" data-lead="seo-sharjah" href="/book/">Book a free audit</a>
+          <a class="btn btn--secondary" href="https://wa.me/971508549171?text=Hi%2C%20I%27m%20a%20business%20in%20Sharjah%20and%20I%27d%20like%20to%20know%20more%20about%20M2S." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="answer reveal">
-          <p class="eyebrow">Short answer</p>
-          <p>Business process automation means having repeatable steps in your business run by software on a trigger, instead of by hand. For a small sales business, those steps usually follow an order: sending it to the person who fulfils it, recording it in a sheet or store, and alerting the team. Nuevo Automations FZE LLC is licensed in Sharjah.</p>
+    <section class="band" aria-label="Short answer">
+      <div class="wrap">
+        <div class="answer"><p>Business process automation means having repeatable steps in your business run by software on a trigger, instead of by hand. For a small sales business, those steps usually follow an order: sending it to the person who fulfils it, recording it in a sheet or store, and alerting the team. Nuevo Automations FZE LLC is licensed in Sharjah.</p></div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="about-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="about-h">A Sharjah company, working remotely with local businesses</h2></div>
+        <div class="grid">
+          <article class="card span-4"><h3>Licensed in Sharjah</h3><p>Nuevo Automations FZE LLC is licensed in Sharjah Publishing City Free Zone, founded in September 2026 by Nawaf Allahham.</p></article>
+          <article class="card span-4"><h3>Sharjah and Ajman</h3><p>We work with businesses across Sharjah and Ajman, and with companies elsewhere in the UAE, in English or Arabic.</p></article>
+          <article class="card span-4"><h3>Audits on Zoom or WhatsApp</h3><p>The free 30-minute audit runs on a Zoom call or on WhatsApp, so there's no need to travel.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">About us in Sharjah</p>
-          <h2>A Sharjah company, working remotely with local businesses</h2>
+    <section class="band" aria-labelledby="steps-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="steps-h">The steps after a sale that we automate</h2>
+          <p>Each step as it's done by hand today, and what runs on its own instead.</p>
         </div>
-        <div class="grid-3 reveal-stagger">
-          <article class="card"><h3>Licensed in Sharjah</h3><p>Nuevo Automations FZE LLC is licensed in Sharjah Publishing City Free Zone, founded in September 2026 by Nawaf Allahham.</p></article>
-          <article class="card"><h3>Sharjah and Ajman</h3><p>We work with businesses across Sharjah and Ajman, and with companies elsewhere in the UAE, in English or Arabic.</p></article>
-          <article class="card"><h3>Audits on Zoom or WhatsApp</h3><p>The free 30-minute audit runs on a Zoom call or on WhatsApp, so there's no need to travel.</p></article>
-        </div>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Order hand-off</span><p>By hand: someone forwards screenshots to the person who packs.</p><p>Automated: each order or booking reaches your team on WhatsApp with name, address and items.</p></li>
+          <li><span class="rows__name">Order records</span><p>By hand: orders are typed into a spreadsheet at the end of the day.</p><p>Automated: a row is written to your Google Sheet or an order created in your store, as it happens.</p></li>
+          <li><span class="rows__name">Team alerts</span><p>By hand: a hot lead waits until someone checks the phone.</p><p>Automated: an instant WhatsApp alert with a chat summary when a lead or order needs a person.</p></li>
+        </ul>
       </div>
     </section>
 
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Back office</p>
-          <h2>The steps after a sale that we automate</h2>
+    <section class="band" aria-labelledby="example-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="example-h">One late order in Muwaileh, no morning admin</h2>
+          <p>The order came in after closing. By the time your team arrived, it had already been handed to the warehouse and recorded, and the pipeline showed it as Ordered against the ad it came from.</p>
+          <p>Anything unusual, such as a trade price or a custom size, would have gone to a person with a summary instead.</p>
         </div>
-        <div class="steps-head" aria-hidden="true"><span>Step</span><span>Done by hand</span><span>Automated</span></div>
-        <ol class="steps reveal-stagger">
-          <li><h3>Order hand-off</h3><p class="was">someone forwards screenshots to the person who packs.</p><p class="now">Each order or booking reaches your team on WhatsApp with name, address and items.</p></li>
-          <li><h3>Order records</h3><p class="was">orders are typed into a spreadsheet at the end of the day.</p><p class="now">A row is written to your Google Sheet or an order created in your store, as it happens.</p></li>
-                    <li><h3>Team alerts</h3><p class="was">a hot lead waits until someone checks the phone.</p><p class="now">An instant WhatsApp alert with a chat summary when a lead or order needs a person.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <ol class="timeline" aria-label="Example: a cash-on-delivery order in Muwaileh">
-            <li><time>10:48 PM</time><div><strong>Question from an Instagram ad</strong><p>Delivery to Muwaileh, and the price of a 4-seat dining set?</p></div></li>
-            <li><time>Seconds</time><div><strong>Answered from your list</strong><p>Price and delivery days confirmed; cash on delivery offered.</p></div></li>
-            <li><time>10:50 PM</time><div><strong>COD order confirmed</strong><p>Name and address taken in the chat.</p></div></li>
-            <li class="is-stop"><time>By morning</time><div><strong>Back office done</strong><p>Order on the warehouse WhatsApp, row in the sheet, marked Ordered.</p></div></li>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-small muted">Example order with a made-up customer.</p>
+          <ol class="rows" aria-label="Example: a cash-on-delivery order in Muwaileh">
+            <li><span class="rows__name">Question from an Instagram ad</span><span class="rows__value mono t-small">10:48 PM</span><p>Delivery to Muwaileh, and the price of a 4-seat dining set?</p></li>
+            <li><span class="rows__name">Answered from your list</span><span class="rows__value mono t-small">Seconds</span><p>Price and delivery days confirmed; cash on delivery offered.</p></li>
+            <li><span class="rows__name">COD order confirmed</span><span class="rows__value mono t-small">10:50 PM</span><p>Name and address taken in the chat.</p></li>
+            <li><span class="rows__name">Back office done</span><span class="rows__value mono t-small">By morning</span><p>Order on the warehouse WhatsApp, row in the sheet, marked Ordered.</p></li>
           </ol>
-          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">What it looks like</p>
-          <h2>One late order, no morning admin</h2>
-          <div class="prose">
-            <p>The order came in after closing. By the time your team arrived, it had already been handed to the warehouse and recorded, and the pipeline showed it as Ordered against the ad it came from.</p>
-            <p>Anything unusual, such as a trade price or a custom size, would have gone to a person with a summary instead.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Local ads</p>
-          <h2>Ads aimed at the areas you actually serve</h2>
-        </div>
-        <div class="prose reveal">
+    <section class="band" aria-labelledby="ads-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="ads-h">Ads aimed at the Sharjah and Ajman areas you serve</h2></div>
+        <div class="span-6 start-7 stack-4">
           <p>We run click-to-WhatsApp ads on Instagram and Facebook aimed at the parts of Sharjah and Ajman you deliver to or serve, such as Al Nahda, Muwaileh, Al Majaz or Al Nuaimiya, and leave out areas you don't. The assistant answers in English or Arabic and confirms delivery or visit details from your own information.</p>
           <p>Each chat is tagged with its ad, so the monthly M2S Results report shows which campaigns and areas produced orders, not just messages.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">Pricing</p>
-          <h2>What sets the price for Sharjah businesses</h2>
-          <div class="prose">
-            <p>It's a fixed monthly fee for M2S and the back-office steps around it, quoted in writing after a free 30-minute audit by Zoom or WhatsApp. Ad spend is paid by you straight to Meta. See <a href="/pricing/">how pricing works</a>.</p>
-          </div>
+    <section class="band" aria-labelledby="price-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="price-h">What sets the price for Sharjah businesses</h2>
+          <p>It's a fixed monthly fee for M2S and the back-office steps around it, quoted in writing after a free 30-minute audit by Zoom or WhatsApp. Ad spend is paid by you straight to Meta. See <a href="/pricing/">how pricing works</a>.</p>
         </div>
-        <ul class="cost-list reveal">
-          <li><span>Hand-offs</span><em>how many people or locations orders are routed to</em></li>
-          <li><span>Records</span><em>which sheet, store or tool each order is written to</em></li>
-                    <li><span>Ads</span><em>the areas and budget for your Meta campaigns</em></li>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Hand-offs</span><p>How many people or locations orders are routed to.</p></li>
+          <li><span class="rows__name">Records</span><p>Which sheet, store or tool each order is written to.</p></li>
+          <li><span class="rows__name">Ads</span><p>The areas and budget for your Meta campaigns.</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions from Sharjah and Ajman businesses</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>Is Nuevo Automations a Sharjah company?</summary>
-            <p>Yes. Nuevo Automations FZE LLC is licensed in Sharjah Publishing City Free Zone, UAE.</p>
-          </details>
-          <details>
-            <summary>Can we meet in person for the audit?</summary>
-            <p>The free 30-minute audit runs on a Zoom call or on WhatsApp, in English or Arabic.</p>
-          </details>
-          <details>
-            <summary>Do you work with businesses in Ajman?</summary>
-            <p>Yes. We work with businesses in Sharjah and Ajman, and elsewhere in the UAE.</p>
-          </details>
-          <details>
-            <summary>Which back-office steps can be automated?</summary>
-            <p>The steps after a sale: handing the order to your team on WhatsApp, writing it to a Google Sheet or your store, and alerting staff when a lead or order needs a person.</p>
-          </details>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions from Sharjah and Ajman businesses</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>Is Nuevo Automations a Sharjah company?</h3><p>Yes. Nuevo Automations FZE LLC is licensed in Sharjah Publishing City Free Zone, UAE.</p></div>
+          <div class="faq__item"><h3>Can we meet in person for the audit?</h3><p>The free 30-minute audit runs on a Zoom call or on WhatsApp, in English or Arabic.</p></div>
+          <div class="faq__item"><h3>Do you work with businesses in Ajman?</h3><p>Yes. We work with businesses in Sharjah and Ajman, and elsewhere in the UAE.</p></div>
+          <div class="faq__item"><h3>Which back-office steps can be automated?</h3><p>The steps after a sale: handing the order to your team on WhatsApp, writing it to a Google Sheet or your store, and alerting staff when a lead or order needs a person.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <h2 class="reveal" style="font-size:1.4rem;margin-bottom:20px;">Related</h2>
-        <ul class="related reveal">
-          <li><a href="/m2s/">How M2S works</a></li>
-          <li><a href="/n8n-make-zapier-automation-uae/">Connecting your store, sheets and calendar</a></li>
-          <li><a href="/crm-automation-uae/">Pipeline stages and alerts</a></li>
-          <li><a href="/restaurant-whatsapp-automation-uae/">Restaurant orders on WhatsApp</a></li>
-          <li><a href="/about/">About Nuevo Automations</a></li>
+    <section class="band" aria-labelledby="related-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4"><h2 id="related-h">Related M2S pages</h2></div>
+        <ul class="link-list link-list--col span-6 start-7">
+          <li><a class="link" href="/m2s/">How M2S works</a></li>
+          <li><a class="link" href="/n8n-make-zapier-automation-uae/">Connecting your store, sheets and calendar</a></li>
+          <li><a class="link" href="/crm-automation-uae/">Pipeline stages and alerts</a></li>
+          <li><a class="link" href="/restaurant-whatsapp-automation-uae/">Restaurant orders on WhatsApp</a></li>
+          <li><a class="link" href="/about/">About Nuevo Automations</a></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band reveal">
-          <p class="eyebrow">Free audit, by Zoom or WhatsApp</p>
-          <h2>Show us what happens after an order today</h2>
-          <p>Thirty minutes, in English or Arabic. We trace one order from the chat to your records and show what can run on its own.</p>
-          <div class="cta-actions">
-            <a href="/book/" class="btn btn-light btn-lg js-lead" data-lead="seo-sharjah-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="https://wa.me/971508549171?text=Hi%2C%20I%27m%20a%20business%20in%20Sharjah%20and%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36" loading="lazy">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the chats they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Company</p>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book a free audit</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Services</p>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Industries</p>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col footer-col--contact">
-          <p class="footer-h">Contact</p>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
   <script src="/js/track.js?v=f9bc8506a0" defer></script>
-  <script src="/js/script.js?v=cda50ceb54" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
 </body>
 </html>

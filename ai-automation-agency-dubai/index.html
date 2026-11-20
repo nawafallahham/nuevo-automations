@@ -25,17 +25,46 @@
   <meta name="twitter:image" content="https://nuevoautomations.com/assets/og-image.jpg">
 
   <!-- head:start -->
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=1028e2ce63">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #22261f; --p-muted: #5a5c53;
+    --p-accent: #2e5b44; --p-accent-ink: #ffffff; --p-action: #2e5b44; --p-action-ink: #ffffff;
+    --p-inv-bg: #22261f; --p-inv-surface: #2e322a; --p-inv-ink: #efe9e0; --p-inv-muted: #a19e96;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #22261f; --p-inv-action: #efe9e0; --p-inv-action-ink: #22261f;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=31dc6d1c99" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style id="page-style">
+  /* related links in a split column: one link per line */
+  .link-list--col { grid-template-columns: minmax(0, 1fr); }
+  /* a small heading over a list in a split column, sized like the card and FAQ h3s */
+  .band .stack-4 > h3 { font: 500 var(--t-card)/1.3 var(--font-text); letter-spacing: -0.01em; }
+  /* inline links inside reading text */
+  :is(.band, .page-head) p > a:not(.btn):not(.link) { text-decoration: underline; text-underline-offset: 3px; }
+  .page-head .page-head__aside { margin-top: var(--s-5); }
+  </style>
 
   <script type="application/ld+json">
 {
@@ -80,7 +109,7 @@
     },
     {
       "@type": "Question",
-      "name": "What does the engagement look like?",
+      "name": "What does the engagement process look like?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "A free 30-minute audit, a written fixed monthly quote, setup and testing, launch of the ads and assistant, then a monthly M2S Results report."
@@ -88,15 +117,15 @@
     },
     {
       "@type": "Question",
-      "name": "Do you have case studies?",
+      "name": "Do you have case studies from customers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not yet. Nuevo Automations was founded in September 2026 and doesn't publish client results. We'd rather show you on the audit what we'd change."
+        "text": "Not named case studies yet; Nuevo Automations was founded in September 2026. Partner brands report 50–60% more revenue from the same traffic after full rollout, and our founder's own store, Khaleej Peptides, has seen up to 30x return on ad spend. See the results page"
       }
     },
     {
       "@type": "Question",
-      "name": "Who pays for the ads?",
+      "name": "Who pays for the ads, and is it in the price?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "You do, directly to Meta, so you always see exactly what the ads cost. Our fee is separate and fixed."
@@ -128,282 +157,217 @@
 </head>
 <body>
   <!-- header:start service -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/">How M2S works</a>
-        <a href="/#industries">Who it's for</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/results/">Results</a>
-        <a href="/about/">About</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main id="main">
-
-    <section class="page-hero">
-      <div class="container">
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
         <p class="crumb"><a href="/">Home</a> / <a href="/m2s/">Services</a> / AI marketing agency, Dubai</p>
-        <p class="eyebrow">AI marketing &amp; automation agency · Dubai</p>
-        <h1>An AI marketing agency in Dubai that owns <span class="text-brand">the ad, the chat and the report</span></h1>
-        <p class="lede">Ad agencies hand over at the click. Chatbot vendors hand over a tool. We run the ads, run the conversation they start, and report on the sales that came out of both.</p>
-        <div class="hero-actions">
-          <a href="/book/" class="btn btn-primary btn-lg js-lead" data-lead="seo-agency">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/m2s/" class="btn btn-ghost btn-lg">How M2S works</a>
+        <h1 id="page-h">An AI marketing agency in Dubai that owns the ad, the chat and the report</h1>
+        <p class="t-lead">Ad agencies hand over at the click. Chatbot vendors hand over a tool. We run the ads, run the conversation they start, and report on the sales that came out of both.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary js-lead" data-lead="seo-agency" href="/book/">Book a free audit</a>
+          <a class="btn btn--secondary" href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20Nuevo%20Automations%20running%20our%20ads%20and%20WhatsApp%20sales." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
         </div>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="answer reveal">
-          <p class="eyebrow">Short answer</p>
-          <p>An AI marketing agency combines paid advertising with AI-driven customer conversations and reports on the sales they produce. Nuevo Automations runs Meta click-to-WhatsApp ads, the M2S AI sales assistant that replies to the chats those ads start, and a monthly report linking each sale back to the ad behind it.</p>
+    <section class="band" aria-label="Short answer">
+      <div class="wrap">
+        <div class="answer"><p>An AI marketing agency combines paid advertising with AI-driven customer conversations and reports on the sales they produce. Nuevo Automations runs Meta click-to-WhatsApp ads, the M2S AI sales assistant that replies to the chats those ads start, and a monthly report linking each sale back to the ad behind it.</p></div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="ways-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="ways-h">3 ways to buy this, and what each leaves to you</h2></div>
+        <div class="grid">
+          <article class="card span-4"><h3>Ads-only agency</h3><p>Runs your campaigns and reports clicks and cost per message. What happens in the chat is left to your team.</p></article>
+          <article class="card span-4"><h3>Chatbot vendor</h3><p>Sells you software and a setup. Writing the answers, running the ads and reading the results are left to you.</p></article>
+          <article class="card span-4"><h3>Our approach</h3><p>One team runs the Meta ads, the AI conversation on WhatsApp and the follow-ups, and reports sales by ad.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Agency, vendor or ads-only</p>
-          <h2>Three ways to buy this, and what each leaves to you</h2>
+    <section class="band" aria-labelledby="together-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="together-h">Why the ad and the answer belong with one team</h2>
+          <p>When the ads and the conversation are run separately, each side can only optimise its own number: cheaper clicks, or more replies. Run together, the question becomes which ad brought the sale, and that's the number we report on.</p>
+          <p>Sales made in the chat go back to Meta through the pixel and Conversions API, so the campaigns learn from buyers, not only from people who tapped.</p>
         </div>
-        <div class="grid-3 reveal-stagger">
-          <article class="card"><h3>Ads-only agency</h3><p>Runs your campaigns and reports clicks and cost per message. What happens in the chat is left to your team.</p></article>
-          <article class="card"><h3>Chatbot vendor</h3><p>Sells you software and a setup. Writing the answers, running the ads and reading the results are left to you.</p></article>
-          <article class="card"><h3>Our approach</h3><p>One team runs the Meta ads, the AI conversation on WhatsApp and the follow-ups, and reports sales by ad.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">One team</p>
-          <h2>Why the ad and the answer belong together</h2>
-          <div class="prose">
-            <p>When the ads and the conversation are run separately, each side can only optimise its own number: cheaper clicks, or more replies. Run together, the question becomes which ad brought the sale, and that's the number we report on.</p>
-            <p>Sales made in the chat go back to Meta through the pixel and Conversions API, so the campaigns learn from buyers, not only from people who tapped.</p>
-          </div>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">Under one team</p>
-          <ul class="ticks">
-            <li>Click-to-WhatsApp campaigns on Instagram and Facebook</li>
-            <li>The M2S assistant on your own number, in English or Arabic</li>
-            <li>Checkout by payment link, cash on delivery or booking</li>
-            <li>Follow-ups with quiet hours and opt-out handling</li>
-            <li>A monthly M2S Results report</li>
+        <div class="span-6 start-7 stack-4">
+          <h3>Run by our team</h3>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Click-to-WhatsApp campaigns on Instagram and Facebook</span></li>
+            <li><span class="rows__name">The M2S assistant on your own number, in English or Arabic</span></li>
+            <li><span class="rows__name">Checkout by payment link, cash on delivery or booking</span></li>
+            <li><span class="rows__name">Follow-ups with quiet hours and opt-out handling</span></li>
+            <li><span class="rows__name">A monthly M2S Results report</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">How engagement works</p>
-          <h2>Audit, quote, setup, launch, report</h2>
+    <section class="band" aria-labelledby="engage-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="engage-h">The process: audit, quote, setup, launch, report</h2>
+          <p>We're a new company, founded in September 2026, so we don't publish named case studies yet. Partners report 50–60% more revenue from the same traffic after full rollout; the audit is the place to judge whether we're a fit.</p>
         </div>
-        <div class="reveal">
-          <ol class="timeline" aria-label="How an engagement with Nuevo Automations runs">
-            <li><time>Week 0</time><div><strong>Free 30-minute audit</strong><p>We look at your ads, your WhatsApp and what happens to leads after they message.</p></div></li>
-            <li><time>After the audit</time><div><strong>Written quote</strong><p>One fixed monthly fee, with ad spend paid separately to Meta.</p></div></li>
-            <li><time>Setup</time><div><strong>Build and test</strong><p>Your products, prices and policies loaded, WhatsApp connected, follow-ups and tracking set up.</p></div></li>
-            <li><time>Launch</time><div><strong>Ads go live</strong><p>Click-to-WhatsApp campaigns start and the assistant answers the chats.</p></div></li>
-            <li class="is-stop"><time>Monthly</time><div><strong>M2S Results report</strong><p>Conversations, sales and recovered revenue by ad.</p></div></li>
-          </ol>
-        </div>
-        <p class="note reveal"><strong>Honest note:</strong> we're a new company, founded in September 2026, so we don't yet publish client results. The audit is the place to judge whether we're a fit.</p>
+        <ol class="rows span-6 start-7" aria-label="How an engagement with Nuevo Automations runs">
+          <li><span class="rows__name">Free 30-minute audit</span><span class="rows__value mono t-small">Week 0</span><p>We look at your ads, your WhatsApp and what happens to leads after they message.</p></li>
+          <li><span class="rows__name">Written quote</span><span class="rows__value mono t-small">After the audit</span><p>One fixed monthly fee, with ad spend paid separately to Meta.</p></li>
+          <li><span class="rows__name">Build and test</span><span class="rows__value mono t-small">Setup</span><p>Your products, prices and policies loaded, WhatsApp connected, follow-ups and tracking set up.</p></li>
+          <li><span class="rows__name">Ads go live</span><span class="rows__value mono t-small">Launch</span><p>Click-to-WhatsApp campaigns start and the assistant answers the chats.</p></li>
+          <li><span class="rows__name">M2S Results report</span><span class="rows__value mono t-small">Monthly</span><p>Conversations, sales and recovered revenue by ad.</p></li>
+        </ol>
       </div>
     </section>
 
-    <section class="section section--alt">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">Who does what</p>
-          <h2>What we run, and what stays with you</h2>
-          <div class="prose">
-            <p>We run the Meta campaigns, the assistant on your WhatsApp, the follow-up sequences, the tracking and the monthly report. You provide what only you can: your products, prices and policies, any approvals your industry needs for ads, and a person to take over the chats the assistant hands on.</p>
-            <p>Your team fulfils the orders and serves the customers. We make sure they arrive with the details needed to do that.</p>
-          </div>
+    <section class="band" aria-labelledby="roles-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="roles-h">What our team runs, and what stays with yours</h2>
+          <p>We run the Meta campaigns, the assistant on your WhatsApp, the follow-up sequences, the tracking and the monthly report. You provide what only you can: your products, prices and policies, any approvals your industry needs for ads, and a person to take over the chats the assistant hands on.</p>
+          <p>Your team fulfils the orders and serves the customers. We make sure they arrive with the details needed to do that.</p>
         </div>
-        <div class="reveal">
-          <p class="eyebrow">You provide</p>
-          <ul class="ticks">
-            <li>Products, services and prices</li>
-            <li>Policies, delivery or booking rules</li>
-            <li>Access to your Meta ad account and WhatsApp number</li>
-            <li>A contact for hand-offs and alerts</li>
+        <div class="span-6 start-7 stack-4">
+          <h3>What your team provides</h3>
+          <ul class="rows rows--plain">
+            <li><span class="rows__name">Products, services and prices</span></li>
+            <li><span class="rows__name">Policies, delivery or booking rules</span></li>
+            <li><span class="rows__name">Access to your Meta ad account and WhatsApp number</span></li>
+            <li><span class="rows__name">A contact for hand-offs and alerts</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">Pricing</p>
-          <h2>What an agency engagement with us costs</h2>
-          <div class="prose">
-            <p>You pay us one fixed fee per month, covering ads management, M2S and reporting, quoted in writing after a free 30-minute audit. The ad budget itself is paid by you directly to Meta, so you always see it. See <a href="/pricing/">how pricing works</a>.</p>
-          </div>
+    <section class="band" aria-labelledby="price-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="price-h">Pricing for an agency engagement</h2>
+          <p>You pay us one fixed fee per month, covering ads management, M2S and reporting, quoted in writing after a free 30-minute audit. The ad budget itself is paid by you directly to Meta, so you always see it. See <a href="/pricing/">how pricing works</a>.</p>
         </div>
-        <ul class="cost-list reveal">
-          <li><span>Ad budget</span><em>how much you plan to spend with Meta each month</em></li>
-          <li><span>Channels</span><em>WhatsApp, Instagram DMs, website chat</em></li>
-          <li><span>Offers</span><em>how many products, services or campaigns we run</em></li>
-          <li><span>Follow-ups</span><em>how many sequences and hand-off rules you need</em></li>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Ad budget</span><p>How much you plan to spend with Meta each month.</p></li>
+          <li><span class="rows__name">Channels</span><p>WhatsApp, Instagram DMs, website chat.</p></li>
+          <li><span class="rows__name">Offers</span><p>How many products, services or campaigns we run.</p></li>
+          <li><span class="rows__name">Follow-ups</span><p>How many sequences and hand-off rules you need.</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions about working with our agency</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>How is an AI marketing agency different from a software vendor?</summary>
-            <p>A software vendor sells you the tool. We run the Meta ads, the AI conversation on WhatsApp and the follow-ups ourselves, and report on the sales they produce.</p>
-          </details>
-          <details>
-            <summary>What does the engagement look like?</summary>
-            <p>A free 30-minute audit, a written fixed monthly quote, setup and testing, launch of the ads and assistant, then a monthly M2S Results report.</p>
-          </details>
-          <details>
-            <summary>Do you have case studies?</summary>
-            <p>Not yet. Nuevo Automations was founded in September 2026 and doesn't publish client results. We'd rather show you on the audit what we'd change.</p>
-          </details>
-          <details>
-            <summary>Who pays for the ads?</summary>
-            <p>You do, directly to Meta, so you always see exactly what the ads cost. Our fee is separate and fixed.</p>
-          </details>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions about working with our agency</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>How is an AI marketing agency different from a software vendor?</h3><p>A software vendor sells you the tool. We run the Meta ads, the AI conversation on WhatsApp and the follow-ups ourselves, and report on the sales they produce.</p></div>
+          <div class="faq__item"><h3>What does the engagement process look like?</h3><p>A free 30-minute audit, a written fixed monthly quote, setup and testing, launch of the ads and assistant, then a monthly M2S Results report.</p></div>
+          <div class="faq__item"><h3>Do you have case studies from customers?</h3><p>Not named case studies yet; Nuevo Automations was founded in September 2026. Partner brands report 50–60% more revenue from the same traffic after full rollout, and our founder's own store, Khaleej Peptides, has seen up to 30x return on ad spend. <a href="/results/">See the results page</a></p></div>
+          <div class="faq__item"><h3>Who pays for the ads, and is it in the price?</h3><p>You do, directly to Meta, so you always see exactly what the ads cost. Our fee is separate and fixed.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <h2 class="reveal" style="font-size:1.4rem;margin-bottom:20px;">Related</h2>
-        <ul class="related reveal">
-          <li><a href="/m2s/">How M2S works</a></li>
-          <li><a href="/about/">About the founder</a></li>
-          <li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li>
-          <li><a href="/ai-chatbot-development-uae/">How the AI assistant is built</a></li>
-          <li><a href="/business-process-automation-sharjah/">Our Sharjah base</a></li>
-          <li><a href="/real-estate-automation-dubai/">Real estate in Dubai</a></li>
+    <section class="band" aria-labelledby="related-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4"><h2 id="related-h">Related M2S pages</h2></div>
+        <ul class="link-list link-list--col span-6 start-7">
+          <li><a class="link" href="/m2s/">How M2S works</a></li>
+          <li><a class="link" href="/about/">About the founder</a></li>
+          <li><a class="link" href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li>
+          <li><a class="link" href="/ai-chatbot-development-uae/">How the AI assistant is built</a></li>
+          <li><a class="link" href="/business-process-automation-sharjah/">Our Sharjah base</a></li>
+          <li><a class="link" href="/real-estate-automation-dubai/">Real estate in Dubai</a></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band reveal">
-          <p class="eyebrow">Free audit</p>
-          <h2>Find out where your ads stop and the sale gets lost</h2>
-          <p>Thirty minutes on your campaigns, your WhatsApp and what happens after someone taps the ad.</p>
-          <div class="cta-actions">
-            <a href="/book/" class="btn btn-light btn-lg js-lead" data-lead="seo-agency-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20Nuevo%20Automations%20running%20our%20ads%20and%20WhatsApp%20sales." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36" loading="lazy">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the chats they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Company</p>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book a free audit</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Services</p>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Industries</p>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col footer-col--contact">
-          <p class="footer-h">Contact</p>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
   <script src="/js/track.js?v=f9bc8506a0" defer></script>
-  <script src="/js/script.js?v=cda50ceb54" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
 </body>
 </html>

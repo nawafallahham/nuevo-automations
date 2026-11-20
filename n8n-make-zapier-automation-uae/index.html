@@ -25,17 +25,41 @@
   <meta name="twitter:image" content="https://nuevoautomations.com/assets/og-image.jpg">
 
   <!-- head:start -->
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#efe9e0">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css?v=d6d6fe5e18">
+  <link rel="preload" href="/assets/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- one stylesheet: the Taste kit + css/site.css, built by tools/build_css.py -->
+  <link rel="stylesheet" href="/css/bundle.css?v=1028e2ce63">
+  <!-- Taste deal (DESIGN.md): palette clay-pine, type funnel, radius soft. Keep after the bundle. -->
+  <style>
+  :root {
+    --p-bg: #efe9e0; --p-surface: #e2d9cb; --p-ink: #22261f; --p-muted: #5a5c53;
+    --p-accent: #2e5b44; --p-accent-ink: #ffffff; --p-action: #2e5b44; --p-action-ink: #ffffff;
+    --p-inv-bg: #22261f; --p-inv-surface: #2e322a; --p-inv-ink: #efe9e0; --p-inv-muted: #a19e96;
+    --p-inv-accent: #efe9e0; --p-inv-accent-ink: #22261f; --p-inv-action: #efe9e0; --p-inv-action-ink: #22261f;
+    --font-display: "Funnel Display", system-ui, sans-serif;
+    --font-text: "Funnel Sans", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --display-weight: 400;
+    --display-tracking: -0.03em;
+    --display-tracking-xl: -0.04em;
+    --ly-scale: 0.98;
+  }
+  </style>
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 
   <!-- Cookie consent. Loads the Meta Pixel only after consent is granted, so
        declining genuinely prevents tracking. Lead events in js/script.js
        guard on fbq and no-op until then. -->
-  <script src="/js/consent.js?v=31dc6d1c99" defer></script>
+  <script src="/js/consent.js?v=b98691c921" defer></script>
   <!-- head:end -->
+  <style>
+  /* related links in a split column: one link per line */
+  .link-list--col { grid-template-columns: minmax(0, 1fr); }
+  </style>
 
   <script type="application/ld+json">
 {
@@ -90,7 +114,7 @@
     },
     {
       "@type": "Question",
-      "name": "What happens if a connection breaks?",
+      "name": "What happens if an integration breaks?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "We watch for failed runs while we run M2S and fix them, for example when an app renames a field or an access token expires."
@@ -122,272 +146,207 @@
 </head>
 <body>
   <!-- header:start service -->
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Nuevo Automations home">
-        <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36">
-        <span class="logo-text">Nuevo <strong>Automations</strong></span>
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="/m2s/">How M2S works</a>
-        <a href="/#industries">Who it's for</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/results/">Results</a>
-        <a href="/about/">About</a>
-        <a href="/book/" class="nav-cta js-lead" data-lead="nav-mobile">Book a free audit</a>
+  <header class="nav nav--centre">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#top">Skip to content</a>
+      <a class="nav__logo" href="/" aria-label="Nuevo Automations home"><img class="nav__logo-img" src="/assets/logo-72.webp" alt="" width="28" height="28"><span translate="no">Nuevo Automations</span></a>
+      <nav class="nav__links" aria-label="Main">
+        <div class="nav__item">
+          <a class="nav__link" href="/m2s/">M2S <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="nav__menu">
+            <div class="wrap grid">
+              <div class="menu-col span-3">
+                <p class="t-label">How it works</p>
+                <a href="/m2s/">M2S, step by step<span>From the ad to the paid order</span></a>
+                <a href="/whatsapp-automation-uae/">WhatsApp sales<span>Answers and closes in the chat</span></a>
+                <a href="/instagram-dm-automation-dubai/">Instagram ads and DMs<span>Ads that open a conversation</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Parts of the system</p>
+                <a href="/ai-chatbot-development-uae/">The AI sales assistant<span>Trained on your products</span></a>
+                <a href="/crm-automation-uae/">Follow-ups and pipeline<span>Every silent chat chased</span></a>
+                <a href="/n8n-make-zapier-automation-uae/">Store and CRM links<span>Orders go where they belong</span></a>
+              </div>
+              <div class="menu-col span-3">
+                <p class="t-label">Who it's for</p>
+                <a href="/ecommerce-automation-uae/">Wellness and supplement stores<span>Questions, bundles, payment</span></a>
+                <a href="/automation-for-clinics-uae/">Clinics<span>Enquiries to booked visits</span></a>
+                <a href="/salon-spa-automation-dubai/">Salons and spas<span>Prices to confirmed bookings</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+        <div class="nav__item"><a class="nav__link" href="/results/">Results</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about/">About</a></div>
       </nav>
-
-      <div class="header-actions">
-        <a href="/book/" class="btn btn-primary btn-sm js-lead" data-lead="header">Book a free audit</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav__actions">
+        <a class="btn btn--primary js-lead" data-lead="header" href="/book/">Book a free audit</a>
       </div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
   <!-- header:end -->
 
-  <main id="main">
-
-    <section class="page-hero">
-      <div class="container">
-        <p class="crumb"><a href="/">Home</a> / <a href="/m2s/">Services</a> / Store &amp; CRM integrations</p>
-        <p class="eyebrow">Integrations · UAE</p>
-        <h1>Integrations that put every WhatsApp sale <span class="text-brand">where your team already works</span></h1>
-        <p class="lede">Your store, CRM, spreadsheet, calendar and payment provider, connected to M2S by API and webhooks during setup. Where a tool has no direct route, n8n, Make or Zapier fills the gap.</p>
-        <div class="hero-actions">
-          <a href="/book/" class="btn btn-primary btn-lg js-lead" data-lead="seo-integrations">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="/m2s/" class="btn btn-ghost btn-lg">How M2S works</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container">
-        <div class="answer reveal">
-          <p class="eyebrow">Short answer</p>
-          <p>An integration is a connection that lets two systems share data automatically, through an API or a webhook. For M2S it means products and prices come in from your store or sheet, free times from your calendar, and payment confirmations from your payment provider, while orders, leads and bookings go back out without anyone copying them.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Data in, data out</p>
-          <h2>What gets connected during setup</h2>
-        </div>
-        <div class="steps-head" aria-hidden="true"><span>Connection</span><span>Without it</span><span>What flows</span></div>
-        <ol class="steps reveal-stagger">
-          <li><h3>Online store</h3><p class="was">the assistant quotes a price you've changed.</p><p class="now">Shopify connects directly; other stores through our API. Products and prices in; orders and abandoned carts out.</p></li>
-          <li><h3>Payment provider</h3><p class="was">someone checks the bank app to see who paid.</p><p class="now">Your payment provider confirms the card payment and the order is marked paid automatically.</p></li>
-          <li><h3>Google Sheets</h3><p class="was">orders live only in a phone.</p><p class="now">Orders, leads or bookings written as rows, in the columns your team already uses.</p></li>
-          <li><h3>Calendar</h3><p class="was">bookings clash or get double-booked.</p><p class="now">Free times read from your calendar; confirmed bookings written back.</p></li>
-          <li><h3>CRM</h3><p class="was">your CRM and your WhatsApp disagree.</p><p class="now">Leads and stage changes sent alongside the M2S pipeline.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">APIs, webhooks and workflow tools</p>
-          <h2>Direct connections first, n8n, Make or Zapier second</h2>
-          <div class="prose">
-            <p>M2S runs on OrcaFlo, our own platform, and connects directly to most tools by API or webhook. A webhook is simply a message one system sends another when something happens, such as "payment received".</p>
-            <p>When a tool has no direct route, we use a workflow tool as the glue. If you already run n8n, Make or Zapier, we can usually build on your account rather than adding another one. Integrations are part of M2S setup, not sold as a separate project.</p>
+  <main id="top">
+    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
+          <p class="crumb"><a href="/">Home</a> / <a href="/m2s/">Services</a> / Store &amp; CRM integrations</p>
+          <h1 id="page-h">Store, CRM and calendar integrations for WhatsApp sales</h1>
+          <p class="t-lead">Every WhatsApp sale lands where your team already works. Your store, CRM, spreadsheet, calendar and payment provider are connected to M2S by API and webhooks during setup. Where a tool has no direct route, n8n, Make or Zapier fills the gap.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary js-lead" data-lead="seo-integrations" href="/book/">Book a free audit</a>
+            <a class="btn btn--secondary" href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20which%20of%20my%20tools%20M2S%20can%20connect%20to." target="_blank" rel="noopener">Ask on WhatsApp</a>
           </div>
         </div>
-        <div class="reveal">
-          <ol class="timeline" aria-label="Example: one card payment, four updates">
-            <li><time>0 sec</time><div><strong>Webhook from your payment provider</strong><p>The card payment for a chat order is confirmed.</p></div></li>
-            <li><time>Seconds</time><div><strong>Store order created</strong><p>Items, address and paid status recorded.</p></div></li>
-            <li><time>Seconds</time><div><strong>Sheet and pipeline updated</strong><p>A new row, and the lead moved to Ordered.</p></div></li>
-            <li class="is-stop"><time>Seconds</time><div><strong>Team alerted on WhatsApp</strong><p>Ready to pack, with the customer's details.</p></div></li>
+      </div>
+    </section>
+
+    <section class="band" aria-label="Short answer">
+      <div class="wrap">
+        <div class="answer"><p>An integration is a connection that lets two systems share data automatically, through an API or a webhook. For M2S it means products and prices come in from your store or sheet, free times from your calendar, and payment confirmations from your payment provider, while orders, leads and bookings go back out without anyone copying them.</p></div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="connect-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="connect-h">Integrations made during setup</h2></div>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Online store</span><p>Shopify connects directly; other stores through our API. Products and prices in; orders and abandoned carts out.</p><p class="t-small">Without it, the assistant quotes a price you've changed.</p></li>
+          <li><span class="rows__name">Payment provider</span><p>Your payment provider confirms the card payment and the order is marked paid automatically.</p><p class="t-small">Without it, someone checks the bank app to see who paid.</p></li>
+          <li><span class="rows__name">Google Sheets</span><p>Orders, leads or bookings written as rows, in the columns your team already uses.</p><p class="t-small">Without it, orders live only in a phone.</p></li>
+          <li><span class="rows__name">Calendar</span><p>Free times read from your calendar; confirmed bookings written back.</p><p class="t-small">Without it, bookings clash or get double-booked.</p></li>
+          <li><span class="rows__name">CRM</span><p>Leads and stage changes sent alongside the M2S pipeline.</p><p class="t-small">Without it, your CRM and your WhatsApp disagree.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="direct-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="direct-h">Direct connections first, n8n, Make or Zapier second</h2>
+          <p>M2S runs on OrcaFlo, our own platform, and connects directly to most tools by API or webhook. A webhook is a message one system sends another when something happens, such as "payment received".</p>
+          <p>When a tool has no direct route, we use a workflow tool as the glue. If you already run n8n, Make or Zapier, we can usually build on your account rather than adding another one. Integrations are part of M2S setup, not sold as a separate project.</p>
+        </div>
+        <div class="card span-6 start-7">
+          <p class="t-small">Example run with a made-up order.</p>
+          <ol class="rows" aria-label="Example: one card payment, four updates">
+            <li><span class="rows__name">Webhook from your payment provider</span><span class="rows__value">0 sec</span><p>The card payment for a chat order is confirmed.</p></li>
+            <li><span class="rows__name">Store order created</span><span class="rows__value">Seconds</span><p>Items, address and paid status recorded.</p></li>
+            <li><span class="rows__name">Sheet and pipeline updated</span><span class="rows__value">Seconds</span><p>A new row, and the lead moved to Ordered.</p></li>
+            <li><span class="rows__name">Team alerted on WhatsApp</span><span class="rows__value">Seconds</span><p>Ready to pack, with the customer's details.</p></li>
           </ol>
-          <p class="fine" style="margin-top:12px;">Illustrative example, not a real customer.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">After launch</p>
-          <h2>Keeping connections working</h2>
-        </div>
-        <div class="prose reveal">
-          <p>Connections usually break quietly: an app renames a field, a password changes, an access token expires. Because we run M2S month to month, we watch for failed runs and fix them, rather than leaving your team to discover a gap at the end of the month.</p>
+    <section class="band" aria-labelledby="after-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="after-h">Keeping integrations working after launch</h2></div>
+        <div class="span-6 start-7 stack-4">
+          <p>Connections usually break without warning: an app renames a field, a password changes, an access token expires. Because we run M2S month to month, we watch for failed runs and fix them, rather than leaving your team to discover a gap at the end of the month.</p>
           <p>Abandoned cart recovery is connected during onboarding, and we confirm it's live for your store before it counts in your report.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Which workflow tool</p>
-          <h2>When n8n, Make or Zapier is the right glue</h2>
-        </div>
-        <div class="grid-3 reveal-stagger">
-          <article class="card"><h3>Zapier</h3><p>Suits simple, step-by-step connections between popular cloud apps.</p></article>
-          <article class="card"><h3>Make</h3><p>Handles branching and lists well, such as splitting one order into line items or routing by source.</p></article>
-          <article class="card"><h3>n8n</h3><p>Suits higher volumes, custom APIs, or keeping workflows on your own server.</p></article>
-        </div>
-        <div class="prose reveal">
+    <section class="band" aria-labelledby="tool-h">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="tool-h">When n8n, Make or Zapier is the right glue</h2>
           <p>If you already use one of them, we usually build there, so your team keeps one place to look.</p>
         </div>
+        <div class="grid">
+          <article class="card span-4"><h3>Zapier</h3><p>Suits simple, step-by-step connections between popular cloud apps.</p></article>
+          <article class="card span-4"><h3>Make</h3><p>Handles branching and lists well, such as splitting one order into line items or routing by source.</p></article>
+          <article class="card span-4"><h3>n8n</h3><p>Suits higher volumes, custom APIs, or keeping workflows on your own server.</p></article>
+        </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">Pricing</p>
-          <h2>What decides the cost of connecting your tools</h2>
-          <div class="prose">
-            <p>The integrations you need are part of your fixed monthly quote, which we put in writing after the free 30-minute audit. Meta ad spend is yours to pay to Meta directly. See <a href="/pricing/">how pricing works</a>.</p>
-          </div>
+    <section class="band" aria-labelledby="price-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="price-h">What decides the cost of your integrations</h2>
+          <p>The integrations you need are part of your fixed monthly quote, which we put in writing after the free 30-minute audit. Meta ad spend is yours to pay to Meta directly.</p>
+          <p><a class="link" href="/pricing/">See how pricing works</a></p>
         </div>
-        <ul class="cost-list reveal">
-          <li><span>Number of tools</span><em>how many systems the sale needs to reach</em></li>
-          <li><span>Route</span><em>direct API or webhook, or a workflow tool in between</em></li>
-          <li><span>Your accounts</span><em>whether we build on an n8n, Make or Zapier account you already have</em></li>
-          <li><span>Data shape</span><em>how much mapping your sheet or CRM fields need</em></li>
+        <ul class="rows span-6 start-7">
+          <li><span class="rows__name">Number of tools</span><p>How many systems the sale needs to reach.</p></li>
+          <li><span class="rows__name">Route</span><p>Direct API or webhook, or a workflow tool in between.</p></li>
+          <li><span class="rows__name">Your accounts</span><p>Whether we build on an n8n, Make or Zapier account you already have.</p></li>
+          <li><span class="rows__name">Data shape</span><p>How much mapping your sheet or CRM fields need.</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split" style="align-items:start;">
-        <div class="reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions about integrations</h2>
-        </div>
-        <div class="faq reveal">
-          <details>
-            <summary>Do I need n8n, Make or Zapier to use M2S?</summary>
-            <p>No. Most tools connect directly by API or webhook. We only add a workflow tool where a tool has no direct route, and we can build on an account you already use.</p>
-          </details>
-          <details>
-            <summary>Which tools can you connect?</summary>
-            <p>Typically your online store, your payment provider, Google Sheets, your calendar and your CRM. Shopify connects directly, and other stores connect through our API.</p>
-          </details>
-          <details>
-            <summary>Are integrations priced separately?</summary>
-            <p>No. Connecting your tools is part of M2S setup and included in the fixed monthly fee. We don't sell automation projects on their own.</p>
-          </details>
-          <details>
-            <summary>What happens if a connection breaks?</summary>
-            <p>We watch for failed runs while we run M2S and fix them, for example when an app renames a field or an access token expires.</p>
-          </details>
+    <section class="band ground-surface" aria-labelledby="faq-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="faq-h">Questions about integrations</h2></div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>Do I need n8n, Make or Zapier to use M2S?</h3><p>No. Most tools connect directly by API or webhook. We only add a workflow tool where a tool has no direct route, and we can build on an account you already use.</p></div>
+          <div class="faq__item"><h3>Which tools can you connect?</h3><p>Typically your online store, your payment provider, Google Sheets, your calendar and your CRM. Shopify connects directly, and other stores connect through our API.</p></div>
+          <div class="faq__item"><h3>Are integrations priced separately?</h3><p>No. Connecting your tools is part of M2S setup and included in the fixed monthly fee. We don't sell automation projects on their own.</p></div>
+          <div class="faq__item"><h3>What happens if an integration breaks?</h3><p>We watch for failed runs while we run M2S and fix them, for example when an app renames a field or an access token expires.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt section--tight">
-      <div class="container">
-        <h2 class="reveal" style="font-size:1.4rem;margin-bottom:20px;">Related</h2>
-        <ul class="related reveal">
-          <li><a href="/m2s/">How M2S works</a></li>
-          <li><a href="/crm-automation-uae/">The M2S sales pipeline</a></li>
-          <li><a href="/ecommerce-automation-uae/">Shopify and store catalogue sync</a></li>
-          <li><a href="/business-process-automation-sharjah/">Back-office hand-off in Sharjah</a></li>
-          <li><a href="/ai-receptionist-uae/">Calendar booking</a></li>
+    <section class="band" aria-labelledby="related-h">
+      <div class="wrap grid">
+        <div class="span-5"><h2 id="related-h">Related M2S pages</h2></div>
+        <ul class="link-list link-list--col span-6 start-7">
+          <li><a class="link" href="/m2s/">How M2S works</a></li>
+          <li><a class="link" href="/crm-automation-uae/">The M2S sales pipeline</a></li>
+          <li><a class="link" href="/ecommerce-automation-uae/">Shopify and store catalogue sync</a></li>
+          <li><a class="link" href="/business-process-automation-sharjah/">Back-office hand-off in Sharjah</a></li>
+          <li><a class="link" href="/ai-receptionist-uae/">Calendar booking</a></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band reveal">
-          <p class="eyebrow">Free audit</p>
-          <h2>Map which of your tools a WhatsApp sale should reach</h2>
-          <p>Thirty minutes: tell us what you use today, and we show you what M2S would connect and how.</p>
-          <div class="cta-actions">
-            <a href="/book/" class="btn btn-light btn-lg js-lead" data-lead="seo-integrations-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20which%20of%20my%20tools%20M2S%20can%20connect%20to." class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
 
   <!-- footer:start -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="logo">
-            <img class="logo-mark" src="/assets/logo-72.webp" alt="" width="36" height="36" loading="lazy">
-            <span class="logo-text">Nuevo <strong>Automations</strong></span>
-          </a>
-          <p>We run your ads, and M2S, our Message to Sale system, turns the chats they bring into sales on WhatsApp.</p>
-          <a href="/book/" class="btn btn-light btn-sm js-lead" data-lead="footer">Book a free audit</a>
+  <footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="closing__cta close--word">
+        <div class="section-head--split">
+          <div><h2 id="close-h">Book a free audit</h2><p class="t-lead">30 minutes on Zoom, in English or Arabic. You keep the written plan either way.</p></div>
+          <a class="btn btn--primary js-lead" data-lead="footer" href="/book/">Book a free audit<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Company</p>
-          <a href="/m2s/">How M2S works</a>
-          <a href="/about/">About us</a>
-          <a href="/results/">Results</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="/partners/">Partners</a>
-          <a href="/book/">Book a free audit</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Services</p>
-          <a href="/ai-automation-agency-dubai/">AI marketing agency, Dubai</a>
-          <a href="/whatsapp-automation-uae/">WhatsApp sales automation</a>
-          <a href="/instagram-dm-automation-dubai/">Instagram ads &amp; DMs</a>
-          <a href="/ai-chatbot-development-uae/">AI sales chatbot</a>
-          <a href="/crm-automation-uae/">Sales pipeline &amp; follow-up</a>
-          <a href="/ai-receptionist-uae/">AI receptionist &amp; bookings</a>
-          <a href="/n8n-make-zapier-automation-uae/">Store &amp; CRM integrations</a>
-          <a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-h">Industries</p>
-          <a href="/ecommerce-automation-uae/">Online stores</a>
-          <a href="/automation-for-clinics-uae/">Clinics &amp; medical centres</a>
-          <a href="/salon-spa-automation-dubai/">Salons &amp; spas</a>
-          <a href="/real-estate-automation-dubai/">Real estate</a>
-          <a href="/education-training-automation-uae/">Education &amp; training</a>
-          <a href="/restaurant-whatsapp-automation-uae/">Restaurants &amp; caf&eacute;s</a>
-        </div>
-
-        <div class="footer-col footer-col--contact">
-          <p class="footer-h">Contact</p>
-          <a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a>
-          <a href="mailto:nawafallahham@nuevoautomations.com">nawafallahham@nuevoautomations.com</a>
-          <span>Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE</span>
-          <span>Licence no. 4431808.01</span>
-        </div>
+        <p class="close__word" aria-hidden="true" translate="no">Nuevo Automations</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &middot; Sharjah Publishing City Free Zone, UAE</span>
-        <span><a href="/privacy/">Privacy policy</a></span>
+      <div class="closing__links">
+        <div class="grid">
+          <div class="span-4 stack-4">
+            <p class="footer__lede">Meta ads that open WhatsApp, and M2S, the AI sales assistant that closes the sale in the chat.</p>
+            <p class="t-small">Nuevo Automations FZE LLC<br>Business Centre, Sharjah Publishing City Free Zone<br>Sharjah, UAE · Licence no. 4431808.01</p>
+          </div>
+          <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="/m2s/">How M2S works</a></li><li><a href="/about/">About us</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Services</h3><ul><li><a href="/whatsapp-automation-uae/">WhatsApp sales</a></li><li><a href="/instagram-dm-automation-dubai/">Instagram ads and DMs</a></li><li><a href="/ai-chatbot-development-uae/">AI sales assistant</a></li><li><a href="/crm-automation-uae/">Follow-ups</a></li><li><a href="/ai-receptionist-uae/">AI receptionist</a></li><li><a href="/n8n-make-zapier-automation-uae/">Store and CRM links</a></li><li><a href="/ai-automation-agency-dubai/">AI agency, Dubai</a></li><li><a href="/business-process-automation-sharjah/">Sales automation, Sharjah</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Industries</h3><ul><li><a href="/ecommerce-automation-uae/">Online stores</a></li><li><a href="/automation-for-clinics-uae/">Clinics</a></li><li><a href="/salon-spa-automation-dubai/">Salons and spas</a></li><li><a href="/real-estate-automation-dubai/">Real estate</a></li><li><a href="/education-training-automation-uae/">Education</a></li><li><a href="/restaurant-whatsapp-automation-uae/">Restaurants</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="https://wa.me/971508549171" target="_blank" rel="noopener">WhatsApp +971 50 854 9171</a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">Email us</a></li></ul></div>
+        </div>
+        <div class="footer__legal">
+          <span>&copy; <span id="year">2026</span> Nuevo Automations FZE LLC &nbsp; <a href="/privacy/">Privacy</a></span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-  </a>
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="btn btn--primary js-lead" data-lead="mobile-bar" href="/book/">Book a free audit</a>
+  </nav>
 
-  <div class="mobile-cta">
-    <a href="/book/" class="btn btn-primary js-lead" data-lead="mobile-bar">Book a free audit</a>
-    <a href="https://wa.me/971508549171?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20M2S." class="btn btn-wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7 1-.1.1-.3.1-.5 0-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-  </div>
-
+  <script type="module" src="/kit/system.js"></script>
+  <script type="module" src="/kit/motion/motion.js"></script>
+  <script type="module" src="/kit/layout/layout.js"></script>
+  <script type="module" src="/kit/diagrams/mount.js"></script>
   <script src="/js/track.js?v=f9bc8506a0" defer></script>
-  <script src="/js/script.js?v=cda50ceb54" defer></script>
+  <script src="/js/script.js?v=3f4dc74565" defer></script>
   <!-- footer:end -->
 </body>
 </html>
