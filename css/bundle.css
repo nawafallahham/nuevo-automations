@@ -3687,3 +3687,10 @@ html { -webkit-tap-highlight-color: transparent; }
 .link-list--col { grid-template-columns: minmax(0, 1fr); }
 .link-list .link { min-height: 44px; }
 :is(.band, .page-head) p > a:not(.btn):not(.link) { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Partner logos (from orcaflo-panel.com/clients): each at its own optical height (--h).
+   Afiya's file is a white wordmark, shown in ink here. */
+.logos--img > .logo-item { display: inline-flex; align-items: center; gap: 8px; height: auto; }
+.logo-item img { height: var(--h, 28px); width: auto; }
+.logo-item > span { font: 500 var(--t-body)/1 var(--font-display); letter-spacing: -0.01em; white-space: nowrap; color: var(--ink); }
+.logo-item--ink img { filter: brightness(0); opacity: 0.85; }
