@@ -34,69 +34,46 @@
     window.fbq('track', 'PageView');
   }
 
-  function injectStyles() {
-    if (document.getElementById('consent-styles')) return;
-    var css = ''
-      + '.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:400;'
-      + 'max-width:400px;padding:18px 20px;border-radius:14px;'
-      + 'background:#ffffff;border:1px solid #e3e7ec;'
-      + 'box-shadow:0 20px 44px -14px rgba(16,24,40,.22);'
-      + 'color:#101a2b;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;'
-      + 'transform:translateY(140%);transition:transform .4s cubic-bezier(.22,1,.36,1)}'
-      + '.consent.is-in{transform:none}'
-      + '.consent p{margin:0 0 14px;font-size:.875rem;line-height:1.5;color:#475467}'
-      + '.consent a{color:#1a5fa0;text-decoration:underline;text-underline-offset:3px}'
-      + '.consent-row{display:flex;gap:10px;flex-wrap:wrap}'
-      + '.consent-btn{flex:1 1 0;min-height:44px;padding:10px 18px;border-radius:999px;'
-      + 'font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;'
-      + 'transition:background .2s,border-color .2s,transform .2s}'
-      + '.consent-btn:hover{transform:translateY(-1px)}'
-      + '.consent-yes{background:#1a5fa0;color:#fff;border:1px solid #1a5fa0}'
-      + '.consent-yes:hover{background:#123f6b}'
-      + '.consent-no{background:#fff;color:#101a2b;border:1px solid #cfd6de}'
-      + '.consent-no:hover{background:#f6f7f9}'
-      + '@media (max-width:760px){.consent{left:12px;right:12px;max-width:none;'
-      + 'bottom:calc(80px + env(safe-area-inset-bottom));padding:14px 16px}'
-      + '.consent p{margin-bottom:10px}}'
-      + '@media (prefers-reduced-motion:reduce){.consent{transition:none}}';
-    var el = document.createElement('style');
-    el.id = 'consent-styles';
-    el.textContent = css;
-    document.head.appendChild(el);
-  }
-
+  // The notice is a small card at the foot of the screen (styles in /css/site.css).
+  // Accept and Decline carry equal weight. While it shows, the body is padded by
+  // its height so it never covers the page's last lines.
   function banner() {
-    injectStyles();
     var box = document.createElement('div');
     box.className = 'consent';
     box.setAttribute('role', 'region');
     box.setAttribute('aria-label', 'Cookie consent');
     box.innerHTML =
-      '<p>We use cookies to measure how our ads perform. You can decline and still ' +
-      'use the site normally. See our <a href="/privacy/">Privacy Policy</a>.</p>' +
+      '<p>We use cookies to measure how our ads perform. <a href="/privacy/">Privacy policy</a></p>' +
       '<div class="consent-row">' +
-      '<button type="button" class="consent-btn consent-yes">Accept</button>' +
-      '<button type="button" class="consent-btn consent-no">Decline</button>' +
+      '<button type="button" class="btn btn--primary consent-yes">Accept</button>' +
+      '<button type="button" class="btn btn--primary consent-no">Decline</button>' +
       '</div>';
-    // Early in the DOM (right after the skip link) so keyboard and screen
-    // reader users reach it before the whole page.
-    var skip = document.querySelector('.skip-link');
-    if (skip) skip.insertAdjacentElement('afterend', box);
+    // after the header, so keyboard and screen reader users reach it early
+    var header = document.querySelector('body > header');
+    if (header) header.insertAdjacentElement('afterend', box);
     else document.body.insertBefore(box, document.body.firstChild);
-    // setTimeout, not requestAnimationFrame: rAF is paused in background or
-    // non-compositing tabs, which would leave the banner parked off-screen
-    // and effectively invisible.
-    setTimeout(function () { box.classList.add('is-in'); }, 60);
+    var pad = function () { document.body.style.paddingBottom = (box.offsetHeight + 32) + 'px'; };
+    pad();
+    window.addEventListener('resize', pad);
+    // step aside while the footer is on screen, so its contact links stay readable and tappable
+    var foot = document.querySelector('footer');
+    var io = null;
+    if (foot && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (es) { box.hidden = es[es.length - 1].isIntersecting; });
+      io.observe(foot);
+    }
 
     function close(choice) {
       write(choice);
       // Don't strand keyboard focus on a button that's about to disappear.
       if (box.contains(document.activeElement)) {
-        var main = document.getElementById('main');
+        var main = document.querySelector('main');
         if (main) { main.setAttribute('tabindex', '-1'); main.focus({ preventScroll: true }); }
       }
-      box.classList.remove('is-in');
-      setTimeout(function () { box.remove(); }, 450);
+      box.remove();
+      window.removeEventListener('resize', pad);
+      if (io) io.disconnect();
+      document.body.style.paddingBottom = '';
       if (choice === 'granted') loadPixel();
     }
     box.querySelector('.consent-yes').addEventListener('click', function () { close('granted'); });

@@ -15,7 +15,9 @@ before copying. Pages without a marker pair are left alone.
 It then stamps every /css/ and /js/ reference in every page (admin and the
 marker-less landing pages included) with ?v=<hash of the file's content>,
 so the long-lived immutable caching in _headers can never serve a stale
-file. Run it after any CSS/JS change.
+file. Run it after any CSS/JS change. /kit/ (the Taste design kit) is left
+unstamped: its modules import each other by relative URL, so it is served
+with a short revalidating cache instead (_headers).
 
 Usage: python3 tools/sync_partials.py [--check]
 """
@@ -32,8 +34,7 @@ ACTIVE = {
     "m2s": "/m2s/",
     "pricing": "/pricing/",
     "results": "/results/",
-    "partners": "/partners/",
-    "industries": "/#industries",
+    "about": "/about/",
 }
 
 ASSET_REF = re.compile(r'(["\'])(/(?:css|js)/[\w.-]+\.(?:css|js))(?:\?v=[\w-]*)?\1')
@@ -59,7 +60,7 @@ BLOCKS = {
 def plain_header(block):
     """Header block with no nav item marked current."""
     block = re.sub(r"<!-- header:start \S+ -->", "<!-- header:start KEY -->", block)
-    return block.replace(' class="is-active" aria-current="page"', "")
+    return block.replace(' aria-current="page"', "")
 
 
 def header_for(template, key):
@@ -67,7 +68,8 @@ def header_for(template, key):
     href = ACTIVE.get(key)
     if href:
         out = out.replace(
-            f'<a href="{href}">', f'<a href="{href}" class="is-active" aria-current="page">', 1
+            f'<a class="nav__link" href="{href}">',
+            f'<a class="nav__link" href="{href}" aria-current="page">', 1,
         )
     return out
 

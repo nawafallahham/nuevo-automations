@@ -13,3 +13,8 @@ node_modules/
 
 # Serena code-assistant state (local tooling)
 .serena/
+
+# Taste skill working state (gate rounds, checker crops, Chrome profiles) and local screenshots.
+# The gate's waivers are recorded in DESIGN.md.
+.taste-skill/
+shots/

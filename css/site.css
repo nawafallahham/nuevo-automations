@@ -1,0 +1,122 @@
+/* Site layer on top of the Taste kit (/kit). Only what the kit lacks: the client's raster logo
+   beside the name, the hero's example note, spacing for the rows merged under a section. */
+.nav__logo-img { width: 28px; height: 28px; border-radius: 6px; flex: none; }
+.nav__logo { gap: var(--s-3); }
+.results-logos { margin-top: var(--s-7, 48px); }
+
+.faq__item a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.close__word { font-size: min(9.2vw, 136px); white-space: nowrap; }
+@media (max-width: 639px) { .close__word { font-size: 9.2vw; } }
+.faq-wa { display: flex; align-items: center; gap: var(--s-5); padding-top: var(--s-3); }
+@media (max-width: 639px) { .results-logos .logos { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-5) var(--s-6); } }
+.close__word { line-height: 1.05; padding-top: .04em; }
+@media (max-width: 639px) {
+  .faq-wa { flex-wrap: wrap; }
+  .faq-wa .btn { flex: 1 1 100%; }
+  .close--word .btn { width: 100%; }
+}
+@media (max-width: 359px) { .nav__logo { font-size: 17px; gap: var(--s-2); } }
+
+/* Cookie notice (js/consent.js): a small card at the foot of the screen; Accept and Decline carry equal weight.
+   While it shows, the body is padded by its height, so it never covers the page's last lines. */
+.consent { position: fixed; left: var(--s-4); bottom: var(--s-4); z-index: 60; width: min(400px, calc(100vw - 2 * var(--s-4)));
+  background: var(--p-surface); color: var(--p-ink); border: 1px solid var(--line-strong); border-radius: var(--r-lg); padding: var(--s-5); }
+.consent p { margin: 0 0 var(--s-4); font-size: var(--t-small); line-height: 1.45; }
+.consent a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.consent-row { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.consent-row .btn { flex: 1 1 120px; }
+@media (max-width: 639px) { body:has(> nav.actionbar) .consent { bottom: calc(var(--bar, 0px) + var(--s-3)); } }
+#results .section-head { margin-bottom: var(--s-8); }
+#results .stats { margin-bottom: var(--s-7); }
+#results .results-logos { margin-top: var(--s-9, 96px); }
+#results .stats .t-stat { font-size: var(--t-h2); }
+@media (max-width: 639px) {
+  .hide-phone { display: none; }
+  .consent { padding: var(--s-4); }
+  .consent p { margin-bottom: var(--s-3); }
+}
+.hero--centred .hero__lead { color: var(--ink); }
+
+/* ------------------------------------------------------------------ inner pages
+   The home page follows the kit's one-section-per-screen layout. Inner pages are long reading
+   pages (services, industries, pricing, legal), so their sections take their content's height:
+   .page-head (the first block under the nav) and .band (every section after it). Everything
+   inside them uses the kit's own classes: .wrap, .grid, .span-*, .section-head, .rows, .card,
+   .faq, .stats, .btn, .link. */
+main > section.page-head, main > section.band { height: auto !important; min-height: 0 !important; display: block !important; }
+main > section.page-head > .wrap, main > section.band > .wrap { height: auto; }
+main > section.page-head > .wrap:not(.grid), main > section.band > .wrap:not(.grid) { display: block; }
+main > section.band > .wrap.grid { align-items: start; }
+main > section.page-head { padding: calc(var(--nav) + var(--s-9)) 0 var(--s-9); }
+main > section.band { padding: var(--s-9) 0; }
+main > section.band + section.band:not(.ground-surface):not(.ground-inverse) { padding-top: 0; }
+main > section.ground-surface + section.band, main > section.ground-inverse + section.band { padding-top: var(--s-9) !important; }
+@media (max-width: 639px) {
+  main > section.page-head { padding: calc(var(--nav) + var(--s-7)) 0 var(--s-7); }
+  main > section.band { padding: var(--s-8) 0; }
+  main > section.ground-surface + section.band, main > section.ground-inverse + section.band { padding-top: var(--s-8) !important; }
+}
+.crumb { font-size: var(--t-small); color: var(--muted); margin-bottom: var(--s-5); }
+.crumb a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.page-head h1 { max-width: 20ch; }
+.page-head .t-lead { margin-top: var(--s-5); max-width: 60ch; }
+.page-head .btn-row { margin-top: var(--s-6); }
+.band .section-head { margin-bottom: var(--s-7); }
+.band .section-head > p { margin-top: var(--s-4); max-width: 60ch; }
+.band h2 + p, .band h3 + p { margin-top: var(--s-3); }
+.band p + p { margin-top: var(--s-4); }
+.band .prose { max-width: 66ch; }
+.band .prose > * + * { margin-top: var(--s-4); }
+.band .prose h3 { margin-top: var(--s-7); }
+/* an answer box: the page's one-paragraph answer, on the surface ground */
+.answer { background: var(--p-surface); border-radius: var(--r-lg); padding: var(--s-7); max-width: 72ch; }
+.answer > p { font-size: var(--t-lead); line-height: 1.55; }
+@media (max-width: 639px) { .answer { padding: var(--s-5); } }
+/* a list of plain links to related pages */
+.link-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s-4) var(--gutter); padding: 0; list-style: none; }
+.rows--plain > li { grid-template-columns: minmax(0, 1fr); }
+.card .rows { margin-top: var(--s-5); }
+.card .btn-row { margin-top: var(--s-6); }
+
+/* Calendly booking embed (js/calendly.js): /book/, /consultation/, /wellness-brands/. The script loads
+   only near the viewport; until then three still bars hold the widget's place (no shimmer). */
+.cal-embed { position: relative; min-height: 700px; overflow: hidden; border-radius: var(--r-lg); background: #fbf9f5; border: 1px solid var(--line); }
+.cal-embed .calendly-inline-widget { position: relative; z-index: 1; min-width: 320px; height: 700px; }
+.cal-embed::before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(var(--p-surface), var(--p-surface)) 50% 46% / 60% 44px no-repeat,
+              linear-gradient(var(--p-surface), var(--p-surface)) 50% 56% / 60% 44px no-repeat,
+              linear-gradient(var(--p-surface), var(--p-surface)) 50% 66% / 60% 44px no-repeat; }
+.cal-embed.is-failed::before { content: none; }
+.cal-embed.is-failed { min-height: 0; }
+.cal-embed.is-failed .calendly-inline-widget { height: auto; }
+.cal-embed__msg { margin: 0; padding: var(--s-7) var(--s-5); text-align: center; font-size: var(--t-small); color: var(--muted); }
+.cal-embed__alt { margin-top: var(--s-4); font-size: var(--t-small); }
+.cal-embed__alt a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 639px) { .cal-embed { min-height: 760px; } .cal-embed .calendly-inline-widget { height: 760px; } }
+.steps-list { counter-reset: s; padding: 0; list-style: none; }
+.steps-list > li { counter-increment: s; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--s-1) var(--s-4); padding-block: var(--s-4); border-bottom: 1px solid var(--line); }
+.steps-list > li::before { content: counter(s); grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 999px; display: grid; place-items: center; border: 1px solid var(--line-strong); font: 500 var(--t-small)/1 var(--font-text); }
+.steps-list > li > strong { font-weight: 500; }
+
+/* Ad landing pages (/consultation/, /wellness-brands/): no site nav, one goal (book the audit) */
+.lp-facts { margin-top: var(--s-5); }
+.lp-stats { margin-block: var(--s-7); }
+.lp-stats .t-stat { font-size: var(--t-h2); }
+.lp-foot { padding: var(--s-8) 0 calc(var(--s-8) + var(--bar, 0px)); border-top: 1px solid var(--line); font-size: var(--t-small); color: var(--muted); }
+.lp-foot p + p { margin-top: var(--s-2); }
+.lp-foot a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.steps-list > li > span { grid-column: 2; color: var(--ink); }
+/* a bar with no nav words (the landing pages): the action keeps the right line */
+.nav__bar > .nav__actions:last-child { margin-left: auto; }
+/* the cookie card enters once: a short rise on the strong UI ease-out; a fade only under reduced motion */
+.consent { transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1); }
+@starting-style { .consent { opacity: 0; transform: translateY(16px); } }
+@media (prefers-reduced-motion: reduce) { .consent { transition: opacity 200ms ease; } @starting-style { .consent { transform: none; } } }
+/* Web Interface Guidelines: no double-tap zoom delay on controls; the tap flash is replaced by the kit's own press */
+a, button, .btn, summary, label { touch-action: manipulation; }
+html { -webkit-tap-highlight-color: transparent; }
+
+/* rules the inner pages share (moved here from their page styles) */
+.link-list--col { grid-template-columns: minmax(0, 1fr); }
+.link-list .link { min-height: 44px; }
+:is(.band, .page-head) p > a:not(.btn):not(.link) { text-decoration: underline; text-underline-offset: 3px; }
