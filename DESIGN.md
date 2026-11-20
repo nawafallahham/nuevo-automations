@@ -29,8 +29,8 @@ Not published: `.assetsignore` excludes `*.md`.
 
 - **Honesty (the client's hard rules).** No invented testimonials, ratings, client stats or
   results. The only figures: partners report 50–60% more revenue from the same traffic and 0
-  extra headcount after full rollout; up to 30x ROAS on Khaleej Peptides, the founder's own store
-  (always said so, never "a client"). Example chats keep a visible line saying they are examples
+  extra headcount after full rollout; up to 30x ROAS on Khaleej Peptides, a client store (the owner corrected an earlier
+  "founder's store" line). Example chats keep a visible line saying they are examples
   with a made-up brand. Write it as "Example chats with a made-up brand." — the kit outlines in red
   any visible text matching `are examples`, `is illustrative`, `for illustration`, `(sample…)`,
   `placeholder`, `names and figures`.
