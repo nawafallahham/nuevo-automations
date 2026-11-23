@@ -265,9 +265,23 @@
       person.company = c.slice(0, 120);
       writeStore({ ok: true, answers: answers.slice(), name: person.name, phone: person.phone, company: person.company });
       report('details', { company: person.company });
+      if (typeof window.fbq === 'function') window.fbq('track', 'SubmitApplication', { content_name: 'audit-qualified' }, { eventID: leadId + '-q' });
       pass();
     });
   }
+  // Advanced matching: the pixel hashes these before sending, and they match
+  // the server's CAPI user data (phone, first name, external_id = lead id).
+  function matchUser() {
+    if (typeof window.fbq !== 'function' || !window.nuevoPixelId || !person.phone) return;
+    var d = person.phone.replace(/\D/g, '').replace(/^00/, '');
+    if (d.length === 10 && d.charAt(0) === '0' && d.charAt(1) === '5') d = '971' + d.slice(1);
+    else if (d.length === 9 && d.charAt(0) === '5') d = '971' + d;
+    var m = { ph: d, external_id: leadId, country: 'ae' };
+    var fn = person.name.trim().split(/\s+/)[0].toLowerCase();
+    if (fn) m.fn = fn;
+    window.fbq('init', window.nuevoPixelId, m);
+  }
+
   // First step: name and WhatsApp number. Sends the one real Lead event to
   // Meta (pixel here, CAPI from /api/lead, same event id).
   function contact() {
@@ -299,6 +313,7 @@
       writeStore(done ? { ok: true, answers: answers.slice(), name: person.name, phone: person.phone, company: person.company }
                       : { contact: true, name: person.name, phone: person.phone });
       report(done ? 'qualified' : 'started');
+      matchUser();
       if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'audit-contact' }, { eventID: leadId });
       if (done) { if (person.company) pass(); else details(); return; }
       ask(0);
@@ -340,6 +355,7 @@
   var prior = readStore();
   if (prior && prior.id) leadId = prior.id;
   if (prior) person = { name: prior.name || '', phone: prior.phone || '', company: prior.company || '' };
+  if (leadId && person.phone) matchUser();
   if (prior && prior.ok && Array.isArray(prior.answers) && prior.answers.length === QUESTIONS.length) {
     answers = prior.answers;
     if (!person.name || !person.phone) contact();

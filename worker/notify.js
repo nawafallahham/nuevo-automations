@@ -34,6 +34,8 @@ export async function sendMetaCapi(env, b, meta) {
   if (b.phone) user.ph = [await sha256Hex(normalisePhone(b.phone))];
   if (firstName) user.fn = [await sha256Hex(firstName)];
   if (b.email) user.em = [await sha256Hex(b.email.trim().toLowerCase())];
+  if (!user.ph && meta.phone) user.ph = [await sha256Hex(normalisePhone(meta.phone))];
+  if (meta.external_id) user.external_id = [await sha256Hex(meta.external_id)];
   if (meta.fbc) user.fbc = meta.fbc;
   if (meta.fbp) user.fbp = meta.fbp;
 
@@ -51,28 +53,30 @@ export async function sendMetaCapi(env, b, meta) {
   await postCapi(env, body);
 }
 
-// The visitor gave their name and WhatsApp number before the qualifying
-// questions (worker/leads.js). Same matching data as the Schedule event.
-export async function sendMetaLead(env, l) {
+// Lead funnel events from worker/leads.js: 'Lead' when the visitor gives
+// their name and WhatsApp number, 'SubmitApplication' when they qualify.
+// external_id (the hashed lead id) ties them to the later Schedule event.
+export async function sendMetaLead(env, l, eventName, contentName) {
   const firstName = (l.name || '').trim().split(/\s+/)[0].toLowerCase();
   const user = {
     client_ip_address: l.ip,
     client_user_agent: l.ua,
     country: [await sha256Hex('ae')],
-    ph: [await sha256Hex(normalisePhone(l.phone))]
+    ph: [await sha256Hex(normalisePhone(l.phone))],
+    external_id: [await sha256Hex(l.event_id)]
   };
   if (firstName) user.fn = [await sha256Hex(firstName)];
   if (l.fbc) user.fbc = l.fbc;
   if (l.fbp) user.fbp = l.fbp;
   await postCapi(env, {
     data: [{
-      event_name: 'Lead',
+      event_name: eventName,
       event_time: Math.floor(Date.now() / 1000),
-      event_id: l.event_id,
+      event_id: eventName === 'Lead' ? l.event_id : l.event_id + '-q',
       action_source: 'website',
       event_source_url: l.page_url,
       user_data: user,
-      custom_data: { content_name: 'audit-contact' }
+      custom_data: { content_name: contentName }
     }]
   });
 }

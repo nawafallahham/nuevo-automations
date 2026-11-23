@@ -265,6 +265,9 @@ async function capiStep(env, inviteeUri) {
   ).bind(inviteeUri, new Date().toISOString()).run();
   if (!((claim.meta && claim.meta.changes) || 0)) return;
 
+  // The lead behind this booking (if it came through the questions): its
+  // WhatsApp number and id improve Meta's match and link the funnel events.
+  const lead = await env.DB.prepare('SELECT id, phone FROM leads WHERE invitee_uri = ?1').bind(inviteeUri).first();
   const live = Boolean(env.META_CAPI_TOKEN && env.META_PIXEL_ID);
   console.log('[calendly] capi ' + b.id + (live ? ' sending' : ' skipped: META_CAPI_TOKEN not set'));
   try {
@@ -275,6 +278,8 @@ async function capiStep(env, inviteeUri) {
       ua: d.ua || '',
       fbc: d.fbc || null,
       fbp: d.fbp || null,
+      phone: lead && lead.phone,
+      external_id: lead && lead.id,
       page_url: d.page_url || siteUrl(env) + '/book/'
     });
   } finally {

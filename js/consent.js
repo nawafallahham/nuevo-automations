@@ -32,6 +32,7 @@
     /* eslint-enable */
     window.fbq('init', PIXEL_ID);
     window.fbq('track', 'PageView');
+    window.nuevoPixelId = PIXEL_ID;
   }
 
   // The notice is a small card at the foot of the screen (styles in /css/site.css).

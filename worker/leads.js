@@ -52,20 +52,27 @@ export async function lead(request, env, ctx) {
     cleanOrNull(a.utm_content, 150), cleanOrNull(a.landing, 300), cleanOrNull(a.referrer, 300), ipH, phone
   ).run();
 
-  // Meta CAPI Lead: once per lead, when the name and number arrive and the
-  // visitor accepted cookies. event_id = the lead id, which the browser pixel
-  // also sends, so Meta counts it once.
+  // Meta CAPI, once each per lead and only if the visitor accepted cookies:
+  // Lead when the name and number arrive, SubmitApplication when they
+  // qualify and give their company. The browser pixel sends the same
+  // event ids (lead id, lead id + '-q'), so Meta counts each once.
   if (phone && body.consent === true && env.META_CAPI_TOKEN && env.META_PIXEL_ID) {
-    const claim = await env.DB.prepare('UPDATE leads SET capi_lead_at = ?2 WHERE id = ?1 AND capi_lead_at IS NULL')
-      .bind(id, now).run();
-    if (claim.meta && claim.meta.changes === 1) {
-      ctx.waitUntil(sendMetaLead(env, {
-        event_id: id, phone, name: cleanOrNull(body.name, 100),
-        ip: clientIp(request), ua: clean(request.headers.get('user-agent'), 400),
-        fbc: clean(a.fbc, 500) || (a.fbclid ? 'fb.1.' + Date.now() + '.' + clean(a.fbclid, 500) : null),
-        fbp: clean(a.fbp, 200) || null,
-        page_url: clean(body.page_url, 300) || 'https://nuevoautomations.com/'
-      }).catch((err) => console.error('[meta_lead] ' + id + ': ' + (err && err.message || err))));
+    const evs = [['Lead', 'capi_lead_at', 'audit-contact']];
+    if (status === 'details') evs.push(['SubmitApplication', 'capi_qual_at', 'audit-qualified']);
+    const l = {
+      event_id: id, phone, name: cleanOrNull(body.name, 100),
+      ip: clientIp(request), ua: clean(request.headers.get('user-agent'), 400),
+      fbc: clean(a.fbc, 500) || (a.fbclid ? 'fb.1.' + Date.now() + '.' + clean(a.fbclid, 500) : null),
+      fbp: clean(a.fbp, 200) || null,
+      page_url: clean(body.page_url, 300) || 'https://nuevoautomations.com/'
+    };
+    for (const [name, col, content] of evs) {
+      const claim = await env.DB.prepare('UPDATE leads SET ' + col + ' = ?2 WHERE id = ?1 AND ' + col + ' IS NULL')
+        .bind(id, now).run();
+      if (claim.meta && claim.meta.changes === 1) {
+        ctx.waitUntil(sendMetaLead(env, l, name, content)
+          .catch((err) => console.error('[meta_' + name + '] ' + id + ': ' + (err && err.message || err))));
+      }
     }
   }
   return json({ ok: true });
