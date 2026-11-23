@@ -60,6 +60,12 @@
   .camp th { font: 500 var(--t-small)/1.4 var(--font-text); color: var(--muted); }
   .camp td:not(:first-child), .camp th:not(:first-child) { text-align: right; }
   .camp-wrap { overflow-x: auto; }
+  .camp-wrap summary { cursor: pointer; font: 500 var(--t-small)/1.4 var(--font-text); padding-block: var(--s-2); }
+  .shot { margin: 0; }
+  .shot__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius, 12px); background: #fff; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot__hint { display: none; margin-top: var(--s-2); }
+  @media (max-width: 639px) { .shot img { width: 720px; max-width: none; } .shot__hint { display: block; } }
   .case-next { margin-top: var(--s-6); }
   </style>
   <script type="application/ld+json">

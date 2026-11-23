@@ -60,6 +60,12 @@
   .camp th { font: 500 var(--t-small)/1.4 var(--font-text); color: var(--muted); }
   .camp td:not(:first-child), .camp th:not(:first-child) { text-align: right; }
   .camp-wrap { overflow-x: auto; }
+  .camp-wrap summary { cursor: pointer; font: 500 var(--t-small)/1.4 var(--font-text); padding-block: var(--s-2); }
+  .shot { margin: 0; }
+  .shot__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius, 12px); background: #fff; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot__hint { display: none; margin-top: var(--s-2); }
+  @media (max-width: 639px) { .shot img { width: 720px; max-width: none; } .shot__hint { display: block; } }
   .case-next { margin-top: var(--s-6); }
   </style>
   <script type="application/ld+json">
@@ -218,25 +224,30 @@
       <div class="wrap stack-6">
         <div class="section-head">
           <h2 id="kp-camps-h">Return on ad spend by campaign</h2>
-          <p>Nine of the 14 campaigns, best to worst, straight from Ads Manager. Every conversation is a buyer who opened WhatsApp from an ad.</p>
+          <p>Straight from Meta Ads Manager. Every messaging conversation is a buyer who opened WhatsApp from an ad.</p>
         </div>
-        <div class="camp-wrap">
+        <figure class="shot">
+          <div class="shot__scroll"><img src="/assets/cases/khaleej-ads-manager.webp" alt="Meta Ads Manager results for Khaleej Peptides: 14 campaigns, 6,852.78 dollars total spent, 19.6x average return on ad spend and an estimated 134,321.49 dollars in revenue. The best campaign, KHALEEJ PEP, had 1,509 messaging conversations at 1.87 dollars each and a 29.9x return." width="1782" height="883" loading="lazy" decoding="async"></div>
+          <figcaption class="shot__hint t-small muted">Swipe sideways to see every column.</figcaption>
+        </figure>
+        <details class="camp-wrap">
+          <summary>The same numbers as text</summary>
           <table class="camp">
             <thead><tr><th scope="col">Campaign</th><th scope="col">Chats</th><th scope="col">Cost per chat</th><th scope="col"><abbr title="Return on ad spend">ROAS</abbr></th></tr></thead>
             <tbody>
-                <tr><td>Main campaign</td><td>1,509</td><td>$1.87</td><td>29.9x</td></tr>
-                <tr><td>Campaign 3</td><td>619</td><td>$2.22</td><td>25.4x</td></tr>
-                <tr><td>WhatsApp test</td><td>277</td><td>$1.75</td><td>23.8x</td></tr>
-                <tr><td>WhatsApp, English</td><td>226</td><td>$2.35</td><td>18.5x</td></tr>
-                <tr><td>Unlock, Arabic</td><td>100</td><td>$3.81</td><td>15.0x</td></tr>
-                <tr><td>Campaign 2</td><td>275</td><td>$2.02</td><td>12.7x</td></tr>
-                <tr><td>Campaign 4</td><td>&mdash;</td><td>&mdash;</td><td>8.6x</td></tr>
-                <tr><td>Campaign 1</td><td>120</td><td>$1.62</td><td>6.2x</td></tr>
-                <tr><td>WhatsApp, Arabic</td><td>82</td><td>$2.03</td><td>3.1x</td></tr>
+                <tr><td>KHALEEJ PEP</td><td>1,509</td><td>$1.87</td><td>29.9x</td></tr>
+                <tr><td>KHALEEJ PEP3</td><td>619</td><td>$2.22</td><td>25.4x</td></tr>
+                <tr><td>Test - WHin Khaleejpep</td><td>277</td><td>$1.75</td><td>23.8x</td></tr>
+                <tr><td>WHin Khaleejpep</td><td>226</td><td>$2.35</td><td>18.5x</td></tr>
+                <tr><td>Unlock AR Khaleejpep</td><td>100</td><td>$3.81</td><td>15.0x</td></tr>
+                <tr><td>Khaleej pep 2</td><td>275</td><td>$2.02</td><td>12.7x</td></tr>
+                <tr><td>BTR - KP</td><td>&mdash;</td><td>&mdash;</td><td>8.6x</td></tr>
+                <tr><td>KHALEEJ PEP1</td><td>120</td><td>$1.62</td><td>6.2x</td></tr>
+                <tr><td>WHin AR Khaleejpep</td><td>82</td><td>$2.03</td><td>3.1x</td></tr>
             </tbody>
           </table>
-        </div>
-        <p class="t-small muted">Campaign names simplified. Not every campaign wins: the weakest returned 3.1x, and we move budget to the ones that work.</p>
+        </details>
+        <p class="t-small muted">Return on ad spend and revenue are Meta's own estimates. Not every campaign wins: the weakest returned 3.1x, and we move budget to the ones that work.</p>
       </div>
     </section>
 
