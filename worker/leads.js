@@ -1,12 +1,13 @@
 // POST /api/lead — progress through the qualifying questions (js/calendly.js).
 // The browser sends the whole state each time; the row only ever moves
 // forward (a later beacon can't undo a decline or a booking).
-import { json, readJson, clean, cleanOrNull, clientIp, ipHash, rateLimit, originAllowed } from './lib.js';
+import { json, readJson, clean, cleanOrNull, clientIp, ipHash, rateLimit, originAllowed, normalisePhone } from './lib.js';
+import { sendMetaLead } from './notify.js';
 
 const ID_RE = /^ld_[a-f0-9]{16,40}$/;
 const RANK = { started: 0, declined: 1, qualified: 1, details: 2, booked: 3 };
 
-export async function lead(request, env) {
+export async function lead(request, env, ctx) {
   if (!originAllowed(request)) return json({ ok: false, error: 'bad_origin' }, 403);
   const body = await readJson(request, 4096);
   const id = clean(body.id, 48);
@@ -24,11 +25,13 @@ export async function lead(request, env) {
   const declinedAt = status === 'declined' ? Math.min(Math.max(parseInt(body.declined_at_q, 10) || step, 1), 4) : null;
   const a = body.attribution && typeof body.attribution === 'object' ? body.attribution : {};
   const now = new Date().toISOString();
+  const digits = normalisePhone(body.phone);
+  const phone = digits.length >= 7 && digits.length <= 15 ? '+' + digits : null;
 
   await env.DB.prepare(
     'INSERT INTO leads (id, created_at, updated_at, page, status, step, q1, q2, q3, q4, declined_at_q, name, company, ' +
-    'utm_source, utm_medium, utm_campaign, utm_content, landing, referrer, ip_hash) ' +
-    'VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19) ' +
+    'utm_source, utm_medium, utm_campaign, utm_content, landing, referrer, ip_hash, phone) ' +
+    'VALUES (?1, ?2, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20) ' +
     'ON CONFLICT (id) DO UPDATE SET updated_at = excluded.updated_at, ' +
     // status and answers only move forward
     "status = CASE WHEN leads.status IN ('declined', 'booked') THEN leads.status " +
@@ -40,13 +43,31 @@ export async function lead(request, env) {
     "q3 = CASE WHEN leads.status IN ('declined', 'booked') THEN leads.q3 ELSE COALESCE(excluded.q3, leads.q3) END, " +
     "q4 = CASE WHEN leads.status IN ('declined', 'booked') THEN leads.q4 ELSE COALESCE(excluded.q4, leads.q4) END, " +
     'declined_at_q = COALESCE(leads.declined_at_q, excluded.declined_at_q), ' +
-    'name = COALESCE(excluded.name, leads.name), company = COALESCE(excluded.company, leads.company)'
+    'name = COALESCE(excluded.name, leads.name), company = COALESCE(excluded.company, leads.company), ' +
+    'phone = COALESCE(excluded.phone, leads.phone)'
   ).bind(
     id, now, cleanOrNull(body.page, 40), status, step, answers[0], answers[1], answers[2], answers[3], declinedAt,
     cleanOrNull(body.name, 100), cleanOrNull(body.company, 120),
     cleanOrNull(a.utm_source, 100), cleanOrNull(a.utm_medium, 100), cleanOrNull(a.utm_campaign, 150),
-    cleanOrNull(a.utm_content, 150), cleanOrNull(a.landing, 300), cleanOrNull(a.referrer, 300), ipH
+    cleanOrNull(a.utm_content, 150), cleanOrNull(a.landing, 300), cleanOrNull(a.referrer, 300), ipH, phone
   ).run();
+
+  // Meta CAPI Lead: once per lead, when the name and number arrive and the
+  // visitor accepted cookies. event_id = the lead id, which the browser pixel
+  // also sends, so Meta counts it once.
+  if (phone && body.consent === true && env.META_CAPI_TOKEN && env.META_PIXEL_ID) {
+    const claim = await env.DB.prepare('UPDATE leads SET capi_lead_at = ?2 WHERE id = ?1 AND capi_lead_at IS NULL')
+      .bind(id, now).run();
+    if (claim.meta && claim.meta.changes === 1) {
+      ctx.waitUntil(sendMetaLead(env, {
+        event_id: id, phone, name: cleanOrNull(body.name, 100),
+        ip: clientIp(request), ua: clean(request.headers.get('user-agent'), 400),
+        fbc: clean(a.fbc, 500) || (a.fbclid ? 'fb.1.' + Date.now() + '.' + clean(a.fbclid, 500) : null),
+        fbp: clean(a.fbp, 200) || null,
+        page_url: clean(body.page_url, 300) || 'https://nuevoautomations.com/'
+      }).catch((err) => console.error('[meta_lead] ' + id + ': ' + (err && err.message || err))));
+    }
+  }
   return json({ ok: true });
 }
 

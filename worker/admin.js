@@ -168,7 +168,7 @@ async function leads(request, env) {
     env.DB.prepare(
       'SELECT l.id, l.created_at, l.updated_at, l.page, l.status, l.step, l.q1, l.q2, l.q3, l.q4, l.declined_at_q, ' +
       'l.name, l.company, l.booked_at, l.utm_source, l.utm_medium, l.utm_campaign, l.utm_content, l.landing, l.referrer, ' +
-      'b.date AS booking_date, b.time AS booking_time, b.status AS booking_status, b.email AS email, b.phone AS phone ' +
+      'b.date AS booking_date, b.time AS booking_time, b.status AS booking_status, b.email AS email, COALESCE(l.phone, b.phone) AS phone ' +
       'FROM leads l LEFT JOIN bookings b ON b.calendly_invitee_uri = l.invitee_uri ' +
       'WHERE l.created_at >= ?1 ORDER BY l.created_at DESC LIMIT 2000'
     ).bind(since)
@@ -181,13 +181,14 @@ async function leads(request, env) {
   const funnel = [
     ['Visitors', e.visitors || 0],
     ['Saw the booking section', e.book_viewers || 0],
-    ['Started the questions', list.length],
+    ['Started (gave details or answered)', list.length],
+    ['Gave name and WhatsApp number', count((l) => !!l.phone)],
     ['Answered question 1', count((l) => l.step >= 1)],
     ['Answered question 2', count((l) => l.step >= 2)],
     ['Answered question 3', count((l) => l.step >= 3)],
     ['Answered question 4', count((l) => l.step >= 4)],
     ['Qualified', count(passed)],
-    ['Gave name and company', count((l) => l.status === 'details' || l.status === 'booked')],
+    ['Gave company name', count((l) => l.status === 'details' || l.status === 'booked')],
     ['Booked a call', count((l) => l.status === 'booked')],
     ['Booking still on (not cancelled)', count((l) => l.status === 'booked' && l.booking_status !== 'cancelled')]
   ].map(([label, n]) => ({ label, n }));

@@ -185,10 +185,11 @@
   }
 
   // --- qualifying questions ------------------------------------------
-  // Each step is reported to /api/lead (the dashboard funnel). A visitor who
-  // qualifies gives their name and company, then gets the calendar.
+  // Each step is reported to /api/lead (the dashboard funnel). The visitor
+  // gives their name and WhatsApp number first, then answers; one who
+  // qualifies adds their company and gets the calendar.
   var answers = [];
-  var person = { name: '', company: '' };
+  var person = { name: '', phone: '', company: '' };
   var leadId = '';
   function readStore() {
     try {
@@ -208,7 +209,8 @@
   }
   function report(status, extra) {
     if (!leadId) return;
-    var body = { id: leadId, page: source, status: status, answers: answers, attribution: attribution() };
+    var body = { id: leadId, page: source, status: status, answers: answers, attribution: attribution(),
+      name: person.name || null, phone: person.phone || null, consent: consentGranted(), page_url: location.href };
     for (var k in extra) body[k] = extra[k];
     try {
       fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
@@ -245,11 +247,10 @@
     panel.innerHTML =
       '<p class="qualify__step">You’re a fit · last step</p>' +
       '<div class="qualify__bar" aria-hidden="true"><span style="width:100%"></span></div>' +
-      '<h3 class="qualify__q" tabindex="-1">Who should we expect on the call?</h3>' +
+      '<h3 class="qualify__q" tabindex="-1">Which brand is the audit for?</h3>' +
       '<form class="qualify__form" novalidate>' +
-      '<label class="field">Your name<input name="name" autocomplete="name" required maxlength="100" value="' + esc(person.name) + '"></label>' +
       '<label class="field">Company or brand name<input name="company" autocomplete="organization" required maxlength="120" value="' + esc(person.company) + '"></label>' +
-      '<p class="field__error qualify__err" hidden>Please fill in both, so we can prepare your audit.</p>' +
+      '<p class="field__error qualify__err" hidden>Please add your brand name, so we can prepare your audit.</p>' +
       '<button class="btn btn--primary" type="submit">Show available times</button>' +
       '<p class="t-small muted">We only use this to prepare your call. <a href="/privacy/">Privacy policy</a></p>' +
       '</form>';
@@ -257,21 +258,58 @@
     panel.querySelector('h3').focus({ preventScroll: true });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var n = form.elements.name.value.trim(), c = form.elements.company.value.trim();
-      form.elements.name.setAttribute('aria-invalid', String(!n));
+      var c = form.elements.company.value.trim();
       form.elements.company.setAttribute('aria-invalid', String(!c));
-      panel.querySelector('.qualify__err').hidden = !!(n && c);
-      if (!n || !c) { (n ? form.elements.company : form.elements.name).focus(); return; }
-      person = { name: n.slice(0, 100), company: c.slice(0, 120) };
-      writeStore({ ok: true, answers: answers.slice(), name: person.name, company: person.company });
-      report('details', { name: person.name, company: person.company });
+      panel.querySelector('.qualify__err').hidden = !!c;
+      if (!c) { form.elements.company.focus(); return; }
+      person.company = c.slice(0, 120);
+      writeStore({ ok: true, answers: answers.slice(), name: person.name, phone: person.phone, company: person.company });
+      report('details', { company: person.company });
       pass();
     });
   }
+  // First step: name and WhatsApp number. Sends the one real Lead event to
+  // Meta (pixel here, CAPI from /api/lead, same event id).
+  function contact() {
+    panel.innerHTML =
+      '<p class="qualify__step">Free audit · takes under a minute</p>' +
+      '<div class="qualify__bar" aria-hidden="true"><span style="width:0%"></span></div>' +
+      '<h3 class="qualify__q" tabindex="-1">Who are we talking to?</h3>' +
+      '<form class="qualify__form" novalidate>' +
+      '<label class="field">Your name<input name="name" autocomplete="name" required maxlength="100" value="' + esc(person.name) + '"></label>' +
+      '<label class="field">WhatsApp number<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="24" placeholder="+971 50 123 4567" value="' + esc(person.phone) + '"></label>' +
+      '<p class="field__error qualify__err" hidden>Please add your name and a WhatsApp number we can reach.</p>' +
+      '<button class="btn btn--primary" type="submit">Next: 4 quick questions</button>' +
+      '<p class="t-small muted">We only use this to prepare and confirm your call. <a href="/privacy/">Privacy policy</a></p>' +
+      '</form>';
+    var form = panel.querySelector('form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = form.elements.name.value.trim(), p = form.elements.phone.value.trim();
+      var digits = p.replace(/\D/g, '');
+      var okP = digits.length >= 7 && digits.length <= 15;
+      form.elements.name.setAttribute('aria-invalid', String(!n));
+      form.elements.phone.setAttribute('aria-invalid', String(!okP));
+      panel.querySelector('.qualify__err').hidden = !!(n && okP);
+      if (!n || !okP) { (n ? form.elements.phone : form.elements.name).focus(); return; }
+      if (!leadId) leadId = newLeadId();
+      person.name = n.slice(0, 100);
+      person.phone = p.slice(0, 24);
+      var done = answers.length === QUESTIONS.length;
+      writeStore(done ? { ok: true, answers: answers.slice(), name: person.name, phone: person.phone, company: person.company }
+                      : { contact: true, name: person.name, phone: person.phone });
+      report(done ? 'qualified' : 'started');
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'audit-contact' }, { eventID: leadId });
+      if (done) { if (person.company) pass(); else details(); return; }
+      ask(0);
+      panel.querySelector('h3').focus({ preventScroll: true });
+    });
+  }
+
   function ask(i) {
     var q = QUESTIONS[i];
     panel.innerHTML =
-      '<p class="qualify__step">' + (i ? '' : '4 quick taps so we can prepare your audit · ') + (i + 1) + ' of ' + QUESTIONS.length + '</p>' +
+      '<p class="qualify__step">' + (i ? '' : 'Thanks, ' + esc(person.name.split(' ')[0]) + ' · ') + (i + 1) + ' of ' + QUESTIONS.length + '</p>' +
       '<div class="qualify__bar" aria-hidden="true"><span style="width:' + Math.round(i / QUESTIONS.length * 100) + '%"></span></div>' +
       '<h3 class="qualify__q" id="qualify-q" tabindex="-1">' + esc(q.q) + '</h3>' +
       '<div class="qualify__opts" role="group" aria-labelledby="qualify-q">' +
@@ -301,13 +339,15 @@
 
   var prior = readStore();
   if (prior && prior.id) leadId = prior.id;
+  if (prior) person = { name: prior.name || '', phone: prior.phone || '', company: prior.company || '' };
   if (prior && prior.ok && Array.isArray(prior.answers) && prior.answers.length === QUESTIONS.length) {
     answers = prior.answers;
-    person = { name: prior.name || '', company: prior.company || '' };
-    if (person.name && person.company) pass(); else details();
+    if (!person.name || !person.phone) contact();
+    else if (person.company) pass(); else details();
   }
   else if (prior && prior.ok === false) decline(prior.why);
-  else { widget.innerHTML = ''; ask(0); }
+  else if (person.name && person.phone) { widget.innerHTML = ''; ask(0); }
+  else { widget.innerHTML = ''; contact(); }
 
   // --- Calendly events -----------------------------------------------
   function track(type) {

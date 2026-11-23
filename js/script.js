@@ -1,7 +1,9 @@
 (function () {
   'use strict';
 
-  /* ---- Meta Pixel: count WhatsApp and booking CTA clicks as leads ----
+  /* ---- Meta Pixel: WhatsApp taps are Contact, booking-button taps a custom
+     BookClick. The real Lead is the name + number step (js/calendly.js), so
+     campaigns optimising for Lead learn from people who gave their details.
      Guarded on fbq so it no-ops until consent loads the pixel. */
   document.addEventListener('click', function (e) {
     if (typeof window.fbq !== 'function' || !e.target.closest) return;
@@ -14,7 +16,8 @@
               : link.closest('.hero, .page-head') ? 'hero'
               : link.closest('footer') ? 'footer'
               : 'other');
-    window.fbq('track', 'Lead', { content_name: where });
+    if (/wa\.me\//.test(link.getAttribute('href') || '')) window.fbq('track', 'Contact', { content_name: where });
+    else window.fbq('trackCustom', 'BookClick', { content_name: where });
   });
 
   /* ---- Footer year ---- */

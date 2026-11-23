@@ -48,8 +48,37 @@ export async function sendMetaCapi(env, b, meta) {
       custom_data: { content_name: b.provider === 'calendly' ? 'calendly' : b.date + ' ' + b.time }
     }]
   };
-  if (env.META_TEST_EVENT_CODE) body.test_event_code = env.META_TEST_EVENT_CODE;
+  await postCapi(env, body);
+}
 
+// The visitor gave their name and WhatsApp number before the qualifying
+// questions (worker/leads.js). Same matching data as the Schedule event.
+export async function sendMetaLead(env, l) {
+  const firstName = (l.name || '').trim().split(/\s+/)[0].toLowerCase();
+  const user = {
+    client_ip_address: l.ip,
+    client_user_agent: l.ua,
+    country: [await sha256Hex('ae')],
+    ph: [await sha256Hex(normalisePhone(l.phone))]
+  };
+  if (firstName) user.fn = [await sha256Hex(firstName)];
+  if (l.fbc) user.fbc = l.fbc;
+  if (l.fbp) user.fbp = l.fbp;
+  await postCapi(env, {
+    data: [{
+      event_name: 'Lead',
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: l.event_id,
+      action_source: 'website',
+      event_source_url: l.page_url,
+      user_data: user,
+      custom_data: { content_name: 'audit-contact' }
+    }]
+  });
+}
+
+async function postCapi(env, body) {
+  if (env.META_TEST_EVENT_CODE) body.test_event_code = env.META_TEST_EVENT_CODE;
   const url = 'https://graph.facebook.com/v21.0/' + encodeURIComponent(env.META_PIXEL_ID) +
     '/events?access_token=' + encodeURIComponent(env.META_CAPI_TOKEN);
   const r = await fetchWithTimeout(url, {

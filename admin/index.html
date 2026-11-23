@@ -127,12 +127,12 @@
               <button type="button" data-f="declined">Declined</button>
               <button type="button" data-f="started">Dropped off</button>
             </span>
-            <input class="adm-search" id="lead-search" type="search" placeholder="Search name, company, answer…" aria-label="Search leads">
+            <input class="adm-search" id="lead-search" type="search" placeholder="Search name, company, number, answer…" aria-label="Search leads">
             <button type="button" class="btn btn-ghost btn-sm" id="lead-csv">Download CSV</button>
           </span>
         </h2>
         <div class="adm-table-wrap"><table>
-          <thead><tr><th>When (Dubai)</th><th>Name / company</th><th>Answers</th><th>Status</th><th>Call</th><th>Source / campaign</th><th>Page</th></tr></thead>
+          <thead><tr><th>When (Dubai)</th><th>Name / company / number</th><th>Answers</th><th>Status</th><th>Call</th><th>Source / campaign</th><th>Page</th></tr></thead>
           <tbody id="leads"></tbody>
         </table></div>
         <p class="adm-empty" id="leads-empty" hidden>No leads in this period.</p>
@@ -519,11 +519,11 @@
           call.appendChild(document.createTextNode(when({ date: l.booking_date, time: l.booking_time })));
           if (l.booking_status === 'cancelled') call.appendChild(el('span', { className: 'sub' }, 'cancelled'));
           if (l.email) call.appendChild(el('span', { className: 'sub' }, l.email));
-          if (l.phone) call.appendChild(el('a', { className: 'wa', href: waHref(l.phone), target: '_blank', rel: 'noopener' }, l.phone));
         } else call.appendChild(document.createTextNode(l.status === 'booked' ? 'booked (details pending)' : '—'));
         tb.appendChild(el('tr', null, [
           el('td', null, [dubai(l.created_at), l.updated_at !== l.created_at ? el('span', { className: 'sub' }, 'last step ' + dubai(l.updated_at)) : '']),
-          el('td', null, [l.name || el('span', { className: 'sub' }, 'not given'), l.company ? el('span', { className: 'sub' }, l.company) : '']),
+          el('td', null, [l.name || el('span', { className: 'sub' }, 'not given'), l.company ? el('span', { className: 'sub' }, l.company) : '',
+            l.phone ? el('a', { className: 'wa', href: waHref(l.phone), target: '_blank', rel: 'noopener' }, l.phone) : '']),
           answers,
           el('td', null, el('span', { className: 'tag st-' + l.status }, (STATUS[l.status] || l.status) + (l.status === 'started' ? ' at Q' + (l.step + 1) : ''))),
           call,
