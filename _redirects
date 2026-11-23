@@ -3,3 +3,7 @@
 /automation /m2s/ 301
 /orcaflo/* /m2s/ 301
 /automation/* /m2s/ 301
+
+# Khaleej case study moved when the brand name changed
+/results/khaleej-peptides/ /results/khaleej-parapharma/ 301
+/results/khaleej-peptides /results/khaleej-parapharma/ 301

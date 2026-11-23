@@ -7,7 +7,7 @@ Key facts:
 - M2S runs on the client's own WhatsApp number and on OrcaFlo, a WhatsApp AI platform Nuevo Automations built and runs itself.
 - The AI never invents prices or products; anything it can't answer is handed to the client's team with a chat summary.
 - Pricing: one fixed monthly fee, quoted in writing after a free 30-minute audit. No public price list. Ad spend is paid directly to Meta and is not part of the fee.
-- No guaranteed results. Partners report 50–60% more revenue from the same traffic after full rollout, with no extra headcount, and the best return on ad spend seen, on client Khaleej Peptides, is 30x, not a typical result; individual results vary. Clients get a monthly M2S Results report showing conversations, orders, revenue and what follow-ups recovered.
+- No guaranteed results. Partners report 50–60% more revenue from the same traffic after full rollout, with no extra headcount, and the best return on ad spend seen, on client Khaleej ParaPharma, is 30x, not a typical result; individual results vary. Clients get a monthly M2S Results report showing conversations, orders, revenue and what follow-ups recovered.
 - Peak Labs (supplements, UAE) reports a 90x faster first reply, 53% more orders a month and 74% of chats handled without a person (figures as of October 2026).
 - Licence no. 4431808.01. Contact: WhatsApp +1 555-773-8409, nawafallahham@nuevoautomations.com.
 
@@ -15,7 +15,7 @@ Key facts:
 - [How M2S works](https://nuevoautomations.com/m2s/): the five steps from ad to sale, what is included, and the monthly report
 - [Pricing](https://nuevoautomations.com/pricing/): what you pay for and what decides the quote
 - [Results](https://nuevoautomations.com/results/): where the revenue lift comes from and how it is reported
-- [Khaleej Peptides case study](https://nuevoautomations.com/results/khaleej-peptides/): Meta ads into WhatsApp with M2S since May 2026; 19.6x average return on ad spend across 14 campaigns (Meta estimate), 29.9x on the best campaign
+- [Khaleej ParaPharma case study](https://nuevoautomations.com/results/khaleej-parapharma/): Meta ads into WhatsApp with M2S since May 2026; 19.6x average return on ad spend across 14 campaigns (Meta estimate), 29.9x on the best campaign
 - [Peak Labs case study](https://nuevoautomations.com/results/peak-labs/): UAE supplements brand on M2S since June 2026; +53% orders a month, 90x faster first reply, 74% of chats handled without a person (as of October 2026)
 - [Partners](https://nuevoautomations.com/partners/): UAE brands using the system
 - [About](https://nuevoautomations.com/about/): company, founder and registration
