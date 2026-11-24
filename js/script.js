@@ -18,6 +18,7 @@
               : 'other');
     if (/wa\.me\//.test(link.getAttribute('href') || '')) window.fbq('track', 'Contact', { content_name: where });
     else window.fbq('trackCustom', 'BookClick', { content_name: where });
+    if (window.nuevoGa) window.nuevoGa(/wa\.me\//.test(link.getAttribute('href') || '') ? 'whatsapp_click' : 'book_click', { location: where });
   });
 
   /* ---- Footer year ---- */

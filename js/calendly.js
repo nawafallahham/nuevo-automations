@@ -266,6 +266,7 @@
       writeStore({ ok: true, answers: answers.slice(), name: person.name, phone: person.phone, company: person.company });
       report('details', { company: person.company });
       if (typeof window.fbq === 'function') window.fbq('track', 'SubmitApplication', { content_name: 'audit-qualified' }, { eventID: leadId + '-q' });
+      if (window.nuevoGa) window.nuevoGa('qualify_lead');
       pass();
     });
   }
@@ -315,6 +316,7 @@
       report(done ? 'qualified' : 'started');
       matchUser();
       if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'audit-contact' }, { eventID: leadId });
+      if (window.nuevoGa) window.nuevoGa('generate_lead');
       if (done) { if (person.company) pass(); else details(); return; }
       ask(0);
       panel.querySelector('h3').focus({ preventScroll: true });
@@ -382,6 +384,7 @@
     if (typeof window.fbq === 'function') {
       window.fbq('track', 'Schedule', { content_name: 'calendly' }, { eventID: inviteeUri });
     }
+    if (window.nuevoGa) window.nuevoGa('book_appointment');
     try {
       fetch('/api/calendly/scheduled', {
         method: 'POST',

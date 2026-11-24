@@ -9,6 +9,7 @@
   'use strict';
 
   var PIXEL_ID = '997785509848718';
+  var GA_ID = 'G-1FF7172KH1';
   var STORE_KEY = 'nuevo-consent';
 
   function read() {
@@ -35,6 +36,21 @@
     window.nuevoPixelId = PIXEL_ID;
   }
 
+  // Google Analytics 4, under the same consent as the pixel.
+  function loadAnalytics() {
+    if (window.gtag) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+    var t = document.createElement('script');
+    t.async = true;
+    t.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(t);
+  }
+
+  function loadTrackers() { loadPixel(); loadAnalytics(); }
+
   // The notice is a small card at the foot of the screen (styles in /css/site.css).
   // Accept and Decline carry equal weight. While it shows, the body is padded by
   // its height so it never covers the page's last lines.
@@ -44,7 +60,7 @@
     box.setAttribute('role', 'region');
     box.setAttribute('aria-label', 'Cookie consent');
     box.innerHTML =
-      '<p>We use cookies to measure how our ads perform. <a href="/privacy/">Privacy policy</a></p>' +
+      '<p>We use cookies to measure our ads and how the site is used. <a href="/privacy/">Privacy policy</a></p>' +
       '<div class="consent-row">' +
       '<button type="button" class="btn btn--primary consent-yes">Accept</button>' +
       '<button type="button" class="btn btn--primary consent-no">Decline</button>' +
@@ -75,7 +91,7 @@
       window.removeEventListener('resize', pad);
       if (io) io.disconnect();
       document.body.style.paddingBottom = '';
-      if (choice === 'granted') loadPixel();
+      if (choice === 'granted') loadTrackers();
     }
     box.querySelector('.consent-yes').addEventListener('click', function () { close('granted'); });
     box.querySelector('.consent-no').addEventListener('click', function () { close('denied'); });
@@ -83,7 +99,7 @@
 
   var choice = read();
   if (choice === 'granted') {
-    loadPixel();
+    loadTrackers();
   } else if (choice !== 'denied') {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', banner);
@@ -91,6 +107,11 @@
       banner();
     }
   }
+
+  // GA4 event, a no-op until consent loads gtag.
+  window.nuevoGa = function (name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  };
 
   window.NuevoConsent = {
     state: function () { return read(); },
