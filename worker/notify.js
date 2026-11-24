@@ -81,6 +81,29 @@ export async function sendMetaLead(env, l, eventName, contentName) {
   });
 }
 
+// 'Purchase' when a lead is marked won in the dashboard (worker/admin.js).
+// Sent from our system, not the browser, so no IP or browser data: the
+// hashed phone, first name and external_id tie it to the earlier events.
+export async function sendMetaWon(env, l, value) {
+  const firstName = (l.name || '').trim().split(/\s+/)[0].toLowerCase();
+  const user = {
+    country: [await sha256Hex('ae')],
+    ph: [await sha256Hex(normalisePhone(l.phone))],
+    external_id: [await sha256Hex(l.id)]
+  };
+  if (firstName) user.fn = [await sha256Hex(firstName)];
+  await postCapi(env, {
+    data: [{
+      event_name: 'Purchase',
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: l.id + '-won',
+      action_source: 'system_generated',
+      user_data: user,
+      custom_data: { currency: 'AED', value, content_name: 'audit-won-client' }
+    }]
+  });
+}
+
 async function postCapi(env, body) {
   if (env.META_TEST_EVENT_CODE) body.test_event_code = env.META_TEST_EVENT_CODE;
   const url = 'https://graph.facebook.com/v21.0/' + encodeURIComponent(env.META_PIXEL_ID) +

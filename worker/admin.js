@@ -1,8 +1,9 @@
 // /api/admin/* — private dashboard API. Bearer ADMIN_KEY on every request.
-import { json, safeEqual, dubaiToday, addDays, slotInstant, hostOf } from './lib.js';
+import { json, readJson, safeEqual, dubaiToday, addDays, slotInstant, hostOf } from './lib.js';
 import { calendlySetup, calendlyStatus } from './calendly.js';
+import { sendMetaWon } from './notify.js';
 
-export async function admin(request, env, path) {
+export async function admin(request, env, path, ctx) {
   if (!env.ADMIN_KEY) return json({ ok: false, error: 'admin_key_not_set' }, 503);
   const auth = request.headers.get('authorization') || '';
   const given = auth.startsWith('Bearer ') ? auth.slice(7).trim() : '';
@@ -19,6 +20,8 @@ export async function admin(request, env, path) {
   if (m === 'POST' && path === '/api/admin/calendly/setup') return calendlySetup(env);
   const cancel = path.match(/^\/api\/admin\/bookings\/(bk_[a-f0-9]{6,40})\/cancel$/);
   if (m === 'POST' && cancel) return cancelBooking(env, cancel[1]);
+  const won = path.match(/^\/api\/admin\/leads\/(ld_[a-f0-9]{16,40})\/won$/);
+  if (m === 'POST' && won) return markWon(request, env, ctx, won[1]);
   return json({ ok: false, error: 'not_found' }, 404);
 }
 
@@ -40,6 +43,37 @@ async function cancelBooking(env, id) {
   const changed = (r.meta && r.meta.changes) || 0;
   if (!changed) return json({ ok: false, error: 'not_found_or_already_cancelled' }, 404);
   return json({ ok: true, id, status: 'cancelled' });
+}
+
+// POST /api/admin/leads/:id/won {value} — the lead signed. Sends Meta a
+// Purchase once, and only for leads whose Lead event went out (they
+// accepted cookies), so Meta can optimise for clients, not just calls.
+async function markWon(request, env, ctx, id) {
+  const body = await readJson(request, 1024);
+  const value = Math.round(Number(body.value) * 100) / 100;
+  if (!(value > 0 && value < 10000000)) return json({ ok: false, error: 'bad_value' }, 400);
+  const now = new Date().toISOString();
+  const r = await env.DB.prepare(
+    'UPDATE leads SET won_at = COALESCE(won_at, ?2), won_value = ?3 WHERE id = ?1'
+  ).bind(id, now, value).run();
+  if (!((r.meta && r.meta.changes) || 0)) return json({ ok: false, error: 'not_found' }, 404);
+
+  let meta = 'skipped: no consent or no number';
+  const l = await env.DB.prepare(
+    'SELECT l.id, l.name, l.capi_lead_at, COALESCE(l.phone, b.phone) AS phone FROM leads l ' +
+    'LEFT JOIN bookings b ON b.calendly_invitee_uri = l.invitee_uri WHERE l.id = ?1'
+  ).bind(id).first();
+  if (!env.META_CAPI_TOKEN || !env.META_PIXEL_ID) meta = 'skipped: META_CAPI_TOKEN not set';
+  else if (l && l.phone && l.capi_lead_at) {
+    const claim = await env.DB.prepare('UPDATE leads SET capi_won_at = ?2 WHERE id = ?1 AND capi_won_at IS NULL')
+      .bind(id, now).run();
+    if (claim.meta && claim.meta.changes === 1) {
+      meta = 'sent';
+      ctx.waitUntil(sendMetaWon(env, l, value)
+        .catch((err) => console.error('[meta_Purchase] ' + id + ': ' + (err && err.message || err))));
+    } else meta = 'already sent';
+  }
+  return json({ ok: true, id, won_value: value, meta });
 }
 
 function config(env) {
@@ -167,7 +201,7 @@ async function leads(request, env) {
     ).bind(since),
     env.DB.prepare(
       'SELECT l.id, l.created_at, l.updated_at, l.page, l.status, l.step, l.q1, l.q2, l.q3, l.q4, l.declined_at_q, ' +
-      'l.name, l.company, l.booked_at, l.utm_source, l.utm_medium, l.utm_campaign, l.utm_content, l.landing, l.referrer, ' +
+      'l.name, l.company, l.booked_at, l.won_at, l.won_value, l.utm_source, l.utm_medium, l.utm_campaign, l.utm_content, l.landing, l.referrer, ' +
       'b.date AS booking_date, b.time AS booking_time, b.status AS booking_status, b.email AS email, COALESCE(l.phone, b.phone) AS phone ' +
       'FROM leads l LEFT JOIN bookings b ON b.calendly_invitee_uri = l.invitee_uri ' +
       'WHERE l.created_at >= ?1 ORDER BY l.created_at DESC LIMIT 2000'

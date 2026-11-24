@@ -31,7 +31,7 @@ async function route(request, env, ctx) {
   if (path === '/api/calendly/webhook' && m === 'POST') return calendlyWebhook(request, env, ctx);
   if (path === '/api/calendly/scheduled' && m === 'POST') return calendlyScheduled(request, env, ctx);
   if (path === '/api/lead' && m === 'POST') return lead(request, env, ctx);
-  if (path.startsWith('/api/admin/')) return admin(request, env, path);
+  if (path.startsWith('/api/admin/')) return admin(request, env, path, ctx);
 
   return json({ ok: false, error: 'not_found' }, 404);
 }

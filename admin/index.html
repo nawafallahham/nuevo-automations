@@ -45,6 +45,9 @@
     .adm .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--brand-tint); color: var(--brand-dark); font-size: .76rem; font-weight: 600; }
     .adm .btn-x { border: 1px solid var(--line-strong); background: #fff; color: var(--danger); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: .8rem; cursor: pointer; }
     .adm .btn-x:hover { border-color: var(--danger); }
+    .adm .btn-won { display: block; white-space: nowrap; margin-top: 6px; border: 1px solid var(--line-strong); background: #fff; color: #17703a; border-radius: 6px; padding: 4px 10px; font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; }
+    .adm .btn-won:hover { border-color: #17703a; }
+    .adm .sub.won { color: #17703a; font-weight: 600; }
     .adm-empty { color: var(--ink-faint); font-size: .9rem; padding: 12px 0; margin: 0; }
     .adm-grid2 { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
     .adm-chart svg { display: block; width: 100%; height: 180px; }
@@ -503,6 +506,28 @@
       return [l.name, l.company, l.q1, l.q2, l.q3, l.q4, l.email, l.phone, l.utm_source, l.utm_campaign]
         .some(function (v) { return v && String(v).toLowerCase().indexOf(q) !== -1; });
     }
+    // "Won client": records the deal and sends Meta a Purchase (once) so the
+    // ads can optimise for people who sign, not only people who book.
+    function wonCell(l) {
+      if (l.won_at) return el('span', { className: 'sub won' }, 'Won · AED ' + fmt(l.won_value));
+      if (!l.phone || l.status === 'declined' || l.status === 'started') return '';
+      var b = el('button', { type: 'button', className: 'btn-won' }, 'Mark won');
+      b.addEventListener('click', function () {
+        var v = window.prompt('Deal value in AED for ' + (l.company || l.name || 'this lead') + '\n(e.g. the first month\'s fee). Meta gets this as a Purchase.');
+        if (v == null) return;
+        v = Number(String(v).replace(/[^0-9.]/g, ''));
+        if (!(v > 0)) { alert('Enter an amount in AED.'); return; }
+        b.disabled = true;
+        api('/api/admin/leads/' + encodeURIComponent(l.id) + '/won', { method: 'POST', body: JSON.stringify({ value: v }) })
+          .then(function (j) {
+            l.won_at = new Date().toISOString(); l.won_value = j.won_value; renderLeads();
+            if (j.meta !== 'sent') alert('Saved. Meta Purchase ' + j.meta + '.');
+          })
+          .catch(function (e) { b.disabled = false; alert('Could not save: ' + e.message); });
+      });
+      return b;
+    }
+
     function renderLeads() {
       var tb = $('leads');
       tb.innerHTML = '';
@@ -525,7 +550,7 @@
           el('td', null, [l.name || el('span', { className: 'sub' }, 'not given'), l.company ? el('span', { className: 'sub' }, l.company) : '',
             l.phone ? el('a', { className: 'wa', href: waHref(l.phone), target: '_blank', rel: 'noopener' }, l.phone) : '']),
           answers,
-          el('td', null, el('span', { className: 'tag st-' + l.status }, (STATUS[l.status] || l.status) + (l.status === 'started' ? ' at Q' + (l.step + 1) : ''))),
+          el('td', null, [el('span', { className: 'tag st-' + l.status }, (STATUS[l.status] || l.status) + (l.status === 'started' ? ' at Q' + (l.step + 1) : '')), wonCell(l)]),
           call,
           el('td', null, [[l.utm_source, l.utm_campaign].filter(Boolean).join(' / ') || 'direct', l.utm_content ? el('span', { className: 'sub' }, l.utm_content) : '']),
           el('td', null, PAGES[l.page] || l.page || '—')
