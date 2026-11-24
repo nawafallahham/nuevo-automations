@@ -49,7 +49,7 @@
     .adm .btn-won:hover { border-color: #17703a; }
     .adm .sub.won { color: #17703a; font-weight: 600; }
     .adm-empty { color: var(--ink-faint); font-size: .9rem; padding: 12px 0; margin: 0; }
-    .adm-grid2 { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+    .adm-grid2 { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 20px; }
     .adm-chart svg { display: block; width: 100%; height: 180px; }
     .adm-legend { display: flex; gap: 16px; font-size: .8rem; color: var(--ink-muted); margin-top: 8px; }
     .adm-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
@@ -72,7 +72,9 @@
     .adm-fun-row b { text-align: right; font-variant-numeric: tabular-nums; }
     .adm-fun-row small { text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
     .adm-grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .adm-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .adm-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; max-width: 100%; }
+    .adm-tools .adm-seg { max-width: 100%; overflow-x: auto; }
+    .adm-tools .adm-seg button { white-space: nowrap; }
     .adm-search { padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font: inherit; font-size: .84rem; min-width: 200px; }
     .adm .tag.st-booked { background: #e8f7ee; color: #17703a; }
     .adm .tag.st-details, .adm .tag.st-qualified { background: #eef3ff; color: #2b4fb3; }
@@ -81,7 +83,7 @@
     .adm td .ans { display: block; font-size: .8rem; color: var(--ink-muted); white-space: nowrap; }
     .adm td .ans.is-no { color: #a12a2a; font-weight: 600; }
     @media (max-width: 960px) { .adm-grid4 { grid-template-columns: 1fr; } .adm-fun-row { grid-template-columns: 1fr 60px 70px; } .adm-fun-row .bar { grid-column: 1 / -1; grid-row: 2; } }
-    @media (max-width: 960px) { .adm-kpis { grid-template-columns: repeat(2, 1fr); } .adm-grid2 { grid-template-columns: 1fr; } }
+    @media (max-width: 960px) { .adm-kpis { grid-template-columns: repeat(2, 1fr); } .adm-grid2 { grid-template-columns: minmax(0, 1fr); } }
   </style>
 </head>
 <body>
@@ -113,6 +115,15 @@
       </header>
 
       <div class="adm-kpis" id="kpis"></div>
+
+      <section class="adm-card">
+        <h2>Google vs Meta <span class="adm-note" id="channel-note" style="margin:0"></span></h2>
+        <div class="adm-table-wrap"><table>
+          <thead><tr><th>Channel</th><th class="num">Visitors</th><th class="num">Started</th><th class="num">Gave number</th><th class="num">Qualified</th><th class="num">Booked</th><th class="num">Visitor → booked</th><th class="num">Won</th><th class="num">Won (AED)</th></tr></thead>
+          <tbody id="channels"></tbody>
+        </table></div>
+        <p class="adm-note">What happens after the click, by where the visitor came from. Ad spend, clicks and cost per click stay in Google Ads and Meta Ads Manager. Google Ads = utm_source google (our ads add it); Business Profile = the Google Maps listing; Google search = organic. Visitors are counted per day, so they're approximate.</p>
+      </section>
 
       <section class="adm-card">
         <h2>Lead funnel <span class="adm-note" id="funnel-note" style="margin:0"></span></h2>
@@ -591,6 +602,18 @@
         }))));
       });
     }
+    function renderChannels(rows) {
+      var tb = $('channels');
+      tb.innerHTML = '';
+      if (!rows.length) tb.appendChild(el('tr', null, el('td', { colSpan: 9, className: 'adm-empty' }, 'No visits yet.')));
+      rows.forEach(function (r) {
+        tb.appendChild(el('tr', null, [el('td', null, r.key)].concat(
+          ['visitors', 'started', 'contact', 'qualified', 'booked'].map(function (c) { return el('td', { className: 'num' }, fmt(r[c])); }),
+          [el('td', { className: 'num' }, r.visitors ? pct(r.booked / r.visitors * 100) : '—'),
+           el('td', { className: 'num' }, fmt(r.won)),
+           el('td', { className: 'num' }, r.won_value ? fmt(r.won_value) : '—')])));
+      });
+    }
     function csvCell(v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
     $('lead-csv').addEventListener('click', function () {
       var head = ['created_dubai', 'status', 'name', 'company', 'role', 'orders_a_week', 'avg_order_value', 'meta_ads', 'declined_at_question',
@@ -608,6 +631,8 @@
       return api('/api/admin/leads?days=' + state.days).then(function (j) {
         leadsData = j;
         $('funnel-note').textContent = '· last ' + j.days + ' days';
+        $('channel-note').textContent = '· last ' + j.days + ' days';
+        renderChannels(j.by_channel || []);
         renderFunnel(j.funnel); renderLeads(); renderAnswers(j.questions);
         renderGroup('lead-sources', j.by_source, ['started', 'declined', 'qualified', 'booked', 'rate']);
         renderGroup('lead-pages', j.by_page, ['started', 'qualified', 'booked']);

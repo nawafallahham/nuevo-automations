@@ -100,6 +100,25 @@ function bookingSource(b) {
   return b.utm_source || (ref && ref !== 'nuevoautomations.com' ? ref : null) || 'direct';
 }
 
+// Which channel a visit or lead came from. Events only keep utm_source,
+// utm_campaign and the referring host, so medium is optional here.
+const CHANNELS = ['Google Ads', 'Google Business Profile', 'Google search', 'Meta ads', 'Facebook / Instagram (organic)', 'Other', 'Direct'];
+function channelOf(src, medium, campaign, refHost) {
+  const s = (src || '').toLowerCase();
+  const m = (medium || '').toLowerCase();
+  const r = (refHost || '').toLowerCase();
+  if (s === 'google') {
+    if ((campaign || '').toLowerCase() === 'gbp') return 'Google Business Profile';
+    return m === 'organic' ? 'Google search' : 'Google Ads';
+  }
+  if (/^(facebook|fb|instagram|ig|meta|an|msg)$/.test(s)) return 'Meta ads';
+  if (s) return 'Other';
+  if (/(^|\.)google\./.test(r)) return 'Google search';
+  if (/(^|\.)(facebook|instagram)\.com$|^(l|lm|m)\.facebook\.com$/.test(r)) return 'Facebook / Instagram (organic)';
+  if (r) return 'Other';
+  return 'Direct';
+}
+
 async function stats(request, env) {
   const days = Math.min(Math.max(parseInt(new URL(request.url).searchParams.get('days'), 10) || 30, 1), 365);
   const today = dubaiToday();
@@ -194,10 +213,14 @@ async function leads(request, env) {
   const days = Math.min(Math.max(parseInt(new URL(request.url).searchParams.get('days'), 10) || 30, 1), 365);
   const since = slotInstant(addDays(dubaiToday(), -(days - 1)), '00:00').toISOString();
 
-  const [ev, rows] = await env.DB.batch([
+  const [ev, perVisitor, rows] = await env.DB.batch([
     env.DB.prepare(
       "SELECT COUNT(DISTINCT CASE WHEN type = 'pageview' THEN visitor END) AS visitors, " +
       "COUNT(DISTINCT CASE WHEN type = 'book_view' THEN visitor END) AS book_viewers FROM events WHERE ts >= ?1"
+    ).bind(since),
+    env.DB.prepare(
+      "SELECT MAX(utm_source) AS us, MAX(utm_campaign) AS uc, MAX(ref_host) AS rh FROM events " +
+      "WHERE ts >= ?1 AND type = 'pageview' GROUP BY visitor"
     ).bind(since),
     env.DB.prepare(
       'SELECT l.id, l.created_at, l.updated_at, l.page, l.status, l.step, l.q1, l.q2, l.q3, l.q4, l.declined_at_q, ' +
@@ -256,10 +279,24 @@ async function leads(request, env) {
     return [...m.values()].sort((a, b) => b.started - a.started);
   };
 
+  // Google vs Meta: visitors through to won clients, per channel.
+  const ch = new Map(CHANNELS.map((c) => [c, { key: c, visitors: 0, started: 0, contact: 0, qualified: 0, booked: 0, won: 0, won_value: 0 }]));
+  for (const v of perVisitor.results || []) ch.get(channelOf(v.us, null, v.uc, v.rh)).visitors++;
+  for (const l of list) {
+    const r = ch.get(channelOf(l.utm_source, l.utm_medium, l.utm_campaign, hostOf(l.referrer)));
+    r.started++;
+    if (l.phone) r.contact++;
+    if (passed(l)) r.qualified++;
+    if (l.status === 'booked') r.booked++;
+    if (l.won_at) { r.won++; r.won_value += Number(l.won_value) || 0; }
+  }
+  const byChannel = [...ch.values()].filter((r) => r.visitors || r.started);
+
   return json({
     ok: true,
     days,
     funnel,
+    by_channel: byChannel,
     questions,
     by_page: group((l) => l.page || 'unknown'),
     by_source: group((l) => [l.utm_source || hostOf(l.referrer) || 'direct', l.utm_campaign].filter(Boolean).join(' / ')),
