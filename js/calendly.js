@@ -384,7 +384,11 @@
     if (typeof window.fbq === 'function') {
       window.fbq('track', 'Schedule', { content_name: 'calendly' }, { eventID: inviteeUri });
     }
-    if (window.nuevoGa) window.nuevoGa('book_appointment');
+    if (window.nuevoGa) {
+      window.nuevoGa('book_appointment');
+      // Google Ads conversion (linked to the same Google tag).
+      window.nuevoGa('ads_conversion_Book_appointment_1', { transaction_id: inviteeUri });
+    }
     try {
       fetch('/api/calendly/scheduled', {
         method: 'POST',
