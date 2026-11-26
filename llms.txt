@@ -31,6 +31,13 @@ Key facts:
 - [Store and CRM integrations (n8n, Make, Zapier)](https://nuevoautomations.com/n8n-make-zapier-automation-uae/)
 - [Sales automation, Sharjah](https://nuevoautomations.com/business-process-automation-sharjah/)
 
+## Guides
+- [WhatsApp Business API pricing in the UAE, 2026](https://nuevoautomations.com/guides/whatsapp-business-api-pricing-uae/): per-message billing, the 1 October 2026 service-message change, the free entry point window after click-to-WhatsApp ads
+- [Click-to-WhatsApp ads](https://nuevoautomations.com/guides/click-to-whatsapp-ads/): when a chat beats a landing page, setup in Ads Manager, the first reply
+- [Advertising supplements in the UAE](https://nuevoautomations.com/guides/advertising-supplements-uae/): Meta's health and wellness ad rules and the Emirates Drug Establishment's November 2026 clarification
+- [WhatsApp abandoned cart recovery](https://nuevoautomations.com/guides/whatsapp-abandoned-cart-recovery/): consent, timing, wording in English and Arabic, cost and measurement
+- [Tracking sales from WhatsApp ads](https://nuevoautomations.com/guides/track-whatsapp-ad-sales/): sending chat sales to Meta's Conversions API with the ad click ID to see real ROAS
+
 ## Industries
 - [Online stores](https://nuevoautomations.com/ecommerce-automation-uae/)
 - [Clinics and medical centres](https://nuevoautomations.com/automation-for-clinics-uae/)
@@ -38,6 +45,9 @@ Key facts:
 - [Real estate](https://nuevoautomations.com/real-estate-automation-dubai/)
 - [Education and training](https://nuevoautomations.com/education-training-automation-uae/)
 - [Restaurants and cafés](https://nuevoautomations.com/restaurant-whatsapp-automation-uae/)
+
+## More detail
+- [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
 
 ## Optional
 - [Privacy policy](https://nuevoautomations.com/privacy/)
