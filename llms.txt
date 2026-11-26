@@ -37,6 +37,9 @@ Key facts:
 - [Advertising supplements in the UAE](https://nuevoautomations.com/guides/advertising-supplements-uae/): Meta's health and wellness ad rules and the Emirates Drug Establishment's November 2026 clarification
 - [WhatsApp abandoned cart recovery](https://nuevoautomations.com/guides/whatsapp-abandoned-cart-recovery/): consent, timing, wording in English and Arabic, cost and measurement
 - [Tracking sales from WhatsApp ads](https://nuevoautomations.com/guides/track-whatsapp-ad-sales/): sending chat sales to Meta's Conversions API with the ad click ID to see real ROAS
+- [WhatsApp chatbot cost in the UAE](https://nuevoautomations.com/guides/whatsapp-chatbot-cost-uae/): Meta's message fees, platform prices (Wati, Respond.io, Interakt, Gallabox, Twilio), AI credits and setup
+- [Meta ads for UAE e-commerce](https://nuevoautomations.com/guides/meta-ads-ecommerce-uae/): Advantage+ sales campaigns, Conversions API, health ad rules, VAT on ad spend and the UAE advertiser permit
+- [Respond.io vs Wati](https://nuevoautomations.com/guides/respond-io-vs-wati/): prices, users, AI, message-fee markups, channels and integrations compared
 
 ## Industries
 - [Online stores](https://nuevoautomations.com/ecommerce-automation-uae/)

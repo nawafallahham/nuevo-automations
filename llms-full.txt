@@ -499,6 +499,75 @@ A: For sales, once purchases are reaching Meta. Optimising for conversations tea
 Q: Is Meta's reported ROAS accurate?
 A: It's an estimate based on its attribution window and modelling. Compare it every month with your store's own delivered orders.
 
+## WhatsApp Chatbot Cost in the UAE, 2026 | Nuevo Automations
+
+URL: https://nuevoautomations.com/guides/whatsapp-chatbot-cost-uae/
+
+What a WhatsApp chatbot really costs a UAE business in 2026: Meta's message fees, platform subscriptions like Wati and Respond.io, AI credits and setup.
+
+A WhatsApp chatbot in the UAE has four costs. First, Meta's per-message fees on the WhatsApp Business Platform, priced by message type at the UAE rate; customer messages are free, and chats from click-to-WhatsApp ads open a free window. Second, a platform subscription: on their own pricing pages in November 2026, Wati starts at $59 a month (billed annually), Respond.io at $79 a month (annually) or $99 monthly, Gallabox at AED 412 a month (annually), and Twilio charges $0.005 per message with no subscription. Third, AI usage, usually as platform AI credits. Fourth, setup: connecting your number, templates, store integration and training the bot.
+
+Q: Is there a free WhatsApp chatbot?
+A: The free WhatsApp Business app has quick replies and a greeting message but no real chatbot or AI. A chatbot needs the WhatsApp Business API, which means Meta's per-message fees plus a platform or developer.
+
+Q: What is the cheapest way to run a WhatsApp chatbot?
+A: Building directly on the API with a provider like Twilio has no subscription ($0.005 a message plus Meta's fees) but needs a developer. For most small brands, a platform's entry plan is cheaper overall once you count build and maintenance time.
+
+Q: Do WhatsApp platforms charge more than Meta for messages?
+A: Some do. Respond.io says it doesn't mark up Meta's rates. Interakt and Gallabox list markup discounts on enterprise plans, which implies a markup on lower plans. Wati shows its rates only after login. Ask each provider in writing.
+
+Q: Can a WhatsApp chatbot reply in Arabic?
+A: Yes. AI-based bots on the main platforms can reply in Arabic and English. Check how well the bot handles Gulf dialect and mixed Arabic-English messages before you commit.
+
+Q: Does the chatbot cost more if customers come from ads?
+A: Usually less. Chats that start from a click-to-WhatsApp ad on a phone open Meta's free entry point window when you reply within 24 hours, so Meta doesn't charge for messages to that customer for up to 7 days.
+
+## Meta Ads for E-commerce Brands in the UAE, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/meta-ads-ecommerce-uae/
+
+Running Meta ads for an online store in the UAE in 2026: sales campaigns, Conversions API, ad rules for health products, VAT and the advertiser permit.
+
+For a UAE online store, Meta ads in 2026 mean Advantage+ sales campaigns (the renamed Advantage+ shopping campaigns) or manual sales campaigns, optimised on purchases tracked through the Meta pixel plus the Conversions API. Health and supplement ads must target people 18 or older and avoid miracle claims. Meta charges 5% UAE VAT on ad spend unless you add your 15-digit tax registration number. Influencers and creators who promote products in the UAE need an advertiser permit from the National Media Authority, enforced from early 2026, and brands should check the permit before paying them.
+
+Q: What happened to Advantage+ shopping campaigns?
+A: Meta renamed them Advantage+ sales campaigns in February 2025 and merged them into the Sales objective setup. Turning off certain automated settings makes it a manual sales campaign.
+
+Q: Do I need the Conversions API if I have the Meta pixel?
+A: It's strongly recommended. The pixel misses purchases blocked by browsers and privacy settings; the Conversions API sends them from your server or store. Meta charges nothing for it when set up through Events Manager.
+
+Q: Do I pay VAT on Facebook and Instagram ads in the UAE?
+A: Meta charges 5% VAT to UAE ad accounts without a tax registration number. VAT-registered businesses can add their 15-digit TRN in payment settings; check with your accountant how to account for it.
+
+Q: Do influencers in the UAE need a licence to promote my products?
+A: Yes. Since early 2026, people promoting products on social media in the UAE need an advertiser permit from the National Media Authority. Check the permit before you pay and put the number in the contract.
+
+Q: Can I target under-18s with supplement ads?
+A: No. Meta requires health, diet, weight-loss and supplement ads to target people 18 or older.
+
+## Respond.io vs Wati for UAE Businesses (2026) | Nuevo
+
+URL: https://nuevoautomations.com/guides/respond-io-vs-wati/
+
+Respond.io vs Wati compared for UAE brands in 2026: prices, users, AI credits, WhatsApp fee markups, channels, Shopify and CRM integrations.
+
+Wati is cheaper to start: Growth is $59 a month billed annually with 3 users, and it has strong e-commerce integrations including Shopify, WooCommerce, Zoho CRM and Klaviyo. Respond.io starts at $79 a month annually ($99 monthly) with 5 users, covers more channels (WhatsApp, Instagram, Messenger, TikTok, Telegram, LINE, Viber, WeChat, email, SMS and more), and states that it does not mark up Meta's WhatsApp rates. Wati shows its message rates only after login. Both offer 7-day free trials and AI agents. Pick Wati for a Shopify-led store on a budget; pick Respond.io for a multi-channel team that wants transparent message pricing.
+
+Q: Is Wati cheaper than Respond.io?
+A: At the entry level, yes: Wati Growth is $59 a month billed annually, Respond.io Starter is $79 annually or $99 monthly. Respond.io includes more users per plan, so for a larger team the gap narrows.
+
+Q: Does Respond.io charge extra for WhatsApp messages?
+A: Respond.io says it passes on WhatsApp's official rates without a markup. Meta's message fees are billed on top of the subscription.
+
+Q: Does Wati integrate with Shopify?
+A: Yes. Wati lists a Shopify integration, sold as an add-on at $4.99 a month on some plans, plus WooCommerce, Zoho CRM and Klaviyo.
+
+Q: Do both platforms have AI agents?
+A: Yes. Wati includes AI agents on every plan; Respond.io includes them from the Growth plan up. Both sell AI credits, with monthly allowances that differ by plan.
+
+Q: Can I try them before paying?
+A: Both offer a 7-day free trial. Respond.io's trial needs no card and includes Growth features for 5 users and 1,000 contacts.
+
 ## About Nuevo Automations | UAE Marketing Agency
 
 URL: https://nuevoautomations.com/about/
