@@ -137,6 +137,11 @@ async function postCapi(env, body) {
     body: JSON.stringify(body)
   }, 8000);
   if (!r.ok) throw new Error('CAPI ' + r.status + ': ' + (await r.text()).slice(0, 300));
+  // One line per accepted batch so Cloudflare logs show what Meta took.
+  let got = null;
+  try { got = (await r.json()).events_received; } catch (e) {}
+  console.log('[capi] ok ' + body.data.map((d) => d.event_name).join(',') + ' received=' + got +
+    (body.test_event_code ? ' (test mode)' : ''));
 }
 
 // ---- 2. Email: Cloudflare Email Service (EMAIL binding) or Resend ------------
