@@ -4,7 +4,7 @@ import {
   dubaiToday, addDays, slotError, randomId, clientIp, ipHash, visitorHash,
   rateLimit, originAllowed, safeEqual
 } from './lib.js';
-import { runSideEffects, sendMetaVideo } from './notify.js';
+import { runSideEffects, sendMetaBrowserEvent } from './notify.js';
 import { calendar, internalEvent } from './ics.js';
 
 const EMAIL_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[^\s@<>()",;:]{2,}$/;
@@ -151,34 +151,40 @@ export async function track(request, env) {
   return noContent();
 }
 
-// POST /api/vsl-event  (video page milestones -> Meta Conversions API)
-// Only for visitors who accepted cookies, same as the pixel. Nothing is
-// stored: the IP and browser string go straight to Meta and are dropped.
-const VSL_EVENTS = new Set(['VSLPlay', 'VSLProgress', 'VSLComplete']);
-export async function vslEvent(request, env, ctx) {
+// POST /api/meta-event  (browser pixel events -> Meta Conversions API)
+// PageView, Contact (WhatsApp tap), BookClick and the video milestones. The
+// browser sends the pixel event with the same event_id, so Meta counts each
+// once; this server copy still lands when an ad blocker stops the pixel.
+// Only for visitors who accepted cookies. Nothing is stored: the IP and
+// browser string go straight to Meta and are dropped.
+// (/api/vsl-event is the older name, kept as an alias.)
+const META_EVENTS = new Set(['PageView', 'Contact', 'BookClick', 'VSLPlay', 'VSLProgress', 'VSLComplete']);
+export async function metaEvent(request, env, ctx) {
   if (!originAllowed(request)) return noContent();
   let body;
   try { body = await readJson(request, 2048); } catch (e) { return noContent(); }
   const name = clean(body.name, 20);
-  if (!VSL_EVENTS.has(name)) return json({ ok: false, error: 'bad_event' }, 400);
+  if (!META_EVENTS.has(name)) return json({ ok: false, error: 'bad_event' }, 400);
   if (body.consent !== true || !env.META_CAPI_TOKEN || !env.META_PIXEL_ID) return noContent();
   const eventId = clean(body.event_id, 80);
   if (!/^[\w.-]{8,80}$/.test(eventId)) return json({ ok: false, error: 'bad_id' }, 400);
   const ua = clean(request.headers.get('user-agent'), 400);
   if (/bot|crawl|spider|slurp|headless|lighthouse|preview|facebookexternalhit/i.test(ua)) return noContent();
   const ip = clientIp(request);
-  if (!(await rateLimit(env, 'vsl:' + (await ipHash(env, ip)), 30))) return noContent();
+  if (!(await rateLimit(env, 'meta:' + (await ipHash(env, ip)), 60))) return noContent();
 
   const pct = parseInt(body.percent, 10);
   let pageUrl = clean(body.page_url, 300);
-  if (hostOf(pageUrl) !== hostOf(request.url)) pageUrl = 'https://nuevoautomations.com/wellness-brands/vsl/';
-  ctx.waitUntil(sendMetaVideo(env, {
+  if (hostOf(pageUrl) !== hostOf(request.url)) pageUrl = 'https://nuevoautomations.com/';
+  const vid = clean(body.video_id, 40).replace(/[^\w-]/g, '');
+  ctx.waitUntil(sendMetaBrowserEvent(env, {
     name, event_id: eventId, ip, ua, page_url: pageUrl,
-    video_id: (clean(body.video_id, 40).replace(/[^\w-]/g, '') || 'v1'),
+    content_name: clean(body.content_name, 60) || null,
+    video_id: vid || null,
     percent: [25, 50, 75].includes(pct) ? pct : null,
     fbc: clean(body.fbc, 500) || null,
     fbp: clean(body.fbp, 200) || null
-  }).catch((err) => console.error('[meta_vsl] ' + name + ': ' + (err && err.message || err))));
+  }).catch((err) => console.error('[meta_event] ' + name + ': ' + (err && err.message || err))));
   return noContent();
 }
 

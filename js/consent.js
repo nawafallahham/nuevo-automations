@@ -35,9 +35,39 @@
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     /* eslint-enable */
     window.fbq('init', PIXEL_ID);
-    window.fbq('track', 'PageView');
     window.nuevoPixelId = PIXEL_ID;
+    window.nuevoMeta('PageView');
   }
+
+  /* Meta event helper: fires the pixel and sends the same event from our
+     server (/api/meta-event, Conversions API) with one shared event id, so
+     Meta counts it once and still gets it when an ad blocker stops the
+     pixel. Does nothing until the visitor accepts cookies.
+     nuevoMeta(name, params, custom) — custom=true for trackCustom events. */
+  var metaSeq = 0;
+  var pageKey = Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  var STANDARD = { PageView: 1, Contact: 1, Lead: 1, Schedule: 1, SubmitApplication: 1 };
+  window.nuevoMeta = function (name, params) {
+    if (read() !== 'granted' || typeof window.fbq !== 'function') return;
+    params = params || {};
+    var eventId = 'ev.' + pageKey + '.' + (++metaSeq) + '.' + name;
+    window.fbq(STANDARD[name] ? 'track' : 'trackCustom', name, params, { eventID: eventId });
+    // Give the pixel a moment to set its _fbp cookie, then send the copy.
+    setTimeout(function () {
+      var attr = null;
+      try { attr = typeof window.nuevoAttribution === 'function' ? window.nuevoAttribution() : null; } catch (e) {}
+      var payload = JSON.stringify({
+        name: name, event_id: eventId, consent: true, page_url: location.href,
+        content_name: params.content_name || null, video_id: params.video_id || null,
+        percent: params.percent || null,
+        fbp: attr && attr.fbp || null, fbc: attr && attr.fbc || null
+      });
+      try {
+        if (navigator.sendBeacon && navigator.sendBeacon('/api/meta-event', new Blob([payload], { type: 'application/json' }))) return;
+      } catch (e) {}
+      try { fetch('/api/meta-event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }); } catch (e) {}
+    }, name === 'PageView' ? 1500 : 0);
+  };
 
   // Google Analytics 4, under the same consent as the pixel.
   function loadAnalytics() {

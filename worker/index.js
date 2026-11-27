@@ -7,11 +7,11 @@
 //   /api/calendly/webhook POST  Calendly invitee.created / invitee.canceled (signed)
 //   /api/calendly/scheduled POST browser beacon after a Calendly booking (public)
 //   /api/lead             POST  qualifying-question progress (public)
-//   /api/vsl-event        POST  video milestones to Meta CAPI (public, consent only)
+//   /api/meta-event       POST  pixel events copied to Meta CAPI (public, consent only; alias /api/vsl-event)
 //   /api/admin/*          *     dashboard API (Bearer ADMIN_KEY)
 //   everything else             static files from env.ASSETS
 import { json, HttpError, hourWindow, addDays, dubaiToday } from './lib.js';
-import { slots, book, track, calendarFeed, vslEvent } from './api.js';
+import { slots, book, track, calendarFeed, metaEvent } from './api.js';
 import { admin } from './admin.js';
 import { lead } from './leads.js';
 import { webhook as calendlyWebhook, scheduledBeacon as calendlyScheduled } from './calendly.js';
@@ -32,7 +32,7 @@ async function route(request, env, ctx) {
   if (path === '/api/calendly/webhook' && m === 'POST') return calendlyWebhook(request, env, ctx);
   if (path === '/api/calendly/scheduled' && m === 'POST') return calendlyScheduled(request, env, ctx);
   if (path === '/api/lead' && m === 'POST') return lead(request, env, ctx);
-  if (path === '/api/vsl-event' && m === 'POST') return vslEvent(request, env, ctx);
+  if ((path === '/api/meta-event' || path === '/api/vsl-event') && m === 'POST') return metaEvent(request, env, ctx);
   if (path.startsWith('/api/admin/')) return admin(request, env, path, ctx);
 
   return json({ ok: false, error: 'not_found' }, 404);

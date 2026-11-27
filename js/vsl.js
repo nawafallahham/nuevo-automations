@@ -72,30 +72,12 @@
     params.video_id = vid;
     if (typeof window.nuevoGa === 'function') window.nuevoGa(name, params);
   }
-  // Meta: the pixel plus the same event from our server (/api/vsl-event,
-  // Conversions API), sharing one event id so Meta counts it once. Both only
-  // run for visitors who accepted cookies.
-  var pageId = Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-  function consented() {
-    try { return localStorage.getItem('nuevo-consent') === 'granted'; } catch (e) { return false; }
-  }
+  // Meta: pixel + server copy with a shared event id, after consent only
+  // (window.nuevoMeta in js/consent.js).
   function meta(name, params) {
-    if (!consented()) return;
     params = params || {};
     params.video_id = vid;
-    var eventId = 'vsl.' + pageId + '.' + name + (params.percent ? '.' + params.percent : '');
-    if (typeof window.fbq === 'function') window.fbq('trackCustom', name, params, { eventID: eventId });
-    var attr = null;
-    try { attr = typeof window.nuevoAttribution === 'function' ? window.nuevoAttribution() : null; } catch (e) {}
-    var payload = JSON.stringify({
-      name: name, event_id: eventId, percent: params.percent || null, video_id: vid,
-      consent: true, page_url: location.href,
-      fbp: attr && attr.fbp || null, fbc: attr && attr.fbc || null
-    });
-    try {
-      if (navigator.sendBeacon && navigator.sendBeacon('/api/vsl-event', new Blob([payload], { type: 'application/json' }))) return;
-    } catch (e) {}
-    try { fetch('/api/vsl-event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }); } catch (e) {}
+    if (typeof window.nuevoMeta === 'function') window.nuevoMeta(name, params);
   }
   function clarity(name) {
     if (typeof window.clarity === 'function') window.clarity('event', name);
