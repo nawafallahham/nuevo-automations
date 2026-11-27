@@ -7,7 +7,7 @@
      Sent through nuevoMeta (js/consent.js): pixel + server copy, only after
      consent. */
   document.addEventListener('click', function (e) {
-    if (typeof window.fbq !== 'function' || !e.target.closest) return;
+    if (!e.target.closest) return;
     var link = e.target.closest('a[href*="wa.me/"], .js-lead');
     if (!link) return;
     var where = link.getAttribute('data-lead')
@@ -18,6 +18,7 @@
               : link.closest('footer') ? 'footer'
               : 'other');
     if (window.nuevoMeta) window.nuevoMeta(/wa\.me\//.test(link.getAttribute('href') || '') ? 'Contact' : 'BookClick', { content_name: where });
+    if (window.nuevoClarity) window.nuevoClarity(/wa\.me\//.test(link.getAttribute('href') || '') ? 'whatsapp_click' : 'book_click');
     if (window.nuevoGa) window.nuevoGa(/wa\.me\//.test(link.getAttribute('href') || '') ? 'whatsapp_click' : 'book_click', { location: where });
   });
 

@@ -216,6 +216,7 @@
       if (stored && typeof window.fbq === 'function') {
         window.fbq('track', 'Schedule', { content_name: sel.date + ' ' + sel.time }, { eventID: eventId });
       }
+      if (stored && window.nuevoClarity) window.nuevoClarity('booked');
       elForm.hidden = true;
       elDone.hidden = false;
       document.getElementById('bk-done-title').textContent = stored ? "You're booked in" : 'Almost there';

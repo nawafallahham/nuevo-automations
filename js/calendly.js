@@ -267,6 +267,7 @@
       report('details', { company: person.company });
       if (typeof window.fbq === 'function') window.fbq('track', 'SubmitApplication', { content_name: 'audit-qualified' }, { eventID: leadId + '-q' });
       if (window.nuevoGa) window.nuevoGa('qualify_lead');
+      if (window.nuevoClarity) window.nuevoClarity('lead_qualified');
       pass();
     });
   }
@@ -317,6 +318,7 @@
       matchUser();
       if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'audit-contact' }, { eventID: leadId });
       if (window.nuevoGa) window.nuevoGa('generate_lead');
+      if (window.nuevoClarity) window.nuevoClarity('lead_contact');
       if (done) { if (person.company) pass(); else details(); return; }
       ask(0);
       panel.querySelector('h3').focus({ preventScroll: true });
@@ -342,6 +344,7 @@
         if (o.pass === false) {
           writeStore({ ok: false, why: o.why });
           report('declined', { declined_at_q: i + 1 });
+          if (window.nuevoClarity) window.nuevoClarity('lead_declined');
           decline(o.why);
           return;
         }
@@ -384,6 +387,7 @@
     if (typeof window.fbq === 'function') {
       window.fbq('track', 'Schedule', { content_name: 'calendly' }, { eventID: inviteeUri });
     }
+    if (window.nuevoClarity) window.nuevoClarity('booked');
     if (window.nuevoGa) {
       window.nuevoGa('book_appointment');
       // Google Ads conversion (linked to the same Google tag).

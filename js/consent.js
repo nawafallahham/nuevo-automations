@@ -92,8 +92,43 @@
     })(window, document, 'clarity', 'script', CLARITY_ID);
     /* eslint-enable */
     window.clarity('consent');
+    // Tags to filter recordings by: where the visitor came from, the
+    // campaign, the page they landed on, and their best outcome so far.
+    try {
+      var a = typeof window.nuevoAttribution === 'function' ? window.nuevoAttribution() : {};
+      var src = a.utm_source || (a.fbclid ? 'facebook' : '') || hostOnly(a.referrer) || 'direct';
+      window.clarity('set', 'source', src.slice(0, 50));
+      if (a.utm_campaign) window.clarity('set', 'campaign', String(a.utm_campaign).slice(0, 100));
+      if (a.utm_content) window.clarity('set', 'ad', String(a.utm_content).slice(0, 100));
+      if (a.landing) window.clarity('set', 'landing', String(a.landing).split('?')[0].slice(0, 100));
+      window.clarity('set', 'outcome', bestOutcome() || 'none');
+    } catch (e) {}
     try { window.dispatchEvent(new Event('nuevo:clarity')); } catch (e) {}
   }
+  function hostOnly(u) {
+    try { return u ? new URL(u).hostname.replace(/^www\./, '') : ''; } catch (e) { return ''; }
+  }
+
+  /* Clarity conversion events: nuevoClarity('lead_contact') etc. Each one is
+     a custom event (for funnels and filters), raises the session's
+     "outcome" tag to the best step reached, and asks Clarity to keep the
+     recording. Before consent (or with no Clarity) it does nothing. */
+  var OUTCOMES = ['whatsapp_click', 'book_click', 'lead_declined', 'lead_contact', 'lead_qualified', 'booked'];
+  var OUTCOME_KEY = 'nuevo-outcome';
+  function bestOutcome() {
+    try { return sessionStorage.getItem(OUTCOME_KEY) || ''; } catch (e) { return ''; }
+  }
+  window.nuevoClarity = function (name) {
+    if (typeof window.clarity !== 'function') return;
+    window.clarity('event', name);
+    var rank = OUTCOMES.indexOf(name);
+    if (rank < 0) return;
+    if (rank > OUTCOMES.indexOf(bestOutcome())) {
+      try { sessionStorage.setItem(OUTCOME_KEY, name); } catch (e) {}
+      window.clarity('set', 'outcome', name);
+    }
+    if (rank >= OUTCOMES.indexOf('lead_contact')) window.clarity('upgrade', name);
+  };
 
   function loadTrackers() { loadPixel(); loadAnalytics(); loadClarity(); }
 
