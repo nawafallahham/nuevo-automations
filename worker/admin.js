@@ -15,6 +15,7 @@ export async function admin(request, env, path, ctx) {
   if (m === 'GET' && path === '/api/admin/bookings') return bookings(request, env);
   if (m === 'GET' && path === '/api/admin/stats') return stats(request, env);
   if (m === 'GET' && path === '/api/admin/leads') return leads(request, env);
+  if (m === 'GET' && path === '/api/admin/vsl') return vsl(request, env);
   if (m === 'GET' && path === '/api/admin/config') return config(env);
   if (m === 'GET' && path === '/api/admin/calendly/status') return calendlyStatus(env);
   if (m === 'POST' && path === '/api/admin/calendly/setup') return calendlySetup(env);
@@ -301,5 +302,73 @@ async function leads(request, env) {
     by_page: group((l) => l.page || 'unknown'),
     by_source: group((l) => [l.utm_source || hostOf(l.referrer) || 'direct', l.utm_campaign].filter(Boolean).join(' / ')),
     leads: list
+  });
+}
+
+// GET /api/admin/vsl?days=30 — the video sales letter page: who played,
+// unmuted and kept watching (per video cut), then clicked, qualified, booked.
+const VSL_PAGE = '/wellness-brands/vsl/';
+const VSL_SOURCE = 'wellness-vsl';
+async function vsl(request, env) {
+  const days = Math.min(Math.max(parseInt(new URL(request.url).searchParams.get('days'), 10) || 30, 1), 365);
+  const since = slotInstant(addDays(dubaiToday(), -(days - 1)), '00:00').toISOString();
+
+  const [ev, page, leadRows] = await env.DB.batch([
+    env.DB.prepare(
+      "SELECT type, path, COUNT(DISTINCT visitor) AS v FROM events WHERE ts >= ?1 AND path LIKE '/vsl/%' GROUP BY type, path"
+    ).bind(since),
+    env.DB.prepare(
+      "SELECT COUNT(DISTINCT CASE WHEN type = 'pageview' AND (path = ?2 OR path = ?3) THEN visitor END) AS visitors, " +
+      "COUNT(DISTINCT CASE WHEN type = 'book_view' AND (path = ?2 OR path = ?3) THEN visitor END) AS book_viewers, " +
+      "COUNT(DISTINCT CASE WHEN type = 'cta' AND path = '/cta/vsl-unlocked' THEN visitor END) AS cta " +
+      'FROM events WHERE ts >= ?1'
+    ).bind(since, VSL_PAGE, VSL_PAGE.slice(0, -1)),
+    env.DB.prepare(
+      'SELECT status, phone, utm_campaign, utm_content FROM leads WHERE page = ?2 AND created_at >= ?1'
+    ).bind(since, VSL_SOURCE)
+  ]);
+
+  const videos = new Map();
+  const vid = (id) => {
+    if (!videos.has(id)) videos.set(id, { id, autoplay: 0, unmuted: 0, resumed: 0, progress: {}, complete: 0 });
+    return videos.get(id);
+  };
+  for (const r of ev.results || []) {
+    const m = /^\/vsl\/([\w-]{1,40})\/([\w]+)$/.exec(r.path || '');
+    if (!m) continue;
+    const row = vid(m[1]);
+    if (r.type === 'video_play') row.autoplay += r.v;
+    else if (r.type === 'video_unmute') row.unmuted += r.v;
+    else if (r.type === 'video_resume') row.resumed += r.v;
+    else if (r.type === 'video_complete') row.complete += r.v;
+    else if (r.type === 'video_progress' && /^p\d{2}$/.test(m[2])) row.progress[m[2].slice(1)] = (row.progress[m[2].slice(1)] || 0) + r.v;
+  }
+
+  const p = (page.results && page.results[0]) || {};
+  const list = leadRows.results || [];
+  const passed = (l) => l.status === 'qualified' || l.status === 'details' || l.status === 'booked';
+  const allVideos = [...videos.values()];
+  const sum = (f) => allVideos.reduce((a, v) => a + f(v), 0);
+  const funnel = [
+    ['Visitors on the video page', p.visitors || 0],
+    ['Video autoplayed (muted)', sum((v) => v.autoplay)],
+    ['Unmuted / started watching', sum((v) => v.unmuted)],
+    ['Watched 20%', sum((v) => (v.progress['20'] || 0))],
+    ['Watched 50%', sum((v) => (v.progress['50'] || 0))],
+    ['Watched 90%', sum((v) => (v.progress['90'] || 0))],
+    ['Finished the video', sum((v) => v.complete)],
+    ['Clicked "Book your free audit"', p.cta || 0],
+    ['Saw the booking form', p.book_viewers || 0],
+    ['Gave name and WhatsApp number', list.filter((l) => !!l.phone).length],
+    ['Qualified', list.filter(passed).length],
+    ['Booked a call', list.filter((l) => l.status === 'booked').length]
+  ].map(([label, n]) => ({ label, n }));
+
+  return json({
+    ok: true,
+    days,
+    funnel,
+    videos: allVideos.sort((a, b) => b.unmuted - a.unmuted),
+    note: 'Visitors are counted per day (anonymous id), so they are approximate. Watch % only counts viewers who unmuted or pressed play.'
   });
 }

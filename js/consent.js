@@ -10,6 +10,9 @@
 
   var PIXEL_ID = '997785509848718';
   var GA_ID = 'G-1FF7172KH1';
+  // Microsoft Clarity (heatmaps + session recordings). Free; paste the
+  // project id from clarity.microsoft.com -> Settings -> Setup. Empty = off.
+  var CLARITY_ID = '';
   var STORE_KEY = 'nuevo-consent';
 
   function read() {
@@ -49,7 +52,20 @@
     document.head.appendChild(t);
   }
 
-  function loadTrackers() { loadPixel(); loadAnalytics(); }
+  function loadClarity() {
+    if (!CLARITY_ID || window.clarity) return;
+    /* eslint-disable */
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', CLARITY_ID);
+    /* eslint-enable */
+    window.clarity('consent');
+    try { window.dispatchEvent(new Event('nuevo:clarity')); } catch (e) {}
+  }
+
+  function loadTrackers() { loadPixel(); loadAnalytics(); loadClarity(); }
 
   // The notice is a small card at the foot of the screen (styles in /css/site.css).
   // Accept and Decline carry equal weight. While it shows, the body is padded by

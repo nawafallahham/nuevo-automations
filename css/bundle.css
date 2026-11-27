@@ -3759,3 +3759,64 @@ html { -webkit-tap-highlight-color: transparent; }
 .guide-list .card h2, .guide-list .card h3 { font-size: var(--t-h3, 1.35rem); }
 .guide-list .card p { margin-top: var(--s-3); }
 .guide-list .card .link { margin-top: var(--s-4); display: inline-block; }
+
+/* ===== Video sales letter page (/wellness-brands/vsl/) ===== */
+.vsl-top { display: flex; justify-content: center; padding: var(--s-5) var(--s-4) 0; }
+.vsl-top .nav__logo { font-size: 1.05rem; }
+.vsl-page main > section.vsl-hero { padding-block: var(--s-5) var(--s-8); min-height: 0; }
+.vsl-page .vsl-wrap { display: block; max-width: 980px; text-align: center; }
+.vsl-kicker { font-size: var(--t-small); color: var(--muted); letter-spacing: 0.02em; }
+.vsl-hero h1 { margin: var(--s-3) auto 0; max-width: 30ch; font-weight: 600; font-size: clamp(1.75rem, 1.1rem + 2.6vw, 3rem); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+.vsl-hero h1 u { text-decoration-thickness: 0.08em; text-underline-offset: 0.12em; text-decoration-color: var(--p-accent); }
+.vsl-page .vsl-pill { display: block; width: fit-content; max-width: 100%; margin: var(--s-5) auto 0; padding: 0.5em 1.1em; border-radius: 999px; background: #f6d9cf; color: var(--p-ink);
+  font: 600 clamp(0.95rem, 0.85rem + 0.5vw, 1.2rem)/1.3 var(--font-display); box-shadow: 0 1px 2px rgb(24 33 58 / 0.08); }
+.vsl { width: 100%; margin: var(--s-6) auto 0; text-align: left; }
+.vsl__frame { position: relative; aspect-ratio: 16 / 9; background: #0b1020; border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgb(24 33 58 / 0.45); }
+.vsl__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #0b1020; cursor: pointer; }
+.vsl__overlay { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; background: transparent; cursor: pointer; color: #fff; }
+.vsl__overlay[hidden], .vsl__resume[hidden], .vsl__soon[hidden] { display: none; }
+.vsl__overlay-box { display: grid; justify-items: center; gap: 0.35em; width: min(62%, 560px); padding: clamp(16px, 4vw, 44px) 16px;
+  background: rgb(13 81 141 / 0.9); border: 2px solid rgb(255 255 255 / 0.85); border-radius: 14px;
+  box-shadow: 0 0 0 clamp(8px, 2vw, 22px) rgb(13 81 141 / 0.35); font: 700 clamp(1rem, 0.6rem + 2.2vw, 2rem)/1.2 var(--font-display); text-align: center; }
+.vsl__icon { width: clamp(36px, 7vw, 72px); height: auto; margin-bottom: 0.2em; animation: vsl-pulse 1.6s ease-in-out infinite; }
+@keyframes vsl-pulse { 50% { transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .vsl__icon { animation: none; } }
+.vsl__overlay:hover .vsl__overlay-box { background: rgb(13 81 141 / 0.96); }
+.vsl__overlay:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+.vsl__resume, .vsl__soon { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--s-4); padding: var(--s-5);
+  background: rgb(11 16 32 / 0.82); color: #fff; text-align: center; }
+.vsl__resume-title, .vsl__soon-title { font: 600 clamp(1.1rem, 0.8rem + 1.4vw, 1.6rem)/1.25 var(--font-display); }
+.vsl__resume-row { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; }
+.vsl__resume .btn--secondary { color: #fff; border-color: rgb(255 255 255 / 0.6); background: transparent; }
+.vsl__bar { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgb(255 255 255 / 0.18); pointer-events: none; }
+.vsl__bar span { display: block; height: 100%; background: #e0362c; transform-origin: left; transform: scaleX(0); }
+.vsl.is-soon .vsl__bar { display: none; }
+.vsl__controls { display: flex; align-items: center; gap: var(--s-2); margin-top: var(--s-3); }
+.vsl__controls[hidden] { display: none; }
+.vsl__btn { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 999px;
+  background: var(--p-surface); color: var(--p-ink); cursor: pointer; touch-action: manipulation; }
+.vsl__btn svg { width: 20px; height: 20px; fill: currentColor; }
+.vsl__btn:focus-visible { outline: 2px solid var(--p-accent); outline-offset: 2px; }
+.vsl .i-play, .vsl.is-paused .i-pause { display: none; }
+.vsl.is-paused .i-play { display: inline; }
+.vsl .i-off, .vsl.is-muted .i-on { display: none; }
+.vsl.is-muted .i-off { display: inline; }
+.vsl__hint { margin-left: auto; font-size: var(--t-small); color: var(--muted); }
+.vsl-gate { margin-top: var(--s-6); }
+.vsl-gate__locked { display: inline-flex; align-items: center; gap: var(--s-2); padding: 0.7em 1.2em; border-radius: 999px; border: 1px dashed var(--line-strong);
+  color: var(--muted); font-size: var(--t-small); }
+.vsl-gate__locked svg { width: 16px; height: 16px; }
+.vsl-gate__locked[hidden], .vsl-gate__open[hidden] { display: none; }
+.vsl-gate__open { display: grid; justify-items: center; gap: var(--s-3); }
+.vsl-gate.is-open .vsl-gate__open { animation: vsl-in 0.5s cubic-bezier(0.23, 1, 0.32, 1) both; }
+@keyframes vsl-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .vsl-gate.is-open .vsl-gate__open { animation: none; } }
+.vsl-cta { font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem); padding: 0.85em 1.8em; }
+.vsl-page main > section.vsl-book[hidden] { display: none !important; }
+@media (max-width: 639px) {
+  .vsl-page main > section.vsl-hero { padding-top: var(--s-3); }
+  .vsl__frame { border-radius: var(--r-md, 12px); margin-inline: calc(var(--s-4) * -0.5); }
+  .vsl__overlay-box { width: 78%; }
+  .vsl__hint { font-size: 12px; }
+}

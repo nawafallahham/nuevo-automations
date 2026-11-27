@@ -71,6 +71,7 @@
     .adm-fun-row.is-pre .bar i { background: var(--brand-tint-strong); }
     .adm-fun-row b { text-align: right; font-variant-numeric: tabular-nums; }
     .adm-fun-row small { text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+    .adm-sub { font-size: .9rem; margin: 22px 0 8px; }
     .adm-grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .adm-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; max-width: 100%; }
     .adm-tools .adm-seg { max-width: 100%; overflow-x: auto; }
@@ -129,6 +130,17 @@
         <h2>Lead funnel <span class="adm-note" id="funnel-note" style="margin:0"></span></h2>
         <div class="adm-funnel" id="funnel"></div>
         <p class="adm-note">% of started = share of everyone who answered at least one question. Step = share of the row above it. Visitors and "saw the booking section" are counted per day (anonymous id), so they're approximate.</p>
+      </section>
+
+      <section class="adm-card">
+        <h2>Video page (VSL) <span class="adm-note" id="vsl-note" style="margin:0"></span></h2>
+        <div class="adm-funnel" id="vsl-funnel"></div>
+        <h3 class="adm-sub">Retention per video cut</h3>
+        <div class="adm-table-wrap"><table>
+          <thead><tr><th>Video</th><th class="num">Autoplayed</th><th class="num">Unmuted</th><th class="num">Resumed</th><th class="num">10%</th><th class="num">20%</th><th class="num">30%</th><th class="num">40%</th><th class="num">50%</th><th class="num">60%</th><th class="num">70%</th><th class="num">80%</th><th class="num">90%</th><th class="num">Finished</th></tr></thead>
+          <tbody id="vsl-videos"></tbody>
+        </table></div>
+        <p class="adm-note">Page: /wellness-brands/vsl/. Percentages under each milestone are the share of viewers who unmuted. The biggest drop between two columns shows where the video loses people. Change data-video-id on the page whenever you swap the video, so each cut gets its own row. Heatmaps and recordings: Microsoft Clarity. Audiences ("watched 50%"): Meta events VSLProgress / VSLComplete.</p>
       </section>
 
       <section class="adm-card">
@@ -483,7 +495,7 @@
 
     // --- leads & funnel --------------------------------------------
     var QNAMES = ['Role', 'Orders a week', 'Average order value', 'Meta ads today'];
-    var PAGES = { 'wellness-landing': '/wellness-brands/', 'meta-landing': '/consultation/', site: '/book/' };
+    var PAGES = { 'wellness-landing': '/wellness-brands/', 'wellness-vsl': '/wellness-brands/vsl/', 'meta-landing': '/consultation/', site: '/book/' };
     var STATUS = { started: 'dropped off', declined: 'declined', qualified: 'qualified, no name', details: 'qualified', booked: 'booked' };
     var leadsData = { leads: [] };
     var leadFilter = 'all';
@@ -639,6 +651,39 @@
       });
     }
 
+    function renderVsl(j) {
+      $('vsl-note').textContent = '· last ' + j.days + ' days';
+      var box = $('vsl-funnel');
+      box.innerHTML = '';
+      var rows = j.funnel, max = Math.max.apply(null, rows.map(function (r) { return r.n; }).concat([1]));
+      var base = (rows[2] && rows[2].n) || 0;
+      rows.forEach(function (r, i) {
+        var prev = i ? rows[i - 1].n : 0;
+        var bar = el('div', { className: 'bar' }, el('i'));
+        bar.firstChild.style.width = (r.n / max * 100) + '%';
+        box.appendChild(el('div', { className: 'adm-fun-row' + (i < 2 ? ' is-pre' : '') }, [
+          el('span', null, r.label), bar, el('b', null, fmt(r.n)),
+          el('small', null, i < 3 ? (i && rows[0].n ? pct(r.n / rows[0].n * 100) + ' of visitors' : '') :
+            (base ? pct(r.n / base * 100) : '—') + (prev ? ' · step ' + pct(r.n / prev * 100) : ''))
+        ]));
+      });
+      var tb = $('vsl-videos');
+      tb.innerHTML = '';
+      if (!j.videos.length) tb.appendChild(el('tr', null, el('td', { colSpan: 14, className: 'adm-empty' }, 'No plays yet.')));
+      j.videos.forEach(function (v) {
+        var cells = [el('td', null, v.id), el('td', { className: 'num' }, fmt(v.autoplay)), el('td', { className: 'num' }, fmt(v.unmuted)), el('td', { className: 'num' }, fmt(v.resumed))];
+        [10, 20, 30, 40, 50, 60, 70, 80, 90].forEach(function (p) {
+          var n = v.progress[p] || 0;
+          cells.push(el('td', { className: 'num', title: fmt(n) + ' viewers' }, v.unmuted ? pct(n / v.unmuted * 100) : '—'));
+        });
+        cells.push(el('td', { className: 'num' }, fmt(v.complete) + (v.unmuted ? ' (' + pct(v.complete / v.unmuted * 100) + ')' : '')));
+        tb.appendChild(el('tr', null, cells));
+      });
+    }
+    function loadVsl() {
+      return api('/api/admin/vsl?days=' + state.days).then(renderVsl);
+    }
+
     // --- loading ---------------------------------------------------
     function loadBookings() {
       return api('/api/admin/bookings?scope=' + state.scope).then(function (j) { renderBookings(j.bookings); });
@@ -649,7 +694,7 @@
       });
     }
     function loadAll() {
-      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats(), loadLeads(), loadCalendly()]);
+      return Promise.all([api('/api/admin/config').then(renderConfig), loadBookings(), loadStats(), loadLeads(), loadVsl(), loadCalendly()]);
     }
 
     function start() {
@@ -677,7 +722,7 @@
         onPick(b.getAttribute(attr));
       });
     }
-    segment('range', 'data-days', function (v) { state.days = Number(v); loadStats().catch(function () {}); loadLeads().catch(function () {}); });
+    segment('range', 'data-days', function (v) { state.days = Number(v); loadStats().catch(function () {}); loadLeads().catch(function () {}); loadVsl().catch(function () {}); });
     segment('lead-filter', 'data-f', function (v) { leadFilter = v; renderLeads(); });
     segment('scope', 'data-scope', function (v) { state.scope = v; loadBookings().catch(function () {}); });
     $('refresh').addEventListener('click', function () { loadAll().catch(function () {}); });

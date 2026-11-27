@@ -118,7 +118,8 @@ export async function book(request, env, ctx) {
 }
 
 // POST /api/track  (anonymous, cookieless analytics)
-const TRACK_TYPES = new Set(['pageview', 'cta', 'book_view', 'book_start']);
+const TRACK_TYPES = new Set(['pageview', 'cta', 'book_view', 'book_start',
+  'video_play', 'video_unmute', 'video_resume', 'video_progress', 'video_complete']);
 
 export async function track(request, env) {
   if (!originAllowed(request)) return noContent();
