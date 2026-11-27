@@ -12,7 +12,7 @@
   var GA_ID = 'G-1FF7172KH1';
   // Microsoft Clarity (heatmaps + session recordings). Free; paste the
   // project id from clarity.microsoft.com -> Settings -> Setup. Empty = off.
-  var CLARITY_ID = '';
+  var CLARITY_ID = 'zk7ajob7cv';
   var STORE_KEY = 'nuevo-consent';
 
   function read() {
