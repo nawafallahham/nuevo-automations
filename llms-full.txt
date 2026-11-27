@@ -60,7 +60,7 @@ A: Every chat is tagged with the ad it came from, and you get a monthly M2S Resu
 
 URL: https://nuevoautomations.com/pricing/
 
-M2S is quoted around your ad budget: one fixed monthly fee after a free audit, with ad spend paid directly to Meta or Google. What you pay for and what sets the quote.
+M2S is quoted around your ad budget: one fixed monthly fee after a free audit, with ad spend paid straight to Meta or Google. What you pay for and why.
 
 Q: Why isn't there a price on the website?
 A: Because a store spending AED 3,000 a month on ads and a clinic spending AED 30,000 need very different setups. A fixed package would overcharge one and under-serve the other. The audit takes 30 minutes and ends with a clear number.
@@ -74,7 +74,7 @@ A: No. Ad spend is paid directly to Meta or Google, separate from our fee, so yo
 Q: Do you promise a number of sales?
 A: No, and be wary of anyone who does. Every lead gets a reply in seconds and every silent lead a follow-up, and you see what came back every month.
 
-## M2S Results: Peak Labs & Khaleej ParaPharma | Nuevo Automations
+## Results: Peak Labs and Khaleej ParaPharma | Nuevo Automations
 
 URL: https://nuevoautomations.com/results/
 
@@ -108,7 +108,7 @@ The UAE brands we build and run WhatsApp sales systems for: BARQ Biomedical, Pea
 
 URL: https://nuevoautomations.com/ai-automation-agency-dubai/
 
-A Dubai AI marketing agency running your Meta and Google ads, WhatsApp sales chats and reporting as one team, and how that differs from chatbot vendors or ad agencies.
+A Dubai AI marketing agency running your Meta and Google ads, WhatsApp sales chats and reporting as one team, and how it differs from chatbot vendors.
 
 An AI marketing agency combines paid advertising with AI-driven customer conversations and reports on the sales they produce. Nuevo Automations runs Meta click-to-WhatsApp ads and Google Ads, the M2S AI sales assistant that replies to the chats those ads start, and a monthly report linking each sale back to the ad behind it.
 

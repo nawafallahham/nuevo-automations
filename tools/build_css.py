@@ -5,11 +5,12 @@ Every page used to load about a dozen stylesheets from /kit plus Google Fonts, a
 blocking. This concatenates them, in the kit's required order, behind the self-hosted
 @font-face rules, so a page makes one CSS request. The kit's own files stay untouched in
 /kit (they are vendored from the Taste skill); edit css/site.css for site rules, then run
-this and tools/sync_partials.py (which stamps the bundle's ?v= hash).
+this and tools/sync_partials.py (which stamps the bundle's ?v= hash). The output is\nminified with esbuild (needs Node; falls back to unminified).
 
 Usage: python3 tools/build_css.py [--check]
 """
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -50,8 +51,42 @@ def build():
     return "".join(out)
 
 
+def minify(text):
+    """Strip comments and collapse whitespace, nothing else.
+
+    Rules, values and their order stay exactly as written (a full minifier
+    such as esbuild merged rules and broke the kit's cascade). Strings and
+    url() contents are copied through untouched."""
+    out, i, n = [], 0, len(text)
+    while i < n:
+        c = text[i]
+        if c == "/" and text.startswith("/*", i):
+            j = text.find("*/", i + 2)
+            i = n if j < 0 else j + 2
+            continue
+        if c in "\"'":
+            j = i + 1
+            while j < n and text[j] != c:
+                j += 2 if text[j] == "\\" else 1
+            out.append(text[i:j + 1]); i = j + 1
+            continue
+        if c.isspace():
+            j = i
+            while j < n and text[j].isspace():
+                j += 1
+            out.append(" "); i = j
+            continue
+        out.append(c); i += 1
+    s = "".join(out)
+    # Drop spaces next to punctuation where CSS ignores them. Not around
+    # ':' (selectors like 'a :hover' differ) or '+', '-', '*', '/' (calc()).
+    s = re.sub(r" ?([{};,>]) ?", r"\1", s)
+    s = s.replace(";}", "}")
+    return s.strip() + "\n"
+
+
 def main():
-    text = build()
+    text = minify(build())
     if "--check" in sys.argv:
         sys.exit(0 if OUT.exists() and OUT.read_text() == text else 1)
     OUT.write_text(text)
