@@ -81,6 +81,28 @@ export async function sendMetaLead(env, l, eventName, contentName) {
   });
 }
 
+// Video page milestones from worker/api.js (VSLPlay, VSLProgress, VSLComplete).
+// The browser pixel sends the same event_id, so Meta counts each once; this
+// copy still lands when an ad blocker stops the pixel.
+export async function sendMetaVideo(env, v) {
+  const user = { client_ip_address: v.ip, client_user_agent: v.ua, country: [await sha256Hex('ae')] };
+  if (v.fbc) user.fbc = v.fbc;
+  if (v.fbp) user.fbp = v.fbp;
+  const custom = { video_id: v.video_id, content_name: 'vsl' };
+  if (v.percent) custom.percent = v.percent;
+  await postCapi(env, {
+    data: [{
+      event_name: v.name,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: v.event_id,
+      action_source: 'website',
+      event_source_url: v.page_url,
+      user_data: user,
+      custom_data: custom
+    }]
+  });
+}
+
 // 'Purchase' when a lead is marked won in the dashboard (worker/admin.js).
 // Sent from our system, not the browser, so no IP or browser data: the
 // hashed phone, first name and external_id tie it to the earlier events.
