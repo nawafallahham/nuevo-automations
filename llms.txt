@@ -73,6 +73,8 @@ Key facts:
 - [قواعد التسويق عبر واتساب](https://nuevoautomations.com/ar/guides/whatsapp-marketing-rules-uae/): WhatsApp marketing rules in the UAE, in Arabic
 - [الدفع عبر واتساب](https://nuevoautomations.com/ar/guides/whatsapp-payment-links-uae/): taking payments on WhatsApp in the UAE, in Arabic
 - [بيع المكملات أونلاين](https://nuevoautomations.com/ar/guides/sell-supplements-online-uae/): selling supplements online in the UAE, in Arabic
+- [إعلانات النقر إلى واتساب](https://nuevoautomations.com/ar/guides/click-to-whatsapp-ads/): click-to-WhatsApp ads, in Arabic
+- [السلات المتروكة](https://nuevoautomations.com/ar/guides/whatsapp-abandoned-cart-recovery/): WhatsApp abandoned cart recovery, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
