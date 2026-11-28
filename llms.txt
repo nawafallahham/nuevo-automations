@@ -67,6 +67,7 @@ Key facts:
 - [رسائل واتساب جماعية](https://nuevoautomations.com/ar/guides/bulk-whatsapp-messages-uae/): sending bulk WhatsApp messages legally in the UAE, in Arabic
 - [أسعار واتساب بزنس API](https://nuevoautomations.com/ar/guides/whatsapp-business-api-pricing-uae/): WhatsApp Business API pricing in the UAE, in Arabic
 - [واتساب للأعمال أم API](https://nuevoautomations.com/ar/guides/whatsapp-business-app-vs-api/): WhatsApp Business app vs API, in Arabic
+- [قواعد التسويق عبر واتساب](https://nuevoautomations.com/ar/guides/whatsapp-marketing-rules-uae/): WhatsApp marketing rules in the UAE, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
