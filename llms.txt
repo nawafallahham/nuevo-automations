@@ -90,6 +90,7 @@ Key facts:
 - [أتمتة رسائل إنستغرام](https://nuevoautomations.com/ar/guides/instagram-dm-automation-rules/): Instagram DM automation rules, in Arabic
 - [تأكيد الدفع عند الاستلام](https://nuevoautomations.com/ar/guides/cash-on-delivery-whatsapp-confirmation-uae/): COD confirmation on WhatsApp, in Arabic
 - [إحصاءات الإمارات الرقمية](https://nuevoautomations.com/ar/guides/uae-ecommerce-whatsapp-statistics/): UAE e-commerce and WhatsApp statistics 2026, in Arabic
+- [تسويق العيادات](https://nuevoautomations.com/ar/guides/clinic-marketing-whatsapp-uae/): clinic marketing and WhatsApp rules in the UAE, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
