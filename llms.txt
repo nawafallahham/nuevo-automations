@@ -71,6 +71,8 @@ Key facts:
 - [أسعار واتساب بزنس API](https://nuevoautomations.com/ar/guides/whatsapp-business-api-pricing-uae/): WhatsApp Business API pricing in the UAE, in Arabic
 - [واتساب للأعمال أم API](https://nuevoautomations.com/ar/guides/whatsapp-business-app-vs-api/): WhatsApp Business app vs API, in Arabic
 - [قواعد التسويق عبر واتساب](https://nuevoautomations.com/ar/guides/whatsapp-marketing-rules-uae/): WhatsApp marketing rules in the UAE, in Arabic
+- [الدفع عبر واتساب](https://nuevoautomations.com/ar/guides/whatsapp-payment-links-uae/): taking payments on WhatsApp in the UAE, in Arabic
+- [بيع المكملات أونلاين](https://nuevoautomations.com/ar/guides/sell-supplements-online-uae/): selling supplements online in the UAE, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
