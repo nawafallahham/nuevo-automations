@@ -32,6 +32,7 @@ Key facts:
 - [Sales automation, Sharjah](https://nuevoautomations.com/business-process-automation-sharjah/)
 
 ## Guides
+- [UAE e-commerce, social media and WhatsApp statistics 2026](https://nuevoautomations.com/guides/uae-ecommerce-whatsapp-statistics/): sourced figures on population, internet and WhatsApp use, ad reach, e-commerce market size, payments, messaging
 - [WhatsApp Business API pricing in the UAE, 2026](https://nuevoautomations.com/guides/whatsapp-business-api-pricing-uae/): per-message billing, the 1 October 2026 service-message change, the free entry point window after click-to-WhatsApp ads
 - [Click-to-WhatsApp ads](https://nuevoautomations.com/guides/click-to-whatsapp-ads/): when a chat beats a landing page, setup in Ads Manager, the first reply
 - [Advertising supplements in the UAE](https://nuevoautomations.com/guides/advertising-supplements-uae/): Meta's health and wellness ad rules and the Emirates Drug Establishment's November 2026 clarification
