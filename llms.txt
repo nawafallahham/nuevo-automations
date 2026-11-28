@@ -45,6 +45,8 @@ Key facts:
 - [Shopify WhatsApp integration](https://nuevoautomations.com/guides/shopify-whatsapp-integration/): Shopify Messaging, Meta's official app and third-party apps, with prices and template categories
 - [Arabic WhatsApp chatbots](https://nuevoautomations.com/guides/arabic-whatsapp-chatbot/): Gulf dialect, Arabizi, mixed Arabic-English, research on AI in Arabic dialects, testing
 - [Wati alternatives](https://nuevoautomations.com/guides/wati-alternatives/): ten WhatsApp platforms compared on price, users, AI and Meta fee markups
+- [WhatsApp marketing rules in the UAE](https://nuevoautomations.com/guides/whatsapp-marketing-rules-uae/): Meta opt-in and opt-out, messaging limits, per-user caps, penalties, Cabinet Resolution 56 of 2024 and the PDPL
+- [WhatsApp Business app vs API](https://nuevoautomations.com/guides/whatsapp-business-app-vs-api/): devices, broadcasts, automation, pricing, coexistence, blue tick and Meta One
 
 ## Industries
 - [Online stores](https://nuevoautomations.com/ecommerce-automation-uae/)

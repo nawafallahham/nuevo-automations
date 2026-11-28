@@ -700,3 +700,49 @@ A: Yes. A WhatsApp Business API number can be migrated between providers. Plan f
 
 Q: Which WhatsApp platforms have an office in Dubai?
 A: SleekFlow lists an office in DIFC and Gallabox one on Sheikh Zayed Road. We didn't find a UAE office for Wati or Respond.io in November 2026.
+
+## WhatsApp Marketing Rules in the UAE, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/whatsapp-marketing-rules-uae/
+
+The rules for WhatsApp marketing in the UAE in 2026: Meta's opt-in policy, messaging limits, per-user caps, the telemarketing resolution and the PDPL.
+
+To send WhatsApp marketing in the UAE, you need the customer's number and their opt-in, which must name your business and make clear they are agreeing to messages from you. You must honour opt-out requests made on or off WhatsApp. Messages outside the 24-hour customer service window must use Meta-approved templates, new accounts can message 250 people a day until Meta raises the limit, and Meta can cap marketing messages to people who don't engage. Under UAE law, Cabinet Resolution No. 56 of 2024 defines telemarketing to include marketing messages through social media applications, and the data protection law (Federal Decree-Law No. 45 of 2021) requires consent to process personal data, with some exceptions.
+
+Q: Is WhatsApp marketing legal in the UAE?
+A: Yes, with consent. Meta requires an opt-in that names your business, and UAE law requires consent to process personal data. The 2024 telemarketing resolution's definition also covers marketing messages through social media applications, so treat its rules as applying.
+
+Q: What counts as a valid WhatsApp opt-in?
+A: Meta says the opt-in must clearly state that the person agrees to receive messages from your business and must name the business. It can be collected anywhere, such as at checkout, in a form or in the chat, and doesn't have to mention WhatsApp specifically.
+
+Q: How many WhatsApp messages can I send per day?
+A: A new business portfolio can start conversations with 250 unique people in 24 hours. Verifying your business unlocks 2,000, and Meta raises the limit to 10,000, 100,000 and then unlimited as you use it with high-quality messages.
+
+Q: What time can I send marketing messages in the UAE?
+A: Cabinet Resolution No. 56 of 2024 limits marketing calls to 9am to 6pm. It doesn't spell out hours for messages, but keeping WhatsApp marketing in that window is the safe choice.
+
+Q: What happens if customers report my WhatsApp messages as spam?
+A: Your template and number quality drops, and Meta can pause templates, block sending for 1 to 30 days, lock the account or ban it permanently. Message only people who opted in, and make it easy to stop.
+
+## WhatsApp Business App vs API: Which One in 2026? | Nuevo
+
+URL: https://nuevoautomations.com/guides/whatsapp-business-app-vs-api/
+
+WhatsApp Business app vs the API in 2026: devices, broadcasts, automation, pricing, the blue tick, Meta One and coexistence (using both on one number).
+
+The WhatsApp Business app is free, runs on one phone plus up to four linked devices (ten with multi-agent), and has quick replies, greeting messages and broadcast lists of up to 256 people who must have saved your number. The WhatsApp Business API (Cloud API) has no inbox of its own, so you use it through a platform, but it allows unlimited agents, chatbots and AI, approved templates to anyone who opted in, and integrations, with Meta charging per message. Coexistence lets one number use both: the app for one-to-one chats, the API for automation. The free blue tick is available only on the API; Meta One sells a verified badge for the app.
+
+Q: Is the WhatsApp Business API free?
+A: No. Meta charges per delivered message, by category and country, and most businesses also pay a platform for the inbox and automation. Each number gets 1,000 free service messages a month, and chats from click-to-WhatsApp ads open a free window of up to 7 days.
+
+Q: Can I use the WhatsApp Business app and the API on the same number?
+A: Yes, through Meta's coexistence feature, set up via a Meta partner. You keep chatting in the app while the API handles automation; there are limits, such as read-only broadcast lists and 20 messages a second.
+
+Q: How many people can use one WhatsApp Business app account?
+A: One phone plus up to 4 linked devices, or up to 10 devices with multi-agent. The API has no such limit; it depends on your platform.
+
+Q: How do I get the green or blue tick on WhatsApp?
+A: The free Official Business Account badge is only for API numbers with a verified business, 30 days on the platform and two-step verification. App users can get a verified badge through a paid Meta One subscription.
+
+Q: Why can't my broadcast reach some customers?
+A: In the WhatsApp Business app, broadcasts only reach people who have saved your number, up to 256 per list. To reach everyone who opted in, you need API templates or the app's paid business broadcasts where available.
