@@ -181,6 +181,12 @@ How we build AI sales chatbots in the UAE: trained on your products, prices and 
 
 An AI sales chatbot is a chat assistant that answers buying questions, recommends products and closes the sale in the conversation. A well-built one works only from the business's own catalogue, prices and policies, refuses to make anything up, replies in the customer's language, and passes anything it cannot answer to a person with a summary of the chat. We build and run these chatbots for brands in Dubai and across the UAE, on WhatsApp and website chat, in English and Arabic.
 
+Q: Is this a custom GPT chatbot?
+A: It runs on a large language model, the same kind of AI behind ChatGPT, but it is set up for one job: answering from your own products, prices and policies on WhatsApp and website chat. It doesn't answer from the open internet, and it hands anything outside your information to your team.
+
+Q: Do you build chatbots for businesses in Dubai?
+A: Yes. We build and run sales chatbots for brands in Dubai, Abu Dhabi, Sharjah and the other emirates. The audit and setup happen over Zoom and WhatsApp, in English or Arabic.
+
 Q: What do you need from us to build the chatbot?
 A: Your products or services, prices, delivery or booking terms, opening hours and policies such as returns. We turn that into the information the assistant answers from and check it with you.
 
@@ -929,7 +935,7 @@ A: Instagram has no message fees but no way to follow up for sales after the win
 
 URL: https://nuevoautomations.com/guides/manychat-pricing/
 
-ManyChat's 2026 plans explained: Free, Essential, Pro, Business and Advanced, active contact limits, WhatsApp costs on top, and how it compares with WhatsApp platforms.
+ManyChat's 2026 plans explained: Free, Essential, Pro, Business and Advanced, active contact limits, WhatsApp costs, and how it compares with WhatsApp tools.
 
 Since 2 March 2026 ManyChat has five plans: Free (25 active contacts a month, 1 user), Essential at $17 a month or $14 billed annually (250 contacts, 2 users), Pro at $39 or $29 annually (2,500 contacts, 3 users), Business at $99 or $69 annually (7,500 contacts, 5 users) and Advanced at $199 or $139 annually (25,000 contacts, 10 users). An active contact is anyone you message or who messages you in a month, and extra contacts are charged per contact. Instagram, Messenger, TikTok and Telegram are on every plan; WhatsApp, SMS, email and AI features start on Pro. ManyChat says it adds no markup to Meta's WhatsApp message fees.
 
@@ -987,3 +993,72 @@ A: الحساب الجديد يبدأ محادثات مع 250 شخصاً خلا�
 
 Q: في أي وقت يمكنني إرسال رسائل تسويقية في الإمارات؟
 A: يحصر قرار مجلس الوزراء رقم 56 لسنة 2024 مكالمات التسويق بين 9 صباحاً و6 مساءً. لا يحدد ساعات للرسائل صراحةً، لكن الالتزام بهذه الساعات هو الخيار الآمن.
+
+## Meta Business AI on WhatsApp vs a Custom AI Assistant | Nuevo
+
+URL: https://nuevoautomations.com/guides/meta-business-ai-whatsapp/
+
+Meta's own AI agent for WhatsApp Business in 2026: what it does, what it costs, which businesses are excluded, and when a custom AI sales assistant fits better.
+
+Meta Business Agent, announced on 3 June 2026, is Meta's own AI that answers customers on WhatsApp, Messenger and Instagram using your Facebook Page, website, catalogue, FAQs and past chats, and hands complex cases to a person. On the WhatsApp Business app it is set up under Tools; on the API it costs US$2.00 per million tokens, about 4 to 5 US cents a message by Meta's estimate. Meta's developer documentation excludes Finance, Government, Health, Alcohol, Gambling, over-the-counter drugs and matrimony services. It only replies within 24 hours of a customer's message, can't start conversations, and you can't set when it hands off to a person.
+
+Q: What is Meta Business Agent on WhatsApp?
+A: Meta's own AI that answers customers on WhatsApp, Messenger and Instagram for a business, using its Page, website, catalogue, FAQs and past chats, and passes complex cases to a person. Meta announced it on 3 June 2026.
+
+Q: How much does Meta's WhatsApp AI cost?
+A: On the WhatsApp Business API it costs US$2.00 per million tokens, which Meta estimates at about 4 to 5 US cents per message. On the WhatsApp Business app it comes with paid Meta One plans.
+
+Q: Can supplement or health brands use Meta Business Agent?
+A: Meta's documentation excludes Health and over-the-counter drug businesses, among others. Supplements aren't named, so a supplement brand should run Meta's eligibility check for its number before relying on it.
+
+Q: Can Meta's AI follow up with customers who stopped replying?
+A: No. It only replies within 24 hours of the customer's last message and can't start conversations, so cart and payment follow-ups need approved templates sent by your own system.
+
+Q: Does Meta Business Agent reply in Arabic?
+A: Meta doesn't publish a list of supported languages and says quality is best in English. Test it with real Arabic messages from your customers before relying on it.
+
+## WhatsApp Flows Explained: In-Chat Forms for UAE Brands | Nuevo
+
+URL: https://nuevoautomations.com/guides/whatsapp-flows/
+
+What WhatsApp Flows are, how businesses use them for lead forms, bookings and product choice, how they're sent, device support, limits and costs in 2026.
+
+WhatsApp Flows are forms and screens that open inside a WhatsApp chat, with text fields, dropdowns, date pickers and file uploads, and they can pull live data such as available slots from your system. A business sends a Flow either as a Meta-approved template with a Flow button, which needs a verified business and good message quality, or as an interactive message after the customer writes in. Flows work on Android 6.0 and iOS 12 or later, not on WhatsApp Web. They are part of the WhatsApp Business API; we found no separate Flow fee, so you pay for the message that carries it.
+
+Q: What are WhatsApp Flows?
+A: Forms and screens that open inside a WhatsApp chat, with fields, dropdowns, date pickers and file uploads, so customers can book, sign up or choose products without leaving WhatsApp.
+
+Q: Do WhatsApp Flows cost extra?
+A: We found no Flow-specific fee in Meta's documentation. You pay for the message that carries the Flow, at Meta's normal per-message rates.
+
+Q: Can I use WhatsApp Flows in the WhatsApp Business app?
+A: Flows are a WhatsApp Business API feature. We found no documentation of them in the free WhatsApp Business app.
+
+Q: Do WhatsApp Flows work on desktop?
+A: No. Flows open on Android 6.0 or later and iOS 12 or later; customers on WhatsApp Web or desktop can't use them.
+
+Q: What can I build with WhatsApp Flows?
+A: Meta lists lead capture, offers, quotes and appointment booking. Brands also use them for product finders, delivery details and subscription sign-ups.
+
+## Cash on Delivery Confirmation on WhatsApp, UAE | Nuevo
+
+URL: https://nuevoautomations.com/guides/cash-on-delivery-whatsapp-confirmation-uae/
+
+How UAE online stores confirm cash on delivery orders on WhatsApp in 2026: the utility template rules, a simple confirmation flow, and moving buyers to prepaid.
+
+To confirm cash on delivery orders on WhatsApp, send an approved utility template right after the order with the order number, items, total and delivery address, and buttons to confirm or change the order. Meta counts it as a utility message only if it contains no promotion; adding an offer or upsell makes it marketing, and Meta relabels such templates automatically. Checkout.com reported that cash on delivery preference in the region fell from 41% in 2020 to 20% in 2023, and as low as 10% in the UAE, Saudi Arabia and Kuwait, so a confirmation message is also a good moment to offer a payment link.
+
+Q: Is a COD confirmation message on WhatsApp utility or marketing?
+A: Utility, if it only covers the order: number, items, total, address and confirm or change buttons. Add any offer or upsell and Meta treats it as marketing.
+
+Q: How common is cash on delivery in the UAE now?
+A: Falling. Checkout.com reported that cash on delivery preference was as low as 10% in the UAE, Saudi Arabia and Kuwait in 2023, down from much higher levels in 2020.
+
+Q: Can I ask COD customers to pay online instead?
+A: Yes. Once the customer replies to the confirmation, a 24-hour conversation window opens and you can send a payment link, keeping cash on delivery as an option.
+
+Q: How much does a WhatsApp COD confirmation cost?
+A: Meta charges the utility rate for the customer's country for each delivered template. Since 1 October 2026 utility templates are charged even inside an open conversation window.
+
+Q: Can a Shopify store automate COD confirmation on WhatsApp?
+A: Yes. Several Shopify WhatsApp apps, including Interakt and SuperLemon, list cash on delivery confirmation among their features.

@@ -47,6 +47,9 @@ Key facts:
 - [Wati alternatives](https://nuevoautomations.com/guides/wati-alternatives/): ten WhatsApp platforms compared on price, users, AI and Meta fee markups
 - [Instagram DM automation rules](https://nuevoautomations.com/guides/instagram-dm-automation-rules/): the 24-hour window, human agent tag, comment-to-DM private replies, rate limits, Instagram vs WhatsApp
 - [ManyChat pricing 2026](https://nuevoautomations.com/guides/manychat-pricing/): the five plans since March 2026, active contacts, WhatsApp costs, ManyChat vs WhatsApp-first platforms
+- [Meta Business AI on WhatsApp vs a custom assistant](https://nuevoautomations.com/guides/meta-business-ai-whatsapp/): what Meta Business Agent does, US$2 per million tokens, excluded industries including Health, limits
+- [WhatsApp Flows](https://nuevoautomations.com/guides/whatsapp-flows/): in-chat forms for leads, bookings and product choice, how they are sent, device support and limits
+- [Cash on delivery confirmation on WhatsApp](https://nuevoautomations.com/guides/cash-on-delivery-whatsapp-confirmation-uae/): utility template rules, a confirmation flow, COD trends in the UAE, moving buyers to prepaid
 - [WhatsApp marketing rules in the UAE](https://nuevoautomations.com/guides/whatsapp-marketing-rules-uae/): Meta opt-in and opt-out, messaging limits, per-user caps, penalties, Cabinet Resolution 56 of 2024 and the PDPL
 - [WhatsApp Business app vs API](https://nuevoautomations.com/guides/whatsapp-business-app-vs-api/): devices, broadcasts, automation, pricing, coexistence, blue tick and Meta One
 - [How to get the WhatsApp green tick in the UAE](https://nuevoautomations.com/guides/whatsapp-green-tick-uae/): Official Business Account requirements on the API and Meta One verification for the app
