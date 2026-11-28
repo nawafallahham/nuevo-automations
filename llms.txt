@@ -78,6 +78,7 @@ Key facts:
 - [السلات المتروكة](https://nuevoautomations.com/ar/guides/whatsapp-abandoned-cart-recovery/): WhatsApp abandoned cart recovery, in Arabic
 - [شات بوت واتساب بالعربي](https://nuevoautomations.com/ar/guides/arabic-whatsapp-chatbot/): Arabic WhatsApp chatbots, in Arabic
 - [تكلفة شات بوت واتساب](https://nuevoautomations.com/ar/guides/whatsapp-chatbot-cost-uae/): WhatsApp chatbot cost in the UAE, in Arabic
+- [ربط شوبيفاي بواتساب](https://nuevoautomations.com/ar/guides/shopify-whatsapp-integration/): Shopify WhatsApp integration, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
