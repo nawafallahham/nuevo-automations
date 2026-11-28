@@ -83,6 +83,8 @@ Key facts:
 - [تكلفة شات بوت واتساب](https://nuevoautomations.com/ar/guides/whatsapp-chatbot-cost-uae/): WhatsApp chatbot cost in the UAE, in Arabic
 - [ربط شوبيفاي بواتساب](https://nuevoautomations.com/ar/guides/shopify-whatsapp-integration/): Shopify WhatsApp integration, in Arabic
 - [تصريح الإعلان العقاري في دبي](https://nuevoautomations.com/ar/guides/dubai-real-estate-ad-permit-whatsapp/): Dubai property ad permits and WhatsApp leads, in Arabic
+- [مساعد Meta لواتساب](https://nuevoautomations.com/ar/guides/meta-business-ai-whatsapp/): Meta Business AI vs a custom assistant, in Arabic
+- [طلبات واتساب للمطاعم](https://nuevoautomations.com/ar/guides/restaurant-whatsapp-ordering-uae/): WhatsApp ordering for UAE restaurants, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file
