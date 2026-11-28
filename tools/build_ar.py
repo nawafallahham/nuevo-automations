@@ -237,6 +237,22 @@ home_main = f"""    <section class="page-head" aria-labelledby="page-h">
       </div>
     </section>
 
+    <section class="band" aria-labelledby="guides-h">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
+          <h2 id="guides-h">أدلة بالعربية</h2>
+          <p>إجابات واضحة عن أكثر ما يسأل عنه أصحاب المتاجر في الإمارات عن واتساب للأعمال.</p>
+        </div>
+        <ul class="link-list link-list--col span-6 start-7">
+          <li><a class="link" href="/ar/guides/whatsapp-business-api-pricing-uae/">أسعار WhatsApp Business API في الإمارات</a></li>
+          <li><a class="link" href="/ar/guides/whatsapp-green-tick-uae/">كيف توثّق حساب واتساب للأعمال</a></li>
+          <li><a class="link" href="/ar/guides/bulk-whatsapp-messages-uae/">كيف ترسل رسائل واتساب جماعية بطريقة نظامية</a></li>
+          <li><a class="link" href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال على رقمك الخاص</a></li>
+          <li><a class="link" href="/guides/" hreflang="en">كل الأدلة (بالإنجليزية)</a></li>
+        </ul>
+      </div>
+    </section>
+
 {faq_block(HOME_FAQ, 'أسئلة قبل الحجز')}"""
 
 # ------------------------------------------------------------------ /ar/whatsapp-automation-uae/
