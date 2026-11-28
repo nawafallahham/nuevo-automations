@@ -901,3 +901,49 @@ A: سعر دولة رقم العميل المستلم. الرسائل إلى أ�
 
 Q: كم رسالة مجانية أحصل عليها؟
 A: منذ 1 أكتوبر 2026 يحصل كل رقم على 1,000 رسالة خدمة مجانية شهرياً. والمحادثات التي تبدأ من إعلان بنقرة إلى واتساب على الهاتف تفتح نافذة مجانية إذا رددت خلال 24 ساعة.
+
+## Instagram DM Automation Rules and Limits, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/instagram-dm-automation-rules/
+
+Meta's rules for automating Instagram DMs in 2026: the 24-hour window, the human agent tag, comment-to-DM private replies, rate limits and click-to-Direct ads.
+
+Automating Instagram DMs needs an Instagram professional account connected to a tool on Meta's Instagram messaging API, and the customer has to message first. You can reply freely, including with offers, for 24 hours after the customer's last message, or up to 7 days after their first message when the chat started from a click-to-Instagram-Direct ad. After that, a person can reply for up to 7 days using the human agent tag, but not with promotional content. A comment can get one private reply within 7 days. Bots must offer a way to reach a human and must not spam.
+
+Q: Is it allowed to automate Instagram DMs?
+A: Yes, through Meta's Instagram messaging API and the tools built on it, as long as the customer messages first, you reply inside Meta's windows, you offer a way to reach a person and you don't spam.
+
+Q: How long can I reply to an Instagram DM?
+A: Freely for 24 hours after the customer's last message, or up to 7 days after their first message if the chat came from a click-to-Instagram-Direct ad. A person can reply to a support issue for up to 7 days with the human agent tag, without promotions.
+
+Q: How does comment-to-DM work on Instagram?
+A: When someone comments on your post or reel, your tool can send one private reply to that comment within 7 days. If they reply, a normal 24-hour conversation window opens.
+
+Q: Is there a limit on automated Instagram DMs per hour?
+A: Meta's documentation sets API rate limits, such as 300 text messages per second per account and 750 private replies an hour on posts and reels. The often-quoted 200 DMs an hour isn't in Meta's documentation.
+
+Q: Should I sell on Instagram DMs or WhatsApp?
+A: Instagram has no message fees but no way to follow up for sales after the window closes. WhatsApp charges per message but lets you re-engage opted-in customers with templates. Many brands start on Instagram and close on WhatsApp.
+
+## ManyChat Pricing 2026 for UAE Brands, Plans Explained | Nuevo
+
+URL: https://nuevoautomations.com/guides/manychat-pricing/
+
+ManyChat's 2026 plans explained: Free, Essential, Pro, Business and Advanced, active contact limits, WhatsApp costs on top, and how it compares with WhatsApp platforms.
+
+Since 2 March 2026 ManyChat has five plans: Free (25 active contacts a month, 1 user), Essential at $17 a month or $14 billed annually (250 contacts, 2 users), Pro at $39 or $29 annually (2,500 contacts, 3 users), Business at $99 or $69 annually (7,500 contacts, 5 users) and Advanced at $199 or $139 annually (25,000 contacts, 10 users). An active contact is anyone you message or who messages you in a month, and extra contacts are charged per contact. Instagram, Messenger, TikTok and Telegram are on every plan; WhatsApp, SMS, email and AI features start on Pro. ManyChat says it adds no markup to Meta's WhatsApp message fees.
+
+Q: How much does ManyChat cost in 2026?
+A: ManyChat has a free plan for 25 active contacts a month. Paid plans are Essential at $17 a month ($14 annually), Pro at $39 ($29), Business at $99 ($69) and Advanced at $199 ($139), with more contacts and users at each step.
+
+Q: What is an active contact in ManyChat?
+A: Anyone you message or who messages you in a given month. Each plan includes a number of active contacts, and extra ones are charged per contact, from $0.10 on Essential down to $0.004 on Advanced.
+
+Q: Does ManyChat support WhatsApp?
+A: Yes, from the Pro plan up. You connect your own number or buy one through ManyChat and pay Meta's message fees from a ManyChat wallet; ManyChat says it doesn't mark them up.
+
+Q: Is ManyChat's AI free?
+A: In the plans introduced in March 2026, ManyChat's AI features are included from the Pro plan up instead of being sold as a separate add-on.
+
+Q: Is ManyChat good for UAE businesses?
+A: For Instagram-led selling, yes: comment-to-DM and story automations are its strength. If WhatsApp is where you close sales, compare WhatsApp-first platforms with stronger team inboxes and template tools.
