@@ -1208,3 +1208,72 @@ A: تطبيق واتساب الرسمي من Meta مجاني التثبيت وت
 
 Q: هل رسائل السلة المتروكة على واتساب خدمات أم تسويق؟
 A: تسويق. تذكر إرشادات Meta تذكيرات السلة ضمن التسويق حتى لو طلبها العميل، فتحتاج موافقة تسويقية وتُحاسَب بسعر التسويق.
+
+## Dubai Property Ad Permits and WhatsApp Leads, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/dubai-real-estate-ad-permit-whatsapp/
+
+Dubai property ads in 2026: the DLD Trakheesi ad permit, the Madmoun QR code, fines for violations, Abu Dhabi rules, and handling WhatsApp leads within them.
+
+Every property ad in Dubai needs a Real Estate Advertisement Permit from the Dubai Land Department, applied for through the Trakheesi system; the DLD lists a fee of AED 1,000 plus AED 20, and about one working day. Since 24 April 2023 each permit comes with a Madmoun QR code that must appear on the ad, and scanning it shows the approved advertiser and the property's status. Press reports describe fines of AED 50,000 per violation for brokers. In Abu Dhabi, Madhmoun permits through ADREC have been required for property ads since July 2025. Social media creators promoting property also need the UAE Advertiser Permit.
+
+Q: Do I need a permit to advertise property in Dubai?
+A: Yes. Every real estate advertisement in Dubai needs a permit from the Dubai Land Department through the Trakheesi system. The DLD lists the fee as AED 1,000 plus AED 20 per permit.
+
+Q: What is the Madmoun QR code?
+A: A QR code issued with every Dubai property advertising permit since 24 April 2023. It must appear on the ad, and scanning it shows the approved advertiser and whether the property is still available.
+
+Q: What is the fine for advertising property without a permit in Dubai?
+A: Press reports describe fines of AED 50,000 per violation, sometimes with suspension. Check the current penalty with the Dubai Land Department.
+
+Q: Do Abu Dhabi property ads need a permit?
+A: Yes. Madhmoun advertising permits through ADREC and the DARI platform have been required for property ads in Abu Dhabi since July 2025. ADGM has its own permit.
+
+Q: Can I use WhatsApp for property leads in Dubai?
+A: Yes. The ad that starts the chat needs its permit and QR code, the details you share should match it, and marketing messages should only go to people who opted in.
+
+## Google Ads to WhatsApp: Message Assets and Tracking | Nuevo
+
+URL: https://nuevoautomations.com/guides/google-ads-to-whatsapp/
+
+How to send Google Ads clicks to WhatsApp in 2026: message assets, the verification rules, landing pages, and tracking WhatsApp leads as Google Ads conversions.
+
+Google Ads can start WhatsApp chats through message assets, a beta feature that adds a WhatsApp button to Search and Performance Max ads. Google requires advertiser verification, a good policy history and an eligible industry, and the WhatsApp link must be verified, either by showing it on the website you advertise or by proving you own the domain. Once approved, a Leads from Messages conversion goal becomes available. Where message assets aren't available, the usual route is a landing page on your own domain with a clear WhatsApp button, tracked with GA4's outbound click events imported into Google Ads.
+
+Q: Can Google Ads open WhatsApp directly?
+A: Yes, through message assets, a beta feature that adds a WhatsApp button to Search and Performance Max ads. It needs advertiser verification, an eligible industry and a verified WhatsApp link.
+
+Q: Can I use a wa.me link as my Google Ads final URL?
+A: Google requires an ad's destination to match the ad's domain without redirecting to another domain, so a wa.me link as the final URL is risky. Use a landing page on your own domain with a WhatsApp button.
+
+Q: How do I track WhatsApp clicks from Google Ads?
+A: GA4 records outbound link clicks, including wa.me links. Mark them as a key event and import them into Google Ads, then record real leads and sales with the Google click ID for better optimisation.
+
+Q: Are Google message assets available in the UAE?
+A: Google's help pages don't list countries for message assets, which are in beta. Check eligibility in your Google Ads account.
+
+Q: Should I use Google or Meta to get WhatsApp leads?
+A: Google catches people already searching, with high intent but limited volume. Meta reaches people who weren't searching and opens WhatsApp directly. Most brands do best with both.
+
+## WhatsApp Ordering for UAE Restaurants vs Delivery Apps | Nuevo
+
+URL: https://nuevoautomations.com/guides/restaurant-whatsapp-ordering-uae/
+
+Taking restaurant orders on WhatsApp in the UAE: catalog and cart features, what delivery app commissions look like on the record, Dubai's 2025 transparency rules.
+
+UAE restaurants can take direct orders on WhatsApp with a catalog of up to 500 items and a cart that sends the whole order as one message; WhatsApp's cart doesn't take payment, so you add a payment link or cash on delivery. No delivery platform publishes a standard UAE commission rate. Figures on record vary widely, from Noon Food's Dubai SME offer starting at 10% to roughly 25% reported in 2020 press, and Deliveroo UAE introduced a monthly platform fee from February 2026. Dubai's 2025 circular on delivery platforms requires notice of changes and itemised statements but sets no commission cap.
+
+Q: Can restaurants take orders on WhatsApp in the UAE?
+A: Yes. The WhatsApp Business catalog holds up to 500 items and customers can send a whole cart as one message. Payment is handled with a payment link or cash on delivery.
+
+Q: How much commission do delivery apps charge restaurants in the UAE?
+A: No platform publishes a standard UAE rate. Documented figures range from Noon Food's Dubai SME offer starting at 10% to about 25% reported in 2020, and Deliveroo UAE added a monthly platform fee from February 2026. Ask for your own rate in writing.
+
+Q: Is there a cap on delivery app commissions in Dubai?
+A: No. Dubai's 2025 circular on delivery platforms requires transparency, such as 30 days' notice of changes and itemised statements, but sets no commission cap.
+
+Q: Does WhatsApp take payment for restaurant orders?
+A: Not in the UAE. WhatsApp's cart sends the order but doesn't take payment, so restaurants send a payment link or confirm cash on delivery.
+
+Q: Should restaurants leave the delivery apps for WhatsApp?
+A: Usually not. The apps bring new customers; WhatsApp works best for regulars and repeat orders, without a per-order commission.
