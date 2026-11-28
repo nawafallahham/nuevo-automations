@@ -104,13 +104,13 @@ URL: https://nuevoautomations.com/partners/
 
 The UAE brands we build and run WhatsApp sales systems for: BARQ Biomedical, Peak Labs, Khaleej ParaPharma, Afiya Labs, PeptiVA and Serum Cosmetics.
 
-## AI Marketing & Automation Agency, Dubai | Nuevo
+## AI Automation Agency in Dubai for Ads and WhatsApp | Nuevo
 
 URL: https://nuevoautomations.com/ai-automation-agency-dubai/
 
-A Dubai AI marketing agency running your Meta and Google ads, WhatsApp sales chats and reporting as one team, and how it differs from chatbot vendors.
+An AI automation agency for Dubai brands: we run your Meta and Google ads, the AI that answers the WhatsApp chats, and one report on the sales.
 
-An AI marketing agency combines paid advertising with AI-driven customer conversations and reports on the sales they produce. Nuevo Automations runs Meta click-to-WhatsApp ads and Google Ads, the M2S AI sales assistant that replies to the chats those ads start, and a monthly report linking each sale back to the ad behind it.
+An AI automation agency in Dubai sets up AI that does work your team does by hand; an AI marketing agency adds the ads that bring the customers in. We do both for sales: we run the ads, the AI that answers the chats they start, and the report on what sold. Nuevo Automations runs Meta click-to-WhatsApp ads and Google Ads, the M2S AI sales assistant that replies to the chats those ads start, and a monthly report linking each sale back to the ad behind it.
 
 Q: How is an AI marketing agency different from a software vendor?
 A: A software vendor sells you the tool. We run the Meta and Google ads, the AI conversation on WhatsApp and the follow-ups ourselves, and report on the sales they produce.
@@ -121,16 +121,22 @@ A: A free 30-minute audit, a written fixed monthly quote, setup and testing, lau
 Q: Do you have case studies from customers?
 A: Yes. Partner brands report 50–60% more revenue from the same traffic after full rollout. Khaleej ParaPharma has seen up to 30x return on ad spend, and Peak Labs gets 53% more orders a month with 74% of chats handled without a person. See the results page
 
+Q: What does an AI automation agency do?
+A: It sets up AI to handle work your team does by hand, such as answering customer messages, qualifying leads, following up and booking. We focus on sales: the AI answers the WhatsApp chats your ads start, closes orders and follows up, and we run the ads too.
+
+Q: Are you based in Dubai?
+A: Nuevo Automations is registered in Sharjah Publishing City Free Zone and works with brands across the UAE, including Dubai, mostly over Zoom and WhatsApp. The audit is on Zoom, in English or Arabic.
+
 Q: Who pays for the ads, and is it in the price?
 A: You do, directly to Meta or Google, so you always see exactly what the ads cost. Our fee is separate and fixed.
 
-## WhatsApp Business API Automation, UAE | Nuevo Automations
+## WhatsApp Automation in Dubai & UAE, Business API | Nuevo
 
 URL: https://nuevoautomations.com/whatsapp-automation-uae/
 
 WhatsApp Business API automation in the UAE on your own number: the 24-hour reply window, Meta-approved templates, opt-in and opt-out, handled for you.
 
-WhatsApp automation means replying to, qualifying and following up with customers on WhatsApp by software rather than by hand. For a business, it runs on the official WhatsApp Business API, which allows an AI assistant, team inboxes and Meta-approved message templates. Messages outside the 24-hour customer-service window must use those templates, and customers must be able to opt out.
+WhatsApp automation means replying to, qualifying and following up with customers on WhatsApp by software rather than by hand. For a business, it runs on the official WhatsApp Business API, which allows an AI assistant, team inboxes and Meta-approved message templates. Messages outside the 24-hour customer-service window must use those templates, and customers must be able to opt out. We set this up for brands in Dubai, Abu Dhabi, Sharjah and the other emirates, on their own number.
 
 Q: Do I lose my WhatsApp chat history when moving to the API?
 A: Your customers keep the same number and their side of the conversation. During the audit we check your current setup and explain what moves over before anything changes.
@@ -167,13 +173,13 @@ A: Because the payment link, cash-on-delivery order, booking and follow-ups run 
 Q: Does it reply to story replies?
 A: Yes. Replies and questions on your stories are answered in the DM in seconds, in English or Arabic.
 
-## AI Sales Chatbot Development, UAE | Nuevo Automations
+## AI Chatbot Development in Dubai & UAE, for Sales | Nuevo
 
 URL: https://nuevoautomations.com/ai-chatbot-development-uae/
 
 How we build AI sales chatbots in the UAE: trained on your products, prices and policies, with guardrails, English and Arabic, and testing before launch.
 
-An AI sales chatbot is a chat assistant that answers buying questions, recommends products and closes the sale in the conversation. A well-built one works only from the business's own catalogue, prices and policies, refuses to make anything up, replies in the customer's language, and passes anything it cannot answer to a person with a summary of the chat.
+An AI sales chatbot is a chat assistant that answers buying questions, recommends products and closes the sale in the conversation. A well-built one works only from the business's own catalogue, prices and policies, refuses to make anything up, replies in the customer's language, and passes anything it cannot answer to a person with a summary of the chat. We build and run these chatbots for brands in Dubai and across the UAE, on WhatsApp and website chat, in English and Arabic.
 
 Q: What do you need from us to build the chatbot?
 A: Your products or services, prices, delivery or booking terms, opening hours and policies such as returns. We turn that into the information the assistant answers from and check it with you.
