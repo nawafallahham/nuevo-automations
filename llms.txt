@@ -47,6 +47,8 @@ Key facts:
 - [Wati alternatives](https://nuevoautomations.com/guides/wati-alternatives/): ten WhatsApp platforms compared on price, users, AI and Meta fee markups
 - [WhatsApp marketing rules in the UAE](https://nuevoautomations.com/guides/whatsapp-marketing-rules-uae/): Meta opt-in and opt-out, messaging limits, per-user caps, penalties, Cabinet Resolution 56 of 2024 and the PDPL
 - [WhatsApp Business app vs API](https://nuevoautomations.com/guides/whatsapp-business-app-vs-api/): devices, broadcasts, automation, pricing, coexistence, blue tick and Meta One
+- [How to get the WhatsApp green tick in the UAE](https://nuevoautomations.com/guides/whatsapp-green-tick-uae/): Official Business Account requirements on the API and Meta One verification for the app
+- [Sending bulk WhatsApp messages in the UAE](https://nuevoautomations.com/guides/bulk-whatsapp-messages-uae/): broadcast lists, business broadcasts, API templates, limits, cost and consent
 
 ## Industries
 - [Online stores](https://nuevoautomations.com/ecommerce-automation-uae/)
