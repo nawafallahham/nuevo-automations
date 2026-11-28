@@ -51,6 +51,7 @@ Key facts:
 - [Meta Business AI on WhatsApp vs a custom assistant](https://nuevoautomations.com/guides/meta-business-ai-whatsapp/): what Meta Business Agent does, US$2 per million tokens, excluded industries including Health, limits
 - [WhatsApp Flows](https://nuevoautomations.com/guides/whatsapp-flows/): in-chat forms for leads, bookings and product choice, how they are sent, device support and limits
 - [Cash on delivery confirmation on WhatsApp](https://nuevoautomations.com/guides/cash-on-delivery-whatsapp-confirmation-uae/): utility template rules, a confirmation flow, COD trends in the UAE, moving buyers to prepaid
+- [Clinic marketing and WhatsApp rules in the UAE](https://nuevoautomations.com/guides/clinic-marketing-whatsapp-uae/): DHA social media standards and banned words, MOHAP ad licences, the health data law, WhatsApp reminders, Meta health ad rules
 - [Dubai property ad permits and WhatsApp leads](https://nuevoautomations.com/guides/dubai-real-estate-ad-permit-whatsapp/): DLD Trakheesi permit, Madmoun QR code, enforcement, Abu Dhabi rules, WhatsApp lead handling
 - [Google Ads to WhatsApp](https://nuevoautomations.com/guides/google-ads-to-whatsapp/): message assets (beta), verification, landing pages, tracking WhatsApp leads as conversions
 - [WhatsApp ordering for UAE restaurants](https://nuevoautomations.com/guides/restaurant-whatsapp-ordering-uae/): catalog and cart limits, documented delivery app fees, Dubai 2025 transparency circular

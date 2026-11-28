@@ -1420,3 +1420,26 @@ A: تقدّرها EZDubai مع Euromonitor بـ42.2 مليار درهم في 202
 
 Q: هل ما زال الدفع عند الاستلام شائعاً في الإمارات؟
 A: في تراجع. ذكرت Checkout.com أن استخدامه في الإمارات انخفض 53% منذ 2020، وتذكر Visa أن 55% من مدفوعات البطاقات المحلية باتت عبر الإنترنت أو التطبيقات.
+
+## Clinic Marketing and WhatsApp Rules in the UAE, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/clinic-marketing-whatsapp-uae/
+
+Clinic marketing rules in the UAE for 2026: DHA social media standards and banned words, MOHAP ad licences, health data law, WhatsApp reminders and Meta ad rules.
+
+UAE clinics have three sets of rules to follow. The Dubai Health Authority's standards for medical advertising on social media, re-issued in August 2026, cover WhatsApp alongside Instagram and TikTok, ban words such as "100%", "no side effects", "the best" and "immediate results", require written patient consent for testimonials and images, and allow before-and-after photos only of the same person, unedited, with a results-may-vary statement. MOHAP issues healthcare advertising licences, including one for social media. Federal Law No. 2 of 2019 limits storing or transferring health data outside the UAE, so WhatsApp messages should carry appointment logistics, not clinical details.
+
+Q: Can clinics in Dubai advertise on WhatsApp and Instagram?
+A: Yes, within the DHA's standards for medical advertising on social media, which name WhatsApp, Instagram, TikTok and others. Claims must be accurate, banned words avoided, and patient images and testimonials need written consent.
+
+Q: Which words are banned in Dubai clinic ads?
+A: Press reports of the DHA's August 2026 circular list words such as "the best", "unique", "safest", "the only", "miraculous", "100%", "no side effects" and "immediate results", along with comparisons like "safer than".
+
+Q: Are before-and-after photos allowed in UAE clinic ads?
+A: Under DHA's standards, only of the same person with the same lens and no editing, with a clear statement that results may vary and the risks. Meta separately restricts some before-and-after content.
+
+Q: Can a clinic send appointment reminders on WhatsApp?
+A: Yes, with the patient's opt-in. Keep reminders to date, time and location; UAE law restricts storing or transferring health data outside the country, so clinical details belong in your UAE-hosted system.
+
+Q: Do clinics need a licence to advertise on social media in the UAE?
+A: MOHAP lists a healthcare advertising licence for social media, and DHA's 2022 standard requires the licence number on the facility's official account. Abu Dhabi's DoH runs its own system. Confirm with your authority.
