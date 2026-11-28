@@ -267,3 +267,5 @@ html[dir="rtl"] .prose-table th, html[dir="rtl"] .prose-table td { text-align: r
 html[dir="rtl"] .nav__bar > .nav__actions:last-child { margin-left: 0; margin-right: auto; }
 html[dir="rtl"] .consent { left: auto; right: var(--s-4); }
 .lang-switch { font-size: var(--t-small); }
+html[dir="rtl"] .link::after { content: "\2190"; }
+html[dir="rtl"] .link:hover::after, html[dir="rtl"] .link:focus-visible::after { transform: translateX(-3px); }

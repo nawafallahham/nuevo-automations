@@ -248,6 +248,8 @@ home_main = f"""    <section class="page-head" aria-labelledby="page-h">
           <li><a class="link" href="/ar/guides/click-to-whatsapp-ads/">إعلانات النقر إلى واتساب: كيف تجعلها تبيع</a></li>
           <li><a class="link" href="/ar/guides/whatsapp-abandoned-cart-recovery/">استرجاع السلات المتروكة عبر واتساب</a></li>
           <li><a class="link" href="/ar/guides/whatsapp-business-api-pricing-uae/">أسعار WhatsApp Business API في الإمارات</a></li>
+          <li><a class="link" href="/ar/guides/arabic-whatsapp-chatbot/">شات بوت واتساب بالعربي</a></li>
+          <li><a class="link" href="/ar/guides/whatsapp-chatbot-cost-uae/">كم تكلفة شات بوت واتساب؟</a></li>
           <li><a class="link" href="/ar/guides/whatsapp-green-tick-uae/">كيف توثّق حساب واتساب للأعمال</a></li>
           <li><a class="link" href="/ar/guides/bulk-whatsapp-messages-uae/">كيف ترسل رسائل واتساب جماعية بطريقة نظامية</a></li>
           <li><a class="link" href="/ar/guides/whatsapp-business-app-vs-api/">الفرق بين تطبيق واتساب للأعمال وواتساب API</a></li>
@@ -356,12 +358,13 @@ def guide_main(crumb, h1, lead, answer, body, faqs, faq_h, lead_key):
 {faq_block(faqs, faq_h)}
 
     <section class="band" aria-labelledby="cta-h">
-      <div class="wrap">
-        <div class="stack-4">
+      <div class="wrap grid">
+        <div class="span-5 stack-4">
         <h2 id="cta-h">تريد أن نتولى ذلك لعلامتك؟</h2>
         <p>ندير إعلانات Meta وGoogle إلى واتساب لعلامات العافية والمكملات في الإمارات، ويُتمّ M2S البيع داخل المحادثة. الخطوة الأولى تدقيق مجاني لمدة 30 دقيقة.</p>
 {cta(lead_key)}
         </div>
+        <!--related-->
       </div>
     </section>"""
 
@@ -946,6 +949,14 @@ PAGES = [
 ]
 
 ARTICLES = {}
+# every Arabic guide links the others
+for _i, _g in enumerate(GUIDE_PAGES):
+    _rel = "\n".join(f'          <li><a class="link" href="{o[0]}">{e(o[6])}</a></li>' for o in GUIDE_PAGES if o[0] != _g[0])
+    _block = f"""<ul class="link-list link-list--col span-6 start-7" aria-label="أدلة ذات صلة">
+{_rel}
+          <li><a class="link" href="/ar/guides/">كل الأدلة بالعربية</a></li>
+        </ul>"""
+    GUIDE_PAGES[_i] = (_g[0], _g[1], _g[2], _g[3], _g[4].replace("<!--related-->", _block), _g[5], _g[6])
 for path, en_path, title, desc, main, faqs, h1 in GUIDE_PAGES:
     bc = [("الرئيسية", "/ar/"), (h1, path)]
     PAGES.append((path, en_path, title, desc, main, faqs, bc))
