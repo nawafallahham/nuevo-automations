@@ -253,3 +253,17 @@ html { -webkit-tap-highlight-color: transparent; }
   .vsl__overlay-box { width: 78%; }
   .vsl__hint { font-size: 12px; }
 }
+
+/* Arabic pages (/ar/): right to left. Arabic-capable system fonts (the Funnel faces
+   are Latin only), no negative tracking on Arabic headings, and mirrored list,
+   table and nav spacing. Grid and flex layouts mirror on their own. */
+html[dir="rtl"] { --font-display: "Noto Kufi Arabic", "Geeza Pro", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --font-text: "Noto Sans Arabic", "Geeza Pro", "Segoe UI", Tahoma, system-ui, sans-serif; }
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] .t-lead, html[dir="rtl"] .nav__link { letter-spacing: 0; }
+html[dir="rtl"] h1, html[dir="rtl"] h2 { line-height: 1.35; }
+html[dir="rtl"] body { line-height: 1.75; }
+html[dir="rtl"] .band .prose ul, html[dir="rtl"] .band .prose ol { padding-left: 0; padding-right: 1.25em; }
+html[dir="rtl"] .prose-table th, html[dir="rtl"] .prose-table td { text-align: right; padding: var(--s-3) 0 var(--s-3) var(--s-4); }
+html[dir="rtl"] .nav__bar > .nav__actions:last-child { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .consent { left: auto; right: var(--s-4); }
+.lang-switch { font-size: var(--t-small); }

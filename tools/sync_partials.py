@@ -82,7 +82,7 @@ def main():
     header = plain_header(BLOCKS["header"].search(src).group(0))
     footer = BLOCKS["footer"].search(src).group(0)
 
-    pages = [ROOT / "404.html"] + sorted(ROOT.glob("*/index.html")) + sorted(ROOT.glob("results/*/index.html")) + sorted(ROOT.glob("guides/*/index.html")) + sorted(ROOT.glob("wellness-brands/*/index.html"))
+    pages = [ROOT / "404.html"] + sorted(ROOT.glob("*/index.html")) + sorted(ROOT.glob("results/*/index.html")) + sorted(ROOT.glob("guides/*/index.html")) + sorted(ROOT.glob("wellness-brands/*/index.html")) + sorted(ROOT.glob("ar/*/index.html"))
     changed = []
     for page in pages:
         if page == SOURCE:

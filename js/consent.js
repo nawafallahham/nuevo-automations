@@ -139,13 +139,20 @@
     var box = document.createElement('div');
     box.className = 'consent';
     box.setAttribute('role', 'region');
-    box.setAttribute('aria-label', 'Cookie consent');
-    box.innerHTML =
-      '<p>We use cookies to measure our ads and how the site is used. <a href="/privacy/">Privacy policy</a></p>' +
-      '<div class="consent-row">' +
-      '<button type="button" class="btn btn--primary consent-yes">Accept</button>' +
-      '<button type="button" class="btn btn--primary consent-no">Decline</button>' +
-      '</div>';
+    // Arabic pages (/ar/) get the same notice in Arabic.
+    var ar = document.documentElement.lang === 'ar';
+    box.setAttribute('aria-label', ar ? 'الموافقة على ملفات تعريف الارتباط' : 'Cookie consent');
+    box.innerHTML = ar
+      ? '<p>نستخدم ملفات تعريف الارتباط لقياس إعلاناتنا وطريقة استخدام الموقع. <a href="/privacy/">سياسة الخصوصية</a></p>' +
+        '<div class="consent-row">' +
+        '<button type="button" class="btn btn--primary consent-yes">موافق</button>' +
+        '<button type="button" class="btn btn--primary consent-no">رفض</button>' +
+        '</div>'
+      : '<p>We use cookies to measure our ads and how the site is used. <a href="/privacy/">Privacy policy</a></p>' +
+        '<div class="consent-row">' +
+        '<button type="button" class="btn btn--primary consent-yes">Accept</button>' +
+        '<button type="button" class="btn btn--primary consent-no">Decline</button>' +
+        '</div>';
     // after the header, so keyboard and screen reader users reach it early
     var header = document.querySelector('body > header');
     if (header) header.insertAdjacentElement('afterend', box);

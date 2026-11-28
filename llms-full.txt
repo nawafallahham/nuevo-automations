@@ -233,7 +233,7 @@ A: Yes, if you want one. It sends a card payment link from your payment provider
 Q: Does it take bookings at night?
 A: Yes. Requests that arrive after hours are answered in seconds and booked into real free times, and your team gets a WhatsApp alert for each new booking.
 
-## n8n, Make & Zapier Integrations, UAE | Nuevo Automations
+## n8n, Make & Zapier Automation Experts, UAE | Nuevo
 
 URL: https://nuevoautomations.com/n8n-make-zapier-automation-uae/
 
@@ -333,7 +333,7 @@ A: Yes. Packages and courses from your menu are explained in the chat, and can b
 Q: How does it reduce booking no-shows?
 A: It sends a reminder before each appointment with an easy way to confirm or move it, and can take a deposit for services you choose.
 
-## Real Estate Lead Automation, Dubai | Nuevo Automations
+## Real Estate AI Automation, Dubai: Lead Follow-up | Nuevo
 
 URL: https://nuevoautomations.com/real-estate-automation-dubai/
 
@@ -746,3 +746,52 @@ A: The free Official Business Account badge is only for API numbers with a verif
 
 Q: Why can't my broadcast reach some customers?
 A: In the WhatsApp Business app, broadcasts only reach people who have saved your number, up to 256 per list. To reach everyone who opted in, you need API templates or the app's paid business broadcasts where available.
+
+## مبيعات واتساب بالذكاء الاصطناعي لعلامات المكملات في الإمارات | Nuevo
+
+URL: https://nuevoautomations.com/ar/
+
+ندير إعلانات Meta وGoogle إلى واتساب لعلامات العافية والمكملات في الإمارات، ويرد M2S خلال ثوانٍ ويُتمّ البيع ويتابع. احجز تدقيقاً مجانياً لمدة 30 دقيقة.
+
+M2S (من الرسالة إلى البيع) نظام مبيعات على واتساب: إعلانات Meta بنقرة إلى واتساب تجلب المشتري إلى المحادثة، ومساعد بالذكاء الاصطناعي مدرَّب على منتجاتك وأسعارك وسياساتك يجيب ويُتمّ الطلب برابط دفع أو بالدفع عند الاستلام، ثم يتابع السلال المتروكة وروابط الدفع غير المدفوعة والعملاء الصامتين. يعمل على رقم واتساب الخاص بك، وتحصل على تقرير شهري بالمحادثات والطلبات والإيرادات.
+
+Q: لماذا نرسل الإعلانات إلى واتساب بدل الموقع؟
+A: مشتري المكملات الغذائية يسأل قبل أن يدفع: عن المكونات والجرعة والتوصيل. صفحة الهبوط لا تجيبه، أما في واتساب فيحصل على الإجابة خلال ثوانٍ ويدفع في المحادثة نفسها.
+
+Q: كم تكلفة M2S؟
+A: رسوم شهرية ثابتة واحدة، نرسلها مكتوبة بعد التدقيق المجاني. ميزانية الإعلانات تدفعها مباشرة إلى Meta أو Google وليست ضمن رسومنا.
+
+Q: هل أحتاج إلى رقم واتساب جديد؟
+A: لا. يعمل M2S على رقمك الحالي، ويستمر فريقك في استخدام تطبيق واتساب للتدخل في أي محادثة.
+
+Q: هل يرد المساعد بالعربية؟
+A: نعم. يرد بالعربية أو الإنجليزية، باللغة التي يكتب بها العميل.
+
+Q: ماذا يفعل المساعد إذا لم يعرف الإجابة؟
+A: لا يخترع أسعاراً أو منتجات أبداً. يحوّل المحادثة إلى فريقك فوراً مع تنبيه على واتساب وملخص للمحادثة.
+
+Q: هل تضمنون النتائج؟
+A: لا. نضمن أن كل محادثة تحصل على رد خلال ثوانٍ وأن كل مشترٍ صامت يحصل على متابعة، ويُظهر التقرير الشهري ما الذي عاد من مبيعات.
+
+## أتمتة واتساب للأعمال في الإمارات ودبي | WhatsApp API | Nuevo
+
+URL: https://nuevoautomations.com/ar/whatsapp-automation-uae/
+
+أتمتة مبيعات واتساب في الإمارات على رقمك الخاص: WhatsApp Business API، نافذة الـ24 ساعة، القوالب المعتمدة، الموافقة وإيقاف الرسائل، ومساعد ذكاء اصطناعي بالعربية.
+
+أتمتة واتساب تعني الرد على العملاء وتأهيلهم ومتابعتهم عبر برنامج بدل العمل اليدوي. للأعمال، تعمل على WhatsApp Business API الرسمية، التي تتيح مساعداً بالذكاء الاصطناعي وصندوق وارد للفريق وقوالب رسائل تعتمدها Meta. الرسائل خارج نافذة خدمة العملاء (24 ساعة) يجب أن تستخدم تلك القوالب، ويجب أن يتمكن العميل دائماً من إيقاف الرسائل.
+
+Q: ما الفرق بين تطبيق واتساب للأعمال وWhatsApp Business API؟
+A: التطبيق مجاني ويعمل على هاتف واحد مع حتى أربعة أجهزة مرتبطة، وقوائم البث فيه محدودة بـ256 جهة اتصال حفظت رقمك. أما الـAPI فيتيح عدداً غير محدود من الموظفين ومساعداً بالذكاء الاصطناعي ورسائل قوالب معتمدة لكل من وافق على استلامها، وتحاسب Meta عليه لكل رسالة.
+
+Q: هل أحتفظ برقمي الحالي؟
+A: نعم. يمكن ربط رقمك الحالي بالـAPI، ومع ميزة التعايش من Meta يستمر فريقك في استخدام تطبيق واتساب للأعمال على الرقم نفسه.
+
+Q: كم تكلفة رسائل واتساب في الإمارات؟
+A: تحاسب Meta لكل رسالة مُسلَّمة حسب الفئة (تسويق، خدمات، مصادقة، خدمة عملاء) وحسب دولة العميل، وللإمارات سعر خاص يمكن دفعه بالدرهم منذ أبريل 2026. لكل رقم 1,000 رسالة خدمة مجانية شهرياً، والمحادثات التي تبدأ من إعلان بنقرة إلى واتساب مجانية لمدة تصل إلى 7 أيام إذا رددت خلال 24 ساعة.
+
+Q: هل يجب أن يوافق العميل قبل أن أراسله؟
+A: نعم. تشترط Meta موافقة واضحة تذكر اسم نشاطك، ويجب احترام أي طلب لإيقاف الرسائل. والقانون الإماراتي لحماية البيانات الشخصية يشترط الموافقة لمعالجة البيانات مع استثناءات محددة.
+
+Q: هل يفهم المساعد اللهجة الخليجية؟
+A: يرد M2S بالعربية والإنجليزية حسب لغة العميل، ونختبره قبل الإطلاق برسائل حقيقية من عملائك، بما فيها اللهجة الخليجية والرسائل المختلطة بالعربية والإنجليزية.
