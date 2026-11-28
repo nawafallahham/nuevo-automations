@@ -269,3 +269,10 @@ html[dir="rtl"] .consent { left: auto; right: var(--s-4); }
 .lang-switch { font-size: var(--t-small); }
 html[dir="rtl"] .link::after { content: "\2190"; }
 html[dir="rtl"] .link:hover::after, html[dir="rtl"] .link:focus-visible::after { transform: translateX(-3px); }
+
+/* /ecommerce-brands/: the qualifying form sits in the hero, beside the copy */
+.lp-form { align-self: start; padding: var(--s-6); background: var(--p-surface); border-radius: var(--r-lg); scroll-margin-top: calc(var(--nav) + var(--s-4)); }
+.lp-form > h2 { margin: 0; }
+.lp-form > p { margin-top: var(--s-2); }
+.lp-form .cal-embed { margin-top: var(--s-5); }
+@media (max-width: 767px) { .lp-form { margin-top: var(--s-7); padding: var(--s-5); } }
