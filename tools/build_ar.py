@@ -68,7 +68,7 @@ FOOTER = """  <footer class="footer closing footer--dark ground-inverse g2m" id=
             <p class="footer__lede">إعلانات Meta وGoogle تجلب المشترين إلى واتساب، وM2S، مساعد المبيعات بالذكاء الاصطناعي الذي يُتمّ البيع داخل المحادثة.</p>
             <p class="t-small"><span translate="no">Nuevo Automations FZE LLC</span><br>مركز الأعمال، المنطقة الحرة لمدينة الشارقة للنشر<br>الشارقة، الإمارات · رقم الرخصة 4431808.01</p>
           </div>
-          <div class="span-2 footer__col"><h3>بالعربية</h3><ul><li><a href="/ar/">الصفحة الرئيسية</a></li><li><a href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال</a></li><li><a href="/ar/guides/whatsapp-green-tick-uae/">توثيق واتساب للأعمال</a></li><li><a href="/ar/guides/bulk-whatsapp-messages-uae/">رسائل واتساب جماعية</a></li><li><a href="/ar/guides/whatsapp-business-api-pricing-uae/">أسعار واتساب API</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>بالعربية</h3><ul><li><a href="/ar/">الصفحة الرئيسية</a></li><li><a href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال</a></li><li><a href="/ar/guides/whatsapp-green-tick-uae/">توثيق واتساب للأعمال</a></li><li><a href="/ar/guides/bulk-whatsapp-messages-uae/">رسائل واتساب جماعية</a></li><li><a href="/ar/guides/whatsapp-business-api-pricing-uae/">أسعار واتساب API</a></li><li><a href="/ar/guides/whatsapp-business-app-vs-api/">واتساب للأعمال أم API</a></li></ul></div>
           <div class="span-2 footer__col" lang="en" dir="ltr"><h3>In English</h3><ul><li><a href="/">Home</a></li><li><a href="/m2s/">How M2S works</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/guides/">Guides</a></li></ul></div>
           <div class="span-2 footer__col"><h3>تواصل معنا</h3><ul><li><a href="https://wa.me/15557738409" target="_blank" rel="noopener">واتساب <span dir="ltr">+1 555-773-8409</span></a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">البريد الإلكتروني</a></li><li><a href="https://www.instagram.com/nuevoautomations/" target="_blank" rel="noopener me">Instagram</a></li><li><a href="https://www.linkedin.com/company/nuevoautomations/" target="_blank" rel="noopener me">LinkedIn</a></li></ul></div>
         </div>
@@ -247,6 +247,7 @@ home_main = f"""    <section class="page-head" aria-labelledby="page-h">
           <li><a class="link" href="/ar/guides/whatsapp-business-api-pricing-uae/">أسعار WhatsApp Business API في الإمارات</a></li>
           <li><a class="link" href="/ar/guides/whatsapp-green-tick-uae/">كيف توثّق حساب واتساب للأعمال</a></li>
           <li><a class="link" href="/ar/guides/bulk-whatsapp-messages-uae/">كيف ترسل رسائل واتساب جماعية بطريقة نظامية</a></li>
+          <li><a class="link" href="/ar/guides/whatsapp-business-app-vs-api/">الفرق بين تطبيق واتساب للأعمال وواتساب API</a></li>
           <li><a class="link" href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال على رقمك الخاص</a></li>
           <li><a class="link" href="/guides/" hreflang="en">كل الأدلة (بالإنجليزية)</a></li>
         </ul>
@@ -294,7 +295,7 @@ wa_main = f"""    <section class="page-head" aria-labelledby="page-h">
 <tr><td>الوصول إلى العملاء</td><td>قوائم بث حتى 256 شخصاً حفظوا رقمك</td><td>قوالب معتمدة لكل من وافق، ضمن حد الرسائل اليومي</td></tr>
 <tr><td>الأتمتة</td><td>رسائل ترحيب وغياب وردود سريعة</td><td>مساعد ذكاء اصطناعي، متابعات، ربط بالمتجر وأنظمة CRM</td></tr>
 </tbody></table></div>
-<p>للتفاصيل الكاملة بالإنجليزية: <a href="/guides/whatsapp-business-app-vs-api/" hreflang="en">WhatsApp Business app vs API</a>.</p>
+<p>للتفاصيل الكاملة: <a href="/ar/guides/whatsapp-business-app-vs-api/">الفرق بين تطبيق واتساب للأعمال وWhatsApp Business API</a>.</p>
 
 <h2>نافذة الـ24 ساعة والقوالب المعتمدة</h2>
 <p>عندما يراسلك العميل تُفتح نافذة خدمة مدتها 24 ساعة، وتستطيع الرد بحرية داخلها. خارجها لا يمكنك إرسال إلا قوالب معتمدة من Meta في ثلاث فئات: التسويق (العروض وتذكير السلة المتروكة)، والخدمات (تأكيد الطلب والشحن دون أي ترويج)، والمصادقة (رموز التحقق فقط).</p>
@@ -504,6 +505,58 @@ PRICE_FAQ = [
     ("كم رسالة مجانية أحصل عليها؟", "منذ 1 أكتوبر 2026 يحصل كل رقم على 1,000 رسالة خدمة مجانية شهرياً. والمحادثات التي تبدأ من إعلان بنقرة إلى واتساب على الهاتف تفتح نافذة مجانية إذا رددت خلال 24 ساعة."),
 ]
 
+APPAPI_H1 = "الفرق بين تطبيق واتساب للأعمال وWhatsApp Business API في 2026"
+APPAPI_DESC = "تطبيق واتساب للأعمال أم WhatsApp Business API؟ الأجهزة، البث، الأتمتة، التكلفة، التعايش على رقم واحد، علامة التوثيق وMeta One، بحسب Meta في 2026."
+APPAPI_ANSWER = "تطبيق واتساب للأعمال مجاني، ويعمل على هاتف واحد مع حتى أربعة أجهزة مرتبطة (عشرة مع ميزة تعدد الموظفين)، وفيه ردود سريعة ورسائل ترحيب وقوائم بث حتى 256 شخصاً يجب أن يكونوا قد حفظوا رقمك. أما WhatsApp Business API فليس لها صندوق وارد خاص، لذلك تُستخدم عبر منصة، لكنها تتيح عدداً غير محدود من الموظفين ومساعدات ذكاء اصطناعي وقوالب معتمدة لكل من وافق على استلام رسائلك وربطاً بالمتجر، وتحاسب Meta لكل رسالة. وميزة التعايش تتيح استخدام الاثنين على الرقم نفسه."
+APPAPI_BODY = """
+<h2>مقارنة سريعة</h2>
+<div class="prose-table"><table>
+<thead><tr><th></th><th>تطبيق واتساب للأعمال</th><th>WhatsApp Business API</th></tr></thead>
+<tbody>
+<tr><td>التكلفة</td><td>مجاني، والرسائل منه مجانية</td><td>تحاسب Meta لكل رسالة مُسلَّمة حسب الفئة والدولة، إضافة إلى رسوم المنصة</td></tr>
+<tr><td>الموظفون والأجهزة</td><td>هاتف واحد وحتى 4 أجهزة مرتبطة، و10 مع تعدد الموظفين</td><td>حسب ما تسمح به المنصة</td></tr>
+<tr><td>الوصول إلى العملاء</td><td>قوائم بث حتى 256 شخصاً حفظوا رقمك، وبث مدفوع في بعض الدول</td><td>قوالب معتمدة لكل من وافق، ضمن حد الرسائل اليومي</td></tr>
+<tr><td>الأتمتة</td><td>رسائل ترحيب وغياب وردود سريعة ومساعد Meta</td><td>مساعدات ذكاء اصطناعي، متابعات، ربط بالمتجر وأنظمة CRM</td></tr>
+<tr><td>التوثيق</td><td>علامة توثيق مدفوعة عبر Meta One</td><td>حساب أعمال رسمي مجاني إذا استوفيت الشروط</td></tr>
+</tbody></table></div>
+
+<h2>متى يكفي التطبيق المجاني</h2>
+<ul>
+<li>شخص أو اثنان يردان على كل المحادثات.</li>
+<li>عدد محادثات قليل يومياً.</li>
+<li>لا تعلن بكثافة لإرسال الناس إلى واتساب.</li>
+<li>لا تحتاج رسائل تلقائية عند ترك السلة أو عدم الدفع.</li>
+</ul>
+
+<h2>متى تحتاج الـAPI</h2>
+<ul>
+<li>تعلن بإعلانات تنقل إلى واتساب والمحادثات أسرع من قدرة فريقك على الرد.</li>
+<li>تريد مساعداً بالذكاء الاصطناعي يرد خلال ثوانٍ ليلاً ونهاراً بالعربية والإنجليزية.</li>
+<li>تريد متابعات تلقائية للسلال المتروكة وروابط الدفع غير المدفوعة.</li>
+<li>تريد إرسال المبيعات من المحادثات إلى Meta لقياس العائد الحقيقي للإعلانات.</li>
+</ul>
+
+<h2>التعايش: التطبيق والـAPI على رقم واحد</h2>
+<p>تسمح Meta الآن بربط رقم تطبيق واتساب للأعمال الحالي بالـCloud API عبر شريك، مع الاستمرار في استخدام التطبيق. بحسب وثائق Meta:</p>
+<ul>
+<li>تحتاج إصدار التطبيق 2.24.17 أو أحدث، والربط يتم عبر شريك معتمد من Meta.</li>
+<li>يُستورد حتى 180 يوماً من سجل المحادثات الفردية، وتبقى المحادثات متزامنة.</li>
+<li>الرسائل من التطبيق تبقى مجانية، ورسائل الـAPI بالسعر المعتاد.</li>
+<li>القيود: سرعة ثابتة 20 رسالة في الثانية، قوائم البث للقراءة فقط، المجموعات لا تتزامن، وحتى 4 أجهزة مرافقة.</li>
+<li>إذا توقف الهاتف الرئيسي عن العمل نحو 14 يوماً ينقطع الربط.</li>
+</ul>
+
+<h2>كم تكلفة الـAPI؟</h2>
+<p>منذ 1 يوليو 2025 تحاسب Meta لكل رسالة مُسلَّمة حسب الفئة ودولة العميل، ولكل رقم 1,000 رسالة خدمة مجانية شهرياً، والمحادثات من إعلانات واتساب مجانية حتى 7 أيام إذا رددت خلال 24 ساعة. التفاصيل في <a href="/ar/guides/whatsapp-business-api-pricing-uae/">دليل أسعار واتساب API</a>، وعن التوثيق في <a href="/ar/guides/whatsapp-green-tick-uae/">دليل توثيق واتساب للأعمال</a>.</p>
+<p class="note">المصادر: مركز مساعدة واتساب (الأجهزة المرتبطة، تعدد الموظفين، قوائم البث)؛ وثائق Meta للمطورين (Cloud API، الأسعار، التعايش، حسابات الأعمال الرسمية)؛ إعلانات Meta (أبريل 2025 وسبتمبر 2026). اطّلعنا عليها في 28 نوفمبر 2026. <a href="/guides/whatsapp-business-app-vs-api/" hreflang="en">النسخة الإنجليزية</a>.</p>
+"""
+APPAPI_FAQ = [
+    ("هل WhatsApp Business API مجانية؟", "لا. تحاسب Meta لكل رسالة مُسلَّمة حسب الفئة والدولة، ومعظم الأنشطة تدفع أيضاً لمنصة. لكل رقم 1,000 رسالة خدمة مجانية شهرياً، والمحادثات من إعلانات واتساب تفتح نافذة مجانية حتى 7 أيام."),
+    ("هل يمكنني استخدام التطبيق والـAPI على الرقم نفسه؟", "نعم، عبر ميزة التعايش من Meta بواسطة شريك معتمد. تستمر في المحادثة من التطبيق بينما تتولى الـAPI الأتمتة، مع قيود مثل قوائم بث للقراءة فقط و20 رسالة في الثانية."),
+    ("كم شخصاً يمكنه استخدام حساب واتساب للأعمال؟", "في التطبيق هاتف واحد وحتى 4 أجهزة مرتبطة، أو 10 أجهزة مع ميزة تعدد الموظفين. في الـAPI لا يوجد هذا الحد، والأمر يعتمد على المنصة."),
+    ("لماذا لا يصل البث لبعض العملاء؟", "في تطبيق واتساب للأعمال لا يصل البث إلا لمن حفظ رقمك، وبحد 256 شخصاً للقائمة. للوصول لكل من وافق تحتاج قوالب الـAPI أو البث المدفوع حيث يتوفر."),
+]
+
 GUIDE_PAGES = [
     ("/ar/guides/whatsapp-green-tick-uae/", "/guides/whatsapp-green-tick-uae/", "توثيق واتساب للأعمال في الإمارات: العلامة الخضراء | Nuevo", TICK_DESC,
      guide_main("توثيق واتساب", TICK_H1, "العلامة الخضراء أصبحت علامة توثيق زرقاء، وهناك طريقتان للحصول عليها حسب استخدامك لتطبيق واتساب للأعمال أو الـAPI. هذه شروط Meta في نوفمبر 2026.", TICK_ANSWER, TICK_BODY, TICK_FAQ, "أسئلة عن توثيق واتساب", "ar-guide-tick"),
@@ -514,6 +567,9 @@ GUIDE_PAGES = [
     ("/ar/guides/whatsapp-business-api-pricing-uae/", "/guides/whatsapp-business-api-pricing-uae/", "أسعار واتساب بزنس API في الإمارات 2026 | Nuevo", PRICE_DESC,
      guide_main("أسعار واتساب API", PRICE_H1, "تحاسب Meta لكل رسالة مُسلَّمة حسب نوعها ودولة العميل. هذا ما يعنيه ذلك لنشاط في الإمارات، وما تغيّر في 1 أكتوبر 2026، وكيف تقدّر فاتورتك.", PRICE_ANSWER, PRICE_BODY, PRICE_FAQ, "أسئلة عن أسعار واتساب API", "ar-guide-price"),
      PRICE_FAQ, PRICE_H1),
+    ("/ar/guides/whatsapp-business-app-vs-api/", "/guides/whatsapp-business-app-vs-api/", "الفرق بين واتساب للأعمال وواتساب API في 2026 | Nuevo", APPAPI_DESC,
+     guide_main("واتساب للأعمال أم API", APPAPI_H1, "معظم الأنشطة في الإمارات تبدأ بتطبيق واتساب للأعمال المجاني، والـAPI هي ما تحتاجه للأتمتة. ومنذ 2025 يمكنك تشغيل الاثنين على الرقم نفسه. هكذا تختار، بحسب حدود Meta في نوفمبر 2026.", APPAPI_ANSWER, APPAPI_BODY, APPAPI_FAQ, "أسئلة عن التطبيق والـAPI", "ar-guide-appapi"),
+     APPAPI_FAQ, APPAPI_H1),
 ]
 
 PAGES = [
