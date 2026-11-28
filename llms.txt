@@ -40,6 +40,11 @@ Key facts:
 - [WhatsApp chatbot cost in the UAE](https://nuevoautomations.com/guides/whatsapp-chatbot-cost-uae/): Meta's message fees, platform prices (Wati, Respond.io, Interakt, Gallabox, Twilio), AI credits and setup
 - [Meta ads for UAE e-commerce](https://nuevoautomations.com/guides/meta-ads-ecommerce-uae/): Advantage+ sales campaigns, Conversions API, health ad rules, VAT on ad spend and the UAE advertiser permit
 - [Respond.io vs Wati](https://nuevoautomations.com/guides/respond-io-vs-wati/): prices, users, AI, message-fee markups, channels and integrations compared
+- [Taking payments on WhatsApp in the UAE](https://nuevoautomations.com/guides/whatsapp-payment-links-uae/): why WhatsApp Pay is not live in the UAE, payment links, Stripe, Ziina, Telr, Tabby and Tamara
+- [Selling supplements online in the UAE](https://nuevoautomations.com/guides/sell-supplements-online-uae/): EDE and Dubai Municipality registration, e-commerce licences, Arabic rules, ad approvals, payments
+- [Shopify WhatsApp integration](https://nuevoautomations.com/guides/shopify-whatsapp-integration/): Shopify Messaging, Meta's official app and third-party apps, with prices and template categories
+- [Arabic WhatsApp chatbots](https://nuevoautomations.com/guides/arabic-whatsapp-chatbot/): Gulf dialect, Arabizi, mixed Arabic-English, research on AI in Arabic dialects, testing
+- [Wati alternatives](https://nuevoautomations.com/guides/wati-alternatives/): ten WhatsApp platforms compared on price, users, AI and Meta fee markups
 
 ## Industries
 - [Online stores](https://nuevoautomations.com/ecommerce-automation-uae/)

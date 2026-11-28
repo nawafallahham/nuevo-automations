@@ -585,3 +585,118 @@ Nuevo Automations FZE LLC is a UAE marketing agency in Sharjah Publishing City F
 URL: https://nuevoautomations.com/privacy/
 
 How Nuevo Automations collects, uses and protects your personal data, including cookies and advertising tools.
+
+## How to Take Payments on WhatsApp in the UAE, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/whatsapp-payment-links-uae/
+
+WhatsApp Pay isn't live in the UAE, so brands sell in the chat with payment links. Fees for Stripe, Ziina, Telr and others, plus Tabby and Tamara.
+
+WhatsApp's built-in payments, including the "Review and Pay" order message, are only documented by Meta for India, Brazil and Singapore, not the UAE. UAE businesses take payment in WhatsApp by sending a payment link from their own provider: Stripe charges 2.9% plus AED 1 for domestic cards, Ziina lists 2.6% plus AED 1 on its business page, and Telr has monthly plans with unlimited payment links. Tabby and Tamara can also create payment links, though their documentation describes sending them by SMS or email. The customer taps the link, pays on the provider's page, and your team or AI confirms the order in the chat.
+
+Q: Is WhatsApp Pay available in the UAE?
+A: Not for businesses, as of November 2026. Meta documents WhatsApp's native business payments only for India, Brazil and Singapore. UAE businesses send a payment link from their own provider instead.
+
+Q: What is the cheapest way to take a payment in WhatsApp?
+A: It depends on volume. Stripe has no monthly fee and charges 2.9% plus AED 1 for domestic cards. Telr's higher-volume plans go down to 2.25% plus AED 0.50 with no monthly fee. Compare the total on your real monthly sales, including international cards.
+
+Q: Can I send a Tabby or Tamara link on WhatsApp?
+A: Both can create payment links, but their own documentation describes sending them by SMS or email, not WhatsApp. Some gateways offer BNPL inside links you can share in WhatsApp. Ask the provider before building it into your flow.
+
+Q: Do I need the WhatsApp Business API to send payment links?
+A: No, you can paste a link in the free WhatsApp Business app. You need the API to automate it: sending links from an AI assistant, tracking which are paid, and following up on unpaid ones.
+
+Q: Is it safe for customers to pay through a WhatsApp link?
+A: Yes, when the link opens a page from a licensed payment provider on its own domain. Tell customers which provider you use, and never ask for card details inside the chat itself.
+
+## How to Sell Supplements Online in the UAE, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/sell-supplements-online-uae/
+
+Selling supplements online in the UAE: who registers products (EDE, Dubai Municipality), e-commerce licences, Arabic rules, ad approvals and payments.
+
+To sell supplements online in the UAE you need a trade licence that allows e-commerce (for example Dubai's eTrader or Abu Dhabi's Tajer licence, or a free zone e-commerce licence), and your products must be registered. Federally, the Emirates Drug Establishment (EDE) took over medical product services from the Ministry of Health from 29 December 2025 and lists food supplements under its healthcare product marketing authorisation, which only a licensed medical warehouse can apply for. In Dubai, Dubai Municipality requires health supplements to be registered in its Montaji system before they are imported, advertised or sold. Product details and invoices must be available in Arabic, VAT is 5%, and ads for medical products need EDE approval.
+
+Q: Do I need to register supplements before selling them online in the UAE?
+A: Yes. In Dubai, Dubai Municipality requires health supplements to be registered in its Montaji system before they are sold or advertised. Federally, the Emirates Drug Establishment lists food supplements under its healthcare product marketing authorisation. Confirm which applies to your product with both.
+
+Q: Who regulates supplements in the UAE now?
+A: Medical product services, including marketing authorisations and advertising approvals, moved from the Ministry of Health and Prevention to the Emirates Drug Establishment from 29 December 2025. Dubai Municipality and other local authorities also register health supplements in their emirates.
+
+Q: Can I sell supplements from a free zone company?
+A: Free zones issue e-commerce licences, but selling directly to mainland UAE customers may need a local distributor or extra approvals, and product registration still applies. Check with your free zone and a registration agent.
+
+Q: Can influencers promote my supplements?
+A: Every creator promoting products in the UAE needs an Advertiser Permit. Since November 2026, influencers may not promote medical products, and ads for them need EDE approval. Ask EDE whether your registered supplement counts before you brief anyone.
+
+Q: Are peptides treated as supplements in the UAE?
+A: No. In July 2026 the Emirates Drug Establishment acted against sellers of unapproved peptide products and said the label "peptide" doesn't make something an approved product. Treat therapeutic peptides as medical products.
+
+## Shopify WhatsApp Integration for UAE Stores, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/shopify-whatsapp-integration/
+
+How to connect Shopify to WhatsApp in 2026: Shopify Messaging, Meta's official app, Zoko, Interakt, Wati and others, with prices and what each automates.
+
+There are three ways to connect Shopify to WhatsApp in 2026. Shopify Messaging, built into Shopify, sends WhatsApp marketing campaigns and abandoned cart, checkout and browse automations, with an opt-in at checkout; in the UAE it charges US$0.10 per marketing message. Meta's official WhatsApp app for Shopify is free to install and sends order updates and abandoned cart messages, with Meta billing messages separately. Third-party apps such as Zoko, Interakt, Wati, SuperLemon and Gallabox add a shared team inbox, cash on delivery confirmation and AI chat. Shopify Inbox, Shopify's chat tool, does not connect to WhatsApp.
+
+Q: Does Shopify have WhatsApp built in?
+A: Yes, since July 2026. Shopify Messaging can send WhatsApp marketing campaigns and, since October 2026, abandoned cart, checkout and browse automations. In the UAE it costs US$0.10 per marketing message.
+
+Q: Does Shopify Inbox work with WhatsApp?
+A: No. Shopify Inbox is a chat tool for your online store; its help pages don't mention WhatsApp. For WhatsApp conversations you need Shopify Messaging for campaigns, or a WhatsApp app with an inbox.
+
+Q: Is there a free WhatsApp app for Shopify?
+A: Meta's official WhatsApp app is free to install, and Meta bills each message separately. SuperLemon also has a free plan. Every option still pays Meta's per-message fees.
+
+Q: Are abandoned cart messages on WhatsApp utility or marketing?
+A: Marketing. Meta's template guidelines list cart reminders as marketing even when the customer asked for them, so you need marketing consent and pay the marketing rate.
+
+Q: Can I use my existing WhatsApp number with Shopify?
+A: Usually yes, through the WhatsApp Business API. If the number is already connected to another WhatsApp provider, Shopify Messaging requires you to disconnect it first.
+
+## Arabic WhatsApp Chatbots: Gulf Dialect and AI, 2026 | Nuevo
+
+URL: https://nuevoautomations.com/guides/arabic-whatsapp-chatbot/
+
+What makes an Arabic WhatsApp chatbot work in the UAE: Gulf dialect, Arabizi, mixed Arabic and English, right-to-left templates, and what research shows.
+
+An Arabic WhatsApp chatbot for the UAE has to handle three kinds of writing: Gulf and Emirati dialect, Arabizi (Arabic written in Latin letters and numbers, like "7abibi"), and messages that mix Arabic and English. Published research shows AI models still do worse in Arabic dialects than in English: in the 2025 DialectalArabicMMLU benchmark, 19 open models averaged about 48% accuracy in dialects, 52% in Modern Standard Arabic and 63% in English. Templates need the right Arabic language code (such as ar_AE) and testing for right-to-left layout. The best test is to send the bot real messages from your own customers before launch.
+
+Q: Can a WhatsApp chatbot reply in Arabic?
+A: Yes. AI chatbots on the WhatsApp Business API can reply in Arabic and English. How well they handle Gulf dialect, Arabizi and mixed messages varies a lot, so test with real customer messages.
+
+Q: What is Arabizi?
+A: Arabic written in Latin letters, with numbers standing in for Arabic sounds, for example 3 for ع and 7 for ح. Many people in the UAE type this way on their phones, so a chatbot should understand it.
+
+Q: Is AI worse in Arabic than in English?
+A: On published benchmarks, yes. In the 2025 DialectalArabicMMLU study, 19 open models averaged about 63% accuracy in English, 52% in Modern Standard Arabic and 48% in Arabic dialects.
+
+Q: Which Arabic language code should UAE templates use?
+A: Meta offers several Arabic codes, including ar and ar_AE. Pick one and keep it consistent, then supply your own Arabic text; Meta doesn't translate templates.
+
+Q: Should the chatbot reply in formal Arabic or dialect?
+A: Match the customer. Formal Arabic is safe for templates and policies, but a casual question in Gulf dialect reads better with a natural, simple reply.
+
+## Wati Alternatives for UAE Businesses, 2026 Prices | Nuevo
+
+URL: https://nuevoautomations.com/guides/wati-alternatives/
+
+Wati alternatives compared for UAE businesses in 2026: Respond.io, SleekFlow, Gallabox, Interakt, Zoko, AiSensy, Twilio and more, with real list prices.
+
+The main Wati alternatives in 2026 are Respond.io (from $79 a month billed annually, 5 users), SleekFlow (from AED 399 a month billed annually, 10 users, with a DIFC office), Gallabox (from AED 412 a month billed annually, 3 users, with a Dubai office), Interakt (from $55 a month), Zoko (from $49.99 a month, no markup on Meta fees), AiSensy (from $45 a month), Twilio (no subscription, $0.005 per message on top of Meta's fees), Trengo, Callbell and Kommo. For comparison, Wati's Growth plan is $59 a month billed annually for 3 users. Meta's own message fees are extra on all of them.
+
+Q: What is the best Wati alternative in the UAE?
+A: It depends on the team. SleekFlow and Gallabox have Dubai offices, Respond.io includes 5 users on its entry plan, and Zoko and Twilio pass Meta's message fees through without a markup. Compare total monthly cost, including messages and users.
+
+Q: Is there a cheaper alternative to Wati?
+A: On entry price, AiSensy ($45 a month), Zoko ($49.99) and Interakt ($55) list lower prices than Wati's Growth plan ($59 a month billed annually). Twilio has no subscription at all but needs developers.
+
+Q: Do WhatsApp platforms mark up Meta's message fees?
+A: Some do. Zoko says you pay Meta directly, Twilio adds $0.005 per message, and Interakt and Gallabox mention reduced or no markup only on enterprise plans. Ask each provider for its UAE per-message rate in writing.
+
+Q: Can I move my WhatsApp number from Wati to another platform?
+A: Yes. A WhatsApp Business API number can be migrated between providers. Plan for a short changeover, and note that templates may need to be recreated.
+
+Q: Which WhatsApp platforms have an office in Dubai?
+A: SleekFlow lists an office in DIFC and Gallabox one on Sheikh Zayed Road. We didn't find a UAE office for Wati or Respond.io in November 2026.
