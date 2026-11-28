@@ -41,6 +41,7 @@ HEADER = """  <header class="nav nav--centre">
       <nav class="nav__links" aria-label="القائمة الرئيسية">
         <div class="nav__item"><a class="nav__link" href="/ar/#how">كيف يعمل M2S</a></div>
         <div class="nav__item"><a class="nav__link" href="/ar/whatsapp-automation-uae/">أتمتة واتساب</a></div>
+        <div class="nav__item"><a class="nav__link" href="/ar/guides/">الأدلة</a></div>
         <div class="nav__item"><a class="nav__link" href="/ar/#results">النتائج</a></div>
         <div class="nav__item"><a class="nav__link lang-switch" href="{en}" hreflang="en" lang="en">English</a></div>
       </nav>
@@ -254,7 +255,7 @@ home_main = f"""    <section class="page-head" aria-labelledby="page-h">
           <li><a class="link" href="/ar/guides/whatsapp-payment-links-uae/">كيف تستلم المدفوعات عبر واتساب</a></li>
           <li><a class="link" href="/ar/guides/sell-supplements-online-uae/">كيف تبيع المكملات الغذائية أونلاين في الإمارات</a></li>
           <li><a class="link" href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال على رقمك الخاص</a></li>
-          <li><a class="link" href="/guides/" hreflang="en">كل الأدلة (بالإنجليزية)</a></li>
+          <li><a class="link" href="/ar/guides/">كل الأدلة بالعربية</a></li>
         </ul>
       </div>
     </section>
@@ -854,6 +855,38 @@ for path, en_path, title, desc, main, faqs, h1 in GUIDE_PAGES:
     PAGES.append((path, en_path, title, desc, main, faqs, bc))
     ARTICLES[path] = article(path, en_path, h1, desc)
 
+# ------------------------------------------------------------------ /ar/guides/ hub
+_cards = "\n".join(f"""          <article class="card">
+            <h2><a href="{gp}">{e(h1)}</a></h2>
+            <p>{e(desc)}</p>
+            <a class="link" href="{gp}" aria-hidden="true" tabindex="-1">اقرأ الدليل</a>
+          </article>""" for gp, _en, _ti, desc, _m, _f, h1 in GUIDE_PAGES)
+HUB_TITLE = "أدلة واتساب وإعلانات Meta للعلامات في الإمارات | Nuevo"
+HUB_DESC = "أدلة بالعربية عن أسعار WhatsApp Business API، التوثيق، الرسائل الجماعية، قواعد التسويق، الدفع عبر واتساب، إعلانات واتساب وبيع المكملات في الإمارات."
+hub_main = f"""    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
+        <p class="crumb"><a href="/ar/">الرئيسية</a> / الأدلة</p>
+        <h1 id="page-h">أدلة البيع عبر واتساب في الإمارات</h1>
+        <p class="t-lead">إجابات واضحة عن تكاليف واتساب للأعمال ومنصاته، وإعلانات النقر إلى واتساب، والدفع واسترجاع السلات، وقواعد المكملات والتسويق، من واقع الحملات التي نديرها لعلامات في الإمارات.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-label="كل الأدلة">
+      <div class="wrap">
+        <div class="guide-list">
+{_cards}
+        </div>
+        <p><a class="link" href="/guides/" hreflang="en">أدلة أخرى بالإنجليزية</a></p>
+      </div>
+    </section>"""
+_hub_ld = {"@context": "https://schema.org", "@type": "CollectionPage", "@id": SITE + "/ar/guides/#collection", "url": SITE + "/ar/guides/",
+           "name": "أدلة البيع عبر واتساب في الإمارات", "inLanguage": "ar", "publisher": {"@id": SITE + "/#org"},
+           "mainEntity": {"@type": "ItemList", "itemListElement": [
+               {"@type": "ListItem", "position": i + 1, "url": SITE + gp, "name": h1} for i, (gp, _en, _ti, _d, _m, _f, h1) in enumerate(GUIDE_PAGES)]}}
+HUB = ("/ar/guides/", "/guides/", HUB_TITLE, HUB_DESC, hub_main, [("الرئيسية", "/ar/"), ("الأدلة", "/ar/guides/")], _hub_ld)
+
 ALT_RE = re.compile(r'  <link rel="alternate" hreflang="[^"]+" href="[^"]+">\n')
 
 for path, en_path, title, desc, main, faqs, bc in PAGES:
@@ -867,3 +900,14 @@ for path, en_path, title, desc, main, faqs, bc in PAGES:
     assert canon in t, en
     en.write_text(t.replace(canon, canon + alt_links(en_path, path)))
     print(path)
+
+# the hub (no FAQ)
+_p, _en, _ti, _d, _m, _bc, _ld = HUB
+_out = ROOT / "ar/guides/index.html"
+_out.write_text(page(_p, _en, _ti, _d, [_ld, crumbs(_bc)], _m))
+_en_file = ROOT / "guides/index.html"
+_tx = ALT_RE.sub("", _en_file.read_text())
+_canon = f'  <link rel="canonical" href="{SITE}/guides/">\n'
+assert _canon in _tx
+_en_file.write_text(_tx.replace(_canon, _canon + alt_links("/guides/", "/ar/guides/")))
+print("/ar/guides/")
