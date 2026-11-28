@@ -61,6 +61,8 @@ Key facts:
 ## Arabic
 - [الصفحة الرئيسية بالعربية](https://nuevoautomations.com/ar/): M2S and WhatsApp ads for UAE wellness brands, in Arabic
 - [أتمتة واتساب للأعمال](https://nuevoautomations.com/ar/whatsapp-automation-uae/): WhatsApp Business API automation in the UAE, in Arabic
+- [توثيق واتساب للأعمال](https://nuevoautomations.com/ar/guides/whatsapp-green-tick-uae/): getting the WhatsApp verified badge in the UAE, in Arabic
+- [رسائل واتساب جماعية](https://nuevoautomations.com/ar/guides/bulk-whatsapp-messages-uae/): sending bulk WhatsApp messages legally in the UAE, in Arabic
 
 ## More detail
 - [llms-full.txt](https://nuevoautomations.com/llms-full.txt): every page's short answer and FAQs in one file

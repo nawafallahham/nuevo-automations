@@ -68,7 +68,7 @@ FOOTER = """  <footer class="footer closing footer--dark ground-inverse g2m" id=
             <p class="footer__lede">إعلانات Meta وGoogle تجلب المشترين إلى واتساب، وM2S، مساعد المبيعات بالذكاء الاصطناعي الذي يُتمّ البيع داخل المحادثة.</p>
             <p class="t-small"><span translate="no">Nuevo Automations FZE LLC</span><br>مركز الأعمال، المنطقة الحرة لمدينة الشارقة للنشر<br>الشارقة، الإمارات · رقم الرخصة 4431808.01</p>
           </div>
-          <div class="span-2 footer__col"><h3>بالعربية</h3><ul><li><a href="/ar/">الصفحة الرئيسية</a></li><li><a href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال</a></li></ul></div>
+          <div class="span-2 footer__col"><h3>بالعربية</h3><ul><li><a href="/ar/">الصفحة الرئيسية</a></li><li><a href="/ar/whatsapp-automation-uae/">أتمتة واتساب للأعمال</a></li><li><a href="/ar/guides/whatsapp-green-tick-uae/">توثيق واتساب للأعمال</a></li><li><a href="/ar/guides/bulk-whatsapp-messages-uae/">رسائل واتساب جماعية</a></li></ul></div>
           <div class="span-2 footer__col" lang="en" dir="ltr"><h3>In English</h3><ul><li><a href="/">Home</a></li><li><a href="/m2s/">How M2S works</a></li><li><a href="/results/">Results</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/guides/">Guides</a></li></ul></div>
           <div class="span-2 footer__col"><h3>تواصل معنا</h3><ul><li><a href="https://wa.me/15557738409" target="_blank" rel="noopener">واتساب <span dir="ltr">+1 555-773-8409</span></a></li><li><a href="mailto:nawafallahham@nuevoautomations.com">البريد الإلكتروني</a></li><li><a href="https://www.instagram.com/nuevoautomations/" target="_blank" rel="noopener me">Instagram</a></li><li><a href="https://www.linkedin.com/company/nuevoautomations/" target="_blank" rel="noopener me">LinkedIn</a></li></ul></div>
         </div>
@@ -290,6 +290,7 @@ wa_main = f"""    <section class="page-head" aria-labelledby="page-h">
 <li>قرار مجلس الوزراء رقم 56 لسنة 2024 بشأن التسويق عبر الهاتف يشمل في تعريفه رسائل التسويق عبر تطبيقات التواصل الاجتماعي، ويحصر مكالمات التسويق بين 9 صباحاً و6 مساءً. نلتزم بهذه الساعات في رسائل التسويق.</li>
 </ul>
 <p>دليلنا بالإنجليزية: <a href="/guides/whatsapp-marketing-rules-uae/" hreflang="en">WhatsApp marketing rules in the UAE</a>.</p>
+<p>وبالعربية: <a href="/ar/guides/bulk-whatsapp-messages-uae/">كيف ترسل رسائل واتساب جماعية بطريقة نظامية</a> و<a href="/ar/guides/whatsapp-green-tick-uae/">كيف توثّق حساب واتساب للأعمال</a>.</p>
 
 <h2>كم تكلفة رسائل واتساب في الإمارات؟</h2>
 <p>منذ 1 يوليو 2025 تحاسب Meta لكل رسالة مُسلَّمة حسب فئتها ودولة العميل، وللإمارات تسعيرة مستقلة بالدرهم منذ 1 أبريل 2026. لكل رقم 1,000 رسالة خدمة مجانية شهرياً منذ 1 أكتوبر 2026، والمحادثات التي تبدأ من إعلان بنقرة إلى واتساب تفتح نافذة مجانية لمدة تصل إلى 7 أيام. التفاصيل: <a href="/guides/whatsapp-business-api-pricing-uae/" hreflang="en">WhatsApp Business API pricing in the UAE</a>.</p>
@@ -302,18 +303,162 @@ wa_main = f"""    <section class="page-head" aria-labelledby="page-h">
 
 {faq_block(WA_FAQ, 'أسئلة عن أتمتة واتساب')}"""
 
+# ------------------------------------------------------------------ Arabic guides
+def guide_main(crumb, h1, lead, answer, body, faqs, faq_h, lead_key):
+    return f"""    <section class="page-head" aria-labelledby="page-h">
+      <div class="wrap">
+        <div class="hero-text">
+        <p class="crumb"><a href="/ar/">الرئيسية</a> / {crumb}</p>
+        <h1 id="page-h">{e(h1)}</h1>
+        <p class="t-lead">{e(lead)}</p>
+        <p class="byline">بقلم <a href="/about/" hreflang="en">نواف اللحام</a>، مؤسس Nuevo Automations · آخر تحديث <time datetime="{DATE}">28 نوفمبر 2026</time></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-label="الإجابة المختصرة">
+      <div class="wrap">
+        <div class="answer"><p>{e(answer)}</p></div>
+      </div>
+    </section>
+
+    <section class="band" aria-label="الدليل">
+      <div class="wrap">
+        <article class="prose">
+{body.strip()}
+        </article>
+      </div>
+    </section>
+
+{faq_block(faqs, faq_h)}
+
+    <section class="band" aria-labelledby="cta-h">
+      <div class="wrap">
+        <div class="stack-4">
+        <h2 id="cta-h">تريد أن نتولى ذلك لعلامتك؟</h2>
+        <p>ندير إعلانات Meta وGoogle إلى واتساب لعلامات العافية والمكملات في الإمارات، ويُتمّ M2S البيع داخل المحادثة. الخطوة الأولى تدقيق مجاني لمدة 30 دقيقة.</p>
+{cta(lead_key)}
+        </div>
+      </div>
+    </section>"""
+
+
+def article(path, en_path, h1, desc):
+    return {"@context": "https://schema.org", "@type": "Article", "@id": SITE + path + "#article", "headline": h1,
+            "description": desc, "url": SITE + path, "mainEntityOfPage": SITE + path, "inLanguage": "ar",
+            "datePublished": DATE, "dateModified": DATE, "image": SITE + "/assets/og-card.jpg",
+            "author": {"@type": "Person", "@id": SITE + "/about/#nawaf", "name": "Nawaf Allahham"},
+            "publisher": {"@id": SITE + "/#org"}, "translationOfWork": {"@id": SITE + en_path + "#article"}}
+
+
+TICK_H1 = "كيف تحصل على علامة التوثيق في واتساب للأعمال في الإمارات"
+TICK_DESC = "طريقتان لتوثيق حساب واتساب للأعمال في الإمارات عام 2026: حساب الأعمال الرسمي المجاني على الـAPI، واشتراك Meta One المدفوع لتطبيق واتساب للأعمال."
+TICK_ANSWER = "في عام 2026 يمكن لنشاط تجاري في الإمارات الحصول على علامة توثيق في واتساب بطريقتين. على WhatsApp Business API، حالة حساب الأعمال الرسمي (Official Business Account) مجانية بشروط: توثيق حسابك التجاري في Meta، ومرور 30 يوماً على الأقل على تسجيل الرقم في المنصة، وتفعيل التحقق بخطوتين، واعتماد اسم العرض، والالتزام بسياسات واتساب. وعلى تطبيق واتساب للأعمال المجاني، تأتي علامة التوثيق مع Meta One، اشتراك Meta المدفوع الذي أُطلق في 15 سبتمبر 2026، وذكرت الصحافة الإماراتية أن سعره يبدأ من 46.99 درهماً شهرياً."
+TICK_BODY = """
+<h2>العلامة الخضراء أصبحت زرقاء</h2>
+<p>كان واتساب يعرض علامة خضراء بجانب الحسابات التجارية الموثقة، ثم انتقلت Meta إلى علامة توثيق زرقاء في تطبيقاتها. ما زال كثيرون يبحثون عن "العلامة الخضراء"، لكن ما يمكنك التقديم عليه اليوم هو أحد الخيارين أدناه.</p>
+
+<h2>الخيار الأول: حساب الأعمال الرسمي (مجاني، على الـAPI فقط)</h2>
+<p>إذا كان رقمك يعمل على منصة واتساب للأعمال (الـAPI)، يمكنك طلب حالة الحساب الرسمي دون تكلفة. شروط Meta:</p>
+<ul>
+<li>أن يلتزم الرقم بسياسة رسائل واتساب للأعمال.</li>
+<li>أن يكون مسجلاً على المنصة منذ 30 يوماً على الأقل.</li>
+<li>أن يكون حسابك التجاري في Meta موثقاً.</li>
+<li>أن يكون التحقق بخطوتين مفعّلاً على الرقم.</li>
+<li>أن يكون اسم العرض معتمداً.</li>
+</ul>
+<p>تقدّم بالطلب من WhatsApp Manager، من ملف رقم الهاتف. لا تُمنح هذه الحالة لحسابات الموظفين الشخصية أو حسابات الاختبار أو أرقام تطبيق واتساب للأعمال. وإذا رُفض طلبك يمكنك إعادة التقديم بعد 30 يوماً.</p>
+<p>تذكر وثائق أحد المزودين أن هذه العلامة غير متاحة للأرقام التي تستخدم ميزة التعايش (تشغيل التطبيق والـAPI على الرقم نفسه)، فاسأل مزودك قبل الربط إن كانت العلامة مهمة لك.</p>
+
+<h2>الخيار الثاني: Meta One (مدفوع، يعمل على تطبيق واتساب للأعمال)</h2>
+<p>أطلقت Meta في 15 سبتمبر 2026 اشتراك Meta One الذي يحلّ تدريجياً محل Meta Verified. تشمل باقاته للأعمال علامة توثيق على تطبيق واتساب للأعمال وحماية من انتحال الهوية بعد توثيق نشاطك، إضافة إلى مساعد Meta بالذكاء الاصطناعي. وذكرت خليج تايمز وغلف نيوز أسعار الباقات في الإمارات: Essential من 46.99 درهماً شهرياً، وAdvanced من 119 درهماً، وExpert من 359 درهماً، وMax من 1,199 درهماً.</p>
+
+<h2>أيهما تختار؟</h2>
+<ul>
+<li><strong>تستخدم تطبيق واتساب للأعمال المجاني فقط:</strong> Meta One هو الطريق الوحيد للعلامة.</li>
+<li><strong>تعمل على الـAPI أو تنتقل إليها للأتمتة:</strong> قدّم على حساب الأعمال الرسمي المجاني بعد استيفاء الشروط.</li>
+<li><strong>في الحالتين:</strong> وثّق نشاطك في مدير أعمال Meta أولاً، فهو أيضاً ما يرفع حد الرسائل اليومي على الـAPI من 250 إلى 2,000 شخص.</li>
+</ul>
+<p>العلامة تزيد ثقة العميل بأنه يتحدث مع العلامة الحقيقية، لكنها لا تغيّر أسعار الرسائل ولا حدودها. ما يبيع فعلاً هو الرد السريع والصحيح، وهذا ما بُني له <a href="/ar/">M2S</a>.</p>
+<p class="note">المصادر: وثائق Meta للمطورين عن حسابات الأعمال الرسمية؛ إعلان Meta عن Meta One (15 سبتمبر 2026)؛ خليج تايمز (17 سبتمبر 2026) وغلف نيوز (16 سبتمبر 2026). اطّلعنا عليها في 28 نوفمبر 2026. <a href="/guides/whatsapp-green-tick-uae/" hreflang="en">النسخة الإنجليزية</a>.</p>
+"""
+TICK_FAQ = [
+    ("كيف أوثّق حساب واتساب للأعمال في الإمارات؟", "على WhatsApp Business API قدّم طلب حساب الأعمال الرسمي المجاني من WhatsApp Manager بعد توثيق نشاطك ومرور 30 يوماً وتفعيل التحقق بخطوتين. وعلى تطبيق واتساب للأعمال اشترك في Meta One."),
+    ("هل توثيق واتساب مجاني؟", "على الـAPI نعم، إذا استوفيت شروط Meta. أما على تطبيق واتساب للأعمال فالعلامة تأتي مع باقة Meta One المدفوعة، وتبدأ في الإمارات من 46.99 درهماً شهرياً بحسب الصحافة المحلية."),
+    ("ماذا أفعل إذا رُفض طلب التوثيق؟", "يمكنك إعادة التقديم بعد 30 يوماً. استغل المدة لإكمال توثيق نشاطك والتأكد من أن اسم العرض يطابق اسم نشاطك."),
+    ("هل تزيد علامة التوثيق حد الرسائل اليومي؟", "لا. حد الرسائل يعتمد على توثيق النشاط وجودة الرسائل. توثيق النشاط، المطلوب للعلامة أصلاً، هو ما يرفع الحد من 250 إلى 2,000."),
+]
+
+BULK_H1 = "كيف ترسل رسائل واتساب جماعية في الإمارات بالطريقة النظامية"
+BULK_DESC = "إرسال رسائل واتساب جماعية في الإمارات عام 2026: قوائم البث، البث المدفوع للأعمال، قوالب الـAPI، الحدود اليومية، التكلفة وقواعد الموافقة."
+BULK_ANSWER = "هناك ثلاث طرق نظامية لإرسال رسائل واتساب جماعية في الإمارات. تطبيق واتساب للأعمال المجاني يتيح قوائم بث حتى 256 جهة اتصال، ولا تصل إلا لمن حفظ رقمك. ويتيح التطبيق أيضاً البث المدفوع للأعمال الذي يصل لمن لم يحفظ رقمك، في الدول التي توفره فيها Meta. وللأعداد الكبيرة، ترسل WhatsApp Business API قوالب تسويقية معتمدة من Meta لكل من وافق على استلام رسائلك، بحد يبدأ من 250 شخصاً يومياً للحساب الجديد ويرتفع إلى 2,000 بعد توثيق النشاط، وتحاسب Meta على كل رسالة مُسلَّمة. كل الطرق تتطلب موافقة العميل، ويجب التوقف عن مراسلة كل من يطلب ذلك."
+BULK_BODY = """
+<h2>الطريقة الأولى: قوائم البث في التطبيق (مجانية)</h2>
+<ul>
+<li>حتى 256 جهة اتصال في كل قائمة.</li>
+<li>لا يستلمها إلا من حفظ رقمك في هاتفه.</li>
+<li>تصل لكل شخص كرسالة خاصة، والردود تعود إليك فردياً.</li>
+<li>لا يمكن إنشاء قوائم البث من الأجهزة المرتبطة، بل من الهاتف الرئيسي.</li>
+</ul>
+
+<h2>الطريقة الثانية: البث المدفوع للأعمال في التطبيق</h2>
+<p>منذ أبريل 2025 تقدم Meta بثاً مدفوعاً في تطبيق واتساب للأعمال يصل حتى لمن لم يحفظ رقمك، وتدفع لكل رسالة مُسلَّمة بسعر يحدده بلد العميل. تقول Meta إن الميزة متاحة في دول محدودة، ولم نتمكن من تأكيد توفرها في الإمارات في نوفمبر 2026، فتحقق من أدوات البث في تطبيقك.</p>
+
+<h2>الطريقة الثالثة: قوالب التسويق على WhatsApp Business API</h2>
+<div class="prose-table"><table>
+<thead><tr><th>البند</th><th>القاعدة في 2026</th></tr></thead>
+<tbody>
+<tr><td>الوصول اليومي</td><td>250 شخصاً خلال 24 ساعة للحساب الجديد، و2,000 بعد توثيق النشاط، ثم 10,000 و100,000 وبلا حد مع ارتفاع جودة رسائلك</td></tr>
+<tr><td>السرعة</td><td>80 رسالة في الثانية لكل رقم افتراضياً</td></tr>
+<tr><td>التكلفة</td><td>تحاسب Meta لكل رسالة تسويقية مُسلَّمة بسعر الإمارات، إضافة إلى رسوم المنصة</td></tr>
+<tr><td>من يمكنك مراسلته</td><td>فقط من وافق على استلام رسائل نشاطك</td></tr>
+</tbody></table></div>
+
+<h2>تجنب برامج الإرسال الجماعي غير الرسمية</h2>
+<p>البرامج التي تتحكم بتطبيق واتساب العادي أو واتساب ويب لإرسال الرسائل بالجملة تخالف شروط واتساب، وكثيراً ما تُقيَّد الأرقام التي تستخدمها أو تُحظر، فتخسر الرقم وسجل المحادثات.</p>
+
+<h2>قواعد الموافقة</h2>
+<ul>
+<li><strong>Meta:</strong> يجب أن يوافق العميل على استلام رسائل من نشاطك مع ذكر اسمه، وأن تحترم طلبات الإيقاف داخل واتساب وخارجه.</li>
+<li><strong>قواعد التسويق عبر الهاتف:</strong> قرار مجلس الوزراء رقم 56 لسنة 2024 يشمل في تعريفه رسائل التسويق عبر تطبيقات التواصل الاجتماعي، ويمنع الاتصال بالأرقام المسجلة في سجل عدم الإزعاج، ويحصر مكالمات التسويق بين 9 صباحاً و6 مساءً.</li>
+<li><strong>قانون حماية البيانات الشخصية:</strong> معالجة البيانات تتطلب الموافقة، مع استثناءات محددة.</li>
+</ul>
+<p class="note">المصادر: مركز مساعدة واتساب (قوائم البث والبث للأعمال)؛ وثائق Meta للمطورين (حدود الرسائل وCloud API)؛ سياسة رسائل واتساب للأعمال؛ النص الإنجليزي لقرار مجلس الوزراء رقم 56 لسنة 2024. اطّلعنا عليها في 28 نوفمبر 2026. <a href="/guides/bulk-whatsapp-messages-uae/" hreflang="en">النسخة الإنجليزية</a>.</p>
+"""
+BULK_FAQ = [
+    ("كم شخصاً يمكنني مراسلته في بث واتساب واحد؟", "في تطبيق واتساب للأعمال حتى 256 جهة اتصال في القائمة، ولا يستلمها إلا من حفظ رقمك. وعلى الـAPI يبدأ الحساب الجديد بـ250 شخصاً يومياً، ويرتفع إلى 2,000 بعد توثيق النشاط."),
+    ("هل الإرسال الجماعي على واتساب قانوني في الإمارات؟", "نعم لمن وافق على استلام رسائلك، وعبر أدوات واتساب الرسمية أو الـAPI. لا تراسل قوائم مشتراة أو منسوخة أبداً."),
+    ("لماذا لم تصل رسالتي لبعض الأشخاص؟", "في التطبيق لا يصل البث إلا لمن حفظ رقمك. وعلى الـAPI قد تحجب Meta الرسائل التسويقية عن الأشخاص الأقل تفاعلاً، ويظهر ذلك بالخطأ 131049."),
+    ("هل سيُحظر رقمي إذا أرسلت رسائل جماعية؟", "ليس إذا استخدمت الأدوات الرسمية وراسلت من وافق فقط. تُقيَّد الأرقام عندما يحظرها أو يبلغ عنها كثيرون، أو عند استخدام برامج غير رسمية."),
+]
+
+GUIDE_PAGES = [
+    ("/ar/guides/whatsapp-green-tick-uae/", "/guides/whatsapp-green-tick-uae/", "توثيق واتساب للأعمال في الإمارات: العلامة الخضراء | Nuevo", TICK_DESC,
+     guide_main("توثيق واتساب", TICK_H1, "العلامة الخضراء أصبحت علامة توثيق زرقاء، وهناك طريقتان للحصول عليها حسب استخدامك لتطبيق واتساب للأعمال أو الـAPI. هذه شروط Meta في نوفمبر 2026.", TICK_ANSWER, TICK_BODY, TICK_FAQ, "أسئلة عن توثيق واتساب", "ar-guide-tick"),
+     TICK_FAQ, TICK_H1),
+    ("/ar/guides/bulk-whatsapp-messages-uae/", "/guides/bulk-whatsapp-messages-uae/", "إرسال رسائل واتساب جماعية في الإمارات بطريقة نظامية | Nuevo", BULK_DESC,
+     guide_main("رسائل واتساب جماعية", BULK_H1, "إرسال رسالة واحدة لمئات العملاء سهل، لكن الخطأ فيه مكلف: برامج الإرسال غير الرسمية تعرّض الرقم للحظر، ومراسلة من لم يوافق تخالف قواعد Meta والقانون الإماراتي. هذه الطرق النظامية الثلاث في 2026.", BULK_ANSWER, BULK_BODY, BULK_FAQ, "أسئلة عن الرسائل الجماعية", "ar-guide-bulk"),
+     BULK_FAQ, BULK_H1),
+]
+
 PAGES = [
     ("/ar/", "/", HOME_TITLE, HOME_DESC, home_main, HOME_FAQ, [("الرئيسية", "/ar/")]),
     ("/ar/whatsapp-automation-uae/", "/whatsapp-automation-uae/", WA_TITLE, WA_DESC, wa_main, WA_FAQ,
      [("الرئيسية", "/ar/"), ("أتمتة واتساب", "/ar/whatsapp-automation-uae/")]),
 ]
 
+ARTICLES = {}
+for path, en_path, title, desc, main, faqs, h1 in GUIDE_PAGES:
+    bc = [("الرئيسية", "/ar/"), (h1, path)]
+    PAGES.append((path, en_path, title, desc, main, faqs, bc))
+    ARTICLES[path] = article(path, en_path, h1, desc)
+
 ALT_RE = re.compile(r'  <link rel="alternate" hreflang="[^"]+" href="[^"]+">\n')
 
 for path, en_path, title, desc, main, faqs, bc in PAGES:
     out = ROOT / path.strip("/") / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page(path, en_path, title, desc, [webpage(path, title, desc), faq_ld(faqs), crumbs(bc)], main))
+    out.write_text(page(path, en_path, title, desc, [ARTICLES.get(path) or webpage(path, title, desc), faq_ld(faqs), crumbs(bc)], main))
     # matching alternates on the English twin, right after its canonical
     en = ROOT / en_path.strip("/") / "index.html" if en_path != "/" else ROOT / "index.html"
     t = ALT_RE.sub("", en.read_text())

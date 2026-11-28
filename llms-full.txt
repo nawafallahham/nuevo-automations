@@ -400,7 +400,7 @@ A: Yes. It takes party size, time and any requests, books the table from your fr
 
 URL: https://nuevoautomations.com/guides/
 
-Guides for UAE brands on WhatsApp Business API pricing, click-to-WhatsApp ads, supplement advertising rules, cart recovery and tracking sales from chats.
+Guides for UAE brands on WhatsApp API pricing and platforms, click-to-WhatsApp ads, payments, cart recovery, supplement rules and WhatsApp marketing law.
 
 ## WhatsApp Business API Pricing in the UAE, 2026 | Nuevo
 
@@ -747,7 +747,7 @@ A: The free Official Business Account badge is only for API numbers with a verif
 Q: Why can't my broadcast reach some customers?
 A: In the WhatsApp Business app, broadcasts only reach people who have saved your number, up to 256 per list. To reach everyone who opted in, you need API templates or the app's paid business broadcasts where available.
 
-## مبيعات واتساب بالذكاء الاصطناعي لعلامات المكملات في الإمارات | Nuevo
+## مبيعات واتساب بالذكاء الاصطناعي لعلامات المكملات | Nuevo
 
 URL: https://nuevoautomations.com/ar/
 
@@ -841,3 +841,43 @@ A: Broadcast lists in the Business app are free. Business broadcasts in the app 
 
 Q: Will my number get banned for sending bulk messages?
 A: Not if you use official tools and message only people who opted in. Numbers get restricted when many recipients block or report them, or when unofficial bulk-sending tools are used.
+
+## توثيق واتساب للأعمال في الإمارات: العلامة الخضراء | Nuevo
+
+URL: https://nuevoautomations.com/ar/guides/whatsapp-green-tick-uae/
+
+طريقتان لتوثيق حساب واتساب للأعمال في الإمارات عام 2026: حساب الأعمال الرسمي المجاني على الـAPI، واشتراك Meta One المدفوع لتطبيق واتساب للأعمال.
+
+في عام 2026 يمكن لنشاط تجاري في الإمارات الحصول على علامة توثيق في واتساب بطريقتين. على WhatsApp Business API، حالة حساب الأعمال الرسمي (Official Business Account) مجانية بشروط: توثيق حسابك التجاري في Meta، ومرور 30 يوماً على الأقل على تسجيل الرقم في المنصة، وتفعيل التحقق بخطوتين، واعتماد اسم العرض، والالتزام بسياسات واتساب. وعلى تطبيق واتساب للأعمال المجاني، تأتي علامة التوثيق مع Meta One، اشتراك Meta المدفوع الذي أُطلق في 15 سبتمبر 2026، وذكرت الصحافة الإماراتية أن سعره يبدأ من 46.99 درهماً شهرياً.
+
+Q: كيف أوثّق حساب واتساب للأعمال في الإمارات؟
+A: على WhatsApp Business API قدّم طلب حساب الأعمال الرسمي المجاني من WhatsApp Manager بعد توثيق نشاطك ومرور 30 يوماً وتفعيل التحقق بخطوتين. وعلى تطبيق واتساب للأعمال اشترك في Meta One.
+
+Q: هل توثيق واتساب مجاني؟
+A: على الـAPI نعم، إذا استوفيت شروط Meta. أما على تطبيق واتساب للأعمال فالعلامة تأتي مع باقة Meta One المدفوعة، وتبدأ في الإمارات من 46.99 درهماً شهرياً بحسب الصحافة المحلية.
+
+Q: ماذا أفعل إذا رُفض طلب التوثيق؟
+A: يمكنك إعادة التقديم بعد 30 يوماً. استغل المدة لإكمال توثيق نشاطك والتأكد من أن اسم العرض يطابق اسم نشاطك.
+
+Q: هل تزيد علامة التوثيق حد الرسائل اليومي؟
+A: لا. حد الرسائل يعتمد على توثيق النشاط وجودة الرسائل. توثيق النشاط، المطلوب للعلامة أصلاً، هو ما يرفع الحد من 250 إلى 2,000.
+
+## إرسال رسائل واتساب جماعية في الإمارات بطريقة نظامية | Nuevo
+
+URL: https://nuevoautomations.com/ar/guides/bulk-whatsapp-messages-uae/
+
+إرسال رسائل واتساب جماعية في الإمارات عام 2026: قوائم البث، البث المدفوع للأعمال، قوالب الـAPI، الحدود اليومية، التكلفة وقواعد الموافقة.
+
+هناك ثلاث طرق نظامية لإرسال رسائل واتساب جماعية في الإمارات. تطبيق واتساب للأعمال المجاني يتيح قوائم بث حتى 256 جهة اتصال، ولا تصل إلا لمن حفظ رقمك. ويتيح التطبيق أيضاً البث المدفوع للأعمال الذي يصل لمن لم يحفظ رقمك، في الدول التي توفره فيها Meta. وللأعداد الكبيرة، ترسل WhatsApp Business API قوالب تسويقية معتمدة من Meta لكل من وافق على استلام رسائلك، بحد يبدأ من 250 شخصاً يومياً للحساب الجديد ويرتفع إلى 2,000 بعد توثيق النشاط، وتحاسب Meta على كل رسالة مُسلَّمة. كل الطرق تتطلب موافقة العميل، ويجب التوقف عن مراسلة كل من يطلب ذلك.
+
+Q: كم شخصاً يمكنني مراسلته في بث واتساب واحد؟
+A: في تطبيق واتساب للأعمال حتى 256 جهة اتصال في القائمة، ولا يستلمها إلا من حفظ رقمك. وعلى الـAPI يبدأ الحساب الجديد بـ250 شخصاً يومياً، ويرتفع إلى 2,000 بعد توثيق النشاط.
+
+Q: هل الإرسال الجماعي على واتساب قانوني في الإمارات؟
+A: نعم لمن وافق على استلام رسائلك، وعبر أدوات واتساب الرسمية أو الـAPI. لا تراسل قوائم مشتراة أو منسوخة أبداً.
+
+Q: لماذا لم تصل رسالتي لبعض الأشخاص؟
+A: في التطبيق لا يصل البث إلا لمن حفظ رقمك. وعلى الـAPI قد تحجب Meta الرسائل التسويقية عن الأشخاص الأقل تفاعلاً، ويظهر ذلك بالخطأ 131049.
+
+Q: هل سيُحظر رقمي إذا أرسلت رسائل جماعية؟
+A: ليس إذا استخدمت الأدوات الرسمية وراسلت من وافق فقط. تُقيَّد الأرقام عندما يحظرها أو يبلغ عنها كثيرون، أو عند استخدام برامج غير رسمية.
